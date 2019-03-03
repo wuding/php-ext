@@ -1,0 +1,24 @@
+{
+    "name": "wuding/php-ext",
+    "description": "PHP Extension Library",
+    "type": "library",
+    "require": {
+        "php": ">=5.4.0",
+        "wuding/php-func": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+          "Ext\\": "src/"
+        },
+        "files": ["src/Ext.php"]
+    },
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Benny Wu",
+            "email": "contact@urlnk.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
