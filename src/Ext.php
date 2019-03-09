@@ -11,7 +11,7 @@ function ext($library)
     $prefix = (PHP_SHLIB_SUFFIX === 'dll') ? 'php_' : '';
     $suffix = '.' . PHP_SHLIB_SUFFIX;
     $result = [];
-    foreah ($arr as $name) {
+    foreach ($arr as $name) {
         if (!extension_loaded($name)) {
             $basename = $prefix . $name . $suffix;
             $result[$name] = dl($basename);
