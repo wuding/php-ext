@@ -4,8 +4,50 @@ namespace Ext;
 
 class Filesystem
 {
+    public static $constants = [];
+
     public function __construct()
     {
+        $this->init();
+    }
+
+    public function init()
+    {
+        # $instance = new static;
+        self::$constants = [
+            'SEEK_SET' => SEEK_SET,
+            'SEEK_CUR' => SEEK_CUR,
+            'SEEK_END' => SEEK_END,
+            'LOCK_SH' => LOCK_SH,
+            'LOCK_EX' => LOCK_EX,
+            'LOCK_UN' => LOCK_UN,
+            'LOCK_NB' => LOCK_NB,
+            'GLOB_BRACE' => GLOB_BRACE,
+            'GLOB_ONLYDIR' => GLOB_ONLYDIR,
+            'GLOB_MARK' => GLOB_MARK,
+            'GLOB_NOSORT' => GLOB_NOSORT,
+            'GLOB_NOCHECK' => GLOB_NOCHECK,
+            'GLOB_NOESCAPE' => GLOB_NOESCAPE,
+            'GLOB_AVAILABLE_FLAGS' => GLOB_AVAILABLE_FLAGS,
+            'PATHINFO_DIRNAME' => PATHINFO_DIRNAME,
+            'PATHINFO_BASENAME' => PATHINFO_BASENAME,
+            'PATHINFO_EXTENSION' => PATHINFO_EXTENSION,
+            'PATHINFO_FILENAME' => PATHINFO_FILENAME,
+            'FILE_USE_INCLUDE_PATH' => FILE_USE_INCLUDE_PATH,
+            'FILE_NO_DEFAULT_CONTEXT' => FILE_NO_DEFAULT_CONTEXT,
+            'FILE_APPEND' => FILE_APPEND,
+            'FILE_IGNORE_NEW_LINES' => FILE_IGNORE_NEW_LINES,
+            'FILE_SKIP_EMPTY_LINES' => FILE_SKIP_EMPTY_LINES,
+            'FILE_BINARY' => FILE_BINARY,
+            'FILE_TEXT' => FILE_TEXT,
+            'INI_SCANNER_NORMAL' => INI_SCANNER_NORMAL,
+            'INI_SCANNER_RAW' => INI_SCANNER_RAW,
+            'INI_SCANNER_TYPED' => INI_SCANNER_TYPED,
+            'FNM_NOESCAPE' => FNM_NOESCAPE,
+            'FNM_PATHNAME' => FNM_PATHNAME,
+            'FNM_PERIOD' => FNM_PERIOD,
+            'FNM_CASEFOLD' => FNM_CASEFOLD,
+        ];
     }
     
     /**
@@ -30,10 +72,30 @@ class Filesystem
     /**
      * 将字符串写入文件
      */
-    public static function putContents($filename = null, $data = null)
+    public static function putContents($filename = null, $data = null, $flags = 0, $context = null)
     {
         $dir = self::isDir(dirname($filename));
-        return file_put_contents($filename, $data);
+        if ('string' == gettype($flags)) {
+            $strlen = strlen($data);
+            $filesize = filesize($filename);
+
+            if ('not rewrite' == $flags) {
+                if ($filesize) {
+                    # return $filesize;
+                }
+                #print_r([$strlen, $filesize]);
+                $flags = 0;
+            } elseif ('not overwrite' == $flags) {
+                if ($strlen == $filesize) {
+                    # return $strlen;
+                }
+            }
+
+            print_r(get_defined_vars());
+            exit;
+        }
+
+        return file_put_contents($filename, $data, $flags, $context);
     }
     
     /**
