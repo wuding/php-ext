@@ -165,9 +165,12 @@ class Filesystem
     /**
      * 返回上级目录路径
      */
-    public static function dirname()
+    public static function dirName($path, $offset = 0)
     {
-
+        for ($i = 0; $i < $offset; $i++) {
+            $path = dirname($path);
+        }
+        return $path;
     }
 
     /**
