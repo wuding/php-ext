@@ -14,7 +14,7 @@ class DateTime
     /**
      * 日期和时间构建方法
      */
-    public function __construct()
+    public function __construct($time = "now", $timezone = NULL)
     {
         self::$constants = [
             'SUNFUNCS_RET_TIMESTAMP' => SUNFUNCS_RET_TIMESTAMP,
@@ -84,7 +84,10 @@ class DateTime
      */
     public static function date_diff()
     {
-
+        $args = func_get_args();
+        $datetime1 = date_create($args[0]);
+        $datetime2 = date_create($args[1]);
+        return date_diff($datetime1, $datetime2);
     }
 
     /**
@@ -258,7 +261,7 @@ class DateTime
     /**
      * 格式化一个 GMT/UTC 日期/时间
      */
-    public static gmdate($format)
+    public static function gmdate($format)
     {
 
     }
@@ -338,9 +341,9 @@ class DateTime
     /**
      * 返回当前的 Unix 时间戳
      */
-    public static function time($oid)
+    public static function time($void = null)
     {
-
+        return time();
     }
 
     /**
