@@ -90,10 +90,14 @@ class SPL
 
     /**
      * 注册指定的函数作为 __autoload() 实现
+     * 
+     * @param $autoload_function  欲注册的自动装载函数
+     * @param $throw              无法成功注册时，是否抛出异常
+     * @param $prepend            如果是真会添加函数到队列之首
      */
-    public function spl_autoload_register()
+    public function autoloadRegister(callable $autoload_function, bool $throw = true, bool $prepend = false) : bool
     {
-
+        return spl_autoload_register($autoload_function, $throw, $prepend);
     }
 
     /**
