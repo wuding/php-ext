@@ -9,12 +9,12 @@ namespace Ext;
 class JSON
 {
     private static $constants = [];
-    private static $json_decoded = null;
+    protected static $json_decoded = null;
     
     /**
      * 构建函数
      */
-    public function __constrcut($filename = null)
+    public function __construct($filename = null)
     {
         $this->init($filename);
     }
@@ -24,6 +24,8 @@ class JSON
      */
     public function init($filename = null)
     {
+        $filename = str_replace('\\', '/', $filename);
+
         self::$constants = [
             'JSON_ERROR_NONE' => JSON_ERROR_NONE,
             'JSON_ERROR_DEPTH' => JSON_ERROR_DEPTH,
@@ -34,7 +36,7 @@ class JSON
             'JSON_ERROR_RECURSION' => JSON_ERROR_RECURSION,
             'JSON_ERROR_INF_OR_NAN' => JSON_ERROR_INF_OR_NAN,
             'JSON_ERROR_UNSUPPORTED_TYPE' => JSON_ERROR_UNSUPPORTED_TYPE,
-            'JSON_ERROR_INVALID_PROPERTY_NAME' => JOSN_ERROR_INVALID_PROPERTY_NAME,
+            'JSON_ERROR_INVALID_PROPERTY_NAME' => JSON_ERROR_INVALID_PROPERTY_NAME,
             'JSON_ERROR_UTF16' => JSON_ERROR_UTF16,
             'JSON_BIGINT_AS_STRING' => JSON_BIGINT_AS_STRING,
             'JSON_OBJECT_AS_ARRAY' => JSON_OBJECT_AS_ARRAY,
@@ -44,7 +46,7 @@ class JSON
             'JSON_HEX_QUOT' => JSON_HEX_QUOT,
             'JSON_FORCE_OBJECT' => JSON_FORCE_OBJECT,
             'JSON_NUMERIC_CHECK' => JSON_NUMERIC_CHECK,
-            'JSON_PERTTY_PRINT' => JSON_PERTTY_PRINT,
+            'JSON_PRETTY_PRINT' => JSON_PRETTY_PRINT,
             'JSON_UNESCAPED_SLASHES' => JSON_UNESCAPED_SLASHES,
             'JSON_UNESCAPED_UNICODE' => JSON_UNESCAPED_UNICODE,
             'JSON_PARTIAL_OUTPUT_ON_ERROR' => JSON_PARTIAL_OUTPUT_ON_ERROR,
