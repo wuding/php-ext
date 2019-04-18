@@ -709,7 +709,7 @@ class Filesystem
     /**
      * 删除一个文件
      */
-    public static function unlink($filename)
+    public static function unlink(string $filename, resource $context) : bool
     {
 
     }

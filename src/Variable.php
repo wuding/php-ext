@@ -241,7 +241,7 @@ class Variable
     /**
      * 打印人类可读信息关于一个变量
      */
-    public static function print_r($expression)
+    public static function printR(mixed $expression, bool $return = false) : mixed
     {
 
     }

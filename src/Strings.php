@@ -41,4 +41,16 @@ class Strings
     {
         return md5($str, $raw_output);
     }
+
+    /**
+     * 查找字符串首次出现的位置
+     *
+     * @param $haystack     在该字符串中进行查找
+     * @param $needle       字符串或顺序值
+     * @param $offset       
+     */
+    public static function strpos(string $haystack, mixed $needle, int $offset = 0) : int
+    {
+        return strpos($haystack, $needle, $offset);
+    }
 }
