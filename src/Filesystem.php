@@ -669,7 +669,7 @@ class Filesystem
     /**
      * 创建符号链接
      */
-    public static function symlink($target, $link)
+    public static function symlink(string $target, string $link) : bool
     {
 
     }
