@@ -63,7 +63,7 @@ class Math
      *
      * @return     float    ( description_of_the_return_value )
      */
-    public static function floor(float $value, int $decimals = 0) : float
+    public static function floor($value, $decimals = 0)
     {
         if (0 < $decimals) {
             return self::numberFloor($value, $decimals);
@@ -71,12 +71,20 @@ class Math
         return floor($value);
     }
 
-    public static function numberFloor(float $value, int $decimals = 0)
+    /**
+     * 省略小數點
+     *
+     * @param      float    $value     The value
+     * @param      integer  $decimals  The decimals
+     *
+     * @return     float    ( description_of_the_return_value )
+     */
+    public static function numberFloor($value, $decimals = 0)
     {
         if (!preg_match('/\./', $value)) {
             return $value;
         }
-        
+
         $exp = explode('.', $value);
         $len = strlen($exp[1]);
         if (2 < $len) {
