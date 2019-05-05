@@ -53,4 +53,19 @@ class Strings
     {
         return strpos($haystack, $needle, $offset);
     }
+
+    /**
+     *  格式化一個數字使用千位分隔法
+     *
+     * @param      float    $number         The number
+     * @param      integer  $decimals       The decimals
+     * @param      string   $dec_point      The decrement point
+     * @param      string   $thousands_sep  The thousands separator
+     *
+     * @return     string   A formatted version of number
+     */
+    public static function numberFormat(float $number, int $decimals = 0, string $dec_point = ".", string $thousands_sep = ",") : string
+    {
+        return number_format($number, $decimals, $dec_point, $thousands_sep);
+    }
 }
