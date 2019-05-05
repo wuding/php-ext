@@ -8,12 +8,14 @@ namespace Ext;
 
 class Phar
 {
+    private static $object = null;
+
     /**
      * 构建函数 - 构建一个 phar 档案文件对象
      */
-    public function __construct()
+    public function __construct(string $fname, int $flags = null, string $alias = null)
     {
-
+        self::$object = new \Phar($fname, $flags, $alias);
     }
 
     /**
@@ -186,10 +188,12 @@ class Phar
 
     /**
      * 提取 phar 档案文件内容到一个目录
+     *
+     * @param string|array $files
      */
-    public function extractTo()
+    public function extractTo(string $pathto, mixed $files = null, bool $overwrite = false)
     {
-
+        self::$object->extractTo($pathto, $files, $overwrite);
     }
 
     /**
