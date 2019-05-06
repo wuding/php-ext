@@ -9,6 +9,7 @@
 namespace Ext\Example;
 
 use Ext\DateTime;
+use Ext\Phar;
 
 class Index
 {
@@ -54,6 +55,18 @@ class Index
 
         echo $date->format('Y-m-d');
     }
+
+    /**
+     * 解壓 Phar
+    */
+    public static function decompress()
+    {
+        $p = new Phar('I:/tmp/Users/Benny/Downloads/composer.phar');
+        foreach ($p as $file) {
+            print_r($file);
+        }
+        echo $p->extractTo('compose');
+    }
 }
 
 ini_set('display_errors', 1);
@@ -61,5 +74,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include __DIR__ . '/../src/DateTime.php';
+include __DIR__ . '/../src/Phar.php';
 
-Index::date_diff();
+Index::decompress();
