@@ -11,6 +11,8 @@ namespace Ext\Example;
 use Ext\DateTime;
 use Ext\Phar;
 use Ext\Interfaces\Closure;
+use Ext\Interfaces\Serializabled;
+use Ext\Variable;
 
 class Index
 {
@@ -80,6 +82,23 @@ class Index
         echo $bcl1(), "\n";
         echo $bcl2(), "\n";
     }
+
+    /**
+     * 序列化
+     */
+    public static function serialize()
+    {
+        $value = ['key' => 'value'];
+        $value = Variable::serialize($value);
+        $value = Variable::unserialize($value);
+        # print_r($value);
+
+        // 对象
+        $obj = new Serializabled('My private data');
+        $ser = Variable::serialize($obj);
+        $newobj = Variable::unserialize($ser);
+        var_dump($newobj->getData());        
+    }
 }
 
 ini_set('display_errors', 1);
@@ -89,5 +108,7 @@ error_reporting(E_ALL);
 include __DIR__ . '/../src/DateTime.php';
 include __DIR__ . '/../src/Phar.php';
 include __DIR__ . '/../src/Interfaces/Closure.php';
+include __DIR__ . '/../src/Interfaces/Serializabled.php';
+include __DIR__ . '/../src/Variable.php';
 
-Index::closure();
+Index::serialize();
