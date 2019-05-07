@@ -10,6 +10,7 @@ namespace Ext\Example;
 
 use Ext\DateTime;
 use Ext\Phar;
+use Ext\Interfaces\Closure;
 
 class Index
 {
@@ -65,7 +66,19 @@ class Index
         foreach ($p as $file) {
             print_r($file);
         }
-        echo $p->extractTo('compose');
+        # echo $p->extractTo('compose');
+    }
+
+    /**
+     * 复制一个闭包
+     */
+    public static function closure()
+    {
+        include 'closure.php';
+        $bcl1 = Closure::bind($cl1, null, 'Ext\Example\A');
+        $bcl2 = Closure::bind($cl2, new \Ext\Example\A(), 'Ext\Example\A');
+        echo $bcl1(), "\n";
+        echo $bcl2(), "\n";
     }
 }
 
@@ -75,5 +88,6 @@ error_reporting(E_ALL);
 
 include __DIR__ . '/../src/DateTime.php';
 include __DIR__ . '/../src/Phar.php';
+include __DIR__ . '/../src/Interfaces/Closure.php';
 
-Index::decompress();
+Index::closure();

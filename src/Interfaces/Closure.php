@@ -13,7 +13,7 @@ class Closure
     /**
      * 用于禁止实例化的构造函数
      */
-    public function __construct(void)
+    public function __construct()
     {
 
     }
@@ -27,9 +27,9 @@ class Closure
      *
      * @return object|false     Closure 对象
      */
-    public static function bind(Closure $closure, object $newthis, mixed $newscope = 'static') : Closure
+    public static function bind($closure, $newthis = null, $newscope = 'static')
     {
-
+        return \Closure::bind($closure, $newthis, $newscope);
     }
 
     /**
@@ -40,7 +40,7 @@ class Closure
      *
      * @return object|false     Closure 对象
      */
-    public function bindTo(object $newthis, mixed $newscope = 'static') : Closure
+    public static function bindTo($newthis, $newscope = 'static') : Closure
     {
 
     }
