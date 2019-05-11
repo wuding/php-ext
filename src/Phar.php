@@ -193,7 +193,7 @@ class Phar
      */
     public function extractTo(string $pathto, mixed $files = null, bool $overwrite = false)
     {
-        self::$object->extractTo($pathto, $files, $overwrite);
+        return self::$object->extractTo($pathto, $files, $overwrite);
     }
 
     /**

@@ -248,10 +248,14 @@ class Variable
 
     /**
      * 生成一个可存储表现值
+     *
+     * @param mixed $value 要序列化的值
+     *
+     * @return string
      */
-    public static function serialize($value)
+    public static function serialize($value) : string
     {
-
+        return serialize($value);
     }
 
     /**
@@ -272,10 +276,14 @@ class Variable
 
     /**
      * 创建一个 PHP 值从存储的表现
+     *
+     * @param string $str 已经存储的表示
+     *
+     * @return mixed
      */
-    public static function unserialize($str)
+    public static function unserialize(string $str)
     {
-
+        return unserialize($str);
     }
 
     /**

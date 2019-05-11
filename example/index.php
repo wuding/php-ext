@@ -10,6 +10,11 @@ namespace Ext\Example;
 
 use Ext\DateTime;
 use Ext\Math;
+use Ext\Phar;
+use Ext\Interfaces\Closure;
+use Ext\Interfaces\Serializabled;
+use Ext\Variable;
+
 
 class Index
 {
@@ -63,6 +68,48 @@ class Index
     {
         list($number, $frombase, $tobase) = $args;
         echo Math::baseConvert($number, $frombase, $tobase);
+
+    }
+
+    /**
+     * 解壓 Phar
+     */
+    public static function decompress()
+    {
+        $p = new Phar('I:/tmp/Users/Benny/Downloads/composer.phar');
+        foreach ($p as $file) {
+            print_r($file);
+        }
+        # echo $p->extractTo('compose');
+    }
+
+    /**
+     * 复制一个闭包
+     */
+    public static function closure()
+    {
+        include 'closure.php';
+        $bcl1 = Closure::bind($cl1, null, 'Ext\Example\A');
+        $bcl2 = Closure::bind($cl2, new \Ext\Example\A(), 'Ext\Example\A');
+        echo $bcl1(), "\n";
+        echo $bcl2(), "\n";
+    }
+
+    /**
+     * 序列化
+     */
+    public static function serialize()
+    {
+        $value = ['key' => 'value'];
+        $value = Variable::serialize($value);
+        $value = Variable::unserialize($value);
+        # print_r($value);
+
+        // 对象
+        $obj = new Serializabled('My private data');
+        $ser = Variable::serialize($obj);
+        $newobj = Variable::unserialize($ser);
+        var_dump($newobj->getData());
     }
 }
 
@@ -72,5 +119,9 @@ error_reporting(E_ALL);
 
 include __DIR__ . '/../src/DateTime.php';
 include __DIR__ . '/../src/Math.php';
+include __DIR__ . '/../src/Phar.php';
+include __DIR__ . '/../src/Interfaces/Closure.php';
+include __DIR__ . '/../src/Interfaces/Serializabled.php';
+include __DIR__ . '/../src/Variable.php';
 
 Index::baseConvert([682, 10, 2, 1010101010]);
