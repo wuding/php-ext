@@ -92,4 +92,18 @@ class Math
         }
         return $imp = implode('.', $exp);
     }
+
+    /**
+     * Convert a number between arbitrary bases
+     *
+     * @param      string   $number    The number
+     * @param      integer  $frombase  The frombase
+     * @param      integer  $tobase    The tobase
+     *
+     * @return     string   ( description_of_the_return_value )
+     */
+    public static function baseConvert(string $number, int $frombase, int $tobase) : string
+    {
+        return base_convert($number, $frombase, $tobase);
+    }
 }

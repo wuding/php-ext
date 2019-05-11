@@ -9,6 +9,7 @@
 namespace Ext\Example;
 
 use Ext\DateTime;
+use Ext\Math;
 
 class Index
 {
@@ -54,6 +55,15 @@ class Index
 
         echo $date->format('Y-m-d');
     }
+
+    /**
+     * 进制转换
+     */
+    public static function baseConvert($args = [])
+    {
+        list($number, $frombase, $tobase) = $args;
+        echo Math::baseConvert($number, $frombase, $tobase);
+    }
 }
 
 ini_set('display_errors', 1);
@@ -61,5 +71,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include __DIR__ . '/../src/DateTime.php';
+include __DIR__ . '/../src/Math.php';
 
-Index::date_diff();
+Index::baseConvert([682, 10, 2, 1010101010]);
