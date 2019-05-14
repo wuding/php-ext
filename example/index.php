@@ -9,10 +9,12 @@
 namespace Ext\Example;
 
 use Ext\DateTime;
+use Ext\Math;
 use Ext\Phar;
 use Ext\Interfaces\Closure;
 use Ext\Interfaces\Serializabled;
 use Ext\Variable;
+
 
 class Index
 {
@@ -60,8 +62,18 @@ class Index
     }
 
     /**
+     * 进制转换
+     */
+    public static function baseConvert($args = [])
+    {
+        list($number, $frombase, $tobase) = $args;
+        echo Math::baseConvert($number, $frombase, $tobase);
+
+    }
+
+    /**
      * 解壓 Phar
-    */
+     */
     public static function decompress()
     {
         $p = new Phar('I:/tmp/Users/Benny/Downloads/composer.phar');
@@ -97,7 +109,7 @@ class Index
         $obj = new Serializabled('My private data');
         $ser = Variable::serialize($obj);
         $newobj = Variable::unserialize($ser);
-        var_dump($newobj->getData());        
+        var_dump($newobj->getData());
     }
 }
 
@@ -106,9 +118,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include __DIR__ . '/../src/DateTime.php';
+include __DIR__ . '/../src/Math.php';
 include __DIR__ . '/../src/Phar.php';
 include __DIR__ . '/../src/Interfaces/Closure.php';
 include __DIR__ . '/../src/Interfaces/Serializabled.php';
 include __DIR__ . '/../src/Variable.php';
 
-Index::serialize();
+Index::baseConvert([682, 10, 2, 1010101010]);
