@@ -6,7 +6,7 @@
 
 namespace Ext;
 
-class Errorfunc
+class ErrorFunc
 {
     /**
      * 构建函数
@@ -69,9 +69,9 @@ class Errorfunc
     /**
      * 设置每一个 PHP 错误是报告
      */
-    public static function errorReporting()
+    public static function errorReporting(int $level) : int
     {
-
+        return error_reporting($level);
     }
 
     /**

@@ -477,9 +477,9 @@ class Info
     /**
      * 最大执行时间限制
      */
-    public function set_time_limit($seconds)
+    public static function setTimeLimit(int $seconds) : bool
     {
-
+        return set_time_limit($seconds);
     }
 
     /**
