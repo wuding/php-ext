@@ -14,6 +14,10 @@ use Ext\Phar;
 use Ext\Interfaces\Closure;
 use Ext\Interfaces\Serializabled;
 use Ext\Variable;
+use Ext\Socket;
+use Ext\ErrorFunc;
+use Ext\Info;
+use Ext\OutControl;
 
 
 class Index
@@ -111,11 +115,70 @@ class Index
         $newobj = Variable::unserialize($ser);
         var_dump($newobj->getData());
     }
+
+    /**
+     * 简单的 TCP/IP 服务器
+     */
+    public static function socketServer()
+    {
+        ErrorFunc::errorReporting(E_ALL);
+        Info::setTimeLimit(0);
+        OutControl::implicitFlush();
+
+        $address = '172.20.10.2';
+        $port = 10000;
+
+        if (false === Socket::create(AF_INET, SOCK_STREAM, SOL_TCP)) {
+            echo __LINE__ . Socket::strerror() . PHP_EOL;
+        }
+        if (false === Socket::bind($address, $port)) {
+            echo __LINE__ . Socket::strerror() . PHP_EOL;
+        }
+        if (false === Socket::listen(5)) {
+            echo __LINE__ . Socket::strerror() . PHP_EOL;
+        }
+
+        do {
+            if (false === ($msgsock = Socket::accept())) {
+                echo Socket::strerror() . PHP_EOL;
+                break;
+            }
+
+            $msg = "\nWelcome to the PHP Test Server. \n";
+            Socket::write($msg, strlen($msg), $msgsock);
+
+            do {
+                if (false === ($buf = Socket::read(2048, PHP_NORMAL_READ, $msgsock))) {
+                    echo Socket::strerror(Socker::lastError($msgsock)) . PHP_EOL;
+                    break 2;
+                }
+                if (!$buf = trim($buf)) {
+                    continue;
+                }
+                if ($buf == 'quit') {
+                    break;
+                }
+                if ($buf == 'shutdown') {
+                    Socket::close($msgsock);
+                    break 2;
+                }
+
+                $talkback = "PHP: You said '$buf'.\n";
+                Socket::write($talkback, strlen($talkback), $msgsock);
+                echo "$buf\n";
+            } while (true);
+            Socket::close($msgsock);
+
+        } while (true);
+        Socket::close();
+    }
 }
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+header('Content-Type: text/html; charset=GBK');
 
 include __DIR__ . '/../src/DateTime.php';
 include __DIR__ . '/../src/Math.php';
@@ -123,5 +186,10 @@ include __DIR__ . '/../src/Phar.php';
 include __DIR__ . '/../src/Interfaces/Closure.php';
 include __DIR__ . '/../src/Interfaces/Serializabled.php';
 include __DIR__ . '/../src/Variable.php';
+include __DIR__ . '/../src/Socket.php';
+include __DIR__ . '/../src/ErrorFunc.php';
+include __DIR__ . '/../src/Info.php';
+include __DIR__ . '/../src/OutControl.php';
 
-Index::baseConvert([682, 10, 2, 1010101010]);
+# Index::baseConvert([682, 10, 2, 1010101010]);
+Index::socketServer();
