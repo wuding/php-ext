@@ -27,6 +27,14 @@ class Strings
     }
 
     /**
+     * 将字符串解析成多个变量
+     */
+    public static function parseStr(string $encoded_string, array &$result)
+    {
+        return parse_str($encoded_string, $result);
+    }
+
+    /**
      * 子字符替换
      */
     public static function replace(mixed $search, mixed $replace, mixed $subject, int &$count) : mixed
