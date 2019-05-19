@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ * 处理 URL 字符串：编码，解码和解析。
  */
 
 namespace Ext;
@@ -9,10 +9,25 @@ namespace Ext;
 class Url
 {
     public static $str = null;
+    public static $constants = array();
+    public static $constants_string = 'PHP_URL_SCHEME|PHP_URL_HOST|PHP_URL_USER|PHP_URL_PASS|PHP_URL_PATH|PHP_URL_QUERY|PHP_URL_FRAGMENT|PHP_QUERY_RFC1738|PHP_QUERY_RFC3986';
 
     public function __construct($str = null)
     {
         self::$str = $str;
+        $this->init();
+    }
+
+    /**
+     * 初始化
+     */
+    public function init()
+    {
+        $constants_array = implode('|', self::$constants_string);
+        foreach ($constants_array as $constant_name) {
+            eval("$const = $constant_name;");
+            self::$constants[$constant_name] = $const;
+        }
     }
 
     /**
@@ -58,9 +73,9 @@ class Url
     /**
      * 解析并返回 URL 组件部分
      */
-    public function parse_url($url)
+    public function parseUrl(string $url, int $component = -1) : mixed
     {
-
+        return parse_url($url, $component);
     }
 
     /**
