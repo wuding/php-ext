@@ -18,6 +18,7 @@ use Ext\Socket;
 use Ext\ErrorFunc;
 use Ext\Info;
 use Ext\OutControl;
+use Ext\Arrays\SQL;
 
 
 class Index
@@ -36,8 +37,8 @@ class Index
     public static function date_diff()
     {
         $datetime = new DateTime;
-        $datetime1 = '2008-4-9';
-        $datetime2 = '2019-4-9';
+        $datetime1 = '1980-11-22';
+        $datetime2 = '1982-7-31';
         $interval = $datetime->date_diff($datetime1, $datetime2);
         echo $interval->format('%R%a days');
     }
@@ -172,6 +173,34 @@ class Index
         } while (true);
         Socket::close();
     }
+
+    /**
+     * 前缀老是重复，字数总是加一多少
+     */
+    public static function date_unexpected()
+    {
+
+    }
+
+    /**
+     * 怎么又是我的发音数字
+     */
+    public static function sql_insert_splice()
+    {
+        $fields = array('day', 'no', 'solar terms', 'festival', 'western astrology', 'month');
+        $values = array(
+        );
+        foreach ([5 => 32, 6 => 31] as $key => $value) {
+            for ($i = 1; $i < $value; $i++) {
+                $values[] = array($i);
+            }
+        }
+
+        # SQL::insert_into('`when`.`day`', $fields, $values);
+        $SQL = new SQL();
+        header('Content-Type: text/html; charset=utf-8');
+        echo $SQL->insertInto('`when`.`day`', $fields, $values);
+    }
 }
 
 ini_set('display_errors', 1);
@@ -180,6 +209,8 @@ error_reporting(E_ALL);
 
 header('Content-Type: text/html; charset=GBK');
 
+$_FILES = array('DateTime', 'Math', 'Phar', 'Interfaces/Closure', 'Interfaces/Serializabled', 'Variable', 'Socket', 'ErrorFunc', 'Info', 'OutControl', 'Arrays/SQL');
+/*
 include __DIR__ . '/../src/DateTime.php';
 include __DIR__ . '/../src/Math.php';
 include __DIR__ . '/../src/Phar.php';
@@ -190,6 +221,19 @@ include __DIR__ . '/../src/Socket.php';
 include __DIR__ . '/../src/ErrorFunc.php';
 include __DIR__ . '/../src/Info.php';
 include __DIR__ . '/../src/OutControl.php';
+*/
+include __DIR__ . '/../../php-func/src/Func.php';
+include __DIR__ . '/../../php-ext/src/Langref.php';
+func(array(), array('Arr', 'arr'));
+arr_fixed_assoc($_FILES, true);
+arr_reset_values($_FILES, ['prefix' => __DIR__ . '/../src/', 'suffix' => '.php'], true);
+foreach ($_FILES as $file_key => $file_value) {
+    # include $file_value;
+}
+print_r($_FILES);
+$langref = new \Ext\Langref();
+$langref->include($_FILES, null, null);
+
 
 # Index::baseConvert([682, 10, 2, 1010101010]);
-Index::socketServer();
+Index::sql_insert_splice();
