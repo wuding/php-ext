@@ -3,6 +3,7 @@
 $_NAME = array(
 	'' => 'index',
 	'index',
+	'closure',
 );
 
-include __DIR__ . '/../example/index.php';
+include __DIR__ . '/../example/' . $_NAME[0] . '.php';
