@@ -63,7 +63,7 @@ class Langref
 
     }
 
-    public function for($expr1, $expr, $expr)
+    public function for($expr1, $expr, $expr2)
     { 
         # code...
     }
@@ -111,9 +111,24 @@ class Langref
 
     }
 
-    public function include()
+    public function include(array &$array, $set = ['prefix' => '', 'suffix' => ''], $reset = false)
     {
-
+        $prefix = isset($set['prefix']) ? $set['prefix'] : '';
+        $suffix = isset($set['suffix']) ? $set['suffix'] : '';
+        $arr = $array;
+        foreach ($arr as $key => &$value) {
+            if (is_string($key)) {
+                $value = $prefix . $value . $suffix;
+            }
+            if (null === $reset) {
+                include $value;
+            }
+        }
+        if ($reset) {
+            $array = $arr;
+        }
+        return $arr;
+        # include $filename
     }
 
     public function require_once()
