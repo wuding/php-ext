@@ -4,7 +4,7 @@ namespace Ext;
 
 class Hash
 {
-    private $constants = array();
+    private $constants = array('HASH_HMAC' => HASH_HMAC);
 
     public function __construct()
     {
@@ -83,7 +83,7 @@ class Hash
 
     public function hash_update_stream($context, $handle)
     {
-        
+
     }
 
     public function hash_update($context, $data)
