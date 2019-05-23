@@ -14,9 +14,9 @@ class Nginx
 		return include $this->constants['PREFIX_DIR'] . '/' . $basename;
 	}
 
-	public function update()
+	public function update($basename = 'ssl.conf', $config = array())
 	{
-
+		return include $this->constants['PREFIX_DIR'] . '/' . $basename;
 	}
 
 	public function delete()
