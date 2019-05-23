@@ -20,6 +20,7 @@ use Ext\Info;
 use Ext\OutControl;
 use Ext\Arrays\SQL;
 use Ext\Configuration\Nginx;
+use Ext\Reserved\Variable as ReservedVariable;
 
 
 class Index
@@ -209,8 +210,18 @@ class Index
     public static function nginxConf()
     {
         $nginx = new Nginx;
-        echo $nginx->create('extra/ssl.php', array());
+        echo $nginx->update('extra/ssl.php', 'ssl.conf.php');
+        # $nginx->create('extra/ssl.php', array());
         # echo $nginx->read('ssl');
+    }
+
+    /**
+     * 
+     */
+    public static function default()
+    {
+        $reservedVariable = new ReservedVariable;
+        $reservedVariable->globals();
     }
 }
 
@@ -220,7 +231,7 @@ error_reporting(E_ALL);
 
 header('Content-Type: text/html; charset=GBK');
 
-$_FILES = array('DateTime', 'Math', 'Phar', 'Interfaces/Closure', 'Interfaces/Serializabled', 'Variable', 'Socket', 'ErrorFunc', 'Info', 'OutControl', 'Arrays/SQL', 'Configuration/Nginx');
+$_FILES = array('DateTime', 'Math', 'Phar', 'Interfaces/Closure', 'Interfaces/Serializabled', 'Variable', 'Socket', 'ErrorFunc', 'Info', 'OutControl', 'Arrays/SQL', 'Configuration/Nginx', 'Reserved/Variable');
 /*
 include __DIR__ . '/../src/DateTime.php';
 include __DIR__ . '/../src/Math.php';
@@ -247,4 +258,4 @@ $langref->include($_FILES, null, null);
 
 
 # Index::baseConvert([682, 10, 2, 1010101010]);
-Index::nginxConf();
+Index::default();
