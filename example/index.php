@@ -19,6 +19,7 @@ use Ext\ErrorFunc;
 use Ext\Info;
 use Ext\OutControl;
 use Ext\Arrays\SQL;
+use Ext\Configuration\Nginx;
 
 
 class Index
@@ -201,6 +202,16 @@ class Index
         header('Content-Type: text/html; charset=utf-8');
         echo $SQL->insertInto('`when`.`day`', $fields, $values);
     }
+
+    /**
+     * 读取一个 nginx 配置文件
+     */
+    public static function nginxConf()
+    {
+        $nginx = new Nginx;
+        echo $nginx->create('extra/ssl.php', array());
+        # echo $nginx->read('ssl');
+    }
 }
 
 ini_set('display_errors', 1);
@@ -209,7 +220,7 @@ error_reporting(E_ALL);
 
 header('Content-Type: text/html; charset=GBK');
 
-$_FILES = array('DateTime', 'Math', 'Phar', 'Interfaces/Closure', 'Interfaces/Serializabled', 'Variable', 'Socket', 'ErrorFunc', 'Info', 'OutControl', 'Arrays/SQL');
+$_FILES = array('DateTime', 'Math', 'Phar', 'Interfaces/Closure', 'Interfaces/Serializabled', 'Variable', 'Socket', 'ErrorFunc', 'Info', 'OutControl', 'Arrays/SQL', 'Configuration/Nginx');
 /*
 include __DIR__ . '/../src/DateTime.php';
 include __DIR__ . '/../src/Math.php';
@@ -236,4 +247,4 @@ $langref->include($_FILES, null, null);
 
 
 # Index::baseConvert([682, 10, 2, 1010101010]);
-Index::sql_insert_splice();
+Index::nginxConf();
