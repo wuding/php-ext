@@ -21,6 +21,7 @@ use Ext\OutControl;
 use Ext\Arrays\SQL;
 use Ext\Configuration\Nginx;
 use Ext\Reserved\Variable as ReservedVariable;
+use Ext\Url;
 
 
 class Index
@@ -221,7 +222,12 @@ class Index
     public static function default()
     {
         $reservedVariable = new ReservedVariable;
-        $reservedVariable->globals();
+        # $reservedVariable->globals();
+        $url = $_GET['q'] ?? 'http://win.web.nf03.sycdn.kuwo.cn/6a03cd58ad212e8863b4756253d14de8/5c9b623e/resource/a3/66/92/195353300.aac';
+        echo $data = \Ext\Filesystem::getContents($url);
+        $url = preg_replace(['/:/', '/\/+/'], ['', '/'], $url);
+        $url = 'D:/env/www/legend/dist/' . $url;
+        echo \Ext\Filesystem::putContents($url, @$data ? : 'timeout', 'not overwrite');
     }
 }
 
@@ -231,7 +237,7 @@ error_reporting(E_ALL);
 
 header('Content-Type: text/html; charset=GBK');
 
-$_FILES = array('DateTime', 'Math', 'Phar', 'Interfaces/Closure', 'Interfaces/Serializabled', 'Variable', 'Socket', 'ErrorFunc', 'Info', 'OutControl', 'Arrays/SQL', 'Configuration/Nginx', 'Reserved/Variable');
+$_FILES = array('DateTime', 'Math', 'Phar', 'Interfaces/Closure', 'Interfaces/Serializabled', 'Variable', 'Socket', 'ErrorFunc', 'Info', 'OutControl', 'Arrays/SQL', 'Configuration/Nginx', 'Reserved/Variable', 'Filesystem');
 /*
 include __DIR__ . '/../src/DateTime.php';
 include __DIR__ . '/../src/Math.php';
@@ -246,7 +252,7 @@ include __DIR__ . '/../src/OutControl.php';
 */
 include __DIR__ . '/../../php-func/src/Func.php';
 include __DIR__ . '/../../php-ext/src/Langref.php';
-func(array(), array('Arr', 'arr'));
+func(array(), array('Arr', 'arr', 'Variable'));
 arr_fixed_assoc($_FILES, true);
 arr_reset_values($_FILES, ['prefix' => __DIR__ . '/../src/', 'suffix' => '.php'], true);
 foreach ($_FILES as $file_key => $file_value) {
