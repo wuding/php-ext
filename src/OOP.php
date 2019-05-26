@@ -44,8 +44,11 @@ class OOP
 
     }
 
-    public function __callStatic($name, $arguments)
+    public static function __callStatic($name, $arguments)
     {
-        
+        $methodName = ucwords(str_replace('_', ' ', $name));
+        $methodName = str_replace(' ', '', lcfirst($methodName));
+        $instance = new static;
+        return $instance->$methodName(implode(', ', $arguments));
     }
 }
