@@ -193,16 +193,32 @@ class Index
         $fields = array('day', 'no', 'solar terms', 'festival', 'western astrology', 'month');
         $values = array(
         );
-        foreach ([7 => 32, 8 => 32, 9 => 31, 10 => 32, 11 => 31, 12 => 32] as $key => $value) {
+        $j = 36;
+        foreach (['正月' => 30, '二月' => 29, '三月' => 30, '四月' => 29, '五月' => 30, '六月' => 29, '七月' => 29, '八月' => 30, '九月' => 29, '十月' => 29, '冬月' => 30, '腊月' => 30] as $key => $value) {
             for ($i = 1; $i < $value; $i++) {
-                $values[] = array($i);
+                # $values[] = array($i);
             }
+            $values[$j] = \Ext\Calendar\Lunar::lunar_month(null, 1, $value, $key);
+            $j++;
         }
 
         # SQL::insert_into('`when`.`day`', $fields, $values);
         $SQL = new SQL();
         header('Content-Type: text/html; charset=utf-8');
-        echo $SQL->insertInto('`when`.`day`', $fields, $values);
+        # echo $SQL->insertInto('`when`.`day`', $fields, $values);
+        $keys = array();
+        $arr_keys = array();
+        $k = null;
+        foreach ($values as $month_key => $month_value) {
+            if (null === $k) {$k = $month_key;}
+            # print_r($month_value);
+            foreach ($month_value as $day_key => $day_val) {
+                $arr_keys[] = array($day_val, $k);
+                $keys[] = $SQL->updateSet('`when`.`day`', "no='$day_val'", "day_id=$k");
+                $k++;
+            }
+        }
+        print_r([$arr_keys, $k, implode(PHP_EOL, $keys)]);
     }
 
     /**
@@ -237,7 +253,7 @@ error_reporting(E_ALL);
 
 header('Content-Type: text/html; charset=GBK');
 
-$_FILES = array('DateTime', 'Math', 'Phar', 'Interfaces/Closure', 'Interfaces/Serializabled', 'Variable', 'Socket', 'ErrorFunc', 'Info', 'OutControl', 'Arrays/SQL', 'Configuration/Nginx', 'Reserved/Variable', 'Filesystem');
+$_FILES = array('DateTime', 'Math', 'Phar', 'Interfaces/Closure', 'Interfaces/Serializabled', 'Variable', 'Socket', 'ErrorFunc', 'Info', 'OutControl', 'Arrays/SQL', 'Configuration/Nginx', 'Reserved/Variable', 'Filesystem', 'Calendar/Lunar', 'OOP');
 /*
 include __DIR__ . '/../src/DateTime.php';
 include __DIR__ . '/../src/Math.php';
@@ -258,7 +274,7 @@ arr_reset_values($_FILES, ['prefix' => __DIR__ . '/../src/', 'suffix' => '.php']
 foreach ($_FILES as $file_key => $file_value) {
     # include $file_value;
 }
-# print_r($_FILES);
+print_r($_FILES);
 $langref = new \Ext\Langref();
 $langref->include($_FILES, null, null);
 
