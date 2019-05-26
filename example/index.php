@@ -193,7 +193,7 @@ class Index
         $fields = array('day', 'no', 'solar terms', 'festival', 'western astrology', 'month');
         $values = array(
         );
-        foreach ([5 => 32, 6 => 31] as $key => $value) {
+        foreach ([7 => 32, 8 => 32, 9 => 31, 10 => 32, 11 => 31, 12 => 32] as $key => $value) {
             for ($i = 1; $i < $value; $i++) {
                 $values[] = array($i);
             }
@@ -258,10 +258,10 @@ arr_reset_values($_FILES, ['prefix' => __DIR__ . '/../src/', 'suffix' => '.php']
 foreach ($_FILES as $file_key => $file_value) {
     # include $file_value;
 }
-print_r($_FILES);
+# print_r($_FILES);
 $langref = new \Ext\Langref();
 $langref->include($_FILES, null, null);
 
 
 # Index::baseConvert([682, 10, 2, 1010101010]);
-Index::default();
+Index::sql_insert_splice();
