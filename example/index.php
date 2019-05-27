@@ -227,7 +227,7 @@ class Index
     public static function nginxConf()
     {
         $nginx = new Nginx;
-        echo $nginx->update('extra/ssl.php', 'ssl.conf.php');
+        echo $nginx->update('extra/ssl.php', include 'D:/env/win/ProgramData/nginx/conf/extra/ssl.conf.php');
         # $nginx->create('extra/ssl.php', array());
         # echo $nginx->read('ssl');
     }
@@ -280,4 +280,4 @@ $langref->include($_FILES, null, null);
 
 
 # Index::baseConvert([682, 10, 2, 1010101010]);
-Index::sql_insert_splice();
+Index::nginxConf();
