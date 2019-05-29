@@ -106,4 +106,70 @@ class Math
     {
         return base_convert($number, $frombase, $tobase);
     }
+
+    /**
+     * 模式四舍五入
+     */
+    public static function round(float $val, int $precision = 0, int $mode = PHP_ROUND_HALF_UP) : float
+    {
+        return round($val, $precision, $mode);
+    }
+
+    /**
+     * 存储单位计算
+     */
+    public static function size($s=NULL, $r=NULL){
+        if($r===NULL){
+            $r=2;
+        }
+
+        $s1=$s/1024;
+        $s2=round($s1, $r);
+        if($s2<1024){
+            $s=round($s1, $r)." KB";
+
+        }else{
+            $s3=$s1/1024;
+            $s4=round($s3, $r);
+            if($s4<1024){
+                $s=round($s3, $r)." MB";
+
+            }else{
+                $s5=$s3/1024;
+                $s=round($s5, $r)." GB";
+            }
+        }
+        return $s;
+    }
+
+    /**
+     * 存储单位结果适配
+     */
+    public static function rounds($size, $key = 'kb')
+    {
+        $increase = array(
+            'b' => 1,
+            'kb' => 1024,
+            'mb' => 1048576,
+            'gb' => 1073741824,
+            'tb' => 1099511627776,
+            'pb' => 1125899906842624,
+            # 'eb' => 1.152921504606847e+18,
+            # '' => 1.180591620717411e+21,
+        );
+
+        $increase = array_reverse($increase);
+        $unit_key = 'b';
+        foreach ($increase as $unit => $number) {
+            if ($number > $size) {
+                $size = $size / 1024;
+            }
+            if ($key == $unit) {
+                $unit_key = $key;
+                break;
+            }
+            # print_r([$key, $unit, $number, $size]);
+        }
+        return array($size, $unit_key);
+    }
 }
