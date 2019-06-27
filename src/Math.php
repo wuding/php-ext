@@ -102,7 +102,7 @@ class Math
      *
      * @return     string   ( description_of_the_return_value )
      */
-    public static function baseConvert(string $number, int $frombase, int $tobase) : string
+    public static function baseConvert(string $number, int $frombase, int $tobase)
     {
         return base_convert($number, $frombase, $tobase);
     }
