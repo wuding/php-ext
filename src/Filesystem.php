@@ -77,7 +77,7 @@ class Filesystem
         $dir = self::isDir(dirname($filename));
         if ('string' == gettype($flags)) {
             $strlen = strlen($data);
-            $filesize = filesize($filename);
+            $filesize = @filesize($filename);
 
             if ('not rewrite' == $flags) {
                 if ($filesize) {
@@ -91,11 +91,11 @@ class Filesystem
                 }
             }
 
-            print_r(get_defined_vars());
-            exit;
+            # print_r(get_defined_vars());
+            # exit;
         }
 
-        return file_put_contents($filename, $data, $flags, $context);
+        return file_put_contents($filename, $data ? : 0, 0, $context);
     }
     
     /**
@@ -103,7 +103,7 @@ class Filesystem
      */
     public static function getContents($filename = null)
     {
-        return file_get_contents($filename);
+        return @file_get_contents($filename) ? : 'error';
     }
 
     /**
@@ -317,7 +317,7 @@ class Filesystem
     /**
      * 文件大小
      */
-    public static function filesize($filename)
+    public static function filesize(string $filename)
     {
 
     }
@@ -668,8 +668,9 @@ class Filesystem
 
     /**
      * 创建符号链接
+     * return bool
      */
-    public static function symlink(string $target, string $link) : bool
+    public static function symlink(string $target, string $link)
     {
 
     }
@@ -708,8 +709,9 @@ class Filesystem
 
     /**
      * 删除一个文件
+     * return bool
      */
-    public static function unlink(string $filename, resource $context) : bool
+    public static function unlink(string $filename, resource $context)
     {
 
     }
