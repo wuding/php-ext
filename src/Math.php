@@ -109,9 +109,13 @@ class Math
 
     /**
      * 模式四舍五入
+     * @param      float 
+     * @param      int 
+     * @param      int 
+     *
      * @return     float
      */
-    public static function round(float $val, int $precision = 0, int $mode = PHP_ROUND_HALF_UP)
+    public static function round($val, $precision = 0, $mode = PHP_ROUND_HALF_UP)
     {
         return round($val, $precision, $mode);
     }
