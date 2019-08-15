@@ -8,12 +8,31 @@ namespace Ext;
 
 class Arrays
 {
+    private static $constants = array();
+
     /**
      * 初始化数组参数
      */
     public function __construct()
     {
+        $this->init();
+    }
 
+    /**
+     * 初始化参数
+     */
+    public function init()
+    {
+        self::$constants = [
+            'EXTR_OVERWRITE' => EXTR_OVERWRITE,
+            'EXTR_SKIP' => EXTR_SKIP,
+            'EXTR_PREFIX_SAME' => EXTR_PREFIX_SAME,
+            'EXTR_PREFIX_ALL' => EXTR_PREFIX_ALL,
+            'EXTR_PREFIX_INVALID' => EXTR_PREFIX_INVALID,
+            'EXTR_IF_EXISTS' => EXTR_IF_EXISTS,
+            'EXTR_PREFIX_IF_EXISTS' => EXTR_PREFIX_IF_EXISTS,
+            'EXTR_REFS' => EXTR_REFS,
+        ];
     }
 
     /**
@@ -40,9 +59,9 @@ class Arrays
     /**
      * 创建数组值根据另一个的键名
      */
-    public static array_combine($keys, $values)
+    public static combine($keys, $values)
     {
-
+        return array_combine($keys, $values);
     }
 
 
@@ -171,9 +190,18 @@ class Arrays
     /**
      * 检测数组键名
      */
-    public static array_key_exists($key, $array)
+    public static keyExists(mixed $key, array $array)
     {
-
+        if (is_array($key)) {
+            $exists = 0;
+            foreach ($key as $k) {
+                if (array_key_exists($k, array)) {
+                    $exists++;
+                }
+            }
+            return $exists;
+        }
+        return array_key_exists($key, $array);
     }
 
     /**
@@ -506,9 +534,9 @@ class Arrays
     /**
      * 导入变量到当前符号表从一个数组
      */
-    public static extract($var_array)
+    public static extract(array &$array, int $flags = EXTR_OVERWRITE, string $prefix = null) : int
     {
-
+        return extract($array, $flags, $prefix);
     }
 
     /**
