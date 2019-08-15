@@ -45,6 +45,10 @@ class Variable
     {
 
     }
+/*--
+null,false
+空字符串，空数组，(int,string) 0
+--*/
 
     /**
      * 获取变量浮点值
@@ -75,7 +79,7 @@ class Variable
      */
     public static function gettype($var)
     {
-
+        return gettype($var);
     }
 
     /**
@@ -181,6 +185,9 @@ class Variable
     {
 
     }
+/*--
+null 返回 true
+--*/
 
     /**
      * 查找是否变量是一个数组或者数字字符串
@@ -232,11 +239,31 @@ class Variable
 
     /**
      * 决定变量是声明的并不同与 NULL
+	 * @return bool
      */
-    public static function isset($var)
+    public static function isset()
     {
-
+		$result = null;
+		$args = func_get_args();
+		$num = func_num_args();
+		$i = 0;
+		foreach ($args as $arg) {
+			$val = isset($arg);
+			if (!$val) {
+				$result = false;
+			} else {
+				$i++;
+			}
+		}
+		if ($i && $num == $i) {
+			$result = true;
+		}
+		return $result;
     }
+/*--
+null 返回 false
+反向函数：is_null()
+--*/
 
     /**
      * 打印人类可读信息关于一个变量
