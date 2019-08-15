@@ -29,9 +29,9 @@ class ErrorFunc
     /**
      * 生成一个回溯
      */
-    public static function debugBacktrace()
+    public static function debugBacktrace($options = DEBUG_BACKTRACE_PROVIDE_OBJECT, $limit = 0)
     {
-
+        return debug_backtrace($options, $limit);
     }
 
     /**
