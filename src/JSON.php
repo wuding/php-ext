@@ -24,8 +24,6 @@ class JSON
      */
     public function init($filename = null)
     {
-        $filename = str_replace('\\', '/', $filename);
-
         self::$constants = [
             'JSON_ERROR_NONE' => JSON_ERROR_NONE,
             'JSON_ERROR_DEPTH' => JSON_ERROR_DEPTH,
@@ -58,6 +56,7 @@ class JSON
         if (!$filename) {
             return false;
         }
+        $filename = str_replace('\\', '/', $filename);
         $file_contents = file_get_contents($filename);
         self::$json_decoded = json_decode($file_contents);
     }
