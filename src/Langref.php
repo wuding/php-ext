@@ -9,6 +9,10 @@ namespace Ext;
 class Langref
 {
     private static $types = []; //类型
+    public static $params = array(
+        'prefix' => null,
+        'suffix' => null,
+    );
 
     public function __construct()
     {
@@ -141,8 +145,29 @@ class Langref
 
     }
 
+    public static function include_more($filename, $set = ['prefix' => '', 'suffix' => ''], $reset = false, $var_array = [])
+    {
+        $prefix = isset($set['prefix']) && $set['prefix'] ? (self::$params['prefix'] = $set['prefix']) : self::$params['prefix'];
+        $suffix = isset($set['suffix']) && $set['suffix'] ? (self::$params['suffix'] = $set['suffix']) : self::$params['suffix'];
+        $suffix = $reset ? : $suffix;
+        $filename = $prefix . $filename . $suffix;
+        $realpath = realpath($filename);
+        # echo $filename . PHP_EOL . $realpath . PHP_EOL;
+        # print_r(get_defined_vars());
+        # extract($var_array);
+        includeOnce($realpath, $var_array);
+    }
+
     public function goto()
     {
 
     }
+}
+
+function includeOnce($realpath, $var_array = [])
+{
+    extract($var_array);
+    include_once $realpath;
+    # print_r(debug_backtrace());
+    # print_r(get_defined_vars());exit;
 }
