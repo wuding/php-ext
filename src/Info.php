@@ -341,7 +341,7 @@ class Info
     /**
      * 设置一个配置选项的值 
      */
-    public function ini_set($varname, $newvalue)
+    public function ini_set(string $varname, string $newvalue) : string
     {
 
     }
@@ -405,7 +405,7 @@ class Info
     /**
      * 返回网页服务器和 PHP 之间的接口类型
      */
-    public function php_sapi_name($oid)
+    public function php_sapi_name(void) : string
     {
 
     }
@@ -429,7 +429,7 @@ class Info
     /**
      * 输出信息关于 PHP 配置
      */
-    public function phpinfo()
+    public function phpinfo(int $what = INFO_ALL) : bool
     {
 
     }
@@ -481,6 +481,10 @@ class Info
     {
         return set_time_limit($seconds);
     }
+/*--
+延长，总时间为累计
+0 为不限制
+--*/
 
     /**
      * 返回目录路径临时使用的文件
