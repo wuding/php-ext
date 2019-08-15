@@ -40,7 +40,7 @@ class Nginx
     {
         extract($config);
 
-$listen = implode(PHP_EOL, $listen);
+$listen = implode(';' . PHP_EOL, $listen);
 
 $server_name = $server_name ? 'server_name ' . $server_name : '';
 
@@ -51,7 +51,7 @@ foreach ($ssl_certificates as $ssl_key => $ssl_value) {
     }
 }
 
-$ssl_certificate = implode(PHP_EOL, $ssl_certificate);
+$ssl_certificate = implode(';' . PHP_EOL, $ssl_certificate);
 $server_ssl = !$ssl_certificates['__'] ? '' : <<<HEREDOC
 $ssl_certificate;
 
