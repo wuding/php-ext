@@ -2,10 +2,18 @@
 
 namespace Ext;
 
+use PDO;
+use Exception;
+use PDOException;
+
 class PhpPdo
 {
     public static $dns = null;
     public static $dbh = null;
+    public $db_name = null;
+    public $driver_options = null;
+    public $username = null;
+    public $password = null;
     
     public function __construct($arg = [])
     {
@@ -19,6 +27,20 @@ class PhpPdo
         $this->setVar($arg);
         $this->getDsn();
         $this->getDbh();
+    }
+
+    public function getDbh($username = null, $password = null, $driver_options = null)
+    {
+        $username = $username ? : $this->username;
+        $password = $password ? : $this->password;
+        $driver_options = $driver_options ? : $this->driver_options;
+        try {
+            self::$dbh = new PDO(self::$dns, $username, $password, $driver_options);
+        } catch (PDOException $e) {
+            print_r([$e->getMessage(), __FILE__, __LINE__]);
+            exit;
+        }
+        return self::$dbh;
     }
     
     public function setVar($arg = [])
