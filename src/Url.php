@@ -33,7 +33,7 @@ class Url
     /**
      * 解码 MIME base64
      */
-    public function base64Decode(string $data, bool $strict = false) : string
+    public function base64Decode($data, $strict = false)
     {
         return base64_decode($data, $strict);
     }
@@ -41,7 +41,7 @@ class Url
     /**
      * 编码 MIME base64
      */
-    public function base64Encode(string $data) : string
+    public function base64Encode(string $data)
     {
         return base64_encode($data);
     }
@@ -49,7 +49,7 @@ class Url
     /**
      * 获取 HTTP 请求头
      */
-    public function getHeaders(string $url, int $format = 0) : array
+    public function getHeaders(string $url, $format = 0)
     {
         return get_headers($url, $format);
     }
@@ -57,7 +57,7 @@ class Url
     /**
      * 解压标签元数据
      */
-    public function getMetaTags(string $filename, bool $use_include_path = false) : array
+    public function getMetaTags(string $filename, $use_include_path = false)
     {
         return get_meta_tags($filename, $use_include_path);
     }
@@ -65,7 +65,7 @@ class Url
     /**
      * 生成 URL 编码的请求字符串
      */
-    public function httpBuildQuery(mixed $query_data, $numeric_prefix = '', string $arg_separator = '&', int $enc_type = PHP_QUERY_RFC1738) : string
+    public function httpBuildQuery($query_data, $numeric_prefix = '', $arg_separator = '&', $enc_type = PHP_QUERY_RFC1738)
     {
         return http_build_query($query_data, $numeric_prefix, $arg_separator, $enc_type);
     }
@@ -73,7 +73,7 @@ class Url
     /**
      * 解析并返回 URL 组件部分
      */
-    public function parse(string $url, int $component = -1) : mixed
+    public function parse(string $url, $component = -1)
     {
         return parse_url($url, $component);
     }
