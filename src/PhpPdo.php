@@ -68,7 +68,7 @@ class PhpPdo
         return self::$dbh->lastInsertId($name);
     }
     
-    public function find($sql = null, $input_parameters = [])
+    public function get($sql = null, $input_parameters = [])
     {
         $sth = $this->sth($sql, $input_parameters);
         return $sth->fetchObject();
