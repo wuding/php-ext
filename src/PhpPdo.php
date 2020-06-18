@@ -50,15 +50,15 @@ class PhpPdo
         }
     }
     
-    public function query($statement = null)
+    public function sth($statement = null, $input_parameters = [], $driver_options = [])
     {
-        return self::$dbh->query($statement, 0);
-    }
-    
-    public function sth($statement = null, $input_parameters = [])
-    {
-        $sth = self::$dbh->prepare($statement);
+        $sth = self::$dbh->prepare($statement, $driver_options);
+        if (!$sth) {
+            print_r(array(self::$dbh->errorCode(), self::$dbh->errorInfo(), __FILE__, __LINE__]));
+            exit;
+        }
         $sth->execute($input_parameters);
+        print_r(array($sth->errorCode(), $sth->errorInfo(), __FILE__, __LINE__]));
         return $sth;
     }
     
@@ -67,17 +67,59 @@ class PhpPdo
         $sth = $this->sth($sql, $input_parameters);
         return self::$dbh->lastInsertId($name);
     }
+
+    public function into()
+    {
+
+    }
     
     public function get($sql = null, $input_parameters = [])
     {
         $sth = $this->sth($sql, $input_parameters);
         return $sth->fetchObject();
     }
+
+    public function find()
+    {
+
+    }
     
-    public function select($sql = null, $input_parameters = [], $fetch_style = \PDO::FETCH_OBJ)
+    public function select($sql = null, $input_parameters = [], $fetch_style = PDO::FETCH_OBJ)
     {
         $sth = $this->sth($sql, $input_parameters);
         return $sth->fetchAll($fetch_style);
+    }
+
+    public function update()
+    {
+
+    }
+
+    public function set()
+    {
+
+    }
+
+    public function delete($sql)
+    {
+        return $count = self::$dbh->exec($sql);
+    }
+
+    public function del()
+    {
+
+    }
+
+    // 取回数据库连接属性
+    public function getAttributes()
+    {
+        $attr = 'AUTOCOMMIT,CASE,CLIENT_VERSION,CONNECTION_STATUS,DRIVER_NAME,ERRMODE,ORACLE_NULLS,PERSISTENT,PREFETCH,SERVER_INFO,SERVER_VERSION,TIMEOUT';
+        $arrayName = explode(',', $attr);
+        $arr = [];
+        foreach ($arrayName as $value) {
+            $arr[$value] = self::$dbh->getAttribute(constant("PDO::ATTR_$value"));
+        }
+        return $arr;
     }
     
     public function __call($name, $arguments)
