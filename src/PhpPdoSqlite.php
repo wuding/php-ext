@@ -16,6 +16,8 @@ class PhpPdoSqlite extends PhpPdo
     public function getDsn($db_name = null)
     {
         $db_name = $db_name ? : $this->db_name;
-        return self::$dns = "sqlite:$db_name";
+        # $db_name = ':memory:';
+        # sqlite2:
+        return self::$dsn = "sqlite:$db_name";
     }
 }

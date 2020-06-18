@@ -18,6 +18,6 @@ class PhpPdoMysql extends PhpPdo
         $host = $host ? : $this->host;
         $port = $port ? : $this->port;
         $db_name = $db_name ? : $this->db_name;
-        return self::$dns = "mysql:host=$host;port=$port;dbname=$db_name";
+        return self::$dsn = "mysql:host=$host;port=$port;dbname=$db_name";
     }
 }

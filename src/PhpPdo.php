@@ -8,7 +8,7 @@ use PDOException;
 
 class PhpPdo
 {
-    public static $dns = null;
+    public static $dsn = null;
     public static $dbh = null;
     public $db_name = null;
     public $driver_options = null;
@@ -35,7 +35,7 @@ class PhpPdo
         $password = $password ? : $this->password;
         $driver_options = $driver_options ? : $this->driver_options;
         try {
-            self::$dbh = new PDO(self::$dns, $username, $password, $driver_options);
+            self::$dbh = new PDO(self::$dsn, $username, $password, $driver_options);
         } catch (PDOException $e) {
             print_r([$e->getMessage(), __FILE__, __LINE__]);
             exit;
@@ -82,7 +82,6 @@ class PhpPdo
     
     public function __call($name, $arguments)
     {
-        # print_r([$name, $arguments]);exit;
-        return self::$dbh->$name($arguments[0]);
+        return call_user_func_array(array(self::$dbh, $name), $arguments);
     }
 }
