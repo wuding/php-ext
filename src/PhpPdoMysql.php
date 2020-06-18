@@ -11,6 +11,11 @@ class PhpPdoMysql extends PhpPdo
     public function __construct($arg = [])
     {
         parent::__construct($arg);
+        $drv = pdo_drivers();
+        if (!in_array('mysql', $drv)) {
+            print_r(array($drv, __FILE__, __LINE__]));
+            exit;
+        }
     }
     
     public function getDsn($host = null, $port = null, $db_name = null)
