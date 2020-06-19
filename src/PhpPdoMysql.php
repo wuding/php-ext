@@ -18,11 +18,11 @@ class PhpPdoMysql extends PhpPdo
         }
     }
     
-    public function getDsn($host = null, $port = null, $db_name = null)
+    public function getDsn($host = null, $port = null, $dbname = null)
     {
         $host = $host ? : $this->host;
         $port = $port ? : $this->port;
-        $db_name = $db_name ? : $this->db_name;
-        return self::$dsn = "mysql:host=$host;port=$port;dbname=$db_name";
+        $dbname = $dbname ? : $this->dbname;
+        return self::$dsn = "mysql:host=$host;port=$port;dbname=$dbname";
     }
 }

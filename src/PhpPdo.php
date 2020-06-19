@@ -10,7 +10,7 @@ class PhpPdo
 {
     public static $dsn = null;
     public static $dbh = null;
-    public $db_name = null;
+    public $dbname = null;
     public $driver_options = null;
     public $username = null;
     public $password = null;
@@ -58,6 +58,7 @@ class PhpPdo
         if (!$sth) {
             $this->errorReport(self::$dbh, __FILE__, __LINE__, $args);
         }
+        # $this->errorReport(1, __FILE__, __LINE__, get_defined_vars());
         $sth->execute($input_parameters);
         $this->errorReport($sth, __FILE__, __LINE__, $args);
         return $sth;
@@ -85,8 +86,12 @@ class PhpPdo
 
     public function errorReport($obj, $file = null, $line = null, $info = [])
     {
-        if ('00000' != $obj->errorCode()) {
-            print_r(array($obj->errorInfo(), $info, $file, $line));
+        if (is_object($obj)) {
+            if ('00000' != $obj->errorCode()) {
+                print_r(array($obj->errorInfo(), $info, $file, $line));
+            }
+        } else {
+            print_r(array($obj, $info, $file, $line));
         }
     }
     
