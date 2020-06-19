@@ -36,6 +36,7 @@ class PhpPdo
         $driver_options = $driver_options ? : $this->driver_options;
         try {
             self::$dbh = new PDO(self::$dsn, $username, $password, $driver_options);
+            self::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             print_r([$e->getMessage(), __FILE__, __LINE__]);
             exit;
