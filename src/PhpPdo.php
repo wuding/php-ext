@@ -54,11 +54,13 @@ class PhpPdo
     {
         $sth = self::$dbh->prepare($statement, $driver_options);
         if (!$sth) {
-            print_r(array(self::$dbh->errorCode(), self::$dbh->errorInfo(), __FILE__, __LINE__]));
+            print_r(array(self::$dbh->errorCode(), self::$dbh->errorInfo(), __FILE__, __LINE__));
             exit;
         }
         $sth->execute($input_parameters);
-        print_r(array($sth->errorCode(), $sth->errorInfo(), __FILE__, __LINE__]));
+        if ('00000' != $sth->errorCode()) {
+            print_r(array($sth->errorInfo(), __FILE__, __LINE__));
+        }
         return $sth;
     }
     
