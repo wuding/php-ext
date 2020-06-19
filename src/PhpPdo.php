@@ -52,16 +52,41 @@ class PhpPdo
     
     public function sth($statement = null, $input_parameters = [], $driver_options = [])
     {
+        $args = get_defined_vars();
         $sth = self::$dbh->prepare($statement, $driver_options);
         if (!$sth) {
-            print_r(array(self::$dbh->errorCode(), self::$dbh->errorInfo(), __FILE__, __LINE__));
-            exit;
+            $this->errorReport(self::$dbh, __FILE__, __LINE__, $args);
         }
         $sth->execute($input_parameters);
-        if ('00000' != $sth->errorCode()) {
-            print_r(array($sth->errorInfo(), __FILE__, __LINE__));
-        }
+        $this->errorReport($sth, __FILE__, __LINE__, $args);
         return $sth;
+    }
+
+    public function query($statement = null, $fetch_style = null, $fetch_arg = null, $ctoargs = null)
+    {
+        if (null === $fetch_style) {
+            $query = self::$dbh->query($statement);
+        } elseif (PDO::FETCH_CLASS == $fetch_style) {
+            $query = self::$dbh->query($statement, $fetch_style, $fetch_arg, $ctoargs);
+        } else {
+            $query = self::$dbh->query($statement, $fetch_style, $fetch_arg);
+        }
+        $this->errorReport(self::$dbh, __FILE__, __LINE__, get_defined_vars());
+        return $query;
+    }
+
+    public function exec($statement = null)
+    {
+        $count = self::$dbh->exec($statement);
+        $this->errorReport(self::$dbh, __FILE__, __LINE__, get_defined_vars());
+        return $count;
+    }
+
+    public function errorReport($obj, $file = null, $line = null, $info = [])
+    {
+        if ('00000' != $obj->errorCode()) {
+            print_r(array($obj->errorInfo(), $info, $file, $line));
+        }
     }
     
     public function insert($sql = null, $input_parameters = [], $name = null)
