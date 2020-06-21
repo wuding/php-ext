@@ -7,6 +7,7 @@ use Exception;
 class Filesystem
 {
     public static $constants = [];
+    public static $throwException = ['getContents'];
 
     public function __construct()
     {
@@ -114,7 +115,12 @@ class Filesystem
     {
         $contents = null;
         try {
-            $contents = file_get_contents($filename);
+            $contents = @file_get_contents($filename);
+            if (false === $contents) {
+                if (file_exists($filename) && in_array(__FUNCTION__, self::$throwException)) {
+                    throw new Exception("Error Processing Request", 1);
+                }
+            }
         } catch (Exception $e) {
             print_r(array($e, __FILE__, __LINE__));
             exit;
