@@ -284,9 +284,17 @@ class Filesystem
     /**
      * 从文件指针中读取一行并修剪 HTML 标签
      */
-    public static function file_exists($filename)
+    public static function fgetss($handle, $length = null, $allowable_tags = null)
     {
 
+    }
+
+    /**
+     * 检查文件或目录是否存在
+     */
+    public static function exists($filename)
+    {
+        return file_exists($filename);
     }
 
     /**
