@@ -129,8 +129,8 @@ class Filesystem
         if (is_string($contents)) {
             $ct = trim($contents);
             if (!$ct && !is_numeric($ct)) {
-                print_r(array($filename, $contents, __FILE__, __LINE__));
-                exit;
+                # print_r(array('is null', $filename, $contents, __FILE__, __LINE__));
+                # exit;
             }
 
         } elseif (false === $contents || null === $contents) {
