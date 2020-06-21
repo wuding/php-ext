@@ -14,6 +14,12 @@ class PhpPdo
     public $driver_options = null;
     public $username = null;
     public $password = null;
+
+    /*
+    +---------------------------------------
+    + 基本
+    +---------------------------------------
+    */
     
     public function __construct($arg = [])
     {
@@ -21,12 +27,24 @@ class PhpPdo
             $this->init($arg);
         }
     }
+
+    public function __call($name, $arguments)
+    {
+        return call_user_func_array(array(self::$dbh, $name), $arguments);
+    }
     
     public function init($arg = [])
     {
         $this->setVar($arg);
         $this->getDsn();
         $this->getDbh();
+    }
+
+    public function setVar($arg = [])
+    {
+        foreach ($arg as $key => $value) {
+            $this->$key = $value;
+        }
     }
 
     public function getDbh($username = null, $password = null, $driver_options = null)
@@ -44,24 +62,17 @@ class PhpPdo
         return self::$dbh;
     }
     
-    public function setVar($arg = [])
+    /*
+    +---------------------------------------
+    + 覆盖
+    +---------------------------------------
+    */
+
+    public function exec($statement = null)
     {
-        foreach ($arg as $key => $value) {
-            $this->$key = $value;
-        }
-    }
-    
-    public function sth($statement = null, $input_parameters = [], $driver_options = [])
-    {
-        $args = get_defined_vars();
-        $sth = self::$dbh->prepare($statement, $driver_options);
-        if (!$sth) {
-            $this->errorReport(self::$dbh, __FILE__, __LINE__, $args);
-        }
-        # $this->errorReport(1, __FILE__, __LINE__, get_defined_vars());
-        $sth->execute($input_parameters);
-        $this->errorReport($sth, __FILE__, __LINE__, $args);
-        return $sth;
+        $count = self::$dbh->exec($statement);
+        $this->errorReport(self::$dbh, __FILE__, __LINE__, get_defined_vars());
+        return $count;
     }
 
     public function query($statement = null, $fetch_style = null, $fetch_arg = null, $ctoargs = null)
@@ -77,29 +88,57 @@ class PhpPdo
         return $query;
     }
 
-    public function exec($statement = null)
+    /*
+    +---------------------------------------
+    + 附加
+    +---------------------------------------
+    */
+
+    // 取回数据库连接属性
+    public function getAttributes()
     {
-        $count = self::$dbh->exec($statement);
-        $this->errorReport(self::$dbh, __FILE__, __LINE__, get_defined_vars());
-        return $count;
+        $attr = 'AUTOCOMMIT,CASE,CLIENT_VERSION,CONNECTION_STATUS,DRIVER_NAME,ERRMODE,ORACLE_NULLS,PERSISTENT,PREFETCH,SERVER_INFO,SERVER_VERSION,TIMEOUT';
+        $arrayName = explode(',', $attr);
+        $arr = [];
+        foreach ($arrayName as $value) {
+            $arr[$value] = self::$dbh->getAttribute(constant("PDO::ATTR_$value"));
+        }
+        return $arr;
     }
 
-    public function errorReport($obj, $file = null, $line = null, $info = [])
-    {
-        if (is_object($obj)) {
-            if ('00000' != $obj->errorCode()) {
-                print_r(array($obj->errorInfo(), $info, $file, $line));
-            }
-        } else {
-            print_r(array($obj, $info, $file, $line));
-        }
-    }
+    /*
+    +---------------------------------------
+    + CRUD
+    +---------------------------------------
+    */
     
     public function insert($sql = null, $input_parameters = [], $name = null)
     {
         $sth = $this->sth($sql, $input_parameters);
         return self::$dbh->lastInsertId($name);
     }
+
+    public function select($sql = null, $input_parameters = [], $fetch_style = PDO::FETCH_OBJ)
+    {
+        $sth = $this->sth($sql, $input_parameters);
+        return $sth->fetchAll($fetch_style);
+    }
+
+    public function update()
+    {
+
+    }
+
+    public function delete($sql)
+    {
+        return $count = self::$dbh->exec($sql);
+    }
+
+    /*
+    +---------------------------------------
+    + 批量或其他
+    +---------------------------------------
+    */
 
     public function into()
     {
@@ -116,26 +155,10 @@ class PhpPdo
     {
 
     }
-    
-    public function select($sql = null, $input_parameters = [], $fetch_style = PDO::FETCH_OBJ)
-    {
-        $sth = $this->sth($sql, $input_parameters);
-        return $sth->fetchAll($fetch_style);
-    }
-
-    public function update()
-    {
-
-    }
 
     public function set()
     {
 
-    }
-
-    public function delete($sql)
-    {
-        return $count = self::$dbh->exec($sql);
     }
 
     public function del()
@@ -143,20 +166,39 @@ class PhpPdo
 
     }
 
-    // 取回数据库连接属性
-    public function getAttributes()
+    /*
+    +---------------------------------------
+    + 依赖
+    +---------------------------------------
+    */
+
+    public function sth($statement = null, $input_parameters = [], $driver_options = [])
     {
-        $attr = 'AUTOCOMMIT,CASE,CLIENT_VERSION,CONNECTION_STATUS,DRIVER_NAME,ERRMODE,ORACLE_NULLS,PERSISTENT,PREFETCH,SERVER_INFO,SERVER_VERSION,TIMEOUT';
-        $arrayName = explode(',', $attr);
-        $arr = [];
-        foreach ($arrayName as $value) {
-            $arr[$value] = self::$dbh->getAttribute(constant("PDO::ATTR_$value"));
+        $args = get_defined_vars();
+        $sth = self::$dbh->prepare($statement, $driver_options);
+        if (!$sth) {
+            $this->errorReport(self::$dbh, __FILE__, __LINE__, $args);
         }
-        return $arr;
+        # $this->errorReport(1, __FILE__, __LINE__, get_defined_vars());
+        $sth->execute($input_parameters);
+        $this->errorReport($sth, __FILE__, __LINE__, $args);
+        return $sth;
     }
-    
-    public function __call($name, $arguments)
+
+    /*
+    +---------------------------------------
+    + 补充
+    +---------------------------------------
+    */
+
+    public function errorReport($obj, $file = null, $line = null, $info = [])
     {
-        return call_user_func_array(array(self::$dbh, $name), $arguments);
+        if (is_object($obj)) {
+            if ('00000' != $obj->errorCode()) {
+                print_r(array($obj->errorInfo(), $info, $file, $line));
+            }
+        } else {
+            print_r(array($obj, $info, $file, $line));
+        }
     }
 }
