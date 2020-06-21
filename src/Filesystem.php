@@ -2,6 +2,8 @@
 
 namespace Ext;
 
+use Exception;
+
 class Filesystem
 {
     public static $constants = [];
@@ -95,7 +97,14 @@ class Filesystem
             # exit;
         }
 
-        return file_put_contents($filename, $data ? : 0, 0, $context);
+        $put = null;
+        try {
+            $put = file_put_contents($filename, $data ? : 0, 0, $context);
+        } catch (Exception $e) {
+            print_r(array($e, __FILE__, __LINE__));
+            exit;
+        }
+        return $put;
     }
     
     /**
@@ -103,7 +112,28 @@ class Filesystem
      */
     public static function getContents($filename = null)
     {
-        return @file_get_contents($filename) ? : 'error';
+        $contents = null;
+        try {
+            $contents = file_get_contents($filename);
+        } catch (Exception $e) {
+            print_r(array($e, __FILE__, __LINE__));
+            exit;
+        }
+
+        if (is_string($contents)) {
+            $ct = trim($contents);
+            if (!$ct && !is_numeric($ct)) {
+                print_r(array($filename, $contents, __FILE__, __LINE__));
+                exit;
+            }
+
+        } elseif (false === $contents || null === $contents) {
+
+        } else {
+            print_r(array($filename, $contents, __FILE__, __LINE__));
+            exit;
+        }
+        return $contents;
     }
 
     /**
