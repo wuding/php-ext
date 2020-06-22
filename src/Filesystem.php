@@ -75,7 +75,7 @@ class Filesystem
     /**
      * 将字符串写入文件
      */
-    public static function putContents($filename = null, $data = null, $flags = 0, $context = null)
+    public static function putContents($filename = null, $data = null, $flags = null, $context = null)
     {
         $dir = self::isDir(dirname($filename));
 
@@ -84,29 +84,44 @@ class Filesystem
             return -1;
         }
 
-        if ('string' == gettype($flags)) {
+        // 内容为空
+        $str = is_string($data) ? trim($data) : $data;
+        if (!$str && 'null' != $flags) {
+            return -2;
+        }
+
+        if ('number' == gettype($flags)) {
             $strlen = strlen($data);
             $filesize = @filesize($filename);
+            if (false === $filesize) {
+                goto __PUT__;
+            }
 
-            if ('not rewrite' == $flags) {
-                if ($filesize) {
-                    # return $filesize;
+            // not rewrite
+            if (-2 == $flags) {
+                if ($filesize) { // > 0
+                    return $filesize;
                 }
-                #print_r([$strlen, $filesize]);
                 $flags = 0;
-            } elseif ('not overwrite' == $flags) {
-                if ($strlen == $filesize) {
-                    # return $strlen;
+            } elseif (-3 == $flags) { // not overwrite
+                if ($strlen === $filesize) {
+                    return $strlen;
+                }
+            } elseif (-2 < $flags) {
+                if ($filesize > $flags) { // 0 > -1
+                    return $filesize;
                 }
             }
 
-            # print_r(get_defined_vars());
-            # exit;
+            // -4
+            print_r(["flags $flags", $strlen, $filesize, $filename, __FILE__, __LINE__]);
+            exit;
         }
 
+        __PUT__:
         $put = null;
         try {
-            $put = file_put_contents($filename, $data ? : 0, 0, $context);
+            $put = file_put_contents($filename, $data, 0, $context);
         } catch (Exception $e) {
             print_r(array($e, __FILE__, __LINE__));
             exit;
