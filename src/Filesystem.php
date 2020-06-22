@@ -69,7 +69,7 @@ class Filesystem
      */
     public static function makeDir($pathname = null, $mode = 0777, $recursive = true)
     {
-        return mkdir($pathname, $mode, $recursive);
+        return @mkdir($pathname, $mode, $recursive);
     }
     
     /**
@@ -78,6 +78,12 @@ class Filesystem
     public static function putContents($filename = null, $data = null, $flags = 0, $context = null)
     {
         $dir = self::isDir(dirname($filename));
+
+        // 创建目录失败
+        if (false === $dir) {
+            return -1;
+        }
+
         if ('string' == gettype($flags)) {
             $strlen = strlen($data);
             $filesize = @filesize($filename);
