@@ -75,17 +75,26 @@ class PhpPdo
         return $count;
     }
 
-    public function query($statement = null, $fetch_style = null, $fetch_arg = null, $ctoargs = null)
+    public function query()
     {
-        if (null === $fetch_style) {
-            $query = self::$dbh->query($statement);
-        } elseif (PDO::FETCH_CLASS == $fetch_style) {
-            $query = self::$dbh->query($statement, $fetch_style, $fetch_arg, $ctoargs);
-        } else {
-            $query = self::$dbh->query($statement, $fetch_style, $fetch_arg);
+        $param_arr = func_get_args();
+        /*
+        $string = 'statement,fetch_style,fetch_arg,ctoargs';
+        $exp = explode(',', $string);
+        $arr = [];
+        foreach ($param_arr as $key => $value) {
+            $name = $exp[$key];
+            $arr[$name] = $value;
+        }
+        extract($arr);
+        */
+        $variable = call_user_func_array([self::$dbh, 'query'], $param_arr);
+        $arr = [];
+        foreach ($variable as $key => $value) {
+            $arr[$key] = $value;
         }
         $this->errorReport(self::$dbh, __FILE__, __LINE__, get_defined_vars());
-        return $query;
+        return $arr;
     }
 
     /*
