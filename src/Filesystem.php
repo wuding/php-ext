@@ -4,7 +4,7 @@ namespace Ext;
 
 use Exception;
 
-class Filesystem
+class Filesystem extends _Abstract
 {
     public static $constants = [];
     public static $throwException = ['getContents'];
