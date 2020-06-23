@@ -4,7 +4,7 @@ namespace Ext;
 
 class Zlib extends _Abstract
 {
-    public static $constants_string = 'ENCODING_RAW,ENCODING_DEFLATE,ENCODING_GZIP,FILTERED,HUFFMAN_ONLY,FIXED,RLE,DEFAULT_STRATEGY,BLOCK,NO_FLUSH,PARTIAL_FLUSH,SYNC_FLUSH,FULL_FLUSH,FINISH';
+    public static $constStr = 'ENCODING_RAW,ENCODING_DEFLATE,ENCODING_GZIP,FILTERED,HUFFMAN_ONLY,FIXED,RLE,DEFAULT_STRATEGY,BLOCK,NO_FLUSH,PARTIAL_FLUSH,SYNC_FLUSH,FULL_FLUSH,FINISH';
     public static $constPrefix = 'ZLIB';
     public static $fp = null;
     public $args = [
@@ -18,7 +18,7 @@ class Zlib extends _Abstract
      */
     public function __construct($filename, $mode = 'r', $use_include_path = null)
     {
-        $this->init();
+        self::init();
         if ($filename) {
             $this->open($filename, $mode, $use_include_path);
         }
@@ -32,7 +32,7 @@ class Zlib extends _Abstract
         return sef::$fp = gzopen($filename, $mode, $use_include_path);
     }
 
-    public function init()
+    public static function init()
     {
         parent::init();
         $variable = ['FORCE_GZIP', 'FORCE_DEFLATE'];
@@ -101,6 +101,8 @@ class Zlib extends _Abstract
      */
     public static function encode($data, $level = null, $encoding_mode = null)
     {
+        $level = $level ?: 9;
+        $encoding_mode = $encoding_mode ?: FORCE_GZIP;
         return gzencode($data, $level, $encoding_mode);
     }
 
