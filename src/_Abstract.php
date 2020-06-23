@@ -6,12 +6,17 @@ class _Abstract
 {
     public static $constants = array();
     public static $constPrefix = null;
+    public static $constStr = null;
     public static $fp = null;
 
-    public function init()
+    public static function init()
     {
-        $arr = preg_split('/[|,]+/', self::$constants_string);
+        $arr = preg_split('/[|,]+/', self::$constStr);
         foreach ($arr as $name) {
+            if (!$name) {
+               continue 1;
+            }
+
             if (self::$constPrefix) {
                 $name = self::$constPrefix .'_'. $name;
             }

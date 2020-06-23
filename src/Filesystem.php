@@ -12,13 +12,13 @@ class Filesystem extends _Abstract
 
     public function __construct($filename = null, $mode = 'r', $use_include_path = null, $context = null)
     {
-        $this->init();
+        $this->_init();
         if ($filename) {
             $this->open($filename, $mode, $use_include_path, $context);
         }
     }
 
-    public function init()
+    public function _init()
     {
         # $instance = new static;
         self::$constants = [
