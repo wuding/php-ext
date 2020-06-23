@@ -70,7 +70,13 @@ class PhpPdo
 
     public function exec($statement = null)
     {
-        $count = self::$dbh->exec($statement);
+        $count = null;
+        try {
+            $count = self::$dbh->exec($statement);
+        } catch (PDOException $e) {
+            print_r([$e->getMessage(), __FILE__, __LINE__]);
+            exit;
+        }
         $this->errorReport(self::$dbh, __FILE__, __LINE__, get_defined_vars());
         return $count;
     }
