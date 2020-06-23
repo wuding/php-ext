@@ -8,10 +8,14 @@ class Filesystem
 {
     public static $constants = [];
     public static $throwException = ['getContents'];
+    public static $fp = null;
 
-    public function __construct()
+    public function __construct($filename = null, $mode = 'r', $use_include_path = null, $context = null)
     {
         $this->init();
+        if ($filename) {
+            $this->open($filename, $mode, $use_include_path, $context);
+        }
     }
 
     public function init()
@@ -257,9 +261,9 @@ class Filesystem
     /**
      * 关闭一个打开的文件指针
      */
-    public static function fclose($handle)
+    public static function close($handle = null)
     {
-
+        return fclose(self::getHandle($handle));
     }
 
     /**
@@ -414,9 +418,9 @@ class Filesystem
     /**
      * 打开文件或地址
      */
-    public static function fopen($filename, $mode)
+    public static function open($filename, $mode = 'r', $use_include_path = null, $context = null)
     {
-
+        self::$fp = fopen($filename, $mode, $use_include_path, $context);
     }
 
     /**
@@ -494,9 +498,10 @@ class Filesystem
     /**
      * 写入二进制安全文件
      */
-    public static function fwrite($handle, $string)
+    public static function write($string, $length = null, $handle = null)
     {
-
+        $handle = self::getHandle($handle);
+        return fwrite($handle, $string, $length);
     }
 
     /**
@@ -776,8 +781,8 @@ class Filesystem
      * 删除一个文件
      * return bool
      */
-    public static function unlink(string $filename, resource $context)
+    public static function unlink($filename, $context = null)
     {
-
+        return unlink($filename, $context);
     }
 }
