@@ -73,4 +73,14 @@ class Mbstring
     {
         return mb_convert_variables($to_encoding, $from_encoding, $vars);
     }
+
+    public function detectEncoding($str, $encoding_lsit = null, $strict = null)
+    {
+        return mb_detect_encoding($str, $encoding_lsit, $strict);
+    }
+
+    public function detectOrder($encoding_list = null)
+    {
+        return mb_detect_order($encoding_list);
+    }
 }
