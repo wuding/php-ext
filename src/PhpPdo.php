@@ -74,7 +74,7 @@ class PhpPdo
         try {
             $count = self::$dbh->exec($statement);
         } catch (PDOException $e) {
-            print_r([$e->getMessage(), __FILE__, __LINE__]);
+            print_r([$e->getMessage(), $statement, __FILE__, __LINE__]);
             exit;
         }
         $this->errorReport(self::$dbh, __FILE__, __LINE__, get_defined_vars());
