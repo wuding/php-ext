@@ -194,9 +194,12 @@ class PhpPdo
         if (!$sth) {
             $this->errorReport(self::$dbh, __FILE__, __LINE__, $args);
         }
-        # $this->errorReport(1, __FILE__, __LINE__, get_defined_vars());
-        $sth->execute($input_parameters);
-        $this->errorReport($sth, __FILE__, __LINE__, $args);
+        try {
+            $sth->execute($input_parameters);
+        } catch (PDOException $e) {
+            $this->errorReport($sth, __FILE__, __LINE__, $args, $e->getMessage());
+            exit;
+        }
         return $sth;
     }
 
@@ -206,14 +209,13 @@ class PhpPdo
     +---------------------------------------
     */
 
-    public function errorReport($obj, $file = null, $line = null, $info = [])
+    public function errorReport($obj, $file = null, $line = null, $info = [], $msg = null)
     {
-        if (is_object($obj)) {
-            if ('00000' != $obj->errorCode()) {
-                print_r(array($obj->errorInfo(), $info, $file, $line));
-            }
-        } else {
-            print_r(array($obj, $info, $file, $line));
+        if (is_object($obj) && '00000' != $obj->errorCode()) {
+            $errorInfo = $obj->errorInfo();
+            print_r(get_defined_vars());
+        } elseif (!is_object($obj) && $obj) {
+            print_r(get_defined_vars());
         }
     }
 }
