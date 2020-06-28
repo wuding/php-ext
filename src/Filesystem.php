@@ -709,7 +709,13 @@ class Filesystem extends _Abstract
      */
     public static function rename($oldname, $newname)
     {
+        $dir = self::isDir(dirname($newname));
 
+        // 创建目录失败
+        if (false === $dir) {
+            return -1;
+        }
+        return rename($oldname, $newname);
     }
 
     /**
