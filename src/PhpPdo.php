@@ -94,8 +94,12 @@ class PhpPdo
             return $variable;
         }
         $arr = [];
-        foreach ($variable as $key => $value) {
-            $arr[$key] = $value;
+        try {
+            foreach ($variable as $key => $value) {
+                $arr[$key] = $value;
+            }
+        } catch (PDOException $e) {
+            $this->errorReport($variable, __FILE__, __LINE__, $e->getMessage());
         }
         return $arr;
     }
