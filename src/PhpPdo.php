@@ -14,6 +14,7 @@ class PhpPdo
     public $driver_options = null;
     public $username = null;
     public $password = null;
+    public $queryResultSet = true;
 
     /*
     +---------------------------------------
@@ -84,23 +85,29 @@ class PhpPdo
     public function query()
     {
         $param_arr = func_get_args();
-        /*
-        $string = 'statement,fetch_style,fetch_arg,ctoargs';
-        $exp = explode(',', $string);
-        $arr = [];
-        foreach ($param_arr as $key => $value) {
-            $name = $exp[$key];
-            $arr[$name] = $value;
-        }
-        extract($arr);
-        */
         $variable = call_user_func_array([self::$dbh, 'query'], $param_arr);
+        $this->errorReport(self::$dbh, __FILE__, __LINE__, get_defined_vars());
+        if (!$this->queryResultSet) {
+            if (false !== $this->queryResultSet) {
+                $this->queryResultSet = true;
+            }
+            return $variable;
+        }
         $arr = [];
         foreach ($variable as $key => $value) {
             $arr[$key] = $value;
         }
-        $this->errorReport(self::$dbh, __FILE__, __LINE__, get_defined_vars());
         return $arr;
+    }
+
+    public function setQueryResult($value = true)
+    {
+        $this->queryResultSet = $value;
+    }
+
+    public function getQueryResult()
+    {
+        return $this->queryResultSet;
     }
 
     /*
