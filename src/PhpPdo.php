@@ -85,8 +85,12 @@ class PhpPdo
     public function query()
     {
         $param_arr = func_get_args();
-        $variable = call_user_func_array([self::$dbh, 'query'], $param_arr);
-        $this->errorReport(self::$dbh, __FILE__, __LINE__, get_defined_vars());
+        $variable = null;
+        try {
+            $variable = call_user_func_array([self::$dbh, 'query'], $param_arr);
+        } catch (PDOException $e) {
+            $this->errorReport(self::$dbh, __FILE__, __LINE__, $e->getMessage(), $param_arr);
+        }
         if (!$this->queryResultSet) {
             if (false !== $this->queryResultSet) {
                 $this->queryResultSet = true;
