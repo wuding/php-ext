@@ -536,6 +536,11 @@ class Arrays
      */
     public static extract(array &$array, int $flags = EXTR_OVERWRITE, string $prefix = null) : int
     {
+        if (!is_array($array)) {
+            if (is_object($array)) {
+                $array = (array) $array;
+            }
+        }
         return extract($array, $flags, $prefix);
     }
 
