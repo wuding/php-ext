@@ -1,14 +1,14 @@
 <?php
-
 namespace Ext;
 
 use Exception;
 
-class Filesystem extends _Abstract
+class Filesystem extends _Dynamic
 {
-    public static $constants = [];
     public static $throwException = ['getContents'];
     public static $fp = null;
+    public static $constStr = 'SEEK=SET,CUR,END;LOCK=SH,EX,UN,NB;GLOB=BRACE,ONLYDIR,MARK,NOSORT,NOCHECK,NOESCAPE,AVAILABLE_FLAGS;PATHINFO=DIRNAME,BASENAME,EXTENSION,FILENAME;FILE=USE_INCLUDE_PATH,NO_DEFAULT_CONTEXT,APPEND,IGNORE_NEW_LINES,SKIP_EMPTY_LINES,BINARY,TEXT;INI=SCANNER_NORMAL,SCANNER_RAW,SCANNER_TYPED;FNM=NOESCAPE,PATHNAME,PERIOD,CASEFOLD';
+    public static $constPrefix = true;
 
     public function __construct($filename = null, $mode = 'r', $use_include_path = null, $context = null)
     {
@@ -17,53 +17,15 @@ class Filesystem extends _Abstract
             $this->open($filename, $mode, $use_include_path, $context);
         }
     }
-
-    public function _init()
-    {
-        # $instance = new static;
-        self::$constants = [
-            'SEEK_SET' => SEEK_SET,
-            'SEEK_CUR' => SEEK_CUR,
-            'SEEK_END' => SEEK_END,
-            'LOCK_SH' => LOCK_SH,
-            'LOCK_EX' => LOCK_EX,
-            'LOCK_UN' => LOCK_UN,
-            'LOCK_NB' => LOCK_NB,
-            'GLOB_BRACE' => GLOB_BRACE,
-            'GLOB_ONLYDIR' => GLOB_ONLYDIR,
-            'GLOB_MARK' => GLOB_MARK,
-            'GLOB_NOSORT' => GLOB_NOSORT,
-            'GLOB_NOCHECK' => GLOB_NOCHECK,
-            'GLOB_NOESCAPE' => GLOB_NOESCAPE,
-            'GLOB_AVAILABLE_FLAGS' => GLOB_AVAILABLE_FLAGS,
-            'PATHINFO_DIRNAME' => PATHINFO_DIRNAME,
-            'PATHINFO_BASENAME' => PATHINFO_BASENAME,
-            'PATHINFO_EXTENSION' => PATHINFO_EXTENSION,
-            'PATHINFO_FILENAME' => PATHINFO_FILENAME,
-            'FILE_USE_INCLUDE_PATH' => FILE_USE_INCLUDE_PATH,
-            'FILE_NO_DEFAULT_CONTEXT' => FILE_NO_DEFAULT_CONTEXT,
-            'FILE_APPEND' => FILE_APPEND,
-            'FILE_IGNORE_NEW_LINES' => FILE_IGNORE_NEW_LINES,
-            'FILE_SKIP_EMPTY_LINES' => FILE_SKIP_EMPTY_LINES,
-            'FILE_BINARY' => FILE_BINARY,
-            'FILE_TEXT' => FILE_TEXT,
-            'INI_SCANNER_NORMAL' => INI_SCANNER_NORMAL,
-            'INI_SCANNER_RAW' => INI_SCANNER_RAW,
-            'INI_SCANNER_TYPED' => INI_SCANNER_TYPED,
-            'FNM_NOESCAPE' => FNM_NOESCAPE,
-            'FNM_PATHNAME' => FNM_PATHNAME,
-            'FNM_PERIOD' => FNM_PERIOD,
-            'FNM_CASEFOLD' => FNM_CASEFOLD,
-        ];
-    }
     
     /**
      * 检测是否是目录并自动创建
      */
-    public static function isDir($filename = null)
+    public function isDir($filename = null)
     {
         if (!is_dir($filename)) {
-            return self::makeDir($filename);
+            // 可以静态方式访问动态方法
+            return self::mkDir($filename);
         }
         return true;
     }
@@ -71,7 +33,7 @@ class Filesystem extends _Abstract
     /**
      * 递归的创建目录
      */
-    public static function makeDir($pathname = null, $mode = 0777, $recursive = true)
+    public function mkDir($pathname = null, $mode = 0777, $recursive = true)
     {
         return @mkdir($pathname, $mode, $recursive);
     }
@@ -79,7 +41,7 @@ class Filesystem extends _Abstract
     /**
      * 将字符串写入文件
      */
-    public static function putContents($filename = null, $data = null, $flags = null, $context = null)
+    public function putContents($filename = null, $data = null, $flags = null, $context = null)
     {
         $dir = self::isDir(dirname($filename));
 
@@ -136,7 +98,7 @@ class Filesystem extends _Abstract
     /**
      * 将文件读入字符串
      */
-    public static function getContents($filename = null)
+    public function getContents($filename = null)
     {
         $contents = null;
         try {
@@ -164,13 +126,18 @@ class Filesystem extends _Abstract
             print_r(array($filename, $contents, __FILE__, __LINE__));
             exit;
         }
+
+        if (isset($http_response_header)) {
+            print_r([__FILE__, __LINE__, $http_response_header]);
+        }
+
         return $contents;
     }
 
     /**
      * 返回路径组件拖尾名称
      */
-    public static function basename()
+    public function baseName()
     {
 
     }
@@ -178,7 +145,7 @@ class Filesystem extends _Abstract
     /**
      * 改变文件组
      */
-    public static function chgrp()
+    public function chGrp()
     {
 
     }
@@ -186,7 +153,7 @@ class Filesystem extends _Abstract
     /**
      * 改变文件模式
      */
-    public static function chmod()
+    public function chMod()
     {
 
     }
@@ -194,7 +161,7 @@ class Filesystem extends _Abstract
     /**
      * 改变文件拥有者
      */
-    public static function chown()
+    public function chOwn()
     {
 
     }
@@ -202,7 +169,7 @@ class Filesystem extends _Abstract
     /**
      * 清除文件缓存状态
      */
-    public static function clearstatcache()
+    public function clearStatCache()
     {
 
     }
@@ -210,7 +177,7 @@ class Filesystem extends _Abstract
     /**
      * 拷贝文件
      */
-    public static function copy()
+    public function copy()
     {
 
     }
@@ -218,15 +185,18 @@ class Filesystem extends _Abstract
     /**
      * 参见解锁和未定式
      */
-    public static function delete()
+    public function delete($filename)
     {
-
+        if (is_dir($filename)) {
+            return self::rmdir($filename);
+        }
+        return self::unlink($filename);
     }
 
     /**
      * 返回上级目录路径
      */
-    public static function dirName($path, $offset = 0)
+    public function dirName($path, $offset = 0)
     {
         for ($i = 0; $i < $offset; $i++) {
             $path = dirname($path);
@@ -237,7 +207,7 @@ class Filesystem extends _Abstract
     /**
      * 返回文件系统磁盘区间可用空间
      */
-    public static function disk_free_space()
+    public function diskFreeSpace()
     {
 
     }
@@ -245,23 +215,20 @@ class Filesystem extends _Abstract
     /**
      * 返回文件系统或磁盘区间总大小
      */
-    public static function disk_total_space()
+    public function diskTotalSpace()
     {
 
     }
 
     /**
      * disk_free_space 别名
+     * 大小写一样冲突
      */
-    public static function diskfreespace()
-    {
-
-    }
 
     /**
      * 关闭一个打开的文件指针
      */
-    public static function close($handle = null)
+    public function close($handle = null)
     {
         return fclose(self::getHandle($handle));
     }
@@ -269,7 +236,7 @@ class Filesystem extends _Abstract
     /**
      * 测试文件指针结束位置
      */
-    public static function feof($handle)
+    public function eof($handle)
     {
 
     }
@@ -277,7 +244,7 @@ class Filesystem extends _Abstract
     /**
      * 冲刷输出到文件
      */
-    public static function fflush($handle)
+    public function flush($handle)
     {
 
     }
@@ -285,7 +252,7 @@ class Filesystem extends _Abstract
     /**
      * 从文件指针获取字符
      */
-    public static function fgetc($handle)
+    public function getC($handle)
     {
 
     }
@@ -293,7 +260,7 @@ class Filesystem extends _Abstract
     /**
      * 从文件指针获取行并解析  CSV 字段
      */
-    public static function fgetcsv($handle)
+    public function getCSV($handle)
     {
 
     }
@@ -301,7 +268,7 @@ class Filesystem extends _Abstract
     /**
      * 从文件指针中读取一行
      */
-    public static function fgets($handle)
+    public function getS($handle)
     {
 
     }
@@ -309,7 +276,7 @@ class Filesystem extends _Abstract
     /**
      * 从文件指针中读取一行并修剪 HTML 标签
      */
-    public static function fgetss($handle, $length = null, $allowable_tags = null)
+    public function getSS($handle, $length = null, $allowable_tags = null)
     {
 
     }
@@ -317,7 +284,7 @@ class Filesystem extends _Abstract
     /**
      * 检查文件或目录是否存在
      */
-    public static function exists($filename)
+    public function exists($filename)
     {
         return file_exists($filename);
     }
@@ -325,7 +292,7 @@ class Filesystem extends _Abstract
     /**
      * 读取整个文件插入数组
      */
-    public static function file($filename)
+    public function file($filename)
     {
 
     }
@@ -333,7 +300,7 @@ class Filesystem extends _Abstract
     /**
      * 获取文件最后访问时间
      */
-    public static function fileatime($filename)
+    public function aTime($filename)
     {
 
     }
@@ -341,7 +308,7 @@ class Filesystem extends _Abstract
     /**
      * 索引节点改变时间
      */
-    public static function filectime($filename)
+    public function cTime($filename)
     {
 
     }
@@ -349,12 +316,12 @@ class Filesystem extends _Abstract
     /**
      * 文件组
      */
-    public static function filegroup(){}
+    public function group(){}
 
     /**
      * 文件索引节点
      */
-    public static function fileinode($filename)
+    public function inode($filename)
     {
 
     }
@@ -362,7 +329,7 @@ class Filesystem extends _Abstract
     /**
      * 编辑时间
      */
-    public static function filemtime($filename)
+    public function mTime($filename)
     {
 
     }
@@ -370,7 +337,7 @@ class Filesystem extends _Abstract
     /**
      * 文件所有者
      */
-    public static function fileowner($filename)
+    public function owner($filename)
     {
 
     }
@@ -378,7 +345,7 @@ class Filesystem extends _Abstract
     /**
      * 权限
      */
-    public static function fileperms($filename)
+    public function perms($filename)
     {
 
     }
@@ -386,7 +353,7 @@ class Filesystem extends _Abstract
     /**
      * 文件大小
      */
-    public static function filesize(string $filename)
+    public function size($filename)
     {
 
     }
@@ -394,7 +361,7 @@ class Filesystem extends _Abstract
     /**
      *  文件类型
      */
-    public static function filetype($filename)
+    public function type($filename)
     {
 
     }
@@ -402,7 +369,7 @@ class Filesystem extends _Abstract
     /**
      * 便携咨询的文件锁定
      */
-    public static function flock($handle, $operation)
+    public function lock($handle, $operation)
     {
 
     }
@@ -410,7 +377,7 @@ class Filesystem extends _Abstract
     /**
      * 匹配文件名反对模式
      */
-    public static function fnmatch($pattern, $string)
+    public function match($pattern, $string)
     {
 
     }
@@ -418,7 +385,7 @@ class Filesystem extends _Abstract
     /**
      * 打开文件或地址
      */
-    public static function open($filename, $mode = 'r', $use_include_path = null, $context = null)
+    public function open($filename, $mode = 'r', $use_include_path = null, $context = null)
     {
         self::$fp = fopen($filename, $mode, $use_include_path, $context);
     }
@@ -426,7 +393,7 @@ class Filesystem extends _Abstract
     /**
      * 输出所有剩余数据到文件指针
      */
-    public static function fpassthru($handle)
+    public function passThru($handle)
     {
 
     }
@@ -434,7 +401,7 @@ class Filesystem extends _Abstract
     /**
      * 格式化行到 CSV 并写入指针
      */
-    public static function fputcsv($handle, $fields)
+    public function putCSV($handle, $fields)
     {
 
     }
@@ -442,7 +409,7 @@ class Filesystem extends _Abstract
     /**
      * fwrite 别名
      */
-    public static function fputs()
+    public function puts()
     {
 
     }
@@ -450,7 +417,7 @@ class Filesystem extends _Abstract
     /**
      * 二进制安全文件读取
      */
-    public static function fread($handle, $length)
+    public function read($handle, $length)
     {
 
     }
@@ -458,7 +425,7 @@ class Filesystem extends _Abstract
     /**
      * 解析输入从文件根据到文件指针
      */
-    public static function fscanf($handle, $format)
+    public function scanF($handle, $format)
     {
 
     }
@@ -466,7 +433,7 @@ class Filesystem extends _Abstract
     /**
      * 查找文件指针
      */
-    public static function fseek($handle, $offset)
+    public function seek($handle, $offset)
     {
 
     }
@@ -474,7 +441,7 @@ class Filesystem extends _Abstract
     /**
      * 获取信息文件指针使用；打开文件指针使用信息
      */
-    public static function fstat($handle)
+    public function fStat($handle)
     {
 
     }
@@ -482,7 +449,7 @@ class Filesystem extends _Abstract
     /**
      * 返回文件读取指针的当前位置
      */
-    public static function ftell($handle)
+    public function tell($handle)
     {
 
     }
@@ -490,7 +457,7 @@ class Filesystem extends _Abstract
     /**
      * 修剪文件到指定大小
      */
-    public static function  ftruncate($handle, $size)
+    public function truncate($handle, $size)
     {
 
     }
@@ -498,7 +465,7 @@ class Filesystem extends _Abstract
     /**
      * 写入二进制安全文件
      */
-    public static function write($string, $length = null, $handle = null)
+    public function write($string, $length = null, $handle = null)
     {
         $handle = self::getHandle($handle);
         return fwrite($handle, $string, $length);
@@ -507,15 +474,7 @@ class Filesystem extends _Abstract
     /**
      * 查找匹配模式的路径名
      */
-    public static function glob($pattern)
-    {
-
-    }
-
-    /**
-     * 告诉文件名是否是目录
-     */
-    public static function is_dir($filename)
+    public function glob($pattern)
     {
 
     }
@@ -523,7 +482,7 @@ class Filesystem extends _Abstract
     /**
      * 文件名是否可执行
      */
-    public static function is_executable($filename)
+    public function isExecutable($filename)
     {
 
     }
@@ -531,7 +490,7 @@ class Filesystem extends _Abstract
     /**
      * 文件名是否有规律
      */
-    public static function is_file($filename)
+    public function isFile($filename)
     {
 
     }
@@ -539,7 +498,7 @@ class Filesystem extends _Abstract
     /**
      * 文件名是否是符号链接
      */
-    public static function is_link($filename)
+    public function isLink($filename)
     {
 
     }
@@ -547,7 +506,7 @@ class Filesystem extends _Abstract
     /**
      * 文件是否可执行
      */
-    public static function is_readable($filename)
+    public function isReadable($filename)
     {
 
     }
@@ -555,7 +514,7 @@ class Filesystem extends _Abstract
     /**
      * 通过  HTTP POST 上传的文件
      */
-    public static function is_uploaded_file($filename)
+    public function isUploadedFile($filename)
     {
 
     }
@@ -563,7 +522,7 @@ class Filesystem extends _Abstract
     /**
      * 文件名是否可写
      */
-    public static function is_writable($filename)
+    public function isWritable($filename)
     {
 
     }
@@ -571,7 +530,7 @@ class Filesystem extends _Abstract
     /**
      *  is_writalbe 别名
      */
-    public static function is_writeable()
+    public function isWriteable()
     {
 
     }
@@ -579,7 +538,7 @@ class Filesystem extends _Abstract
     /**
      * 改变符号所有权组
      */
-    public static function lchgrp($filename, $group)
+    public function lChGrp($filename, $group)
     {
 
     }
@@ -587,7 +546,7 @@ class Filesystem extends _Abstract
     /**
      * 改变符号所有权用户
      */
-    public static function lchown($filename, $user)
+    public function lChOwn($filename, $user)
     {
 
     }
@@ -595,7 +554,7 @@ class Filesystem extends _Abstract
     /**
      * 创建一个硬链接
      */
-    public static function link($target, $link)
+    public function link($target, $link)
     {
 
     }
@@ -603,7 +562,7 @@ class Filesystem extends _Abstract
     /**
      * 链接信息
      */
-    public static function linkinfo($path)
+    public function linkInfo($path)
     {
 
     }
@@ -611,7 +570,7 @@ class Filesystem extends _Abstract
     /**
      * 文件或符号链接信息
      */
-    public static function lstat($filename)
+    public function lStat($filename)
     {
 
     }
@@ -619,7 +578,7 @@ class Filesystem extends _Abstract
     /**
      * 移动上传的文件到新位置
      */
-    public static function move_uploaded_file($filename, $destination)
+    public function moveUploadedFile($filename, $destination)
     {
 
     }
@@ -627,7 +586,7 @@ class Filesystem extends _Abstract
     /**
      * 解析配置文件
      */
-    public static function parse_ini_file($filename)
+    public function parseIniFile($filename)
     {
 
     }
@@ -635,7 +594,7 @@ class Filesystem extends _Abstract
     /**
      * 解析配置字符串
      */
-    public static function parse_ini_string($ini)
+    public function parseIniString($ini)
     {
 
     }
@@ -643,7 +602,7 @@ class Filesystem extends _Abstract
     /**
      * 返回文件路径信息
      */
-    public static function pathinfo($path)
+    public function pathInfo($path)
     {
 
     }
@@ -651,7 +610,7 @@ class Filesystem extends _Abstract
     /**
      * 关闭文件指针过程
      */
-    public static function pclose($handle)
+    public function pClose($handle)
     {
 
     }
@@ -659,7 +618,7 @@ class Filesystem extends _Abstract
     /**
      * 打开文件指针过程
      */
-    public static function  popen($command, $mode)
+    public function pOpen($command, $mode)
     {
 
     }
@@ -667,7 +626,7 @@ class Filesystem extends _Abstract
     /**
      * 读取文件
      */
-    public static function  readfile($filename)
+    public function readFile($filename)
     {
 
     }
@@ -675,7 +634,7 @@ class Filesystem extends _Abstract
     /**
      * 返回符号链接目标
      */
-    public static function reallink()
+    public function readLink()
     {
 
     }
@@ -683,7 +642,7 @@ class Filesystem extends _Abstract
     /**
      * 获取真路径缓存条目
      */
-    public static function realpath_cache_get($oid)
+    public function realPathCacheGet($oid)
     {
 
     }
@@ -691,7 +650,7 @@ class Filesystem extends _Abstract
     /**
      * 获取真实路径缓存大小
      */
-    public static function realpath_cache_size($oid)
+    public function realPathCacheSize($oid)
     {
 
     }
@@ -699,7 +658,7 @@ class Filesystem extends _Abstract
     /**
      * 真实路径
      */
-    public static function realpath($path)
+    public function realPath($path)
     {
 
     }
@@ -707,7 +666,7 @@ class Filesystem extends _Abstract
     /**
      * 重命名
      */
-    public static function rename($oldname, $newname)
+    public function rename($oldname, $newname)
     {
         $dir = self::isDir(dirname($newname));
 
@@ -718,18 +677,23 @@ class Filesystem extends _Abstract
         return rename($oldname, $newname);
     }
 
+    public function rewind($handle)
+    {
+        return rewind($handle);
+    }
+
     /**
      * 移除目录
      */
-    public static function rmdir($dirname)
+    public function rmDir($dirname, $context = null)
     {
-
+        return rmdir($dirname);
     }
 
     /**
      * stream_set_write_buffer 别名
      */
-    public static function set_file_buffer()
+    public function setFileBuffer()
     {
 
     }
@@ -737,7 +701,7 @@ class Filesystem extends _Abstract
     /**
      * 给予文件信息
      */
-    public static function stat($filename)
+    public function stat($filename)
     {
 
     }
@@ -746,7 +710,7 @@ class Filesystem extends _Abstract
      * 创建符号链接
      * return bool
      */
-    public static function symlink(string $target, string $link)
+    public function symLink(string $target, string $link)
     {
 
     }
@@ -754,7 +718,7 @@ class Filesystem extends _Abstract
     /**
      * 创建唯一的文件名
      */
-    public static function tempnam($dir, $prefix)
+    public function tempNam($dir, $prefix)
     {
 
     }
@@ -762,7 +726,7 @@ class Filesystem extends _Abstract
     /**
      * 创建临时文件
      */
-    public static function tmpfile($oid)
+    public function tmpFile($oid)
     {
 
     }
@@ -770,7 +734,7 @@ class Filesystem extends _Abstract
     /**
      *  设置访问
      */
-    public static function touch($filename)
+    public function touch($filename)
     {
 
     }
@@ -778,7 +742,7 @@ class Filesystem extends _Abstract
     /**
      * 改变当前掩码
      */
-    public static function umask()
+    public function umask()
     {
 
     }
@@ -787,7 +751,7 @@ class Filesystem extends _Abstract
      * 删除一个文件
      * return bool
      */
-    public static function unlink($filename, $context = null)
+    public function unlink($filename, $context = null)
     {
         return unlink($filename, $context);
     }

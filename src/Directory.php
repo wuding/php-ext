@@ -6,30 +6,20 @@
 
 namespace Ext;
 
-class Directory
+class Directory extends _Dynamic
 {
-    public static $constants = [];
+    public static $constPrefix = true;
+    public static $constStr = 'DIRECTORY=SEPARATOR;PATH=SEPARATOR;SCANDIR_SORT=ASCENDING,DESCENDING,NONE';
     
     public function __construct()
     {
-        $this->init();
-    }
-
-    public function init()
-    {
-        self::$constants = [
-            'DIRECTORY_SEPARATOR' => DIRECTORY_SEPARATOR,
-            'PATH_SEPARATOR' => PATH_SEPARATOR,
-            'SCANDIR_SORT_ASCENDING' => SCANDIR_SORT_ASCENDING,
-            'SCANDIR_SORT_DESCENDING' => SCANDIR_SORT_DESCENDING,
-            'SCANDIR_SORT_NONE' => SCANDIR_SORT_NONE,
-        ];
+        $this->_init();
     }
 
     /**
      * 改变目录
      */
-    public static function chdir($directory)
+    public function chdir($directory)
     {
 
     }
@@ -37,7 +27,7 @@ class Directory
     /**
      * 改变根目录
      */
-    public static function chroot($directory)
+    public function chroot($directory)
     {
 
     }
@@ -45,7 +35,7 @@ class Directory
     /**
      * 关闭目录处理句柄
      */
-    public static function closedir()
+    public function closedir()
     {
 
     }
@@ -53,7 +43,7 @@ class Directory
     /**
      * 返回目录类实例
      */
-    public static function dir()
+    public function dir()
     {
 
     }
@@ -61,7 +51,7 @@ class Directory
     /**
      * 获取当前工作目录
      */
-    public static function getcwd($oid)
+    public function getcwd($oid)
     {
 
     }
@@ -69,7 +59,7 @@ class Directory
     /**
      * 打开目录句柄
      */
-    public static function opendir($path)
+    public function opendir($path)
     {
 
     }
@@ -77,7 +67,7 @@ class Directory
     /**
      * 读取条目从目录句柄
      */
-    public static function readdir()
+    public function readdir()
     {
 
     }
@@ -85,7 +75,7 @@ class Directory
     /**
      * 重绕目录句柄
      */
-    public static function rewinddir()
+    public function rewinddir()
     {
 
     }
@@ -93,9 +83,8 @@ class Directory
     /**
      * 列出文件和目录在限定的路径
      */
-    public static function scandir($directory, $sorting_order = SCANDIR_SORT_ASCENDING)
+    public function scan($directory, $sorting_order = SCANDIR_SORT_ASCENDING, $context = null)
     {
         return $directories = scandir($directory, $sorting_order);
-        print_r($directories);
     }
 }

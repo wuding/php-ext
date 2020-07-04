@@ -6,30 +6,8 @@
 
 namespace Ext;
 
-class Misc
+class Misc extends _Static
 {
-	public function __construct()
-	{
-
-	}
-
-	public function __destruct()
-	{
-
-	}
-
-	public function init()
-	{
-
-	}
-
-	public function define(string $name, mixed $value, bool $case_insensitive = false) : bool
-	{
-		
-	}
-
-	public function defined(string $name) : bool
-	{
-
-	}
+    public static $instance = null;
+    public static $className = 'Miscellaneous';
 }
