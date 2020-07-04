@@ -10,6 +10,7 @@ class PhpPdoMysql extends PhpPdo
 {
     public function __construct($arg = [])
     {
+        $this->runtime['ext(pdo_mysql)'] = ext('pdo_mysql');
         parent::__construct($arg);
         $drv = pdo_drivers();
         if (!in_array('mysql', $drv)) {

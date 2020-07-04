@@ -49,7 +49,7 @@ class Url
     /**
      * 获取 HTTP 请求头
      */
-    public function getHeaders(string $url, $format = 0)
+    public function getHeaders(string $url, $format = 0, $context = null)
     {
         return get_headers($url, $format);
     }

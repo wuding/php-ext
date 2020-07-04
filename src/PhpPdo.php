@@ -15,16 +15,19 @@ class PhpPdo
     public $username = null;
     public $password = null;
     public $queryResultSet = true;
+    public $arg = [];
+    public $runtime = [];
 
     /*
     +---------------------------------------
     + 基本
     +---------------------------------------
     */
-    
+
     public function __construct($arg = [])
     {
         if ($arg) {
+            $this->arg[] = $arg;
             $this->init($arg);
         }
     }
@@ -33,7 +36,7 @@ class PhpPdo
     {
         return call_user_func_array(array(self::$dbh, $name), $arguments);
     }
-    
+
     public function init($arg = [])
     {
         $this->setVar($arg);
@@ -57,12 +60,12 @@ class PhpPdo
             self::$dbh = new PDO(self::$dsn, $username, $password, $driver_options);
             self::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            print_r([$e->getMessage(), __FILE__, __LINE__]);
+            print_r([$e->getMessage(), $this->arg, __FILE__, __LINE__]);
             exit;
         }
         return self::$dbh;
     }
-    
+
     /*
     +---------------------------------------
     + 覆盖
@@ -141,7 +144,7 @@ class PhpPdo
     + CRUD
     +---------------------------------------
     */
-    
+
     public function insert($sql = null, $input_parameters = [], $name = null)
     {
         $sth = $this->sth($sql, $input_parameters);
@@ -174,7 +177,7 @@ class PhpPdo
     {
 
     }
-    
+
     public function get($sql = null, $input_parameters = [])
     {
         $sth = $this->sth($sql, $input_parameters);
