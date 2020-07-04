@@ -13,6 +13,10 @@ function ext($library)
     $result = [];
     foreach ($arr as $name) {
         if (!extension_loaded($name)) {
+            if (!function_exists('dl')) {
+                print_r([__FILE__, __LINE__, "Call to undefined function dl($name)"]);
+                exit;
+            }
             $basename = $prefix . $name . $suffix;
             $result[$name] = dl($basename);
         }
