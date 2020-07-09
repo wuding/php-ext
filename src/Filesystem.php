@@ -668,8 +668,12 @@ class Filesystem extends _Dynamic
      */
     public function rename($oldname, $newname)
     {
-        $dir = self::isDir(dirname($newname));
+        // 位置相同
+        if (realpath($oldname) == realpath($newname)) {
+            return -2;
+        }
 
+        $dir = self::isDir(dirname($newname));
         // 创建目录失败
         if (false === $dir) {
             return -1;
