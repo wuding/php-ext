@@ -355,7 +355,10 @@ class Filesystem extends _Dynamic
      */
     public function size($filename)
     {
-
+        if (!file_exists($filename)) {
+            return -1;
+        }
+        return $size = filesize($filename);
     }
 
     /**
@@ -666,10 +669,22 @@ class Filesystem extends _Dynamic
     /**
      * 重命名
      */
-    public function rename($oldname, $newname)
+    public function rename($oldname, $newname, $override = null)
     {
+        // 原文件不存在
+        if (!file_exists($oldname)) {
+            return -3;
+        }
+
+        // 目标存在
+        if (!$override && file_exists($newname)) {
+            return -4;
+        }
+
         // 位置相同
-        if (realpath($oldname) == realpath($newname)) {
+        $paths = [realpath($oldname), realpath($newname)];
+
+        if ($paths[0] && $paths[0] == $paths[1]) {
             return -2;
         }
 
