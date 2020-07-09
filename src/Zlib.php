@@ -127,7 +127,7 @@ class Zlib extends _Abstract
      */
     public static function getContents($filename)
     {
-        $data = Filesystem::getContents($filename);
+        $data = File::getContents($filename);
         $contentType = Fileinfo::contentType($filename);
         if ('application/x-gzip' == $contentType) {
             return self::decode($data);
@@ -143,7 +143,7 @@ class Zlib extends _Abstract
         if ($encode) {
             $data = self::encode($data);
         }
-        return Filesystem::putContents($filename, $data);
+        return File::putContents($filename, $data);
     }
 
     /**

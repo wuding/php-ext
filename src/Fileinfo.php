@@ -23,7 +23,7 @@ class Fileinfo
 
     public static function contentType($filename)
     {
-        if (!Filesystem::exists($filename)) {
+        if (!File::exists($filename)) {
             return null;
         }
         return mime_content_type($filename);
