@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "php": ">=5.4.0",
-        "wuding/php-func": "^1.0.4"
+        "wuding/php-func": "^20.192.1655"
     },
     "autoload": {
         "psr-4": {
