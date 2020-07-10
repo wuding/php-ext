@@ -129,7 +129,7 @@ class Zlib extends _Abstract
     {
         $data = File::getContents($filename);
         $contentType = Fileinfo::contentType($filename);
-        if ('application/x-gzip' == $contentType) {
+        if (in_array($contentType, ['application/gzip', 'application/x-gzip'])) {
             return self::decode($data);
         }
         return $data;
