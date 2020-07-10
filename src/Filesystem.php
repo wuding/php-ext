@@ -101,8 +101,13 @@ class Filesystem extends _Dynamic
     public function getContents($filename = null)
     {
         $contents = null;
+        $exists = file_exists($filename);
+        if (!$exists) {
+            $contents = false;
+            goto __END__;
+        }
         try {
-            $contents = @file_get_contents($filename);
+            $contents = file_get_contents($filename);
             if (false === $contents) {
                 if (file_exists($filename) && in_array(__FUNCTION__, self::$throwException)) {
                     throw new Exception("Error Processing Request", 1);
@@ -131,6 +136,7 @@ class Filesystem extends _Dynamic
             print_r([__FILE__, __LINE__, $http_response_header]);
         }
 
+        __END__:
         return $contents;
     }
 
