@@ -2,7 +2,7 @@
 
 class Ext
 {
-
+    const VERSION = '20.196.1902';
 }
 
 function ext($library)

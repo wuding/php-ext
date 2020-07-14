@@ -3,6 +3,8 @@ namespace Ext;
 
 class APCu
 {
+    const VERSION = '20.196.1902';
+
     // 方法默认值
     public static $args = [
         'add' => [null, null, 0, false],
