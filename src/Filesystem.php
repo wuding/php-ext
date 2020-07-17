@@ -778,6 +778,9 @@ class Filesystem extends _Dynamic
      */
     public function unlink($filename, $context = null)
     {
+        if (!file_exists($filename)) {
+            return 0;
+        }
         return unlink($filename, $context);
     }
 }
