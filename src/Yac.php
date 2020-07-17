@@ -64,4 +64,26 @@ class Yac extends _Twins
         }
         return self::$handles[$key] = new \Yac($key);
     }
+
+    public static function hash($str, $prefix = null)
+    {
+        $md5 = md5($str);
+        $cacheKey = $prefix . $md5;
+        $cacheValue = self::get($cacheKey);
+        return ['cacheKey' => $cacheKey, 'cacheValue' => $cacheValue];
+    }
+
+    public static function store($key, $value, $ttl = null)
+    {
+        if (!$ttl) {
+            return -1;
+        }
+        $result = self::set($key, $value, is_numeric($ttl) ? $ttl : 0);
+        if (!$result) {
+            var_dump($result);
+            print_r([get_defined_vars(), __FILE__, __LINE__]);
+            exit;
+        }
+        return $result;
+    }
 }
