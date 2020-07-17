@@ -41,9 +41,24 @@ class Filesystem extends _Dynamic
     /**
      * 将字符串写入文件
      */
-    public function putContents($filename = null, $data = null, $flags = null, $context = null)
+    public function putContents($filename = null, $data = null, $flags = 0, $context = null)
     {
         $dir = self::isDir(dirname($filename));
+        $flagHasNum = $flagNum = null;
+        $flag = 0;
+        if (is_array($flags)) {
+            $flag = array_shift($flags);
+            foreach ($flags as $value) {
+                if (is_numeric($value)) {
+                    $flagHasNum = true;
+                    $flagNum = $value;
+                    break;
+                }
+            }
+        } else {
+            $flag = $flags;
+            $flags = [];
+        }
 
         // 创建目录失败
         if (false === $dir) {
@@ -52,11 +67,11 @@ class Filesystem extends _Dynamic
 
         // 内容为空
         $str = is_string($data) ? trim($data) : $data;
-        if (!$str && 'null' != $flags) {
+        if (!is_numeric($str) && !$str && !in_array('null', $flags)) {
             return -2;
         }
 
-        if ('number' == gettype($flags)) {
+        if ($flagHasNum) {
             $strlen = strlen($data);
             $filesize = @filesize($filename);
             if (false === $filesize) {
@@ -64,30 +79,30 @@ class Filesystem extends _Dynamic
             }
 
             // not rewrite
-            if (-2 == $flags) {
+            if (-2 == $flagNum) {
                 if ($filesize) { // > 0
                     return $filesize;
                 }
-                $flags = 0;
-            } elseif (-3 == $flags) { // not overwrite
+                #$flag = 0;
+            } elseif (-3 == $flagNum) { // not overwrite
                 if ($strlen === $filesize) {
                     return $strlen;
                 }
-            } elseif (-2 < $flags) {
-                if ($filesize > $flags) { // 0 > -1
+            } elseif (-2 < $flagNum) {
+                if ($filesize > $flagNum) { // 0 > -1
                     return $filesize;
                 }
             }
 
             // -4
-            print_r(["flags $flags", $strlen, $filesize, $filename, __FILE__, __LINE__]);
+            print_r(["flag $flag, flags:", $flags, $strlen, $filesize, $filename, __FILE__, __LINE__]);
             exit;
         }
 
         __PUT__:
         $put = null;
         try {
-            $put = file_put_contents($filename, $data, 0, $context);
+            $put = file_put_contents($filename, $data, $flag, $context);
         } catch (Exception $e) {
             print_r(array($e, __FILE__, __LINE__));
             exit;
@@ -98,7 +113,7 @@ class Filesystem extends _Dynamic
     /**
      * 将文件读入字符串
      */
-    public function getContents($filename = null)
+    public function getContents($filename = null, $json = null, $value = null)
     {
         $contents = null;
         $exists = file_exists($filename);
@@ -137,6 +152,14 @@ class Filesystem extends _Dynamic
         }
 
         __END__:
+        if ($json) {
+            if (false === $contents) {
+                if (null !== $value) {
+                    $contents = $value;
+                }
+            }
+            $contents = json_decode($contents);
+        }
         return $contents;
     }
 
