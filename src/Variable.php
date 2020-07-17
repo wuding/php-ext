@@ -141,7 +141,7 @@ null,false
     /**
      * 查找变量类型是否浮点
      */
-    public static function is_float($var)
+    public static function isFloat($var, $strict = false)
     {
 
     }
