@@ -68,7 +68,13 @@ class PDO
     public function instance()
     {
         $arr = $this->args(func_get_args(), __FUNCTION__);
-        return new PHPDataObject($arr[0], $arr[1], $arr[2], $arr[3]);
+        try {
+            $dbh = new PHPDataObject($arr[0], $arr[1], $arr[2], $arr[3]);
+        } catch (\PDOException $e) {
+            print_r([$e->getMessage(), $arr, __FILE__, __LINE__]);
+            exit;
+        }
+        return $dbh;
     }
 
     public static function config($variable = null)
