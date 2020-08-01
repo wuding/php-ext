@@ -64,4 +64,9 @@ class _Dynamic
         }
         return $string = implode(';', $pieces);
     }
+
+    public function getVar($varname)
+    {
+        return $this->$varname;
+    }
 }
