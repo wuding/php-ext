@@ -9,6 +9,7 @@ class Filesystem extends _Dynamic
     public static $fp = null;
     public static $constStr = 'SEEK=SET,CUR,END;LOCK=SH,EX,UN,NB;GLOB=BRACE,ONLYDIR,MARK,NOSORT,NOCHECK,NOESCAPE,AVAILABLE_FLAGS;PATHINFO=DIRNAME,BASENAME,EXTENSION,FILENAME;FILE=USE_INCLUDE_PATH,NO_DEFAULT_CONTEXT,APPEND,IGNORE_NEW_LINES,SKIP_EMPTY_LINES,BINARY,TEXT;INI=SCANNER_NORMAL,SCANNER_RAW,SCANNER_TYPED;FNM=NOESCAPE,PATHNAME,PERIOD,CASEFOLD';
     public static $constPrefix = true;
+    public $http_response_header = null;
 
     public function __construct($filename = null, $mode = 'r', $use_include_path = null, $context = null)
     {
@@ -115,8 +116,11 @@ class Filesystem extends _Dynamic
      */
     public function getContents($filename = null, $json = null, $value = null)
     {
+        $scheme = parse_url($filename, PHP_URL_SCHEME);
+        $local_path = preg_match("/^[a-z]{1}$/i", $scheme);
+
         $contents = null;
-        $exists = file_exists($filename);
+        $exists = $local_path ? file_exists($filename) : $scheme;
         if (!$exists) {
             $contents = false;
             goto __END__;
@@ -127,6 +131,8 @@ class Filesystem extends _Dynamic
                 if (file_exists($filename) && in_array(__FUNCTION__, self::$throwException)) {
                     throw new Exception("Error Processing Request", 1);
                 }
+            } else {
+                $this->http_response_header = $http_response_header ?? null;
             }
         } catch (Exception $e) {
             print_r(array($e, __FILE__, __LINE__));
@@ -145,10 +151,6 @@ class Filesystem extends _Dynamic
         } else {
             print_r(array($filename, $contents, __FILE__, __LINE__));
             exit;
-        }
-
-        if (isset($http_response_header)) {
-            print_r([__FILE__, __LINE__, $http_response_header]);
         }
 
         __END__:
