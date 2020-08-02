@@ -125,8 +125,17 @@ class Filesystem extends _Dynamic
             $contents = false;
             goto __END__;
         }
+
+        $opts = array(
+            'http'=>array(
+                'method' => "GET",
+                'header' => "Accept-Encoding: gzip, deflate\r\n",
+            ),
+        );
+        $context = stream_context_create($opts);
+
         try {
-            $contents = file_get_contents($filename);
+            $contents = file_get_contents($filename, false, $context);
             if (false === $contents) {
                 if (file_exists($filename) && in_array(__FUNCTION__, self::$throwException)) {
                     throw new Exception("Error Processing Request", 1);
