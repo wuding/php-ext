@@ -129,6 +129,7 @@ class Zlib extends _Abstract
     {
         $types = is_array($types) ? $types : ['application/gzip', 'application/x-gzip', 'application/octet-stream'];
         $data = File::getContents($filename);
+        // 需要远程转本地
         $contentType = Fileinfo::contentType($filename);
         if (in_array($contentType, $types)) {
             return self::decode($data);
