@@ -110,6 +110,24 @@ class Filesystem extends _Dynamic
         }
         return $put;
     }
+
+    // 获取头信息
+    public static function getHeader($variable, $item)
+    {
+        $result = null;
+        $arr = [];
+        foreach ($variable as $subject) {
+            if (preg_match("/^([^:]+):\s+(.*)$/", $subject, $matches)) {
+                list($kv, $k, $v) = $matches;
+                $key = strtolower($k);
+                if ($item === $key) {
+                    return $v;
+                }
+                $arr[$k] = $v;
+            }
+        }
+        return $arr ?: $result;
+    }
     
     /**
      * 将文件读入字符串
