@@ -23,8 +23,21 @@ class Fileinfo
 
     public static function contentType($filename)
     {
-        if (!File::exists($filename)) {
-            return null;
+        $scheme = parse_url($filename, PHP_URL_SCHEME);
+        $local_path = preg_match("/^[a-z]{1}$/i", $scheme);
+        if ($local_path) {
+            if (!File::exists($filename)) {
+                return null;
+            }
+        } else {
+            $header = File::getVar('http_response_header');
+            if ($header) {
+                $content_encoding = File::getHeader($header, 'content-encoding');
+                if ('gzip' === $content_encoding) {
+                    return 'application/gzip';
+                }
+                return $content_encoding;
+            }
         }
         return mime_content_type($filename);
     }
