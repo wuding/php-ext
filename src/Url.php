@@ -65,9 +65,15 @@ class Url
     /**
      * 生成 URL 编码的请求字符串
      */
-    public function httpBuildQuery($query_data, $numeric_prefix = '', $arg_separator = '&', $enc_type = PHP_QUERY_RFC1738)
+    public static function httpBuildQuery($query_data, $numeric_prefix = '', $arg_separator = '&', $enc_type = PHP_QUERY_RFC1738)
     {
         return http_build_query($query_data, $numeric_prefix, $arg_separator, $enc_type);
+    }
+
+    public static function buildQuery($query_data, $numeric_prefix = '', $arg_separator = '&', $enc_type = PHP_QUERY_RFC1738)
+    {
+        $queryString = self::httpBuildQuery($query_data, $numeric_prefix, $arg_separator, $enc_type);
+        return $query = $queryString ? "?$queryString" : $queryString;
     }
 
     /**
