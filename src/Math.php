@@ -66,7 +66,7 @@ class Math
     public static function floor($value, $decimals = 0)
     {
         if (0 < $decimals) {
-            return self::numberFloor($value, $decimals);
+            return self::floors($value, $decimals);
         }
         return floor($value);
     }
@@ -86,11 +86,27 @@ class Math
         }
 
         $exp = explode('.', $value);
-        $len = strlen($exp[1]);
+        $len = strlen($exp[1]); // 有错
         if (2 < $len) {
             $exp[1] = substr($exp[1], 0, $decimals);
         }
         return $imp = implode('.', $exp);
+    }
+
+    /**
+     * 小数为 0 不显示
+     */
+    public static function floors($val, $precision = 0)
+    {
+
+        $pieces = explode('.', $val);
+        $decimals = $pieces[1] ?? '';
+        $decimal = substr($decimals, 0, $precision);
+        if ($decimal) {
+            $pieces[1] = $decimal;
+        }
+        return implode('.', $pieces);
+
     }
 
     /**
