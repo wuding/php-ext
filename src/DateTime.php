@@ -6,8 +6,18 @@
 
 namespace Ext;
 
-class DateTime
+use Datetime;
+use DateTimeZone;
+
+// 类名雷鸣 不区分大小写
+class Date
 {
+
+    const VERSION = '20.223.969';
+
+    // 运行时
+    public static $handles = [];
+    public static $pre = '';
 
     public static $constants = [];
 
@@ -21,6 +31,49 @@ class DateTime
             'SUNFUNCS_RET_STRING' => SUNFUNCS_RET_STRING,
             'SUNFUNCS_RET_DOUBLE' => SUNFUNCS_RET_DOUBLE,
         ];
+
+    }
+
+    /**
+     * 调用未定义静态方法
+     */
+    public static function __callStatic($name, $arguments = [])
+    {
+
+        return call_user_func_array(array(self::hand(), $name), $arguments);
+
+    }
+
+    /**
+     * 静态获取命名的对象
+     */
+    public static function hand($prefix = null, $init = null)
+    {
+
+        $key = null === $prefix ? self::$pre : $prefix;
+        // 计划：这里对 key md5
+        if ($init) {
+            self::$pre = $key;
+        }
+        return self::handles($key);
+
+    }
+
+    /**
+     * 获取实例或新建对象
+     */
+    public static function handles($key)
+    {
+
+        if (array_key_exists($key, self::$handles)) {
+            return self::$handles[$key];
+        }
+        // 计划：参数 key 改为 (time, timezone)
+        $arr = explode('|', $key);
+        $time = array_shift($arr);
+        $timezone = $arr ? new DateTimeZone(array_shift($arr)) : null;
+        return self::$handles[$key] = new Datetime($time, $timezone);
+
     }
 
     /**
@@ -95,7 +148,6 @@ class DateTime
      */
     public static function date_format()
     {
-
     }
 
     /**
@@ -237,8 +289,16 @@ class DateTime
     /**
      * 格式化一个本地时间 / 日期
      */
-    public static function date($format)
+    public static function date($format, $timestamp = null)
     {
+
+        $timestamp = null === $timestamp ? microtime(true) : $timestamp;
+        $dot = strpos($timestamp, '.');
+        if (false !== $dot) {
+            $millisecond = substr($timestamp, $dot);
+            $format = str_replace('u', $millisecond, $format);
+        }
+        return $date = date($format, $timestamp);
 
     }
 
