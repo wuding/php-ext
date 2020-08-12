@@ -8,7 +8,7 @@ namespace Ext;
 
 class Url
 {
-    const VERSION = '20.225.1195';
+    const VERSION = '20.225.1400';
 
     public static $str = null;
     public static $constants = array();
@@ -101,7 +101,7 @@ class Url
 
     public static function scheme($str)
     {
-        $str .= '://';
+        $str = $str ? "$str://" : "//";
         return $str;
     }
 
