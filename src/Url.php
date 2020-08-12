@@ -8,6 +8,8 @@ namespace Ext;
 
 class Url
 {
+    const VERSION = '20.225.1195';
+
     public static $str = null;
     public static $constants = array();
     public static $constants_string = 'PHP_URL_SCHEME|PHP_URL_HOST|PHP_URL_PORT|PHP_URL_USER|PHP_URL_PASS|PHP_URL_PATH|PHP_URL_QUERY|PHP_URL_FRAGMENT|PHP_QUERY_RFC1738|PHP_QUERY_RFC3986';
@@ -74,6 +76,39 @@ class Url
     {
         $queryString = self::httpBuildQuery($query_data, $numeric_prefix, $arg_separator, $enc_type);
         return $query = $queryString ? "?$queryString" : $queryString;
+    }
+
+    public static function httpBuildUrl($variable)
+    {
+        $pieces = [];
+        foreach ($variable as $key => $value) {
+            switch ($key) {
+                case 'scheme':
+                    $pieces[] = self::scheme($value);
+                    break;
+
+                case 'query':
+                    $pieces[] = self::query($value);
+                    break;
+
+                default:
+                    $pieces[] = $value;
+                    break;
+            }
+        }
+        return $str = implode('', $pieces);
+    }
+
+    public static function scheme($str)
+    {
+        $str .= '://';
+        return $str;
+    }
+
+    public static function query($str)
+    {
+        $str = $str ? "?$str" : $str;
+        return $str;
     }
 
     /**
