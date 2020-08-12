@@ -3,9 +3,12 @@ namespace Ext\X;
 
 class PhpRedis
 {
+    const VERSION = '20.225.1195';
+
     // 运行时
     public static $handles = [];
     public static $pre = '';
+    public static $db = 0;
 
     // 方法参数名
     public static $arg = [
@@ -80,5 +83,15 @@ class PhpRedis
         extract($var_array);
         return $conn = self::connect($host, $port, $timeout, $reserved, $retry_interval, $read_timeout, $option);
         print_r(get_defined_vars());exit;
+    }
+
+    public static function db($dbindex = null)
+    {
+        if (null === $dbindex) {
+            $dbindex = self::$db;
+        } else {
+            self::$db = $dbindex;
+        }
+        return self::select($dbindex);
     }
 }
