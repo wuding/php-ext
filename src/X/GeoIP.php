@@ -6,16 +6,16 @@ class GeoIP
 {
     const VERSION = '20.240.788';
 
-    public $ip = null;
+    public static $dir = null;
     public static $hostname = null;
 
     public function __construct($hostname = null, $path = null)
     {
         if (null !== $hostname) {
-            $this->ip = self::$hostname = $hostname;
+            self::$hostname = $hostname;
         }
         if (null !== $path) {
-            $this->dir = self::directory($path);
+            self::$dir = self::directory($path);
         }
     }
 
