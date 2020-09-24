@@ -25,6 +25,11 @@ class PDO
         self::instance($dsn, $username, $passwd, $options);
     }
 
+    public static function __callStatic($name, $arguments)
+    {
+        return call_user_func_array(array(self::handle(self::$last), $name), $arguments);
+    }
+
     // 新建或获取一个实例
     public static function instance($dsn = null, $username = null, $passwd = null, $options = null)
     {
@@ -73,13 +78,24 @@ class PDO
     }
 
     // 获取多行
-    public static function all($sql_s)
+    public static function all($sql)
     {
         $dbh = self::handle(self::$last);
-        $sth = $dbh->query($sql_s, \PDO::FETCH_OBJ);
+        $sth = $dbh->query($sql, \PDO::FETCH_OBJ);
         if (false === $sth) {
             return $sth;
         }
         return $sth->fetchAll();
+    }
+
+    // 获取单行
+    public static function object($sql)
+    {
+        $dbh = self::handle(self::$last);
+        $sth = $dbh->query($sql, \PDO::FETCH_OBJ);
+        if (false === $sth) {
+            return $sth;
+        }
+        return $sth->fetchObject();
     }
 }
