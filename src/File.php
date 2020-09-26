@@ -136,8 +136,69 @@ class File extends _Abstract
     +---------------------------------------------+
     */
 
+    public static function exists($filename = null)
+    {
+        return file_exists($filename);
+    }
+
+    public static function type($filename = null)
+    {
+        return filetype($filename);
+    }
+
     public static function fnMatch($pattern = null, $string = null, $flags = 0)
     {
         return fnmatch($pattern, $string, $flags);
+    }
+
+    public static function isDir($filename = null)
+    {
+        return is_dir($filename);
+    }
+
+    public static function isExecutable($filename = null)
+    {
+        return is_executable($filename);
+    }
+
+    public static function isFile($filename = null)
+    {
+        return is_file($filename);
+    }
+
+    public static function isLink($filename = null)
+    {
+        return is_link($filename);
+    }
+
+    public static function isReadable($filename = null)
+    {
+        return is_readable($filename);
+    }
+
+    public static function isUploadedFile($filename = null)
+    {
+        return is_uploaded_file($filename);
+    }
+
+    public static function isWritable($filename = null)
+    {
+        return is_writable($filename);
+    }
+
+    /*
+    +---------------------------------------------+
+    + 读写操作
+    +---------------------------------------------+
+    */
+
+    public static function readLink($path = null)
+    {
+        return readlink($path);
+    }
+
+    public static function symLink($target = null, $link = null)
+    {
+        return symlink($target, $link);
     }
 }
