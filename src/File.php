@@ -188,6 +188,62 @@ class File extends _Abstract
 
     /*
     +---------------------------------------------+
+    + 权限
+    +---------------------------------------------+
+    */
+
+    public static function chGrp($filename = null, $group = null)
+    {
+        return chgrp($filename, $group);
+    }
+
+    public static function chMod($filename = null, $mode = null)
+    {
+        return chmod($filename, $mode);
+    }
+
+    public static function chOwn($filename = null, $user = null)
+    {
+        return chown($filename, $user);
+    }
+
+    public static function group($filename = null)
+    {
+        return filegroup($filename);
+    }
+
+    public static function inode($filename = null)
+    {
+        return fileinode($filename);
+    }
+
+    public static function owner($filename = null)
+    {
+        return fileowner($filename);
+    }
+
+    public static function perms($filename = null)
+    {
+        return fileperms($filename);
+    }
+
+    public static function lChGrp($filename = null, $group = null)
+    {
+        return lchgrp($filename, $group);
+    }
+
+    public static function lChOwn($filename = null, $user = null)
+    {
+        return lchown($filename, $user);
+    }
+
+    public static function umask($mask = null)
+    {
+        return umask($mask);
+    }
+
+    /*
+    +---------------------------------------------+
     + 读写操作
     +---------------------------------------------+
     */
