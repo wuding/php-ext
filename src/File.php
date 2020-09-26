@@ -11,6 +11,7 @@ class File extends _Abstract
     public static $mode = null;
     public static $use_include_path = null;
     public static $context = null;
+    public static $args = [];
 
     public static $reset = null; // 重设参数值
 
@@ -30,7 +31,8 @@ class File extends _Abstract
         self::open($filename, $mode, $use_include_path, $context);
     }
 
-    public static function open($filename, $mode, $use_include_path = false, $context = null)
+    // 新建指针
+    public static function open($filename = null, $mode = null, $use_include_path = false, $context = null)
     {
         $vars = get_defined_vars();
         $arr = [];
@@ -50,9 +52,11 @@ class File extends _Abstract
         if (array_key_exists($key, self::$instances)) {
             return self::$instances[$key];
         }
+        self::$args[$key] = $arr;
         return self::$instances[$key] = fopen($filename, $mode, $use_include_path, $context);
     }
 
+    // 通过键名获取指针
     public static function handle($key = null, $set_default = null)
     {
         $key = null === $key ? self::$handle : $key;
@@ -66,21 +70,23 @@ class File extends _Abstract
         print_r(["no key $key", __FILE__, __LINE__]);
     }
 
+    // 获取最后创建的指针
     public static function last($handle = null)
     {
         return $handle = null === $handle ? self::handle(self::$last) : $handle;
     }
 
-    public static function eof($handle = null)
+    public static function _args($item = null, $value = null, $key = null)
     {
-        $handle = null === $handle ? self::handle(self::$last) : $handle;
-        return feof($handle);
-    }
-
-    public static function gets($handle = null, $length = null)
-    {
-        $handle = null === $handle ? self::handle(self::$last) : $handle;
-        return fgets($handle, $length);
+        $key = null === $key ? self::$last : $key;
+        if (array_key_exists($key, self::$args)) {
+            $args = self::$args[$key];
+            if (null !== $item) {
+                return $val = $args[$item] ?? $value;
+            }
+            return $args;
+        }
+        print_r(["no key $key", __FILE__, __LINE__]);
     }
 
     /*
@@ -350,6 +356,111 @@ class File extends _Abstract
     + 指针
     +---------------------------------------------+
     */
+
+    public static function close($handle = null)
+    {
+        $handle = self::last($handle);
+        return fclose($handle);
+    }
+
+    public static function eof($handle = null)
+    {
+        $handle = self::last($handle);
+        return feof($handle);
+    }
+
+    public static function flush($handle = null)
+    {
+        $handle = self::last($handle);
+        return fflush($handle);
+    }
+
+    public static function getc($handle = null)
+    {
+        $handle = self::last($handle);
+        return fgetc($handle);
+    }
+
+    public static function getCsv($handle = null, $length = 0, $delimiter = ',', $enclosure = '"', $escape = '\\')
+    {
+        $handle = self::last($handle);
+        return fgetcsv($handle, $length, $delimiter, $enclosure, $escape);
+    }
+
+    public static function gets($handle = null, $length = 1024)
+    {
+        $handle = self::last($handle);
+        return fgets($handle, $length);
+    }
+
+    public static function getss($handle = null, $length = 4096, $allowable_tags = null)
+    {
+        $handle = self::last($handle);
+        return fgetss($handle, $length, $allowable_tags);
+    }
+
+    public static function lock($handle = null, $operation = null, &$wouldlock = null)
+    {
+        $handle = self::last($handle);
+        return flock($handle, $operation, $wouldlock);
+    }
+
+    public static function passthru($handle = null)
+    {
+        $handle = self::last($handle);
+        return fpassthru($handle);
+    }
+
+    public static function putCsv($handle = null, $fields = null, $delimiter = ',', $enclosure = '"', $escape_char = '\\')
+    {
+        $handle = self::last($handle);
+        return fputcsv($handle, $fields, $delimiter, $enclosure, $escape_char);
+    }
+
+    public static function read($handle = null, $length = null)
+    {
+        $handle = self::last($handle);
+        return fread($handle, $length);
+    }
+
+    public static function scanf($handle = null, $format = null)
+    {
+        $handle = self::last($handle);
+        return fscanf($handle, $format);
+    }
+
+    public static function seek($handle = null, $offset = null, $whence = SEEK_SET)
+    {
+        $handle = self::last($handle);
+        return fseek($handle, $offset, $whence);
+    }
+
+    public static function tell($handle = null)
+    {
+        $handle = self::last($handle);
+        return ftell($handle);
+    }
+
+    public static function truncate($handle = null, $size = null)
+    {
+        $handle = self::last($handle);
+        return ftruncate($handle, $size);
+    }
+
+    public static function write($handle = null, $string = null, $length = null)
+    {
+        $handle = self::last($handle);
+        if (null === $length) {
+            return fwrite($handle, $string);
+        }
+        return fwrite($handle, $string, $length);
+    }
+
+    public static function rewind($handle = null)
+    {
+        $handle = self::last($handle);
+        return rewind($handle);
+    }
 
     public static function tmpFile()
     {
