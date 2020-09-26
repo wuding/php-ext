@@ -244,6 +244,27 @@ class File extends _Abstract
 
     /*
     +---------------------------------------------+
+    + 缓存
+    +---------------------------------------------+
+    */
+
+    public static function clearStatCache($clear_realpath_cache = false , $filename = null)
+    {
+        return clearstatcache($clear_realpath_cache, $filename);
+    }
+
+    public static function realPathCacheGet()
+    {
+        return realpath_cache_get();
+    }
+
+    public static function realPathCacheSize()
+    {
+        return realpath_cache_size();
+    }
+
+    /*
+    +---------------------------------------------+
     + 读写操作
     +---------------------------------------------+
     */
