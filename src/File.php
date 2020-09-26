@@ -269,13 +269,90 @@ class File extends _Abstract
     +---------------------------------------------+
     */
 
+    public static function copy($source = null, $dest = null, $context = null)
+    {
+        return copy($source, $dest, $context);
+    }
+
+    public static function getContents($filename = null, $use_include_path = false, $context = null, $offset = 0, $maxlen = null)
+    {
+        if (null === $maxlen) {
+            return file_get_contents($filename, $use_include_path, $context, $offset);
+        }
+        return file_get_contents($filename, $use_include_path, $context, $offset, $maxlen);
+    }
+
+    public static function putContents($filename = null, $data = null, $flags = 0, $context = null)
+    {
+        return file_put_contents($filename, $data, $flags, $context);
+    }
+
+    public static function file($filename = null, $flags = 0, $context = null)
+    {
+        return file($filename, $flags, $context);
+    }
+
+    public static function link($target = null, $link = null)
+    {
+        return link($target, $link);
+    }
+
+    public static function mkDir($pathname = null, $mode = 0777, $recursive = false, $context = null)
+    {
+        return mkdir($pathname, $mode, $recursive, $context);
+    }
+
+    public static function moveUploadedFile($filename = null, $destination = null)
+    {
+        return move_uploaded_file($filename, $destination);
+    }
+
+    public static function readFile($filename = null, $use_include_path = false, $context = null)
+    {
+        return readfile($filename, $use_include_path, $context);
+    }
+
     public static function readLink($path = null)
     {
         return readlink($path);
     }
 
+    public static function rename($oldname = null, $newname = null, $context = null)
+    {
+        return rename($oldname, $newname, $context);
+    }
+
+    public static function rmDir($dirname = null, $context = null)
+    {
+        return rmdir($dirname, $context);
+    }
+
     public static function symLink($target = null, $link = null)
     {
         return symlink($target, $link);
+    }
+
+    public static function tempNam($dir = null, $prefix = null)
+    {
+        return tempnam($dir, $prefix);
+    }
+
+    public static function unlink($filename = null, $context = null)
+    {
+        if (!file_exists($filename)) {
+            return false;
+        }
+        return unlink($filename, $context);
+    }
+
+    /*
+    +---------------------------------------------+
+    + 指针
+    +---------------------------------------------+
+    */
+
+    public static function tmpFile()
+    {
+        return tmpfile();
     }
 }

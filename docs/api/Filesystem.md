@@ -78,7 +78,7 @@
 | copy               | 复制       |        |
 | file_get_contents  | 读         |        |
 | file_put_contents  | 写         |        |
-| file               | 读         |        |
+| file               | 读为数组   |        |
 | link               | 写         |        |
 | mkdir              | 新建       |        |
 | move_uploaded_file | 移动       |        |
@@ -88,7 +88,6 @@
 | rmdir              | 删除       |        |
 | symlink            | 写         |        |
 | tempnam            | 新建       |        |
-| tmpfile            | 新建       |        |
 | unlink             | 删除       | delete |
 
 
@@ -139,4 +138,5 @@
 | pclose    | 关闭进程       |       |
 | popen     | 打开进程       |       |
 | rewind    | 倒回位置       |       |
+| tmpfile   | 新建           |       |
 
