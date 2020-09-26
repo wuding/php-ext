@@ -10,7 +10,6 @@
 | ---------------- | -------- |
 | basename         | 文件名   |
 | dirname          | 目录路径 |
-| fnmatch          | 数组     |
 | glob             | 数组     |
 | parse_ini_file   | 数组     |
 | parse_ini_string | 数组     |
@@ -27,6 +26,7 @@
 | ---------------- | ---- | ------------ |
 | file_exists      | 布尔 |              |
 | filetype         | 枚举 |              |
+| fnmatch          | 布尔 |              |
 | is_dir           | 布尔 |              |
 | is_executable    | 布尔 |              |
 | is_file          | 布尔 |              |

@@ -2,7 +2,7 @@
 
 namespace Ext;
 
-class Filesystem
+class File extends _Abstract
 {
     const VERSION = 20.2420642;
 
@@ -19,9 +19,14 @@ class Filesystem
     public static $last = null; // 最后设置的键
     public static $instances = [];
     public static $dbh = null; // 最后连接的
+    public static $ini = array(
+        'allow_url_fopen' => 1,
+        'allow_url_include' => 0,
+    );
 
     public function __construct($filename, $mode, $use_include_path = false, $context = null)
     {
+        parent::__construct();
         self::open($filename, $mode, $use_include_path, $context);
     }
 
@@ -76,5 +81,63 @@ class Filesystem
     {
         $handle = null === $handle ? self::handle(self::$last) : $handle;
         return fgets($handle, $length);
+    }
+
+    /*
+    +---------------------------------------------+
+    + 解析
+    +---------------------------------------------+
+    */
+
+    public static function baseName($path = null, $suffix = null)
+    {
+        return basename($path, $suffix);
+    }
+
+    public static function dirName($path = null, $levels = 1)
+    {
+        return dirname($path, $levels);
+    }
+
+    public static function parseIniFile($filename = null, $process_sections = false, $scanner_mode = INI_SCANNER_NORMAL)
+    {
+        return parse_ini_file($filename, $process_sections, $scanner_mode);
+    }
+
+    public static function parseIniString($ini = null, $process_sections = false, $scanner_mode = INI_SCANNER_NORMAL)
+    {
+        return parse_ini_string($ini, $process_sections, $scanner_mode);
+    }
+
+    public static function pathInfo($path = null, $options = PATHINFO_DIRNAME | PATHINFO_BASENAME | PATHINFO_EXTENSION | PATHINFO_FILENAME)
+    {
+        return pathinfo($path, $options);
+    }
+
+    public static function realPath($path = null)
+    {
+        return realpath($path);
+    }
+
+    /*
+    +---------------------------------------------+
+    + 查找
+    +---------------------------------------------+
+    */
+
+    public static function glob($pattern = null, $flags = 0)
+    {
+        return glob($pattern, $flags);
+    }
+
+    /*
+    +---------------------------------------------+
+    + 判断
+    +---------------------------------------------+
+    */
+
+    public static function fnMatch($pattern = null, $string = null, $flags = 0)
+    {
+        return fnmatch($pattern, $string, $flags);
     }
 }
