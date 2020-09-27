@@ -76,6 +76,7 @@ class File extends _Abstract
         return $handle = null === $handle ? self::handle(self::$last) : $handle;
     }
 
+    // 通过键名获取 fopen 参数
     public static function _args($item = null, $value = null, $key = null)
     {
         $key = null === $key ? self::$last : $key;
@@ -435,6 +436,12 @@ class File extends _Abstract
         return fseek($handle, $offset, $whence);
     }
 
+    public static function fStat($handle = null)
+    {
+        $handle = self::last($handle);
+        return fstat($handle);
+    }
+
     public static function tell($handle = null)
     {
         $handle = self::last($handle);
@@ -454,6 +461,16 @@ class File extends _Abstract
             return fwrite($handle, $string);
         }
         return fwrite($handle, $string, $length);
+    }
+
+    public static function pClose($handle = null)
+    {
+        return pclose($handle);
+    }
+
+    public static function pOpen($command = null, $mode = null)
+    {
+        return popen($command, $mode);
     }
 
     public static function rewind($handle = null)
