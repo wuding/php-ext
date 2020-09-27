@@ -48,6 +48,7 @@
 | info       | assert, max\_, magic\_ 等 | info     | ini\_\*<br>php\_\* |
 | outcontrol | output\_ 等   | outcontrol | ob\_\*<br>output\_\* |
 | phpdbg | phpdbg | phpdbg | phpdbg\_\* |
+| URL | - | url | url\* |
 
 
 
