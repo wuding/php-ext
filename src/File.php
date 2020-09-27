@@ -483,4 +483,71 @@ class File extends _Abstract
     {
         return tmpfile();
     }
+
+    /*
+    +---------------------------------------------+
+    + 信息
+    +---------------------------------------------+
+    */
+
+    public static function diskFreeSpace($directory = null)
+    {
+        return disk_free_space($directory);
+    }
+
+    public static function diskTotalSpace($directory = null)
+    {
+        return disk_total_space($directory);
+    }
+
+    public static function atime($filename = null)
+    {
+        $filename = null === $filename ? self::$filename : $filename;
+        return fileatime($filename);
+    }
+
+    public static function ctime($filename = null)
+    {
+        $filename = null === $filename ? self::$filename : $filename;
+        return filectime($filename);
+    }
+
+    public static function mtime($filename = null)
+    {
+        $filename = null === $filename ? self::$filename : $filename;
+        return filemtime($filename);
+    }
+
+    public static function size($filename = null)
+    {
+        $filename = null === $filename ? self::$filename : $filename;
+        return filesize($filename);
+    }
+
+    public static function linkInfo($path = null)
+    {
+        return linkinfo($path);
+    }
+
+    public static function lStat($filename = null)
+    {
+        $filename = null === $filename ? self::$filename : $filename;
+        return lstat($filename);
+    }
+
+    public static function stat($filename = null)
+    {
+        $filename = null === $filename ? self::$filename : $filename;
+        return stat($filename);
+    }
+
+    public static function touch($filename = null, $time = null, $atime = null)
+    {
+        $filename = null === $filename ? self::$filename : $filename;
+        $time = null === $time ? time() : $time;
+        if (null === $atime) {
+            return touch($filename, $time);
+        }
+        return touch($filename, $time, $atime);
+    }
 }
