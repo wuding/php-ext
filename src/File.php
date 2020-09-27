@@ -4,7 +4,7 @@ namespace Ext;
 
 class File extends _Abstract
 {
-    const VERSION = 20.2420642;
+    const VERSION = 20.2711161;
 
     // 参数
     public static $filename = null;
