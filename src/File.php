@@ -20,15 +20,24 @@ class File extends _Abstract
     public static $last = null; // 最后设置的键
     public static $instances = [];
     public static $dbh = null; // 最后连接的
+
+    // 配置
     public static $ini = array(
         'allow_url_fopen' => 1,
         'allow_url_include' => 0,
+        'from' => null,
+        'user_agent' => null,
+        'default_socket_timeout' => 60,
+        'auto_detect_line_endings' => 0,
+        'sys_temp_dir' => null,
     );
 
-    public function __construct($filename, $mode, $use_include_path = false, $context = null)
+    public function __construct($filename = null, $mode = null, $use_include_path = false, $context = null)
     {
         parent::__construct();
-        self::open($filename, $mode, $use_include_path, $context);
+        if (null !== $filename) {
+            self::open($filename, $mode, $use_include_path, $context);
+        }
     }
 
     // 新建指针
