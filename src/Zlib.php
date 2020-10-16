@@ -125,10 +125,10 @@ class Zlib extends _Abstract
     /**
      * 获取文件内容，自动判断是否解压缩
      */
-    public static function getContents($filename, $types = null, $decode = null)
+    public static function getContents($filename, $types = null, $decode = null, $header = null)
     {
         $types = is_array($types) ? $types : ['application/gzip', 'application/x-gzip', 'application/octet-stream'];
-        $data = File::getContents($filename);
+        $data = File::getContents($filename, null, null, $header);
         if (false === $decode) {
             return $data;
         }

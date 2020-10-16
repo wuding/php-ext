@@ -132,7 +132,7 @@ class Filesystem extends _Dynamic
     /**
      * 将文件读入字符串
      */
-    public function getContents($filename = null, $json = null, $value = null)
+    public function getContents($filename = null, $json = null, $value = null, $header = null)
     {
         $scheme = parse_url($filename, PHP_URL_SCHEME);
         $local_path = preg_match("/^[a-z]{1}$/i", $scheme);
@@ -144,10 +144,19 @@ class Filesystem extends _Dynamic
             goto __END__;
         }
 
+        $header_str = '';
+        if (is_array($header)) {
+            $pieces = array();
+            foreach ($header as $key => $value) {
+                $pieces[] = "$key: $value";
+            }
+            $header_str = implode("\r\n", $pieces) ."\r\n";
+        }
+
         $opts = array(
             'http'=>array(
                 'method' => "GET",
-                'header' => "Accept-Encoding: gzip, deflate\r\n",
+                'header' => "Accept-Encoding: gzip, deflate\r\n". $header_str,
             ),
         );
         $context = stream_context_create($opts);
