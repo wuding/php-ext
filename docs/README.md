@@ -41,14 +41,16 @@
 
 核心扩展库，无法排除
 
-| 模块名称   | ini 配置前缀            | 手册地址 | 函数 |
-| ---------- | ----------------------- | ----------------------- | ----------------------- |
-| errorfunc | error\_ 等 | errorfunc |  |
-| filesystem |                         | filesystem | file\*<br>f\* |
-| info       | assert, max\_, magic\_ 等 | info     | ini\_\*<br>php\_\* |
-| outcontrol | output\_ 等   | outcontrol | ob\_\*<br>output\_\* |
-| phpdbg | phpdbg | phpdbg | phpdbg\_\* |
-| URL | - | url | url\* |
+| 完成 | 模块名称   | ini 配置前缀            | 手册地址 | 函数 |
+| ---------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+|  | errorfunc | error\_ 等 | errorfunc |  |
+|  | filesystem |                         | filesystem | file\*<br>f\* |
+|        | info       | assert, max\_, magic\_ 等 | info     | ini\_\*<br>php\_\* |
+|  | outcontrol | output\_ 等   | outcontrol | ob\_\*<br>output\_\* |
+|  | phpdbg | phpdbg | phpdbg | phpdbg\_\* |
+| Y | URL | - | url | url\* |
+|  | Miscellaneous | highlight | misc |  |
+| N | Strings | - | strings | str* |
 
 
 
