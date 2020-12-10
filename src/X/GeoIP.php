@@ -4,7 +4,7 @@ namespace Ext\X;
 
 class GeoIP
 {
-    const VERSION = '20.240.788';
+    const VERSION = '20.2930103';
 
     public static $dir = null;
     public static $hostname = null;
@@ -87,11 +87,17 @@ class GeoIP
 
     public static function regionName($country_code = null, $region_code = null)
     {
+        if (!$country_code || !$region_code) {
+            return false;
+        }
         return geoip_region_name_by_code($country_code, $region_code);
     }
 
     public static function timezone($country_code = null, $region_code = null)
     {
+        if (!$country_code || !$region_code) {
+            return false;
+        }
         return geoip_time_zone_by_country_and_region($country_code, $region_code);
     }
 
