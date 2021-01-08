@@ -71,6 +71,8 @@ class PDO
         try {
             $dbh = new PHPDataObject($arr[0], $arr[1], $arr[2], $arr[3]);
         } catch (\PDOException $e) {
+            // 避免泄露敏感信息
+            $arr = array();
             print_r([$e->getMessage(), $arr, __FILE__, __LINE__]);
             exit;
         }
@@ -252,5 +254,15 @@ class PDO
             $arr[] = $value;
         }
         return $arr;
+    }
+
+    // 获取单行
+    public function object($sql = null)
+    {
+        $sth = $this->query($sql);
+        if (false === $sth) {
+            return $sth;
+        }
+        return $row = $sth->fetchObject();
     }
 }
