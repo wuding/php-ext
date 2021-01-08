@@ -162,7 +162,7 @@ class Filesystem extends _Dynamic
         $context = stream_context_create($opts);
 
         try {
-            $contents = file_get_contents($filename, false, $context);
+            $contents = @file_get_contents($filename, false, $context);
             if (false === $contents) {
                 if (file_exists($filename) && in_array(__FUNCTION__, self::$throwException)) {
                     throw new Exception("Error Processing Request", 1);

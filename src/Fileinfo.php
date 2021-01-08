@@ -39,7 +39,7 @@ class Fileinfo
                 return $content_encoding;
             }
         }
-        return mime_content_type($filename);
+        return @mime_content_type($filename);
     }
 
     public function open($options = FILEINFO_NONE, $magic_file = null)
