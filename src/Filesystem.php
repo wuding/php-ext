@@ -147,8 +147,8 @@ class Filesystem extends _Dynamic
         $header_str = '';
         if (is_array($header)) {
             $pieces = array();
-            foreach ($header as $key => $value) {
-                $pieces[] = "$key: $value";
+            foreach ($header as $k => $v) {
+                $pieces[] = "$k: $v";
             }
             $header_str = implode("\r\n", $pieces) ."\r\n";
         }
