@@ -2,8 +2,6 @@
 
 namespace Ext;
 
-use PDO as PDObj;
-
 class PDO
 {
     const VERSION = '20.240.1258';
@@ -51,16 +49,14 @@ class PDO
             return self::$instances[$key];
         }
         extract($arr);
-        #unset($arr, $k, $value);
         self::$instances[$key] = $dbh = self::connect($dsn, $username, $passwd, $options);
-        #var_dump(get_defined_vars());
         return $dbh;
     }
 
     // 新建对象连接
     public static function connect($dsn = null, $username = null, $passwd = null, $options = null)
     {
-        return self::$dbh = new PDObj($dsn, $username, $passwd, $options);
+        return self::$dbh = new \PDO($dsn, $username, $passwd, $options);
     }
 
     // 获取指定或缺省键的实例，并设定最后键、或同时设定为缺省键
