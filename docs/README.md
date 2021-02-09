@@ -83,7 +83,7 @@
 | fileinfo   | -            | fileinfo   | ~~fileinfo~~ |      |      |      |                |                |
 | ftp        | -            | ftp        |              |      |      |      |                |                |
 | gd2        | gd           | image      |              |      |      |      |                |                |
-| Gettext |  |  | | | | | | |
+| Gettext | - | gettext | | | | | | |
 | GMP |  |  | | | | | | |
 | intl |  |  | | | | | | |
 | IMAP |  |  | | | | | | |
