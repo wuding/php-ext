@@ -27,6 +27,7 @@ class _Abstract
         $variable  = static::_strToArr(static::$constStr);
         $arr = [];
         foreach ($variable as $name) {
+            // 计划：容错
             $arr[$name] = constant($name);
         }
         return static::$constants = $arr;
