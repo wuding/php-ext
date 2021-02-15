@@ -3,8 +3,7 @@
     "description": "PHP Extension Library",
     "type": "library",
     "require": {
-        "php": ">=7.0.0",
-        "wuding/php-func": "^21.1.19"
+        "php": ">=7.0.0"
     },
     "autoload": {
         "psr-4": {
