@@ -23,7 +23,13 @@ class Redis
     public function __call($name, $arguments)
     {
         $obj = self::$connects[$this->key];
-        return call_user_func_array(array($obj, $name), $arguments);
+        $result = false;
+        try {
+            $result = call_user_func_array(array($obj, $name), $arguments);
+        } catch (\RedisException $e) {
+            print_r([__FILE__, __LINE__, $e->getMessage()]);
+        }
+        return $result;
     }
 
     // BUG：没法用
@@ -34,9 +40,10 @@ class Redis
     }
 
     // 初始化连接，不同配置生成多个实例
-    public function init($host = null, $port = null, $timeout = null, $reserved = null, $retry_interval = null, $read_timeout = null, $option = null, $method = 'connect')
+    public function init($host = null, $port = null, $timeout = null, $reserved = null, $retry_interval = null, $read_timeout = null, $option = array(), $method = 'connect')
     {
         //=s
+        // 计划：get_defined_vars
         $param_arr = func_get_args();
         $vars = get_defined_vars();
 
@@ -52,7 +59,11 @@ class Redis
         //=j
         unset($param_arr[7]);
         $Redis = new \Redis();
-        $this->init = call_user_func_array(array($Redis, $method), $param_arr);
+        try {
+            $this->init = call_user_func_array(array($Redis, $method), $param_arr);
+        } catch (\RedisException $e) {
+            print_r([__FILE__, __LINE__, $e->getMessage()]);
+        }
         self::$connects[$key] = $Redis;
 
         //=g
