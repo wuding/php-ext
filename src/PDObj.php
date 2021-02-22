@@ -17,8 +17,18 @@ class PDObj
 
     public function __call($name, $arguments)
     {
-        $obj = self::$connects[$this->key];
-        return call_user_func_array(array($obj, $name), $arguments);
+        $obj = self::$connects[$this->key] ?? null;
+        $result = false;
+        if (!$obj) {
+            return $result;
+        }
+
+        try {
+            $result = call_user_func_array(array($obj, $name), $arguments);
+        } catch (\PDOException $e) {
+            print_r([__FILE__, __LINE__, $e->getMessage()]);
+        }
+        return $result;
     }
 
     public static function __callStatic($name, $arguments)
@@ -35,7 +45,13 @@ class PDObj
         if (array_key_exists($key, self::$connects)) {
             return self::$connects[$key];
         }
-        self::$connects[$key] = $conn = new \PDO($dsn, $username, $passwd, $options);
+
+        $conn = false;
+        try {
+            self::$connects[$key] = $conn = new \PDO($dsn, $username, $passwd, $options);
+        } catch (\PDOException $e) {
+            print_r([__FILE__, __LINE__, $e->getMessage()]);
+        }
         return $conn;
     }
 
