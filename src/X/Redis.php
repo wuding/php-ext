@@ -73,6 +73,12 @@ class Redis
     // 将值编码为 JSON 储存
     public function setJSON($key = null, $value = null, $timeout = null)
     {
+        // 限制类型和大小
+        if (!is_numeric($timeout)) {
+            $timeout = null;
+        } elseif (1 > $timeout) {
+            $timeout = null;
+        }
         $json = json_encode($value);
         $set = $this->set($key, $json, $timeout);
         return $set;
