@@ -14,9 +14,9 @@ class Zlib extends _Abstract
     ];
 
     /**
-     * 打开 gx 文件
+     * 打开 gz 文件
      */
-    public function __construct($filename, $mode = 'r', $use_include_path = null)
+    public function __construct($filename = null, $mode = 'r', $use_include_path = null)
     {
         self::init();
         if ($filename) {
@@ -34,7 +34,8 @@ class Zlib extends _Abstract
 
     public static function init()
     {
-        parent::init();
+        // 错误：没有此方法
+        #parent::init();
         $variable = ['FORCE_GZIP', 'FORCE_DEFLATE'];
         foreach ($variable as $name) {
             self::$constants[$name] = constant($name);
