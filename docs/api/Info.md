@@ -31,12 +31,12 @@ PHP 选项和信息
 
 ## 扩展
 
-| 函数名                | 描述 | 别名 | 废弃 |
-| --------------------- | ---- | ---- | ---- |
-| dl                    |      |      |      |
-| extension_loaded      |      |      |      |
-| get_extension_funcs   |      |      |      |
-| get_loaded_extensions |      |      |      |
+| 函数名                | 描述         | 别名 | 废弃 |
+| --------------------- | ------------ | ---- | ---- |
+| dl                    |              |      |      |
+| extension_loaded      |              |      |      |
+| get_extension_funcs   |              |      |      |
+| get_loaded_extensions | 已加载的模块 |      |      |
 
 
 
