@@ -4,7 +4,7 @@ namespace Ext;
 
 class File extends _Abstract
 {
-    const VERSION = 20.2711161;
+    const VERSION = 20.5891054;
 
     // 参数
     public static $filename = null;
@@ -292,6 +292,10 @@ class File extends _Abstract
 
     public static function getContents($filename = null, $use_include_path = false, $context = null, $offset = 0, $maxlen = null)
     {
+        $exists = self::exists($filename);
+        if (false === $exists) {
+            return false;
+        }
         if (null === $maxlen) {
             return file_get_contents($filename, $use_include_path, $context, $offset);
         }
