@@ -167,9 +167,15 @@ class File extends _Abstract
         return fnmatch($pattern, $string, $flags);
     }
 
-    public static function isDir($filename = null)
+    public static function isDir($filename = null, $auto_make = true)
     {
-        return is_dir($filename);
+        $is_dir = is_dir($filename);
+        $exists = file_exists($filename);
+        if (!$is_dir && !$exists && $auto_make) {
+            $mkdir =  self::mkDir($filename);
+            return $mkdir;
+        }
+        return $is_dir;
     }
 
     public static function isExecutable($filename = null)
@@ -304,6 +310,8 @@ class File extends _Abstract
 
     public static function putContents($filename = null, $data = null, $flags = 0, $context = null)
     {
+        $dirname = dirname($filename);
+        $is_dir = self::isDir($dirname);
         return file_put_contents($filename, $data, $flags, $context);
     }
 
@@ -317,7 +325,7 @@ class File extends _Abstract
         return link($target, $link);
     }
 
-    public static function mkDir($pathname = null, $mode = 0777, $recursive = false, $context = null)
+    public static function mkDir($pathname = null, $mode = 0777, $recursive = true, $context = null)
     {
         return mkdir($pathname, $mode, $recursive, $context);
     }
