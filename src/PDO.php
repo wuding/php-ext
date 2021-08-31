@@ -44,7 +44,15 @@ class PDO
 
     public function __call($name, $arguments)
     {
-        return call_user_func_array(array($this->handle(), $name), $arguments);
+        $result = null;
+        try {
+            $result = call_user_func_array(array($this->handle(), $name), $arguments);
+        } catch (\PDOException $e) {
+            print_r([__LINE__, __FILE__, $e->getMessage()]);
+            print_r([$name, $arguments]);
+            exit;
+        }
+        return $result;
     }
 
     public function call($name, $arguments)
