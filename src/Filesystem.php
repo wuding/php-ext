@@ -158,6 +158,10 @@ class Filesystem extends _Dynamic
                 'method' => "GET",
                 'header' => "Accept-Encoding: gzip, deflate\r\n". $header_str,
             ),
+            "ssl"=>array(
+                "verify_peer"=>false,
+                "verify_peer_name"=>false,
+            ),
         );
         $context = stream_context_create($opts);
 
