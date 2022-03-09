@@ -129,6 +129,7 @@ class cURL extends _Abstract
     public static function simulate($var_array = null, $post_fields = null, $http_header = null, $header = null)
     {
         $return_all = null;
+        $option = array();
         if (is_array($var_array)) {
             extract($var_array);
         }
@@ -137,6 +138,9 @@ class cURL extends _Abstract
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
         );
+        foreach ($option as $key => $value) {
+            $options[$key] = $value;
+        }
         $opts = array(
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => $post_fields,
