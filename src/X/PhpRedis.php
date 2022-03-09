@@ -26,6 +26,7 @@ class PhpRedis
 
     public static function __callStatic($name, $arguments)
     {
+        $name = 'delete' === $name ? 'del' : $name;
         $param_arr = $arguments;
         return call_user_func_array(array(self::hand(), $name), $param_arr);
     }
