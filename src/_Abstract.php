@@ -22,13 +22,13 @@ class _Abstract
     }
 
     // 预定义常量键值对
-    public static function _const()
+    public static function _const($string = null)
     {
-        $variable  = static::_strToArr(static::$constStr);
+        $string = $string ?: static::$constStr;
+        $variable  = static::_strToArr($string);
         $arr = [];
         foreach ($variable as $name) {
-            // 计划：容错
-            $arr[$name] = constant($name);
+            $arr[$name] = @constant($name) ?? $name;
         }
         return static::$constants = $arr;
     }
