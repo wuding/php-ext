@@ -138,4 +138,35 @@ class URL extends _Abstract
     {
 
     }
+
+    public static function parseHeaders($headers, $fields = array())
+    {
+        $subject = $headers[0];
+        $results = array();
+        if (preg_match("/HTTP\/([\d\.]+)\s+(\d+)\s+(.*)/i", $subject, $matches)) {
+            $status_line = array();
+            $arr = array('status_line', 'version', 'code', 'status');
+            foreach ($matches as $key => $value) {
+                $kn = $arr[$key];
+                $status_line[$kn] = $value;
+            }
+            $results[''] = $status_line;
+        }
+
+        foreach ($headers as $key => $value) {
+            foreach ($fields as $field) {
+                if (preg_match($field, $key, $matches)) {
+                    $val = null;
+                    if (is_array($value)) {
+                        $val = array_pop($value);
+                    } else {
+                        $val = $value;
+                    }
+                    $kn = strtolower($key);
+                    $results[$kn] = $val;
+                }
+            }
+        }
+        return $results;
+    }
 }
