@@ -163,7 +163,8 @@ class URL extends _Abstract
                         $val = $value;
                     }
                     $kn = strtolower($key);
-                    $results[$kn] = $val;
+                    $key_name = preg_replace("/[-]+/", '_', $kn);
+                    $results[$key_name] = $val;
                 }
             }
         }
