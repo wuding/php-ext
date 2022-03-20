@@ -18,4 +18,26 @@ class Arr extends _Abstract
         $array = array_intersect_key($variable, $arr);
         return $array;
     }
+
+    public static function changeKeyName($array, $replace, $unset = null)
+    {
+        foreach ($replace as $key => $value) {
+            $array[$value] = $array[$key] ?? null;
+            if (true === $unset) {
+                unset($array[$key]);
+            }
+        }
+        return $array;
+    }
+
+    public static function fixType($array, $types)
+    {
+        foreach ($types as $key => $type) {
+            $value = $array[$key] ?? null;
+            $code_str = "return \$val = ($type) \"$value\";";
+            $val = eval($code_str);
+            $array[$key] = $val;
+        }
+        return $array;
+    }
 }
