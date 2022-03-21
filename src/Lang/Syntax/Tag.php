@@ -1,6 +1,6 @@
 <?php
 
-namespace Ext;
+namespace Ext\Lang\Syntax;
 
 class Tag
 {
