@@ -19,7 +19,7 @@ class Hierarchy
                 'TypeError' => array(
                     'ArgumentCountError',
                 ),
-                'ValueError',
+                'ValueError' => '\Ext\Lang\Predefined\Exception\ValueError',
                 'UnhandledMatchError',
                 'FiberError',
             ),
