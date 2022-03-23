@@ -4,7 +4,12 @@ namespace Ext;
 
 class FuncHand
 {
-    const VERSION = '22.3.20';
+    const VERSION = '22.3.22';
+
+    /*
+    * $callback string|array|callable(func var)
+    *
+    */
 
     public static function callUserFuncArray($callback, $args)
     {
