@@ -32,6 +32,20 @@ class File extends _Abstract
         'sys_temp_dir' => null,
     );
 
+    //
+    public static $errors_exceptions = array(
+        'file_get_contents' => array(
+            0 => array(
+                false => 'failed to open stream',
+            ),
+            'E_WARNING' => array(
+                'filename cannot be found',
+                'length is less than zero',
+                'seeking to the specified offset in the stream fails',
+            ),
+        ),
+    );
+
     public function __construct($filename = null, $mode = null, $use_include_path = false, $context = null)
     {
         parent::__construct();
