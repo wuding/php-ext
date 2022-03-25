@@ -28,6 +28,63 @@ class Misc
         ),
     );
 
+    public $pages = array(
+        'change_language' => array(
+            'English' => 'en',
+            'Brazilian Portuguese' => 'pt_BR',
+            'Chinese (Simplified)' => 'zh',
+            'French' => 'fr',
+            'German' => 'de',
+            'Japanese' => 'ja',
+            'Russian' => 'ru',
+            'Spanish' => 'es',
+            'Turkish' => 'tr',
+            'Other' => 'help-translate.php',
+        ),
+        'refman' => array(
+            'exit' => array(
+                'verinfo' => array(4, 5, 7, 8),
+                'purpose' => 'Output a message and terminate the current script',
+                'para' => array(
+                    'Description' => array(
+                        'synopsis' => array(
+                            'exit(string $status = ?): void',
+                            'exit(int $status): void',
+                        ),
+                        'rdfs-comment' => array(
+                            'Shutdown functions',
+                            'object destructs',
+                        ),
+                    ),
+                    'Parameters' => array(
+                        'status' => null,
+                    ),
+                    'Return Values' => array(
+                        'No value is returned',
+                    ),
+                    'Examples' => array(
+                        'exit example',
+                        'exit status example',
+                        'Shutdown functions and destructors run regardless',
+                    ),
+                    'Notes' => array(
+                        'it cannot be called using' => array(
+                            'variable functions',
+                            'named arguments',
+                        ),
+                        'This language construct is equivalent to' => 'die()',
+                    ),
+                    'See Also' => array(
+                        'register_shutdown_function()',
+                    ),
+                ),
+                'url' => 'https://www.php.net/manual/zh/function.exit.php',
+            ),
+
+        ),
+
+    );
+
 
     /*
     +---------------------------------------------------------------+
