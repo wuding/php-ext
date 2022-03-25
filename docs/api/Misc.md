@@ -20,7 +20,7 @@ Miscellaneous
 | 函数名              | 描述 |
 | ------------------ | -----|
 | connection_aborted |      |
-| connectin_status   |      |
+| connection_status   |      |
 | ignore_user_abort  |      |
 | uniqid             |      |
 
@@ -53,6 +53,7 @@ Miscellaneous
 | eval                |
 | \__halt_compiler    |
 | sleep               |
+| sys_getloadavg      |
 
 
 
