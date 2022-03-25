@@ -27,4 +27,19 @@ class Misc
             'browscap' => null,
         ),
     );
+
+
+    /*
+    +---------------------------------------------------------------+
+    + 退出
+    +---------------------------------------------------------------+
+    */
+
+    public static function exit($status = null)
+    {
+        if (is_int($status)) {
+            return $status;
+        }
+        exit($status);
+    }
 }
