@@ -26,7 +26,8 @@ class Booleans
                 'the special type NULL (including unset variables)',
                 'SimpleXML objects created form attributeless empty elements, i.e. elements with which have neither children nor attributes.',
             ),
-            'Every other value is considered true (including any resource and NAN).',
+            'Every other value is considered true (including any resource and NAN).' => true,
+            'warning' => '-1 is considered true, like any other non-zero (whether negative or positive) number!',
         ),
     );
 }
