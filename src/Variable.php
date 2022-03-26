@@ -98,6 +98,43 @@ class Variable
                     ),
                 ),
             ),
+            'isset' => array(
+                'verinfo' => array(4, 5, 7, 8),
+                'purpose' => 'Determine if a variable is declared and is different than null',
+                'para' => array(
+                    'Description' => array(
+                        'synopsis' => array(
+                            'isset(mixed $var, mixed ...$vars): bool',
+                        ),
+                    ),
+                    'Parameters' => array(
+                        'var' => null,
+                        'vars' => null,
+                    ),
+                    'Return Values' => array(
+                        'Return true if var exists and has any value other than null. false otherwise.',
+                    ),
+                    'Examples' => array(
+                        'isset() Examples',
+                        'isset() on String Offsets'
+                    ),
+                    'Notes' => array(
+                        'isset() only works with variables as passing anything else will result in a parse error. For checking if constants are set use the defined() function',
+                        'Because this is a language construct and not a function, it cannot be called using variable functions, or declared.',
+                        'When using isset() on inaccessible object properties, the __isset() overloading method will be called, if declared.',
+                    ),
+                    'See Also' => array(
+                        'empty()' => 'Determine whether a variable is empty',
+                        '__isset()',
+                        'unset()' => 'Unset a given variable',
+                        'defiend()' => 'Checks whether a given named constant exists',
+                        'the type comparison tables',
+                        'array_key_exists()' => 'Checks if the given key or index exists in the array',
+                        'is_null()' => 'Finds whether a variable is null',
+                        'the error control @ operator',
+                    ),
+                ),
+            ),
         ),
     );
 
