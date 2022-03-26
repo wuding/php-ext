@@ -135,4 +135,10 @@ class Misc
         $return_values = defined($constant_name);
         return $return_values;
     }
+
+    public static function define($constant_name, $value, $case_insensitive = false)
+    {
+        $return_values = define($constant_name, $value, $case_insensitive);
+        return $return_values;
+    }
 }
