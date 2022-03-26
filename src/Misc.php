@@ -80,7 +80,31 @@ class Misc
                 ),
                 'url' => 'https://www.php.net/manual/zh/function.exit.php',
             ),
-
+            'defined' => array(
+                'varinfo' => array(4 ,5 ,7, 8),
+                'purpose' => 'Checks whether a given named constant exists',
+                'para' => array(
+                    'Description' => array(
+                        'synopsis' => array(
+                            'defined(string $constant_name): bool',
+                        ),
+                        'rdfs-comment' => array(
+                            'isset()',
+                            'function_exists()',
+                        ),
+                    ),
+                    'Parameters' => array(
+                        'constant_name' => null,
+                    ),
+                    'Return Values' => array(
+                        true => 'if the named constant given by constant_name has been defined',
+                        false => 'otherwise',
+                    ),
+                    'Excamples' => array(
+                        'Checking Constants',
+                    ),
+                ),
+            ),
         ),
 
     );
