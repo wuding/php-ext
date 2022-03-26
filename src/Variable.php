@@ -63,6 +63,41 @@ class Variable
                     ),
                 ),
             ),
+            'unset' => array(
+                'verinfo' => array(4, 5, 7, 8),
+                'purpose' => 'Unset a given variable',
+                'para' => array(
+                    'Description' => array(
+                        'synopsis' => array(
+                            'unset(mixed $var, mixed ...$vars): void',
+                        ),
+                    ),
+                    'Parameters' => array(
+                        'var' => null,
+                        'vars' => null,
+                    ),
+                    'Return Values' => array(
+                        'No value is returned',
+                    ),
+                    'Examples' => array(
+                        'unset() example',
+                        'Using ( unset ) casting',
+                    ),
+                    'Notes' => array(
+                        'Because this is a language construct and not a function, it cannot be called using variable functions, or named arguments.',
+                        'It is possible to unset even object properties visible in current context.',
+                        'It is not possible to unset $this inside an object method.',
+                        'When using unset() on inaccessible object properties, the __unset() overloading method will be called, if declared.',
+                    ),
+                    'See Also' => array(
+                        'isset()' => 'Determine if a variable is declared and is different than null',
+                        'empty()' => 'Determine whether a variable is empty',
+                        '__unset()',
+                        'array_splice' => 'Remove a portion of the array and replace it with something else',
+                        '(unset) casting',
+                    ),
+                ),
+            ),
         ),
     );
 
@@ -127,5 +162,20 @@ class Variable
     {
         $return_values = is_null($value);
         return $return_values;
+    }
+
+
+    /*
+    +---------------------------------------------------------------+
+    + 返回定义数组或销毁
+    +---------------------------------------------------------------+
+    */
+
+    public static function unSet($var, $variable)
+    {
+        foreach ($variable as $key) {
+            unset($var[$key]);
+        }
+        return $var;
     }
 }
