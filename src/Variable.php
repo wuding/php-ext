@@ -178,4 +178,22 @@ class Variable
         }
         return $var;
     }
+
+    /*
+    +---------------------------------------------------------------+
+    + 检测
+    +---------------------------------------------------------------+
+    */
+
+    public static function isSet($var, $variable)
+    {
+        $arr = array();
+        foreach ($variable as $key) {
+            $return_values = isset($var[$key]);
+            $value = $var[$key] ?? null;
+            $origin_values = (object) $value;
+            $arr[$key] = false === $return_values ? false : $origin_values;
+        }
+        return $arr;
+    }
 }
