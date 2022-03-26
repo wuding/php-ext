@@ -99,4 +99,16 @@ class Misc
         }
         exit($status);
     }
+
+    /*
+    +---------------------------------------------------------------+
+    + 常量
+    +---------------------------------------------------------------+
+    */
+
+    public static function defined($constant_name)
+    {
+        $return_values = defined($constant_name);
+        return $return_values;
+    }
 }
