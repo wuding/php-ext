@@ -98,75 +98,75 @@ class FunctionAndMethodListing
         'ArrayObject::offsetGet' => 'Returns the value at the specified index',
         'ArrayObject::offsetSet' => 'Sets the value at the specified index to newval',
         'ArrayObject::offsetUnset' => 'Unsets th value at the specified index',
-        'ArrayObject::'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        'ArrayObject::serialize' => 'Serialize an ArrayObject',
+        'ArrayObject::setFlags' => 'Sets the behavior flags',
+        'ArrayObject::setIteratorClass' => 'Set the iterator classname for the ArrayObject',
+        'ArrayObject::uasort' => 'Sort the entries with a user-defined comparison function and maintain key associatin',
+        'ArrayObject::uksort' => 'Sort the entries by keys using a user-defined comparison function',
+        'ArrayObject::unserialize' => 'Unserialize an ArrayObject',
+        'ArrayObject::__construct' => 'Construct a new array object',
+        'array_change_key_case' => 'Changes the case of all keys i nan array',
+        'array_chunk' => 'Split an array into chunks',
+        'array_column' => 'Return the values from a single cloumn in the input array',
+        'array_combine' => 'Creates an array by using one array for keys and another for tis values',
+        'array_count_values' => 'Count all the values of an array',
+        'array_diff' => 'Computes the difference of arrays',
+        'array_diff_assoc' => 'Computes the difference of arrays with additional index check',
+        'array_diff_key' => 'Computes the difference of arrays using keys for comparison',
+        'array_diff_uassoc' => 'Computes the difference of arrays with additional index check which is performed by a user supplied callback function',
+        'array_diff_ukey' => 'Computes difference of arrays usinf a callback function on the keys for comparison',
+        'array_fill' => 'Fill an array with values',
+        'array_fill_keys ' => 'Fill an array with vlaues, specifying keys',
+        'array_filter' => 'Filters elements of an array using a callback function',
+        'array_flip' => 'Exchanges all keys with their associated values in an array',
+        'array_intersect' => 'Computes the intersection of arrays',
+        'array_intersect_assoc' => 'Computes the intersection of arrays with addityional index check',
+        'array_ineersect_key' => 'Computes the intersectin of arrays using keys for comparison',
+        'array_intersect_uassoc' => 'Computes the intersection of arrays with additional index check, compares indexes by a callbvack function',
+        'array_intersect_ukey' => 'Computes the intersection of arrays using a callback function on the keys for comparison',
+        'array_is_list' => 'Check whether a given array is a list',
+        'array_keys' => 'Return all the keys or a subset of the keys of an array',
+        'array_key_exists' => 'Checks if the given key or index exists in the array',
+        'array_key_first' => 'Gets the first key of an array',
+        'array_key_last' => 'Gets the last key of an array',
+        'array_map' => 'Applies the callback to the elements of the give arrays',
+        'array_merge' => 'Merge one or more arrays',
+        'array_merge_recursive' => 'Merge one or more arrays recursively',
+        'array_multisort' => 'Sort multiple or multi-dimensional arrays',
+        'array_pad' => 'Pad array to the specified length with a value',
+        'array_pop' => 'Pop the element off the end of array',
+        'array_product' => 'Calculate the product of values in an array',
+        'array_push' => 'Push on or more elements onto the end of array',
+        'array_rand' => 'Pick one or more random keys out of an array',
+        'array_reduce' => 'Iteratively reduce the array to a single value using a callback function',
+        'array_replace' => 'Replace elements from passed arays into the first array',
+        'array_replace_recursive' => 'Replaces elements from passed arrays into the first array recursively',
+        'array_reverse' => 'Return an aray withv elements in reverse order',
+        'array_search' => 'Searches the array for a given valkue and returns the vfirst corrresponding key if successful',
+        'array_shift' => 'Shift an elemnt off the beginning of array',
+        'array_slice' => 'Extract a slice of the array',
+        'array_splice' => 'Remove a portion of the array and replace it with something else',
+        'array_sum' => 'Calculate the sum of values in an array',
+        'array_udiff' => 'Computes the difference of arrays by using a callback function for data comparison',
+        'array_udiff_assoc' => 'Computes the difference of arrays with additional index check, compares data by a callback funcrtion',
+        'array_udiff_uassoc' => 'Computes the difference of arrays with additional index check, compares datra and ndexes by callvback function',
+        'array_uintersect' => 'Computes the intersection of arrays, compares date by a callbvack function',
+        'array_uintersect_assoc' => 'Computes the of arays witrh adsditinal index check, comopares data by a callback function',
+        'array_uintersect_uassoc' => 'Computes the intersection of arrays with additional index check, compares data and indexed by separate callback functions',
+        'array_unique' => 'Removes duplicate values from an array',
+        'array_unshift' => 'Prepend one or more elements to the beginning of an array',
+        'array_values' => 'Return all the values of an array',
+        'array_walk' => 'Apply a user supplied function to evry membr of an array',
+        'array_walk_revursive' => 'Apply a user function recursively to every member of an array',
+        'arsort' => 'Sort an array in descending order and maintain index association',
+        'asin' => 'Arc sine',
+        'asinh' => 'Inverse hyperbolic sine',
+        'asort' => 'Sort an array in ascending order and maintain index association',
+        'assert' => 'Checks if assertion is false',
+        'assert_options' => 'Set/get the various assert flags',
+        'atan' => 'Arc tangent',
+        'atan2' => 'Arc tangent of two variables',
+        'atanh' => 'Inverse hyperbolic tangent',
 
 
 
