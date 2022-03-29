@@ -1,6 +1,6 @@
 <?php
 
-namespace Ext\Lang\Predefined\Interface;
+namespace Ext\Lang\Predefined\Interfaces;
 
 interface Stringable
 {
