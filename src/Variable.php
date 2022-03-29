@@ -135,6 +135,42 @@ class Variable
                     ),
                 ),
             ),
+            'empty' => array(
+                'verinfo' => array(4, 5, 7, 8),
+                'purpose' => 'Determine whether a variable is empty',
+                'para' => array(
+                    'Description' => array(
+                        'synopsis' => array(
+                            'empty(mixd $var): bool',
+                        ),
+                    ),
+                    'Parameters' => array(
+                        'var' => null,
+                    ),
+                    'Return Values' => array(
+                        false => 'if var exists and has a non-empty, non-zero value',
+                        true => 'Otherwise returns',
+                    ),
+                    'Examples' => array(
+                        'A simple empty() / isset() comparison',
+                        'empty() on String Offsets',
+                    ),
+                    'Notes' => array(
+                        'Because this is a language construct and not a function, it cannot be called using variable functions, or named arguments.',
+                        'When using empty() on inaccessible object properties, the __isset() overloading method will be called, if declared.',
+                    ),
+                    'See Also' => array(
+                        'conversion to boolean',
+                        'isset()' => 'Determine if a variable is declared and is different than null',
+                        '__isset()',
+                        'unset()' => 'Unset a given variable',
+                        'array_key_exists()' => 'Checks if the given key or index exists in the array',
+                        'count()' => 'Counts all elements in an aaray or in a Countable object',
+                        'strlen()' => 'Get string length',
+                        'The type comparison tables',
+                    ),
+                ),
+            ),
         ),
     );
 
@@ -232,5 +268,10 @@ class Variable
             $arr[$key] = false === $return_values ? false : $origin_values;
         }
         return $arr;
+    }
+
+    public static function empty($var)
+    {
+
     }
 }
