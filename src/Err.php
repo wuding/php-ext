@@ -65,4 +65,47 @@ class Err
             'syslog.ident' => 'php',
         ),
     );
+
+
+    public $pages = array(
+        'refman' => array(
+            'error_get_last' => array(
+                'verinfo' => array('>=' => '5.2.0', 7, 8),
+                'purpose' => 'Get the last occurred error',
+                'para' => array(
+                    'Description' => array(
+                        'synopsis' => 'error_get_last(): ?array',
+                    ),
+                    'Parameters' => 'This function has no parameters',
+                    'Return Values' => array(
+                        'array' => 'an associative array describing the last error with keys "type", "message", "file" and "line"',
+                        null => "if there hasn't been an error yet",
+                    ),
+                    'Examples' => array(
+                        'An error_get_last() example',
+                    ),
+                    'See Also' => array(
+                        'Error constants',
+                        'Variable $php_errormsg',
+                        'error_clear_last() - Clear the most recent error',
+                        'Directive display_errors',
+                        'Directive html_errors',
+                        'Directive xmlrpc_errors',
+                    ),
+                ),
+            ),
+        ),
+    );
+
+
+    /*
+    +---------------------------------------------------------------+
+    + 获取和清除
+    +---------------------------------------------------------------+
+    */
+
+    public static function getLast()
+    {
+        return error_get_last();
+    }
 }
