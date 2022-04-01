@@ -6,7 +6,9 @@ Miscellaneous
 
 
 
-进制
+## 分类
+
+### 进制
 
 | 函数名 | 描述 |      |
 | ------ | ---- | ---- |
@@ -15,7 +17,7 @@ Miscellaneous
 
 
 
-连接
+### 连接
 
 | 函数名              | 描述 |
 | ------------------ | -----|
@@ -26,8 +28,7 @@ Miscellaneous
 
 
 
-
-常量
+### 常量
 
 | 函数名         |
 | -------------- |
@@ -37,7 +38,7 @@ Miscellaneous
 
 
 
-退出
+### 退出
 
 | 函数名           |
 | --------------- |
@@ -46,7 +47,7 @@ Miscellaneous
 
 
 
-执行
+### 执行
 
 | 函数名              |
 | ------------------- |
@@ -57,7 +58,7 @@ Miscellaneous
 
 
 
-浏览器
+### 浏览器
 
 | 函数名                      |
 | -------------------------- |
@@ -66,7 +67,7 @@ Miscellaneous
 
 
 
-语法高亮
+### 语法高亮
 
 | 函数名              | 别名          |
 | ------------------ | ------------- |
@@ -75,8 +76,7 @@ Miscellaneous
 
 
 
-
-时间
+### 时间
 
 | 函数名               |
 | -------------------- |
@@ -87,22 +87,25 @@ Miscellaneous
 
 
 
-格式化
+### 格式化
 
-| 函数名
-| -----------------------------
-| php_strip_whitespace
+| 函数名             |
+| ----------------------------- |
+| php_strip_whitespace |
 
 
 
-代码页
+### 代码页
 
-| 函数名
-| -------------------------------
-| sapi_windows_cp_conv
-| sapi_windows_cp_get
-| sapi_windows_cp_is_utf8
-| sapi_windows_cp_set
-| spai_windows_generate_ctrl_event
-| sapi_windows_set_ctrl_event
-| sapi_windows_vt100_support
+| 函数名                            |
+| ------------------------------- |
+| sapi_windows_cp_conv           |
+| sapi_windows_cp_get               |
+| sapi_windows_cp_is_utf8          |
+| sapi_windows_cp_set    |
+| spai_windows_generate_ctrl_event   |
+| sapi_windows_set_ctrl_event   |
+| sapi_windows_vt100_support |
+
+
+
