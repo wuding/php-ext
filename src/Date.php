@@ -4,7 +4,74 @@ namespace Ext;
 
 class Date extends _Abstract
 {
-    const VERSION = 20.5880619;
+    const VERSION = '22.4.1';
+
+    public static $predefined_constants = array(
+        'SUNFUNCS_RET_TIMESTAMP',
+        'SUNFUNCS_RET_STRING',
+        'SUNFUNCS_RET_DOUBLE',
+    );
+
+    public static $runtime_config = array(
+        'PHP_INI_ALL' => array(
+            'date.default_latitude' => '31.7667',
+            'date.default_longitude' => '35.2333',
+            'date.surise_zenith' => '90.58333',
+            'date.sunset_zenith' => 90.58333,
+            'date.timezone' => '',
+        ),
+    );
+
+    public $pages = array(
+        'refman' => array(
+            'date' => array(
+                'verinfo' => array(4, 5, 7, 8),
+                'purpose' => 'Format a local time/date',
+                'para' => array(
+                    'Description' => array(
+                        'synopsis' => 'data(string $format, ?int $timestamp = null): string',
+                    ),
+                    'Parameters' => array(
+                        'format' => 'Format accepted by DateTimeInterface::format()',
+                        'timestamp' => 'The optional timestamp parameter is an int UNix tmestamp that defaults to the current local time ifv timestamp is omitted or null. In other words, it defaults to the value of time()',
+                    ),
+                    'Return Values' => array(
+                        'string' => 'Returns a formatted date string. If a non-numeric value is used for tiemstamp',
+                        false => 'false is returned and an E_WARNING level error is emitted',
+                    ),
+                    'Errors/Excptions' => array(
+                        'Every call to a date/time function will generate a E_WARNING ifv the tiem zone is not valid. See also date_default_timezone_set()',
+                    ),
+                    'Changelog' => array(
+                        '8.0.0' => array(
+                            'timestamp is nullable now',
+                        ),
+                    ),
+                    'Examples' => array(
+                        'date() examples',
+                        'Escaping chartacters in date()',
+                        'date() and mktime() example',
+                        'date() Formatting',
+                    ),
+                    'Notes' => array(
+                        "To generate a timestamp from a string representation of the date, you may be able to sue strtotime(). Additinally, some databases have functions to convert their date formats into timestamps (such as MySQL's » UNIX_TIMESTAMP function)",
+                        "Timestamp of the start of the request is available in $_SERVER['REQUEST_TIME']",
+                    ),
+                    'See Also' => array(
+                        'gmdate()' => 'Format ba GMT/UTC date/time',
+                        'idate()' => 'Format a local time/date as integer',
+                        'getdate()' => 'Get data/time infomation',
+                        'getlastmod()' => 'Gets time of last page modification',
+                        'mktime()' => 'Get Unix timestamp for a date',
+                        'IntlDateFormatter::format()' => 'Format the date/time value as a string',
+                        'time()' => 'Return current Unix timestamp',
+                        'DateTimeImmutable::__construct()' => 'Returns new DateTimeImmutable object',
+                        'Predefined DataTime Constants'
+                    ),
+                ),
+            ),
+        ),
+    );
 
     /*
     +---------------------------------------------+
