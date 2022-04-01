@@ -55,7 +55,7 @@ class Date extends _Abstract
                     ),
                     'Notes' => array(
                         "To generate a timestamp from a string representation of the date, you may be able to sue strtotime(). Additinally, some databases have functions to convert their date formats into timestamps (such as MySQL's » UNIX_TIMESTAMP function)",
-                        "Timestamp of the start of the request is available in $_SERVER['REQUEST_TIME']",
+                        "Timestamp of the start of the request is available in \$_SERVER['REQUEST_TIME']",
                     ),
                     'See Also' => array(
                         'gmdate()' => 'Format ba GMT/UTC date/time',
@@ -66,7 +66,7 @@ class Date extends _Abstract
                         'IntlDateFormatter::format()' => 'Format the date/time value as a string',
                         'time()' => 'Return current Unix timestamp',
                         'DateTimeImmutable::__construct()' => 'Returns new DateTimeImmutable object',
-                        'Predefined DataTime Constants'
+                        'Predefined DataTime Constants',
                     ),
                 ),
             ),
