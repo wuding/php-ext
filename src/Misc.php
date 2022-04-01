@@ -105,6 +105,32 @@ class Misc
                     ),
                 ),
             ),
+            'hrtime' => array(
+                'varinfo' => array('>=' => '7.3.0', 8),
+                'purpose' => "Get the system's high resolution time",
+                'para' => array(
+                    'Description' => array(
+                        'synopsis' => array(
+                            'hrtime(bool $as_number = false): array|int|float|false',
+                        ),
+                    ),
+                    'Parameters' => array(
+                        'as_number' => 'Whether the high resolution time should be returned as array or number',
+                    ),
+                    'Return Values' => array(
+                        'array' => 'Returns an aray of integers in the form [seconds, nanoseconds], if the parameter as_number is false',
+                        'numeric' => 'Otherwise the nanoseconds are returned as int (64bit platforms) or float (32bit platforms)',
+                        false => 'Returns false on failure',
+                    ),
+                    'Examples' => array(
+                        'hrtime() usage',
+                    ),
+                    'See Also' => array(
+                        'The High resolutiion time extension',
+                        'microtime()' => 'Return current Unix timestamp with microseconds',
+                    ),
+                ),
+            ),
         ),
 
     );
@@ -139,6 +165,20 @@ class Misc
     public static function define($constant_name, $value, $case_insensitive = false)
     {
         $return_values = define($constant_name, $value, $case_insensitive);
+        return $return_values;
+    }
+
+
+
+    /*
+    +---------------------------------------------------------------+
+    + 时间
+    +---------------------------------------------------------------+
+    */
+
+    public static function hrtime($as_number = null)
+    {
+        $return_values = hrtime($as_number);
         return $return_values;
     }
 }
