@@ -50,18 +50,18 @@
 
 ### 创建改变合并数组
 
-| 方法名 | 函数名                | 全称 | 翻译 | 描述 |
-| ------ | --------------------- | ---- | ---- | ---- |
-|        | array_combine         |      |      |      |
-|        | array_flip            |      |      |      |
-|        | array_merge_recursive |      |      |      |
-|        | array_merge           |      |      |      |
-|        | array_pop             |      |      |      |
-|        | array_push            |      |      |      |
-|        | array_shift           |      |      |      |
-|        | array_unshift         |      |      |      |
-|        | array                 |      |      |      |
-|        | compact               |      |      |      |
+| 方法名 | 函数名                | 全称 | 翻译 | 描述         |
+| ------ | --------------------- | ---- | ---- | ------------ |
+|        | array_combine         |      |      |              |
+|        | array_flip            |      |      |              |
+|        | array_merge_recursive |      |      |              |
+|        | array_merge           |      |      |              |
+|        | array_pop             |      |      |              |
+|        | array_push            |      |      |              |
+|        | array_shift           |      |      | 移出开头单元 |
+|        | array_unshift         |      |      |              |
+|        | array                 |      |      |              |
+|        | compact               |      |      |              |
 
 
 
