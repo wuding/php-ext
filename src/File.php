@@ -640,4 +640,39 @@ class File extends _Abstract
         }
         return touch($filename, $time, $atime);
     }
+
+
+    /*
+    +---------------------------------------------------------------+
+    + 自定义
+    +---------------------------------------------------------------+
+    */
+
+
+    public static function fullPath($path, $replace = array())
+    {
+        $pieces = self::component($path, $replace);
+        $glue = '';
+        $str = implode($glue, $pieces);
+        return $str;
+    }
+
+    public static function component($path, $replace = array())
+    {
+        $predefined = array(
+            'dirname' => null,
+            'basename' => null,
+            'extension' => null,
+            'filename' => null,
+        );
+        $pathinfo = pathinfo($path);
+        $arr = array_merge($predefined, $pathinfo);
+        $array = array_merge($arr, $replace);
+
+        $pieces = array();
+        $pieces[] = $array['dirname'] .'/';
+        $pieces[] = $array['filename'];
+        $pieces[] = '.'. $array['extension'];
+        return $pieces;
+    }
 }
