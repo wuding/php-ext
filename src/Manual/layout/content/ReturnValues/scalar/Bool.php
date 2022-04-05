@@ -7,6 +7,9 @@ class Bool
     const VERSION = '22.3.29';
 
     public $function = array(
+        'c' => array(
+            'copy',
+        ),
         'e' => array(
             'empty',
         ),
