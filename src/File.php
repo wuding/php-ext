@@ -32,6 +32,61 @@ class File extends _Abstract
         'sys_temp_dir' => null,
     );
 
+    public static $runtime_configuration = array(
+        'PHP_INI_SYSTEM' => array(
+            'allow_url_fopen' => 1,
+            'allow_url_include' => 0,
+            'sys_temp_dir' => '',
+        ),
+        'PHP_INI_ALL' => array(
+            'user_agent' => null,
+            'default_socket_timeout' => 60,
+            'from' => '',
+            'auto_detect_line_endings' => 0,
+        ),
+    );
+
+    public static $predefined_constants = array(
+        'SEEK_SET',
+        'SEEK_CUR',
+        'SEEK_END',
+
+        'LOCk_SH',
+        'LOCK_EX',
+        'LOCK_UN',
+        'LOCK_NB',
+
+        'GLOB_BRACE',
+        'GLOB_ONLYDIR',
+        'GLOB_MARK',
+        'GLOB_NOSORT',
+        'GLOB_NOCHECK',
+        'GLOB_NOESCAPE',
+        'GLOB_AVAILABLE_FLAGS',
+
+        'PATHINFO_DIRNAME',
+        'PATHINFO_BASENAME',
+        'PATHINFO_EXTENSION',
+        'PATHINFO_FILENAME',
+
+        'FILE_USE_INCLUDE_PATH',
+        'FILE_NO_DEFAULT_CONTEXT',
+        'FILE_APPEND',
+        'FILE_IGNORE_NEW_LINES',
+        'FILE_SKIP_EMPTY_LINES',
+        'FILE_BINARY',
+        'FILE_TEXT',
+
+        'INI_SCANNER_NORMAL',
+        'INI_SCANNER_RAW',
+        'INI_SCANNER_TYPED',
+
+        'FNM_NOESCAPE',
+        'FNM_PATHNAME',
+        'FNM_PERIOD',
+        'FNM_CASEFOLD',
+    );
+
     //
     public static $errors_exceptions = array(
         'file_get_contents' => array(
