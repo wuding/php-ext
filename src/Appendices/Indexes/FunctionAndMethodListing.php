@@ -3518,4 +3518,11 @@ class FunctionAndMethodListing
         'json_last_error_msg' => 'Returns the error string of the last json_encode() or json_decode() call',
         'juliantojd' => 'Converts a Julian Calendat date to Julian Day Count',
     );
+
+    public $k = array(
+        'key' => 'Fetch a key from an array',
+        'key_exists' => 'Alias of array_key_exists',
+        'krsort' => 'Sort an array by key in descending order',
+        'ksort' => 'Sort an array by key in ascending order',
+    );
 }
