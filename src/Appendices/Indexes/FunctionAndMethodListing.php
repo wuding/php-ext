@@ -3499,4 +3499,23 @@ class FunctionAndMethodListing
         'iterator_count' => 'Count the elements is an iterator',
         'iterator_to_array' => 'Copy the iterator into an array',
     );
+
+    public $j = array(
+        'jddayofweek' => 'Returns the day of the week',
+        'jdmonthname' => 'Returns a month name',
+        'jdtofrech' => 'Converts a Julian Day Count to the Frech Republican Calendar',
+        'jdtogregorian' => 'Converts Julian Day Count to Gregorian date',
+        'jdtojewish' => 'Converts Julian day count to a Jewish calendar date',
+        'jdtojulian' => 'Converts a Julian Day Count to a Julian Calendar date',
+        'jdtounix' => 'Convert Julian Day to Unix timestamp',
+        'jewishtojd' => 'Converts a date in the Jewish Calendat to Julian Day Count',
+        'join' => 'Alias of implode',
+        'jpeg2wbmp' => 'Convert JPEG image file to WBMP image file',
+        'JsonSerializable::jsonSerialize' => 'Specify data which should be serialized to JSON',
+        'json_decode' => 'Decodes a JSON string',
+        'json_encode' => 'Returns the JSON representation of a value',
+        'json_last_error' => 'Returns the last error occurred',
+        'json_last_error_msg' => 'Returns the error string of the last json_encode() or json_decode() call',
+        'juliantojd' => 'Converts a Julian Calendat date to Julian Day Count',
+    );
 }
