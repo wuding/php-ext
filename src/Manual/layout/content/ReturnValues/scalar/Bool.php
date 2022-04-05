@@ -4,7 +4,7 @@ namespace Ext\Manual\layout\content\ReturnValues\scalar;
 
 class Bool
 {
-    const VERSION = '22.3.29';
+    const VERSION = '22.4.5';
 
     public $function = array(
         'c' => array(
