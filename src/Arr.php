@@ -4,7 +4,7 @@ namespace Ext;
 
 class Arr extends _Abstract
 {
-    const VERSION = '22.4.2';
+    const VERSION = '22.4.16';
 
     public static $predefined_constants = array(
         /* array_change_key_case() */
@@ -85,6 +85,19 @@ class Arr extends _Abstract
     public static function shift(&$array)
     {
         $return_values = array_shift($array);
+        return $return_values;
+    }
+
+
+    /*
+    +---------------------------------------------------------------+
+    + 过滤判断替换
+    +---------------------------------------------------------------+
+    */
+
+    public static function splice(&$array, $offset, $lenght = null, $replacement = [])
+    {
+        $return_values = array_splice($array, $offset, $lenght, $replacement);
         return $return_values;
     }
 }
