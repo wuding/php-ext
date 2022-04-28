@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '22.4.25';
+    const VERSION = '22.4.28';
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -4859,5 +4859,40 @@ class FunctionAndMethodListing
         'password_verify' => 'Verifies that a password matches a hash',
         'pathinfo' => 'Returns information about a file path',
         'pclose' => 'Closes process file pointer',
+        'pcntl_alarm' => 'Set an alarm clock for delivery of a signal',
+        'pcntl_async_signals' => 'Enable/disable asynchronous signal handling or return the old setting',
+        'pcntl_errno' => 'Alias of pcntl_get_last_error',
+        'pcntl_exec' => 'Executes specified program in current process space',
+        'pcntl_fork' => 'Forks the currently running process',
+        'pcntl_getpriority' => 'Get the priority of any process',
+        'pcntl_get_last_error' => 'Retrieve the error number set by the last pcntl function which failed',
+        'pcntl_rfork' => 'Manipulates process resources',
+        'pcntl_setpriority' => 'Change the priority of any process',
+        'pcntl_signal' => 'Installs a signal handler',
+        'pcntl_signal_dispatch' => 'Calls signal handlers for pending signals',
+        'pcntl_siganl_get_handler' => 'Get the current handler for specified signal',
+        'pcntl_sigprocmask' => 'Sets and retrieves blocked signals',
+        'pcntl_sigtimedwait' => 'Waits for signals, with a timeout',
+        'pcntl_sigwaitinfo' => 'Waits for signals',
+        'pcntl_strerror' => 'Retrieve the system error message associated with the given errno',
+        'pcntl_unshare' => 'Dissociates parts of the process execution context',
+        'pcntl_wait' => 'Waits on or returns the status of a forked child',
+        'pcntl_waitpid' => 'Waits on or returns the status of a forked child',
+        'pcntl_wexitstatus' => 'Returns the return code of a terminated child',
+        'pcntl_wifexited' => 'Checks if status code represents a normal exit',
+        'pcntl_wifsignaled' => 'Checks whether the status code represents a termination due to a signal',
+        'pcntl_wifstopped' => 'Checks whether the child process is currently stopped',
+        'pcntl_wstopsig' => 'Returns the signal which caused the child to stop',
+        'pcntl_wtermsig' => 'Returns the signal which caused the child to terminate',
+        'PDO::beginTransaction' => 'Initiates a transaction',
+        'PDO::commit' => 'Commits a transaction',
+        'PDO::cubrid_schema' => 'Get the requested schema information',
+        'PDO::errorCode' => 'Fetch the SQLSTATE associated with the last operation on the database handle',
+        'PDO::errorInfo' => 'Fetch extended error information associated with the last operation on the database handle',
+        'PDO::exec' => 'Execute an SQL statement and return the number of affected rows',
+        'PDO::getAttribute' => 'Retrieve a database connection attribute',
+        'PDO::getAvailableDrivers' => 'Return an array of available PDO drivers',
+        'PDO::inTransaction' => 'Checks if inside a transaction',
+        'PDO::lastInsertId' => 'Returns the ID of the last inserted row or sequence value',
     );
 }
