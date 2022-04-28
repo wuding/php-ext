@@ -4,7 +4,7 @@ namespace Ext;
 
 class Variable
 {
-    const VERSION = '22.3.21';
+    const VERSION = '22.4.28';
 
     public static $return_values = array(
         'var_export' => array(
@@ -189,6 +189,10 @@ class Variable
     +---------------------------------------------------------------+
     */
 
+    /*
+     * 计数器
+     *
+     */
     public static function dump()
     {
         $function = 'var_dump';
@@ -197,11 +201,23 @@ class Variable
         return $return_values;
     }
 
+
+    /*
+     * 自己
+     *
+     */
+
     public static function export($value, bool $return = false): ?string
     {
         $return_values = var_export($value, $return);
         return $return_values;
     }
+
+
+    /*
+     * 可见光，不可见光
+     *
+     */
 
     public static function printReadable($value, bool $return = false)
     {
