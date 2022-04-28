@@ -4,7 +4,7 @@ namespace Ext\Func;
 
 class FuncRef
 {
-    const VERSION = '22.3.25';
+    const VERSION = '22.4.28';
 
     public $function_reference = array(
         "Affecting PHP's Behaviour" => array(
@@ -49,8 +49,23 @@ class FuncRef
             'Sodium',
         ),
         'Database Extensions' => array(
-            'Abstraction Layers',
-            'Vendor Specific Database Extensions',
+            'Abstraction Layers' => array(
+                'DBA' => 'Database (dbm-style) Abstract Layer',
+                'ODBC' => 'ODBC (unified)',
+                'PDO' => 'PHP Data Objects',
+            ),
+            'Vendor Specific Database Extensions' => array(
+                'CUBRID',
+                'dBase',
+                'Firebird/Interbase',
+                'IBM_DB2' => 'IBM DB2, Cloudscape and Apache Derby',
+                'MongoDB' => 'MongoDB driver',
+                'MySQL' => 'MySQL Drivers and Plugins',
+                'OCI8' => 'Oracle OCI8',
+                'PostgreSQL',
+                'SQLite3',
+                'SQLSRV' => 'Microsoft SQL Server Driver for PHP',
+            ),
         ),
         'Date and Time Related Extensions' => array(
             'Calendar',
