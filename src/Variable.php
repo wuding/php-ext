@@ -4,7 +4,7 @@ namespace Ext;
 
 class Variable
 {
-    const VERSION = '22.4.28';
+    const VERSION = '22.5.8';
 
     public static $return_values = array(
         'var_export' => array(
