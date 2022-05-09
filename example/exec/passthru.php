@@ -40,13 +40,13 @@ function echo_passthru() {
 /******************************************************************************/
 # 8
 
-/*
-header("Content-Type: application/octet-stream");
-header("Content-Disposition: attachment; filename=\"myfile.zip\"");
-header("Content-Length: 11111");
-passthru("cat myfile.zip",$err);
-*/
-
+/**/
+function attachment_passthru() {
+    header("Content-Type: application/octet-stream");
+    header("Content-Disposition: attachment; filename=\"myfile.zip\"");
+    header("Content-Length: 11111");
+    passthru("cat myfile.zip",$err);
+}
 
 
 
@@ -59,4 +59,4 @@ passthru("cat myfile.zip",$err);
 
 /******************************************************************************/
 //---------------------------------------------------------------------------//
-echo_passthru();
+attachment_passthru();
