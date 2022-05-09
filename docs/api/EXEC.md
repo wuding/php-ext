@@ -101,3 +101,46 @@ shell 元字符转义
 ##### Execute an external program and display the output
 
 执行外部程序，并且显示输出
+
+
+
+
+
+## Categories
+
+### I/O
+
+#### passthru
+
+#### proc_open
+
+#### system
+
+
+
+### CR
+
+#### escapeshellarg
+
+#### exec
+
+#### proc_get_status
+
+#### shell_exec
+
+
+
+### DEL
+
+#### proc_close
+
+#### proc_terminate
+
+
+
+### NO.
+
+#### escapeshellcmd
+
+#### proc_nice
+
