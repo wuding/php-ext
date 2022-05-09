@@ -2,15 +2,15 @@
 # 20
 
 /**/
-ob_start();
-passthru("<i>command</i>");
-$var = ob_get_contents();
-ob_end_clean();
+function ob_passthru() {
+    ob_start();
+    passthru("<i>command</i>");
+    $var = ob_get_contents();
+    ob_end_clean();
 
 
-var_export($var);
-
-
+    var_export($var);
+}
 
 
 
@@ -58,3 +58,5 @@ passthru("cat myfile.zip",$err);
 
 
 /******************************************************************************/
+//---------------------------------------------------------------------------//
+ob_passthru();
