@@ -8,6 +8,24 @@ class function
 
     public $pages = array(
         'refman' => array(
+            'fpassthru' => array(
+                'verinfo' => array(4, 5, 7, 8),
+                'purpose' => 'Output all remaining data on a file pointer',
+                'para' => array(
+                    'Description' => array(
+                    ),
+                    'Parameters' => array(
+                    ),
+                    'Returns Values' => array(
+                    ),
+                    'Examples' => array(
+                    ),
+                    'Notes' => array(
+                    ),
+                    'See Also' => array(
+                    ),
+                ),
+            ),
             'passthru' => array(
                 'verinfo' => array(4, 5, 7, 8),
                 'purpose' => 'Execute an external program and display raw output',
