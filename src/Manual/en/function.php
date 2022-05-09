@@ -13,16 +13,27 @@ class function
                 'purpose' => 'Output all remaining data on a file pointer',
                 'para' => array(
                     'Description' => array(
+                        'synopsis' => array(
+                            'fpassthru(resource $stream): int',
+                        ),
                     ),
                     'Parameters' => array(
+                        'stream' => null,
                     ),
                     'Returns Values' => array(
+                        false => 'error',
+                        'number of characters',
                     ),
                     'Examples' => array(
+                        'Using fpassthru() with binary files',
                     ),
                     'Notes' => array(
                     ),
                     'See Also' => array(
+                        'readfile()' => 'Outputs a file',
+                        'fopen()' => 'Opens file or URL',
+                        'popen()' => 'Opens process file pointer',
+                        'fsockopen()' => 'Open Internet or Unix domain socket connection',
                     ),
                 ),
             ),
