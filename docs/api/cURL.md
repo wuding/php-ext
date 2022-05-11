@@ -56,3 +56,20 @@ Client URL 库
 |                    |                                   |      |
 |                    |                                   |      |
 
+
+
+
+
+## Usage
+
+### 获取 HTTP 头信息
+
+```php
+array(
+    'option' => array(
+        CURLOPT_HEADER => true,
+        CURLINFO_HEADER_OUT => true,
+    ),
+)
+```
+

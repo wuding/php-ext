@@ -13,6 +13,7 @@ class URL extends _Abstract
     );
 
     public static $arg_separator = null;
+    public static $arrange = 'scheme,user,pass,host,port,path,query,fragment';
 
     public function __construct()
     {
@@ -77,5 +78,96 @@ class URL extends _Abstract
             return rawurlencode($str);
         }
         return urlencode($str);
+    }
+
+    public static function link()
+    {
+
+    }
+
+    public static function fullUrl($url)
+    {
+        $pieces = self::component($url);
+        return $str = implode('', $pieces);
+    }
+
+    public static function hostLink($url)
+    {
+        $components = self::component($url);
+        $pieces = array();
+        foreach ($components as $key => $value) {
+            if ('port' === $key) {
+                break 1;
+            }
+            $pieces[$key] = $value;
+        }
+        return $str = implode('', $pieces);
+    }
+
+    public static function component($url)
+    {
+        $var_array = parse_url($url);
+        extract($var_array);
+        if ($scheme ?? null) {
+            $var_array['scheme'] .= '://';
+        }
+        if ($fragment ?? null) {
+            $var_array['fragment'] = "#$fragment";
+        }
+        if ($query ?? null) {
+            $var_array['query'] = "?$query";
+        }
+        if ($user ?? null) {
+            $var_array['host'] = "@$host";
+            if ($pass) {
+                $var_array['pass'] = ":$pass";
+            }
+        }
+        if ($port ?? null) {
+            $var_array['port'] = ":$port";
+        }
+        $pieces = array();
+        $keys = preg_split("/,/", self::$arrange);
+        foreach ($keys as $key) {
+            $pieces[$key] = $var_array[$key] ?? null;
+        }
+        return $pieces;
+    }
+
+    public static function isFileName()
+    {
+
+    }
+
+    public static function parseHeaders($headers, $fields = array())
+    {
+        $subject = $headers[0];
+        $results = array();
+        if (preg_match("/HTTP\/([\d\.]+)\s+(\d+)\s+(.*)/i", $subject, $matches)) {
+            $status_line = array();
+            $arr = array('status_line', 'version', 'code', 'status');
+            foreach ($matches as $key => $value) {
+                $kn = $arr[$key];
+                $status_line[$kn] = $value;
+            }
+            $results[''] = $status_line;
+        }
+
+        foreach ($headers as $key => $value) {
+            foreach ($fields as $field) {
+                if (preg_match($field, $key, $matches)) {
+                    $val = null;
+                    if (is_array($value)) {
+                        $val = array_pop($value);
+                    } else {
+                        $val = $value;
+                    }
+                    $kn = strtolower($key);
+                    $key_name = preg_replace("/[-]+/", '_', $kn);
+                    $results[$key_name] = $val;
+                }
+            }
+        }
+        return $results;
     }
 }
