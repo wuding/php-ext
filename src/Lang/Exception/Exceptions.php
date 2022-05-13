@@ -4,7 +4,7 @@ namespace Ext\Lang\Exception;
 
 class Exceptions
 {
-    const VERSION = '22.3.21';
+    const VERSION = '22.5.13';
 
     public $table_of_contents = array(
         'Extending Exceptions',
@@ -25,6 +25,7 @@ class Exceptions
 
     }
 
+    // Global exception handler
     public static function setExceptionHandler()
     {
 
