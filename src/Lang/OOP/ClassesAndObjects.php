@@ -37,6 +37,22 @@ class ClassesAndObjects
     public $pages = array(
         'https://www.php.net/manual/en/language.oop5.overloading.php',
         'https://www.php.net/manual/en/language.oop5.inheritance.php',
+        'https://www.php.net/manual/en/language.oop5.paamayim-nekudotaim.php',
+        'refman' => array(
+            '::' => array(
+                'purpose' => array(
+                    'access to static, constant, and overridden properties or methods of a class',
+                    'self, parent and static are used to access properties or methods from inside the class definition',
+                ),
+                'para' => array(
+                    'Examples' => array(
+                        'from outside the class definition',
+                        'from inside the class definition',
+                        "Calling a parent's method",
+                    ),
+                ),
+            ),
+        ),
     );
 
 
@@ -94,6 +110,14 @@ class ClassesAndObjects
 
     /**
      * Object Inheritance
+     *
+     *
+     */
+
+
+
+    /**
+     * Scope Resolution Operator (::)
      *
      *
      */
