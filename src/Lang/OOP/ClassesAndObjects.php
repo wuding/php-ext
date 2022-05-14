@@ -36,7 +36,15 @@ class ClassesAndObjects
 
     public $pages = array(
         'https://www.php.net/manual/en/language.oop5.overloading.php',
+        'https://www.php.net/manual/en/language.oop5.inheritance.php',
     );
+
+
+    /**
+     * Overloading
+     *
+     *
+     */
 
 
     /*
@@ -81,4 +89,12 @@ class ClassesAndObjects
     {
 
     }
+
+
+
+    /**
+     * Object Inheritance
+     *
+     *
+     */
 }
