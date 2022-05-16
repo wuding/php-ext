@@ -15,35 +15,20 @@ use Ext\book\Image as GD;
 
 class FuncRef
 {
-    const VERSION = '22.5.15';
+    const VERSION = '22.5.16';
 
-
-    /**
-     * Image Processing and Generation
-     *
-     * https://www.php.net/manual/en/refs.utilspec.image.php
-     *
-     *
-     */
-
-    public function __construct()
-    {
-
-    }
-
-
-    /*
-     +--------------------------------------------------------------+
-     + GD - Image Processing and GD
-     +--------------------------------------------------------------+
-    */
-
-    /*
-     https://www.php.net/manual/en/book.image.php
-    */
-
-    public function image($obj = null, $func = null)
-    {
-        $result_values = GD::imageColorTransparent();
-    }
+    public $refs = array(
+        'utilspec' => array(
+            'image' => array(
+                '' => 'Image Processing and Generation',
+                'image' => 'GD — Image Processing and GD',
+            ),
+        ),
+        'basic' => array(
+            'text' => array(
+                '' => 'Text Processing',
+                'strings' => 'Strings',
+            ),
+        ),
+    );
 }
