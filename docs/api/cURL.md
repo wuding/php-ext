@@ -70,6 +70,16 @@ array(
         CURLOPT_HEADER => true,
         CURLINFO_HEADER_OUT => true,
     ),
-)
+);
+
+echo curl_getinfo($ch, CURLINFO_HEADER_OUT);
+```
+
+
+
+### 不获取文档内容
+
+```php
+CURLOPT_NOBODY => true
 ```
 
