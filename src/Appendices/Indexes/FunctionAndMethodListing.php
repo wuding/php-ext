@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '22.4.28';
+    const VERSION = '22.12.13';
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -4894,5 +4894,23 @@ class FunctionAndMethodListing
         'PDO::getAvailableDrivers' => 'Return an array of available PDO drivers',
         'PDO::inTransaction' => 'Checks if inside a transaction',
         'PDO::lastInsertId' => 'Returns the ID of the last inserted row or sequence value',
+        'PDO::pgsqlCopyFromArray' => 'Copy data from PHP array into table',
+        'PDO::pgsqlCopyFromFile' => 'Copy data from file into table',
+        'PDO::pgsqlCopyToArray' => 'Copy data from database table into PHP array',
+        'PDO::pgsqlCopyToFile' => 'Copy data from table into file',
+        'PDO::pgsqlGetNotify' => 'Get asynchronous notification',
+        'PDO::pgsqlGetPid' => 'Get the server PID',
+        'PDO::pgsqlLOBCreate' => 'Creates a new large object',
+        'PDO::pgsqlLOBOpen' => 'Opens an existing large object stream',
+        'PDO::pgsqlLOBUnlink' => 'Deletes the large object',
+        'PDO::prepare' => 'Prepares a statement for execution and returns a statement object',
+        'PDO::query' => 'Prepares and executes an SQL statement without placeholders',
+        'PDO::quote' => 'Quotes a string for use in a query',
+        'PDO::rollBack' => 'Rolls back a transaction',
+        'PDO::setAttribute' => 'Set an attribute',
+        'PDO::sqliteCreateAggregate' => 'Registers an aggregating User Defined Function for use in SQL statements',
+        'PDO::sqliteCreateCollation' => 'Registers a User Defiend Function for use as a collating function in SQL statements',
+        'PDO::sqliteCreateFunction' => 'Registers a User Defined Function for use in SQL statements',
+        'PDO::__construct' => 'Create a PDO instance representing a connection to database',
     );
 }
