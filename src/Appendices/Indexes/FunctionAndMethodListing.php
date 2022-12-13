@@ -4932,5 +4932,16 @@ class FunctionAndMethodListing
         'PDOStatement::rowCount' => 'Returns the number of rows affected by the last SQL statement',
         'PDOStatement::setAttribute' => 'Set a statement attribute',
         'PDOStatement::setFetchMode' => 'Set the default fetch mode for this statement',
+        'PDO_CUBRID_DSN' => 'Connecting to CUBRID databases',
+        'PDO_DBLIB_DSN' => 'Connecting to Microsoft SQL Server and Sybase databases',
+        'PDO_FIREBIRD_DSN' => 'Connecting to Firebird databases',
+        'PDO_IBM_DSN' => 'Connecting to IBM databases',
+        'PDO_INFORMIX_DSN' => 'Connecting to Informix databases',
+        'PDO_MYSQL_DSN' => 'Connecting to MySQL databases',
+        'PDO_OCI_DSN' => 'Connecting to Oracle databases',
+        'PDO_ODBC_DSN' => 'Connecting to ODBC or DB2 databases',
+        'PDO_PGSQL_DSN' => 'Connecting to PostgreSQL databases',
+        'PDO_SQLITE_DSN' => 'Connecting to SQLite databases',
+        'PDO_SQLSRV_DSN' => 'Connecting to MS SQL Server and SQL Azure databases',
     );
 }
