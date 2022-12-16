@@ -5144,5 +5144,12 @@ class FunctionAndMethodListing
         'phpdbg_get_executable' => 'Decription',
         'phpdbg_prompt' => 'Sets the command prompt',
         'phpdbg_start_oplog' => 'Description',
+        'phpinfo' => 'Outputs information sbout PHP\'s configuration',
+        'PhpToken::getTokenName' => 'Returns the name of the token',
+        'PhpToken::is' => 'Tells whether the token is of given kind',
+        'PhpToken::isIgnorable' => 'Tells whether the token would be ignored by the PHP parser',
+        'PhpToken::tokenize' => 'Splits given source into PHP tokens, represented by PhpToken objects',
+        'PhpToken::__construct' => 'Returns a new PhpToken object',
+        'PhpToken::__toString' => 'Returns the textual content of the token',
     );
 }
