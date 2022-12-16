@@ -5151,5 +5151,16 @@ class FunctionAndMethodListing
         'PhpToken::tokenize' => 'Splits given source into PHP tokens, represented by PhpToken objects',
         'PhpToken::__construct' => 'Returns a new PhpToken object',
         'PhpToken::__toString' => 'Returns the textual content of the token',
+        'phpversion' => 'Gets the current PHP version',
+        'php_ini_loaded_file' => 'Retrieve a path to the loaded php.ini file',
+        'php_ini_scanned_files' => 'Return a list of .ini files parsed fromthe additional ini dir',
+        'php_sapi_name' => 'Returns the type of interface between web server and PHP',
+        'php_strip_whtiespace' => 'Return source with stripped comments and whitespace',
+        'php_uname' => 'Returns information about the opeating system PHP is running on',
+        'php_user_filter::filter' => 'Called when applying the filter',
+        'php_user_filter::onClose' => 'Called when closing the fitler',
+        'php_user_filter::conCreate' => 'Called when creating the fitler',
+        'pi' => 'Get value of pi',
+        'png2wbmp' => 'Convert PNG image file to WBMP image file',
     );
 }
