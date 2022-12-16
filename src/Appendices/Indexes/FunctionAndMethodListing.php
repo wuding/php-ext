@@ -5132,5 +5132,17 @@ class FunctionAndMethodListing
         'PharFileInfo::__construct' => 'Construct a Phar entry object',
         'PharFileInfo::__destruct' => 'Destructs a Phar entry object',
         'php://' => 'Accessing various I/O streams',
+        'phpcredits' => 'Prints out the credits for PHP',
+        'phpdbg_break_file' => 'Inserts a breakpoint at a line in a file',
+        'phpdbg_break_function' => 'Inserts a breakpoint at entry to a function',
+        'phpdbg_break_method' => 'Inserts a breakpoint at entry to a method',
+        'phpdbg_break_next' => 'Inserts a breakpoint at the next opcode',
+        'phpdbg_clear' => 'Clears all breakpoints',
+        'phpdbg_color' => 'Sets the color of certain elements',
+        'phpdbg_end_oplog' => 'Description',
+        'phpdbg_exec' => 'Attempts to set the execution context',
+        'phpdbg_get_executable' => 'Decription',
+        'phpdbg_prompt' => 'Sets the command prompt',
+        'phpdbg_start_oplog' => 'Description',
     );
 }
