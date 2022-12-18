@@ -5162,5 +5162,12 @@ class FunctionAndMethodListing
         'php_user_filter::conCreate' => 'Called when creating the fitler',
         'pi' => 'Get value of pi',
         'png2wbmp' => 'Convert PNG image file to WBMP image file',
+        'Pool::collect' => 'Collect references to completed tasks',
+        'Pool::resize' => 'Resize the Pool',
+        'Pool::shutdown' => 'Shutdown all workers',
+        'Pool::submit' => 'Submits an object for execution',
+        'Pool::submitTo' => 'Submits a task to specific worker for execution',
+        'Pool::__construct' => 'Creates a new Pool of Workers',
+        'popen' => 'Opens process file pointer',
     );
 }
