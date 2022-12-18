@@ -5219,5 +5219,15 @@ class FunctionAndMethodListing
         'preg_replace_callback' => 'Perform a regular expression search and replace using a callback',
         'preg_replace_callback_array' => 'Perform a regular expression search and replace using callbacks',
         'preg_split' => 'Split string by a regular expression',
+        'prev' => 'Rewind the internal array pointer',
+        'print' => 'Output a string',
+        'printf' => 'Output a formatted string',
+        'print_r' => 'Prints human-readable information about a variable',
+        'proc_close' => 'Close a process opened by proc_open and return the exit code of that process',
+        'proc_get_status' => 'Get information about a process opened by proc_open',
+        'proc_nice' => 'Change the priority of the current process',
+        'proc_open' => 'Execute a command and open file pointers for input/output',
+        'proc_terminate' => 'Kills a process opened by proc_open',
+        'property_exists' => 'Checks if the object or class has a property',
     );
 }
