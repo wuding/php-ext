@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '22.12.14';
+    const VERSION = '22.12.20';
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -5327,5 +5327,56 @@ class FunctionAndMethodListing
         'ps_symbol_width' => 'GEts width of a glyph',
         'ps_translate' => 'Sets translation',
         'putenv' => 'Sets the value of an environment variable',
+    );
+
+    public $q = array(
+        'QuickHashIntHash::add' => 'This method adds a new entry to the hash',
+        'QuickHashIntHash::delete' => 'This method deletes an entry form the hash',
+        'QuickHashIntHash::exists' => 'This method checks whether a key is part of the hash',
+        'QuickHashIntHash::get' => 'This method retrieves a value from the hash by its key',
+        'QuickHashIntHash::getSize' => 'Returns the number of elements in the hash',
+        'QuickHashIntHash::loadFromFile' => 'This factory method creates a hash from a file',
+        'QuickHashIntHash::loadFromString' => 'This factory method creates a hash from a string',
+        'QuickHashIntHash::saveToFile' => 'This method stores an in-memory hash to disk',
+        'QuickHashIntHash::saveToString' => 'This method returns a serialized version of the hash',
+        'QuickHashIntHash::set' => 'This method updates an entry in the hash with a new value, or adds a new one if the entry doesn\'t exist',
+        'QuickHashIntHash::update' => 'This method updates an entry in the hash with a new value',
+        'QuickHashIntHash::__construct' => 'Creates a new QuickHashIntHash object',
+        'QuickHashIntSet::add' => 'This method adds a new entry to the set',
+        'QuickHashIntSet::delete' => 'This method deletes an entry from the set',
+        'QuickHashIntSet::exists' => 'This method checks whether a key is part of the set',
+        'QuickHashIntSet::getSize' => 'Returns the number of elements in the set',
+        'QuickHashIntSet::loadFromFile' => 'This factory method creates a set from a file',
+        'QuickHashIntSet::loadFromString' => 'This factory method creates a set from a string',
+        'QuickHashIntSet::saveToFile' => 'This method stores an in-memory set to disk',
+        'QuickHashIntSet::saveToString' => 'This method returns a serialized version of the set',
+        'QuickHashIntSet::__construct' => 'Creates a new QuickHashIntSet object',
+        'QucikHashIntStringHash::add' => 'This method adds a new entry to the hash',
+        'QucikHashIntStringHash::delete' => 'This method deletes an entry from the hash',
+        'QucikHashIntStringHash::exists' => 'This method checks whether a key is part of the hash',
+        'QucikHashIntStringHash::get' => 'This method retrieves a value from the hash by its key',
+        'QucikHashIntStringHash::getSize' => 'Returns the number of elements in the hash',
+        'QucikHashIntStringHash::loadFromFile' => 'This factory method creates a hash from a file',
+        'QucikHashIntStringHash::loadFromString' => 'This factory method creates a hash from a string',
+        'QucikHashIntStringHash::saveToFile' => 'This method stores an in-memory hash to disk',
+        'QucikHashIntStringHash::saveToString' => 'This method returns a serialized version of the hash',
+        'QucikHashIntStringHash::set' => 'This method updates an entry in the hash with a new value, or adds a new one if the entry doesn\'t exist',
+        'QucikHashIntStringHash::update' => 'This method updates an entry in the hash with a new value',
+        'QucikHashIntStringHash::__construct' => 'Creates a new QuickHashIntStringHash object',
+        'QucikHashStringIntHash::add' => 'This method adds a new entry to the hash',
+        'QucikHashStringIntHash::delete' => 'This method deletes an entry from the hash',
+        'QucikHashStringIntHash::exists' => 'This method checks whether a key is part of the hash',
+        'QucikHashStringIntHash::get' => 'This method retrieves a value from the hash by its key',
+        'QucikHashStringIntHash::getSize' => 'Returns the number of elements in the hash',
+        'QucikHashStringIntHash::loadFromFile' => 'This factory method creates a hash from a file',
+        'QucikHashStringIntHash::loadFromString' => 'This factory method creates a hash from a string',
+        'QucikHashStringIntHash::saveToFile' => 'This method stores an in-memory hash to disk',
+        'QucikHashStringIntHash::saveToString' => 'This method returns a serialized version of the hash',
+        'QucikHashStringIntHash::set' => 'This method updates an entry in the hash with a new value, or adds a new one if the entry doesn\'t exist',
+        'QucikHashStringIntHash::update' => 'This method updates an entry in the hash with a new value',
+        'QucikHashStringIntHash::__construct' => 'Creates a new QuickHashStringIntHash object',
+        'quoted_printable_decode' => 'Convert a quoted-printable string to an 8 bit string',
+        'quoted_printable_encode' => 'Convert a 8 bit string to a quoted-printable string',
+        'quotemeta' => 'Quote meta characters',
     );
 }
