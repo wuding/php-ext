@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '22.12.20';
+    const VERSION = '22.12.23';
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -5378,5 +5378,37 @@ class FunctionAndMethodListing
         'quoted_printable_decode' => 'Convert a quoted-printable string to an 8 bit string',
         'quoted_printable_encode' => 'Convert a 8 bit string to a quoted-printable string',
         'quotemeta' => 'Quote meta characters',
+    );
+
+    public $r = array(
+        'rad2deg' => 'Converts the radian number to the equivalent number in degrees',
+        'radius_acct_open' => 'Creates a Radius handle for accounting',
+        'radius_add_server' => 'Adds a server',
+        'radius_auth_open' => 'Creates a Radius handle for authentication',
+        'radius_close' => 'Frees all ressources',
+        'radius_config' => 'Causes the library to read the given configuration file',
+        'radius_create_request' => 'Create accounting or authentication request',
+        'radius_cvt_addr' => 'Converts raw data to IP-Address',
+        'radius_cvt_int' => 'Converts raw data to integer',
+        'radius_cvt_string' => 'Converts raw data to string',
+        'radius_demangle' => 'Demangles data',
+        'radius_demangle_mppe_key' => 'Derives mppe-keys from mangled data',
+        'radius_get_attr' => 'Extracts an attribute',
+        'radius_get_tagged_attr_data' => 'Extracts the data from a tagged attribute',
+        'radius_get_tagged_attr_tag' => 'Extracts the tag from a tagged attribute',
+        'radius_get_vendor_attr' => 'Extracts a vendor specific attribute',
+        'radius_put_addr' => 'Attaches an IP address attribute',
+        'radius_put_attr' => 'Attaches a binary attribute',
+        'radius_put_int' => 'Attaches an integer attribute',
+        'radius_put_string' => 'Attaches a string attribute',
+        'radius_put_vendor_addr' => 'Attaches a vendor specific IP address attribute',
+        'radius_put_vendor_attr' => 'Attaches a vendor specific binary attribute',
+        'radius_put_vendor_int' => 'Attaches a vendor specific integer attribute',
+        'radius_put_vendor_string' => 'Attaches a vendor specific string attribute',
+        'radius_request_authenticator' => 'Returns the request authenticator',
+        'radius_salt_encrypt_attr' => 'Salt-encrypts a value',
+        'radius_send_request' => 'Sends the request and waits for a reply',
+        'radius_server_secret' => 'Returns the shared secret',
+        'radius_strerror' => 'Returns an error message',
     );
 }
