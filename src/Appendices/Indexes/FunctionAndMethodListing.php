@@ -5470,5 +5470,10 @@ class FunctionAndMethodListing
         'RarException::isUsingExceptions' => 'Check whether error handling with exceptions is in use',
         'RarException::setUsingExceptions' => 'Activate and deactivate error handling with exceptions',
         'rar_wrapper_cache_stats' => 'Cache hits and misses for the URL wrapper',
+        'rawurldecode' => 'Decode URL-encoded strings',
+        'rawurlencode' => 'URL-encode according to RFC 3986',
+        'readdir' => 'Read entry from directory handle',
+        'readfile' => 'Outputs a file',
+        'readgzfile' => 'Output a gz-file',
     );
 }
