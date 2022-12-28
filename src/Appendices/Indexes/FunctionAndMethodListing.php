@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '22.12.23';
+    const VERSION = '22.12.28';
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -5443,5 +5443,32 @@ class FunctionAndMethodListing
         'random_bytes' => 'Get cryptographically secure random bytes',
         'random_int' => 'Get a cryptographically secure, uniformly selected integer',
         'range' => 'Create an array containing a range of elements',
+        'rar://' => 'RAR',
+        'RarArchive::close' => 'Close RAR archive and free all resources',
+        'RarArchive::getComment' => 'Get comment text from the RAR archive',
+        'RarArchive::getEntries' => 'Get full list of entries from the RAR archive',
+        'RarArchive::getEntry' => 'Get entry object from the RAR archive',
+        'RarArchive::isBroken' => 'Test whether an archive is broken (incomplete)',
+        'RarArchive::isSolid' => 'Check whether the RAR archive is solid',
+        'RarArchive::open' => 'Open RAR archive',
+        'RarArchive::setAllowBroken' => 'Whether opening broken archives is allowed',
+        'RarArchive::__toString' => 'Get text representation',
+        'RarEntry::extract' => 'Extract entry from the archive',
+        'RarEntry::getAttr' => 'Get attributes of the entry',
+        'RarEntry::getCrc' => 'Get CRC of the entry',
+        'RarEntry::getFileTime' => 'Get entry last modification time',
+        'RarEntry::getHostOs' => 'Get entry host OS',
+        'RarEntry::getMethod' => 'Get pack method of the entry',
+        'RarEntry::getName' => 'Get name of the entry',
+        'RarEntry::getPackedSize' => 'Get packed size of the entry',
+        'RarEntry::getStream' => 'Get file handler for entry',
+        'RarEntry::getUnpackedSize' => 'Get unpacked size of the entry',
+        'RarEntry::getVersion' => 'Get minimum version of RAR program required to unpack the entry',
+        'RArEntry::isDirectory' => 'Test whether an entry represents a directory',
+        'RarEntry::isEncrypted' => 'Test whether an entry is encrypted',
+        'RarEntry::__toString' => 'Get text representation of entry',
+        'RarException::isUsingExceptions' => 'Check whether error handling with exceptions is in use',
+        'RarException::setUsingExceptions' => 'Activate and deactivate error handling with exceptions',
+        'rar_wrapper_cache_stats' => 'Cache hits and misses for the URL wrapper',
     );
 }
