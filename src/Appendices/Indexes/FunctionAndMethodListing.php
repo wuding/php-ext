@@ -5488,5 +5488,13 @@ class FunctionAndMethodListing
         'readline_read_history' => 'Reads the history',
         'readline_redisplay' => 'Redraws the display',
         'readline_write_history' => 'Writes the history',
+        'readlink' => 'Returns the target of a symbolic link',
+        'read_exif_data' => 'Alias of exif_read_data',
+        'realpath' => 'Returns canonicalized absolute pathname',
+        'realpath_cache_get' => 'Get realpath cache entries',
+        'realpath_cache_size' => 'Get realpath cache size',
+        'recode' => 'Alias of recode_string',
+        'recode_file' => 'Recode from file to file according to recode request',
+        'recode_string' => 'Recode a string according to a recode request',
     );
 }
