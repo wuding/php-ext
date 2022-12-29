@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '22.12.28';
+    const VERSION = '22.12.29';
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -5475,5 +5475,18 @@ class FunctionAndMethodListing
         'readdir' => 'Read entry from directory handle',
         'readfile' => 'Outputs a file',
         'readgzfile' => 'Output a gz-file',
+        'readline' => 'Reads a line',
+        'readline_add_history' => 'Adds a line to the history',
+        'readline_callback_handler_install' => 'Initializes the readline callback interface and terminal, prints the prompt and returns immediately',
+        'readline_callback_handler_remove' => 'Removes a previously installed callback handler and retores terminal settings',
+        'readline_callback_read_char' => 'Reads a character and informs the readline callback interface when a line is received',
+        'readline_clear_history' => 'Clears the history',
+        'readline_completion_function' => 'Registers a completion function',
+        'readline_info' => 'Gets/sets various internal readline variables',
+        'readline_list_history' => 'Lists the history',
+        'readline_on_new_line' => 'Inform readline that the cursor has moved to a new line',
+        'readline_read_history' => 'Reads the history',
+        'readline_redisplay' => 'Redraws the display',
+        'readline_write_history' => 'Writes the history',
     );
 }
