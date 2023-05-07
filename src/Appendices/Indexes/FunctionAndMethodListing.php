@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '22.12.29';
+    const VERSION = '23.5.7';
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -5464,7 +5464,7 @@ class FunctionAndMethodListing
         'RarEntry::getStream' => 'Get file handler for entry',
         'RarEntry::getUnpackedSize' => 'Get unpacked size of the entry',
         'RarEntry::getVersion' => 'Get minimum version of RAR program required to unpack the entry',
-        'RArEntry::isDirectory' => 'Test whether an entry represents a directory',
+        'RarEntry::isDirectory' => 'Test whether an entry represents a directory',
         'RarEntry::isEncrypted' => 'Test whether an entry is encrypted',
         'RarEntry::__toString' => 'Get text representation of entry',
         'RarException::isUsingExceptions' => 'Check whether error handling with exceptions is in use',
@@ -5496,5 +5496,23 @@ class FunctionAndMethodListing
         'recode' => 'Alias of recode_string',
         'recode_file' => 'Recode from file to file according to recode request',
         'recode_string' => 'Recode a string according to a recode request',
+        'RecursiveArrayIterator::getChildren' => 'Returns an iterator for the current entry if it is an array or an object',
+        'RecursiveArrayIterator::hasChildren' => 'Returns whether current entry is an array or an object',
+        'RecursiveCachingIterator::getChildren' => 'Return the inner iterator\'s children as a RecursiveCachingIterator',
+        'RecursiveCachingIterator::hasChildren' => 'Check whether the current element of the inner iterator has children',
+        'RecursiveCachingIterator::__construct' => 'Construct',
+        'RecursiveCallbackFilterIterator::getChildren' => 'Return the inner iterator\'s children contained in a RecursiveCallbackFilterIterator',
+        'RecursiveCallbackFilterIterator::hasChildren' => 'Check whether the inner iterator\'s current element has children',
+        'RecursiveCallbackFilterIterator::__construct' => 'Create a RecursiveCallbackFilterIterator from a RecursiveIterator',
+        'RecursiveDirectoryIterator::getChildren' => 'Returns an iterator for the current entry if it is a directory',
+        'RecursiveDirectoryIterator::getSubPath' => 'Get sub path',
+        'RecursiveDirectoryIterator::getSubPathname' => 'Get sub path and name',
+        'RecursiveDirectoryIterator::hasChildren' => 'Returns whether current entry is a directory and not '.' or '..'',
+        'RecursiveDirectoryIterator::key' => 'Return path and filename of current dir entry',
+        'RecursiveDirectoryIterator::next' => 'Move to next entry',
+        'RecursiveDirectoryIterator::rewind' => 'Rewind dir back to the start',
+        'RecursiveFilterIterator::__construct' => 'Constructs a RecursiveDirectoryIterator',
+        'RecursiveFilterIterator::getChildren' => 'Return the inner iterator\'s children contained in a RecursiveFilterIterator',
+        'RecursiveFilterIterator::hasChildren' => 'Check whether the inner iterator\'s current element has children',
     );
 }
