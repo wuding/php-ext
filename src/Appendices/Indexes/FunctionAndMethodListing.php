@@ -5514,5 +5514,12 @@ class FunctionAndMethodListing
         'RecursiveFilterIterator::__construct' => 'Constructs a RecursiveDirectoryIterator',
         'RecursiveFilterIterator::getChildren' => 'Return the inner iterator\'s children contained in a RecursiveFilterIterator',
         'RecursiveFilterIterator::hasChildren' => 'Check whether the inner iterator\'s current element has children',
+        'RecursiveFilterIterator::__construct' => 'Create a RecursiveFilterIterator from a RecursiveIterator',
+        'RecursiveIterator::getChildren' => 'Returns an iterator for the current entry',
+        'RecursiveIterator::hasChildren' => 'Returns if an iterator can be created for the current entry',
+        'RecursiveIteratorIterator::beginChildren' => 'Begin children',
+        'RecursiveIteratorIterator::beginIteration' => 'Begin Iteration',
+        'RecursiveIteratorIterator::callGetChildren' => 'Get children',
+        'RecursiveIteratorIterator::callHasChildren' => 'Has children',
     );
 }
