@@ -5660,5 +5660,17 @@ class FunctionAndMethodListing
         'ReflectionExtension::__clone' => 'Clones',
         'ReflectionExtension::__construct' => 'Constructs a ReflectionExtension',
         'ReflectionExtension::__toString' => 'To string',
+        'ReflectionFiber::getCallable' => 'Gets the callable used to create the Fiber',
+        'ReflectionFiber::getExecutingFile' => 'Get the file name of the current execution point',
+        'ReflectionFiber::getExecutingLine' => 'Get the line number of the current execution point',
+        'ReflectionFiber::Fiber' => 'Get the reflected Fiber instance',
+        'ReflectionFiber::getTrace' => 'Get the backtrace of the current execution point',
+        'ReflectionFiber::__construct' => 'Constructs a ReflectionFiber object',
+        'ReflectionFunction::export' => 'Exports function',
+        'ReflectionFunction::getClosure' => 'Returns a dynamically created closure for the function',
+        'ReflectionFunction::invoke' => 'Invokes function',
+        'ReflectionFunction::invokeArgs' => 'Invokes function args',
+        'ReflectionFunction::isAnonymous' => 'Checks if a function is  anonymous',
+        'ReflectionFunction::isDisabled' => 'Checks if function is disabled',
     );
 }
