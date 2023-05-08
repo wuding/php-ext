@@ -5921,4 +5921,14 @@ class FunctionAndMethodListing
         'runkit7_superglobals' => 'Return numberically indexed array of registered superglobals',
         'runkit7_zval_inspect' => 'Returns information about the passed in value with data types, reference counts, etc',
     );
+
+    public $s = array(
+        'sapi_windows_cp_conv' => 'Convert string from one codepage to another',
+        'sapi_windows_cp_get' => 'Get current codepage',
+        'sapi_windows_cp_is_utf8' => 'Indicates whether the codepage is UTF-8 compatible',
+        'sapo_windows_cp_set' => 'Set process codepage',
+        'sapi_windows_generate_ctrl_event' => 'Send a CTRL event to another process',
+        'sapi_windows_set_ctrl_handler' => 'Set or remove a CTRL event handler',
+        'sapi_windows_vt100_support' => 'Get or set VT100 support for the specified stream associated to an output buffer of a Windows console.',
+    );
 }
