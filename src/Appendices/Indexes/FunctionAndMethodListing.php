@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '23.5.7';
+    const VERSION = '23.5.8';
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -5798,5 +5798,33 @@ class FunctionAndMethodListing
         'ReflectionZendExtension::__clone' => 'Clone handler',
         'ReflectionZendExtension::__construct' => 'Constructor',
         'ReflectionZendExtension::__toString' => 'To string handler',
+        'Reflector::export' => 'Exports',
+        'RegexIterator::accept' => 'Get accept status',
+        'RegexIterator::getFlags' => 'flags',
+        'RegexIterator::getMode' => 'Returns operation mode',
+        'RegexIterator::getPregFlags' => 'Returns the regular expression flags',
+        'RegexIterator::getRegex' => 'Returns current regular expression',
+        'RegexIterator::setFlags' => 'Sets the flags',
+        'RegexIterator::setMode' => 'Sets the operation mode',
+        'RegexIterator::setPregFlags' => 'Sets the operation mode',
+        'RegexIterator::__construct' => 'Create a new RegexIterator',
+        'register_shutdown_function' => 'Register a function for execution on shutdown',
+        'register_tick_function' => 'Register a function for execution on each tick',
+        'rename' => 'Renames a file or directory',
+        'reset' => 'Set the internal pointer of an array to its first element',
+        'ResourceBundle::count' => 'Get number of elements in the bundle',
+        'ResourceBundle::create' => 'a resource bundle',
+        'ResourceBundle::get' => 'Get data from the bundle',
+        'ResourceBundle::getErrorCode' => 'Get bundle\'s last error code',
+        'ResourceBundle::getErrorMessage' => 'Get bundle\'s last error message',
+        'ResourceBundle::getLocales' => 'Get supported locales',
+        'restore_error_handler' => 'Restores the previous error handler function',
+        'restore_exception_handler' => 'Restores the previously defined exception handler function',
+        'restore_include_path' => 'Restores the value of the include_path configuration option',
+        'Result::getAffectedItemsCount' => 'Get affected row count',
+        'Result::getAutoIncrementValue' => 'Get autoincremented value',
+        'Result::getGeneratedIds' => 'Get generated ids',
+        'Result::getWarnings' => 'Get warnings from last operation',
+        'Result::getWarningsCount' => 'Get warning count from last operation',
     );
 }
