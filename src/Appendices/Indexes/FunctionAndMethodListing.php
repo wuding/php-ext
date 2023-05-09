@@ -6671,6 +6671,6 @@ class FunctionAndMethodListing
         'SolrServerException::getInternalInfo' => 'Returns internal information where the Exception was thrown',
         'SolrUpdateResponse::__construct' => 'Constructor',
         'SolrUpdateResponse::__destruct' => 'Destructor',
-'
-                    );
+
+    );
 }
