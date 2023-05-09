@@ -6697,6 +6697,6 @@ class FunctionAndMethodListing
         'SplDoublyLinkedList::seriaize' => 'Serializes the storage',
         'SplDoublyLinkedList::setIteraorMode' => 'Sets the mode of iteration',
         'SplDoublyLinkedList::shift' => 'Shifts a node from the beginning of the doubly linked list',
-        'SplDoublyLinkedList::tip' => 'Peeks at the node from the end of the doubly linked list',
+        'SplDoublyLinkedList::top' => 'Peeks at the node from the end of the doubly linked list',
     );
 }
