@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '23.5.8';
+    const VERSION = '23.5.9';
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -6330,5 +6330,36 @@ class FunctionAndMethodListing
         'SolrClient::setResponseWriter' => 'Sets the response writer used to prepare the response from Solr',
         'SolrClient::setServlet' => 'Changes the specified servlet type to a new value',
         'SolrClient::system' => 'Retrieve Solr Server information',
+        'SolrClient::threads' => 'Checks the threads status',
+        'SolrClient::__construct' => 'Constructor for the SolrClient object',
+        'SolrClient::__destruct' => 'Destructor for SolrClient',
+        'SolrClientException::getInternalInfo' => 'Returns internal information where the Exception was thrown',
+        'SolrCollapseFunction::getField' => 'Returns the field thar is being collapsed on',
+        'SolrCollapseFunction::getHint' => 'Returns collapse hint',
+        'SolrCollapseFunction::getMax' => 'Returns max parameter',
+        'SolrCollapseFunction::getMin' => 'Returns min parameter',
+        'SolrCollapseFunction::getNullPolicy' => 'Returns null policy',
+        'SolrCollapseFucntion::getSize' => 'Returns size parameter',
+        'SolrCollapseFunction::setField' => 'Sets the field to collapse on',
+        'SolrCollapseFunction::setHint' => 'Sets collapse hint',
+        'SolrCollapseFunction::setMax' => 'Selects the group heads by the max value of a numeric field or function query',
+        'SolrCollapseFunction::setMin' => 'Sets the initial size of the collapse data structures when collapsing on a numeric field only',
+        'SolrCollapseFunction::setNullPolicy' => 'Sets the NULL Policy',
+        'SolrCollapseFunction::setSize' => 'Sets the initial size of the collapse data structures when collapsing on a numeric field only',
+        'SolrCollapseFunction::__consturct' => 'Constructor',
+        'SolrCollapseFunction::__toString' => 'Returns a string representing the constructed collapse function',
+        'SolrDisMaxQuery::addBigramPhraseField' => 'Adds a Phrase Bigram Field (pf2 parameter)',
+        'SolrDisMaxQuery::addBoostQuery' => 'Adds a boost query field with value and optional boost (bq parameter)',
+        'SolrDisMaxQuery::addPhraseField' => 'Adds a Phrase Field (pf parameter)',
+        'SolrDisMaxQuery::addQueryField' => 'Add a query field with optional boost (qf parameter)',
+        'SolrDisMaxQuery::addTrigramPhraseField' => 'Adds a Trigram Phrase Field (pf3 parameter)',
+        'SolrDisMaxQuery::addUserField' => 'Adds a field to User Fields Parameter (uf)',
+        'SolrDisMaxQuery::removeBigramPhraseField' => 'Removes pphrase bigram field (pf2 parameter)',
+        'SolrDisMaxQuery::removeBoostQuery' => 'Removes a boost query partial by field name (bq)',
+        'SolrDisMaxQuery::removePhraseField' => 'Removes a Phrase Field (pf parameter)',
+        'SolrDisMaxQuery::removeQueryField' => 'Removes a Query Field (qf parameter)',
+        'SolrDisMaxQuery::removeTrigramPhraseField' => 'Removes a Trigram Phrase Field (pf3 parameter)',
+        'SolrDisMaxQuery::remvoeUserField' => 'Removes a field from The User Fields Parameter (uf)',
+        'SolrDisMaxQuery::setBigramPhraseFields' => 'Sets Bigram Phrase Fields and their boosts (and slops) using pf2 parameter',
             );
 }
