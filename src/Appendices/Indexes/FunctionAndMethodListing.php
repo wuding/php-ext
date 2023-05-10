@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '23.5.10';
+    const VERSION = '23.5.11';
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -7303,6 +7303,6 @@ class FunctionAndMethodListing
         'Swoole\Connection\Iterator::key' => 'Return key of the current connection.',
         'Swoole\Connection\Iterator::next' => 'Move to the next connection.',
         'Swoole\Connection\Iterator::offsetExists' => 'Check if offet exists.',
-        'Swoole\Connection\Iterator::offsetGet' => 'Assign a Connection to the specified offset.',
+        'Swoole\Connection\Iterator::offsetGet' => 'Offset to retrieve',
     );
 }
