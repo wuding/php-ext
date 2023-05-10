@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '23.5.9';
+    const VERSION = '23.5.10';
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -6834,5 +6834,43 @@ class FunctionAndMethodListing
         'SplQueue::dequeue' => 'Dequeues a node from the queue',
         'SplQueue::enqueue' => 'Adds an element to the queue',
         'SplSubject::attach' => 'Attach an SplObserver',
+        'SplSubject::detach' => 'Detach an observer',
+        'SplSubject::notify' => 'Notify an observer',
+        'SplTempFileObject::__construct' => 'Construct a new temporary file object',
+        'spl_autoload' => 'Default implementation for __autoload()',
+        'spl_autoload_call' => 'Try all registered __autoload() functions to load the requested class',
+        'spl_autoload_extensions' => 'Register and return defaulf file extensions for spl_autoload',
+        'spl_autoload_functions' => 'Return all registered __autoload() functions',
+        'spl_autoload_register' => 'Register given function as __autoload() implementation',
+        'spl_autoload_unregister' => 'Unregister given function as __autoload() implementation',
+        'spl_classes' => 'Return available SPL classes',
+        'spl_object_hash' => 'Return hash id for given object',
+        'spl_object_id' => 'Return the integer object handle for given object',
+        'Spoofchecker::areConfusable' => 'Checks if given text contains any suspicious characters',
+        'Spoofchecker::isSuspicious' => 'Checks if a given text contains any suspicious characters',
+        'Spoofchecker::setAllowedLocales' => 'Locales to use when running checks',
+        'Spoofchecker::setChecks' => 'Set the checks to run',
+        'Spoofchecker::__construct' => 'Constructor',
+        'sprintf' => 'Return a formatted string',
+        'SQLite3::backup' => 'Backup on datebase to another database',
+        'SQLite3::busyTimeout' => 'Sets the busy connection handler',
+        'SQLite3::changes' => 'Returns the number of database rows that were changed (or inserted or deleted) by the most recent SQL statement',
+        'SQLite3::close' => 'Closes the database connection',
+        'SQLite3::createAggregate' => 'Registers a PHP function for use as an SQL aggregate function',
+        'SQLite3::createCollation' => 'Registers a PHP function for use as an SQL collating function',
+        'SQLite3::createFunction' => 'Registers a PHP function for use as an SQL scalar function',
+        'SQLite3::enableExceptions' => 'Enable throwing exceptions',
+        'SQLite3::escapeString' => 'Returns a string that has benn properly escaped',
+        'SQLite3::exec' => 'Executes a result-less query against a given database',
+        'SQLite3::lastErrorCode' => 'Returns the numeric result code of the most recent failed SQLite request',
+        'SQLite3::lastErrorMsg' => 'Returns English text describing the most recent failed SQLite request',
+        'SqLite3::lasInsertRowID' => 'Returns the row ID of the most recent INSERT into the database',
+        'SQLite3::loadExtension' => 'Attempts to load an SQLite extension library',
+        'SQLite3::open' => 'Opens an SQLite database',
+        'SQLite3::openBlob' => 'Opens a stream reource to read a BLOB',
+        'SQLite3::prepare' => 'Prepares an SQL statement for execution',
+        'SQLite3::query' => 'Executes an SQL query',
+        'SQLite3::querySingle' => 'Executes a query and returns a single result',
+        'SQLite3::setAuthorizer' => 'Configures a callback to be used as an autorizer to limit what a statement can do',
     );
 }
