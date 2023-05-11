@@ -8213,4 +8213,31 @@ class FunctionAndMethodListing
         'Vtiful\Kernel\Format::italic' => 'Vtiful\Kernel\Format italic',
         'Vtiful\Kernel\Format::underline' => 'Vtiful\Kernel\Format underline',
     );
+
+    public $w = array(
+        'Warning::__construct' => 'Warning constructor',
+        'wddx_add_vars' => 'Add variables to a WDDX packet with the specirfied ID',
+        'wddx_deserialize' => 'Unserializes a WDDX packet',
+        'wddx_packet_end' => 'Ends a WDDX packet with the specified ID',
+        'wddx_packet_start' => 'Starts a new WDDX packet with structure inside it',
+        'wddx_serialize_value' => 'Serialize a single value into a WDDX packet',
+        'wddx_serialize_vars' => 'Serialize variables into a WDDX packet',
+        'WeakMap::count' => 'Counts the number of live entries in the map',
+        'WeakMap::getIterator' => 'Retrieve an external iterator',
+        'WeakMap::offsetExists' => 'Checks whether a certain object is in the map',
+        'WeakMap::offsetGet' => 'Returns the value pointed to by a certain object',
+        'WeakMap::offsetSet' => 'Returns the map with a new key-value pairs',
+        'WeakMap::offsetUnset' => 'Removes an entry form the map',
+        'WeakReference::create' => 'Create a new weak reference',
+        'WeakReference::get' => 'Get a weakly referenced Object',
+        'WeakReference::__construct' => 'Constructor thar disallows instantiation',
+        'win32_continue_service' => 'Resumes a paused service',
+        'win32_create_service' => 'Creates a new service entry th the SCM database',
+        'win32_delete_service' => 'Deletes a service entry form the SCM database',
+        'win32_get_last_control_message' => 'Returns the last control message that was sent to this service',
+        'win32_pause_service' => 'Pauses a service',
+        'win32_query_service_status' => 'Queries the status of a service',
+        'win32_send_custom_control' => 'Send a custom control to the service',
+        'win32_set_service_exit_code' => 'Define or return the exit code for the current running service',
+    );
 }
