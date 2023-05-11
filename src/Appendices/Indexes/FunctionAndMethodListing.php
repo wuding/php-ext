@@ -8123,4 +8123,24 @@ class FunctionAndMethodListing
         'utf8_decode' => 'Converts a string from UTF-8 to ISO-8859-1, replacing invalid or unrepresentable characters',
         'utf8_encode' => 'Converts a string from ISO-8859-1 to UTF-8',
     );
+
+    public $v = array(
+        'V8js::executeString' => 'Execute a string as Javascript code',
+        'V8Js::getExtensions' => 'Return an array of registered extensions',
+        'V8Js::getPendingException' => 'Return pending uncaught Javascript exception',
+        'V8Js::registerExtension' => 'Register Javascript extensions for V8Js',
+        'V8js::__construct' => 'Construct a new V8js object',
+        'V8JsException::getJsFileName' => 'The getJsFileName purpose',
+        'V8JsException::getJsLineNumber' => 'The getJsLineNumber purpose',
+        'V8JsException::getJsSourceLine' => 'The getJsSourceLine purpose',
+        'V8JsException::getJsTrace' => 'The getjsTrace purpose',
+        'variant::__construct' => 'variant class constructor',
+        'variant_abs' => 'Returns the absolute value of a variant',
+        'variant_add' => '"Adds" two variant values together and returns the result',
+        'variant_and' => 'Performs a bitwise AND operation between two variants',
+        'variant_cast' => 'Convert a variant into a new variant object of another type',
+        'variant_cat' => 'Concatenates two variant values together and reurns the result',
+        'variant_cmp' => 'Compares two variants',
+        'variant_date_form_timestamp' => 'Returns a variant date representation of a Unix timestamp',
+    );
 }
