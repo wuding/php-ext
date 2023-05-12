@@ -8869,4 +8869,9 @@ class FunctionAndMethodListing
         'ZookeeperConfig::set' => 'Change ZK cluster ensemble membership and roles of ensemble peers',
         'zookeeper_despatch' => 'Calls callbacks for pending operations',
     );
+
+    public $_ = array(
+        '__autoload' => 'Attempt to load undefined class',
+        '__halt_compiler' => 'Halts the compiler execution',
+    );
 }
