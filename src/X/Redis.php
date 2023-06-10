@@ -22,6 +22,10 @@ class Redis
     // 调用当前实例的方法
     public function __call($name, $arguments)
     {
+        if (!self::$connects) {
+            return null;
+        }
+
         $obj = self::$connects[$this->key];
         $result = false;
         try {
