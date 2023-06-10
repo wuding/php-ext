@@ -17,7 +17,7 @@ class Arr extends _Abstract
 
         /* Sorting type flags */
         'SORT_REGULAR',
-        'SORT_NUMERIC'
+        'SORT_NUMERIC',
         'SORT_STRING',
         'SORT_LOCALE_STRING',
         'SORT_NATURAL',
