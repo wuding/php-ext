@@ -10,6 +10,9 @@ class PDObj
     public static $connects = array();
     public $key = null;
 
+    // 配置
+    public $config = array();
+
     public function __construct($dsn = null, $username = null, $passwd = null, $options = null)
     {
         $this->connect($dsn, $username, $passwd, $options);
@@ -50,7 +53,7 @@ class PDObj
         try {
             self::$connects[$key] = $conn = new \PDO($dsn, $username, $passwd, $options);
         } catch (\PDOException $e) {
-            print_r([__FILE__, __LINE__, $e->getMessage()]);
+            print_r([__FILE__, __LINE__, $e->getMessage(), debug_backtrace()]);
         }
         return $conn;
     }
