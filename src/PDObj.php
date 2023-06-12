@@ -53,7 +53,8 @@ class PDObj
         try {
             self::$connects[$key] = $conn = new \PDO($dsn, $username, $passwd, $options);
         } catch (\PDOException $e) {
-            print_r([__FILE__, __LINE__, $e->getMessage(), debug_backtrace()]);
+            // print_r([__FILE__, __LINE__, $e->getMessage(), debug_backtrace()]);exit;
+            throw new \Exception($e->getMessage(), 600);
         }
         return $conn;
     }
