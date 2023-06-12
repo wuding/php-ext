@@ -4,13 +4,13 @@ namespace Ext;
 
 class Err
 {
-    const VERSION = '22.3.21';
+    const VERSION = '23.6.12';
 
     public static $constStr = '';
     public static $predefined_constants = array(
         'E_ERROR' => 1,
         'E_WARING' => 2,
-        'E_PARSE' => 4
+        'E_PARSE' => 4,
         'E_NOTICE' => 8,
 
         'E_CORE_ERROR' => 16,
@@ -97,6 +97,10 @@ class Err
         ),
     );
 
+    public static $config = array(
+        'env' => null,
+    );
+
 
     /*
     +---------------------------------------------------------------+
@@ -107,5 +111,30 @@ class Err
     public static function getLast()
     {
         return error_get_last();
+    }
+
+
+    /*
+    +---------------------------------------------------------------+
+    + 自定义和恢复还原
+    +---------------------------------------------------------------+
+    */
+
+    public static function setExceptionHandler($exception_handler = '')
+    {
+        $exception_handler = array(__NAMESPACE__ .'\Err', 'throwException');
+        set_exception_handler($exception_handler);
+    }
+
+    public static function throwException(\Throwable $exception)
+    {
+        if (in_array(static::$config['env'], array('development', 'test'))) {
+            print_r([
+                __FILE__, __LINE__,
+                $exception->getMessage(), $exception->getCode(),
+                $exception->getFile(), $exception->getLine()
+            ]);
+        }
+        return ture;
     }
 }
