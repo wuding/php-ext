@@ -4,7 +4,7 @@ namespace Ext;
 
 class Variable
 {
-    const VERSION = '22.5.8';
+    const VERSION = '23.6.12';
 
     public static $return_values = array(
         'var_export' => array(
@@ -289,5 +289,17 @@ class Variable
     public static function empty($var)
     {
 
+    }
+
+    /*
+    +---------------------------------------------------------------+
+    + 类型
+    +---------------------------------------------------------------+
+    */
+
+    public static function getType($var)
+    {
+        $return_values = gettype($var);
+        return $return_values;
     }
 }
