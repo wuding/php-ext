@@ -100,4 +100,17 @@ class Arr extends _Abstract
         $return_values = array_splice($array, $offset, $lenght, $replacement);
         return $return_values;
     }
+
+
+    /*
+    +---------------------------------------------------------------+
+    + 列值
+    +---------------------------------------------------------------+
+    */
+
+    public static function inArray($needle, $haystack, $strict = false)
+    {
+        $return_values = in_array($needle, $haystack, $strict);
+        return $return_values;
+    }
 }
