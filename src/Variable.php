@@ -4,7 +4,7 @@ namespace Ext;
 
 class Variable
 {
-    const VERSION = '23.6.12';
+    const VERSION = '23.6.13';
 
     public static $return_values = array(
         'var_export' => array(
@@ -225,6 +225,7 @@ class Variable
         return $return_values;
     }
 
+    // length refcount
     public static function debugZvalDump()
     {
         $function = 'debug_zval_dump';
