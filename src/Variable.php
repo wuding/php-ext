@@ -4,7 +4,7 @@ namespace Ext;
 
 class Variable
 {
-    const VERSION = '23.6.13';
+    const VERSION = '23.6.16';
 
     public static $return_values = array(
         'var_export' => array(
@@ -237,7 +237,8 @@ class Variable
     public static function pRvDvEdZvalD($func_n = 0, $param_arr)
     {
         $function = self::_function_name($func_n);
-        $return_values = call_user_func_array($function, $param_arr);
+        $func = __NAMESPACE__ .'\Variable::'. $function;
+        $return_values = call_user_func_array($func, $param_arr);
         return $return_values;
     }
 
