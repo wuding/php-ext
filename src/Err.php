@@ -4,7 +4,7 @@ namespace Ext;
 
 class Err
 {
-    const VERSION = '23.6.12';
+    const VERSION = '23.6.16';
 
     public static $constStr = '';
     public static $predefined_constants = array(
@@ -132,9 +132,11 @@ class Err
             print_r([
                 __FILE__, __LINE__,
                 $exception->getMessage(), $exception->getCode(),
-                $exception->getFile(), $exception->getLine()
+                $exception->getFile(), $exception->getLine(),
+                $exception->getTrace(), $exception->getTraceAsString(),
             ]);
         }
+
         return ture;
     }
 }
