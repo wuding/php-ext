@@ -4,7 +4,7 @@ namespace Ext;
 
 class PDObj
 {
-    const VERSION = '23.6.12';
+    const VERSION = '23.6.16';
 
     // 运行时
     public static $connects = array();
@@ -53,7 +53,9 @@ class PDObj
         try {
             self::$connects[$key] = $conn = new \PDO($dsn, $username, $passwd, $options);
         } catch (\PDOException $e) {
-            throw new \Exception($e->getMessage(), 600);
+            $message = $e->getMessage();
+            $message .= $json;
+            throw new \Exception($message, 600);
         }
         return $conn;
     }
