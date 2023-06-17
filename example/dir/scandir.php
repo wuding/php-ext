@@ -1,10 +1,18 @@
 <?php
 
+namespace Ext\example\dir;
+
 define('ROOT', dirname(__DIR__, 5));
 
 $autoload = require ROOT ."/vendor/autoload.php";
 
 use function php\func\get;
+
+class Scandir
+{
+    const VERSION = '23.6.17';
+}
+
 
 $directory = '/Users/benny/Documents/GitHub/未命名文件夹/main/docs/books/9787100026017_XINHUA ZIDIAN/Main body';
 $directory = '/Users/benny/Documents/URLNK/Server/Domain/urlnk/com/@/php-app_develop/app/unicode/docs/Plane';
