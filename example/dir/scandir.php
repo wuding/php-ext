@@ -7,8 +7,22 @@ $autoload = require ROOT ."/vendor/autoload.php";
 use function php\func\get;
 
 $directory = '/Users/benny/Documents/GitHub/未命名文件夹/main/docs/books/9787100026017_XINHUA ZIDIAN/Main body';
+$directory = '/Users/benny/Documents/URLNK/Server/Domain/urlnk/com/@/php-app_develop/app/unicode/docs/Plane';
 $dir = \Ext\Directory::scan($directory);
 // print_r($dir);
+
+foreach ($dir as $key => $path) {
+    $subject = \Ext\File::pathinfo($path, PATHINFO_FILENAME);
+
+    $pattern = "/^(|\.|template)$/";
+    $match = preg_match($pattern, $subject, $matches);
+    if (!$match) {
+        var_dump([$key, $subject, $match, $matches]);
+    }
+
+}
+
+exit;
 
 $files = array();
 foreach ($dir as $key => $value) {
@@ -54,7 +68,7 @@ function checkKeyWord($subject, $key)
 {
     $pattern = "/(夏天)/";
     if (preg_match($pattern, $subject, $matches)) {
-        print_r($matches);
+        // print_r($matches);
         return $key;
     }
     return false;
@@ -77,7 +91,7 @@ function checkType($line)
     $match = preg_match($pattern, $subject);
 
     if (!$in_arr && !$match) {
-        var_dump([__FILE__, __LINE__, get_defined_vars()]);
+        // var_dump([__FILE__, __LINE__, get_defined_vars()]);
     }
 
 }
