@@ -10,15 +10,27 @@ use function php\func\get;
 
 class Scandir
 {
-    const VERSION = '23.6.17';
+    const VERSION = '23.6.18';
+    const REVISION = 5;
 }
 
+// query
+$dir_no = $_GET['dir'] ?: 0;
+$query = $_GET['query'] ?: '天';
 
-$directory = '/Users/benny/Documents/GitHub/未命名文件夹/main/docs/books/9787100026017_XINHUA ZIDIAN/Main body';
-$directory = '/Users/benny/Documents/URLNK/Server/Domain/urlnk/com/@/php-app_develop/app/unicode/docs/Plane';
-$dir = \Ext\Directory::scan($directory);
+
+// directory
+$directories = array();
+$directories[] = '/Users/benny/Documents/GitHub/未命名文件夹/main/docs/books/9787100026017_XINHUA ZIDIAN/Main body';
+$directories[] = '/Users/benny/Documents/URLNK/Server/Domain/urlnk/com/@/php-app_develop/app/unicode/docs/Plane';
+$directories[] = '/Users/benny/Documents/GitHub/未命名文件夹/main/docs/books/9787800226625_XINBIAN CHENGYU DUOYONG CIDIAN/Main body';
+$directories[] = '/Users/benny/Documents/GitHub/未命名文件夹/main/docs/books/9787532717835_A NEW POCKET ENGLISH-CHINESE DICTIONARY/The text of the dictionary';
+
+$dir_name = $directories[$dir_no];
+$dir = \Ext\Directory::scan($dir_name);
 // print_r($dir);
 
+/*
 foreach ($dir as $key => $path) {
     $subject = \Ext\File::pathinfo($path, PATHINFO_FILENAME);
 
@@ -30,18 +42,19 @@ foreach ($dir as $key => $path) {
 
 }
 
-exit;
+// exit;
+*/
 
 $files = array();
 foreach ($dir as $key => $value) {
     $pattern = "/^([0-9]+)\.md$/";
     if (preg_match($pattern, $value, $matches)) {
         $page_no = $matches[1];
-        $filename = $directory .'/'. $value;
+        $filename = $dir_name .'/'. $value;
         $contents = file_get_contents($filename);
         /*echo $contents;
         echo PHP_EOL;*/
-        $lines =  splitLines($contents);
+        $lines =  splitLines($contents, $query);
         // exit;
         if ($lines) {
             $files[$page_no] = $lines;
@@ -51,7 +64,7 @@ foreach ($dir as $key => $value) {
 }
 print_r($files);
 
-function splitLines($subject)
+function splitLines($subject, $query)
 {
     $pattern = "/\n/";
     $variable = preg_split($pattern, $subject);
@@ -61,7 +74,7 @@ function splitLines($subject)
     $i = 0;
     foreach ($variable as $key => $value) {
         $type = checkType($value);
-        $match_kw =  checkKeyWord($value, $key);
+        $match_kw =  checkKeyWord($value, $key, $query);
         if ($match_kw) {
             $k = '_'. $key;
             $results[$k] = $value;
@@ -72,9 +85,13 @@ print_r($subject);
     return $results;
 }
 
-function checkKeyWord($subject, $key)
+function checkKeyWord($subject, $key, $query = '夏天')
 {
     $pattern = "/(夏天)/";
+    $pattern = "/(尚书)/";
+    $pattern = "/(皋)/";
+    $pattern = "/(nerv)/";
+    $pattern = "/($query)/";
     if (preg_match($pattern, $subject, $matches)) {
         // print_r($matches);
         return $key;
