@@ -4,7 +4,8 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = 20.292;
+    const VERSION = '23.6.24';
+    const REVISION = 2;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -188,6 +189,79 @@ class Str extends _Abstract
     public static function countChars($string = null, $mode = 0)
     {
         return count_chars($string, $mode);
+    }
+
+    public static function str_word_count()
+    {
+        return null;
+    }
+
+    public static function substr_count()
+    {
+        return null;
+    }
+
+    public static function levenshtein()
+    {
+        return null;
+    }
+
+    public static function similar_text()
+    {
+        return null;
+    }
+
+    public static function strcmp()
+    {
+        return null;
+    }
+
+    public static function strcasecmp()
+    {
+        return null;
+    }
+
+    public static function strnatcmp()
+    {
+        return null;
+    }
+
+    public static function strnatcasecmp()
+    {
+        return null;
+    }
+
+    public static function strncmp()
+    {
+        return null;
+    }
+
+    public static function substr_compare()
+    {
+        return null;
+    }
+
+    public static function strcoll()
+    {
+        return null;
+    }
+
+    public static function strspn()
+    {
+        return null;
+    }
+
+    // Bad
+    public static function strCSPN($string, $characters, $offset = 0, $length = null)
+    {
+        $return_values = strcspn($string, $characters, $offset, $length);
+        return $return_values;
+    }
+    //: int
+
+    public static function strlen()
+    {
+        return null;
     }
 
     /*
