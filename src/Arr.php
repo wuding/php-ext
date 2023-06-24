@@ -4,7 +4,8 @@ namespace Ext;
 
 class Arr extends _Abstract
 {
-    const VERSION = '22.4.16';
+    const VERSION = '23.6.24';
+    const REVISION = 7;
 
     public static $predefined_constants = array(
         /* array_change_key_case() */
@@ -95,6 +96,7 @@ class Arr extends _Abstract
     +---------------------------------------------------------------+
     */
 
+    // 取代一部分
     public static function splice(&$array, $offset, $lenght = null, $replacement = [])
     {
         $return_values = array_splice($array, $offset, $lenght, $replacement);
@@ -113,4 +115,26 @@ class Arr extends _Abstract
         $return_values = in_array($needle, $haystack, $strict);
         return $return_values;
     }
+
+
+    public static function fill($start_index, $count, $value)
+    {
+        $return_values = array_fill($start_index, $count, $value);
+        return $return_values;
+    }
+
+    /*
+    +---------------------------------------------------------------+
+    + 分割部分取出
+    +---------------------------------------------------------------+
+    */
+
+    // 取出一段
+    public static function slice($array, $offset, $length = null, $preserve_keys = false)
+    {
+        $return_values = array_slice($array, $offset, $length, $preserve_keys);
+        return $return_values;
+    }
+
+
 }
