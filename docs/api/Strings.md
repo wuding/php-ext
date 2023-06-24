@@ -2,7 +2,7 @@
 
 字符串
 
-
+<!-- VER 23.6.23 REV 3  -->
 
 ## 格式化 9
 
@@ -20,7 +20,7 @@
 
 
 
-### 修剪 3
+### 修剪 3 + 1
 
 | 函数名 | 描述            | 别名 |
 | ------ | --------------- | ---- |
@@ -55,18 +55,18 @@
 
 ## ASCII、字符集 5
 
-| 方法名          | 函数名             | 描述 |
-| ------------------ | ---- | ---- |
-| ~   | chr    |      |
-|     | ord    |      |
-| convertCyr | convert_cyr_string |      |
-|              | hebrev             |      |
-|             | hebrevc            |      |
+| Deprecated | 方法名              | 函数名              | 描述 |
+| -----------| ------------------ | ------------------ | ---- |
+|            | ~                  | chr                |      |
+|            |                    | ord                |      |
+| -          | convertCyr         | convert_cyr_string |      |
+|            |                    | hebrev             |      |
+| -          |                    | hebrevc            |      |
 
 
 
 
-## 编码解码 6
+## 编码解码 6 - 2
 
 | 方法名   | 函数名                  | 描述 |
 | -------- | ----------------------- | ---- |
@@ -76,6 +76,12 @@
 |          | soundex                 |      |
 |          | quoted_printable_decode |      |
 |          | quoted_printable_encode |      |
+
+23.6.23 11:
+| Deprecated | 方法名              | 函数名              | 描述 |
+| -----------| ------------------ | ------------------ | ---- |
+| -          |                    | utf8_decode        |      |
+| -          |                    | utf8_encode        |      |
 
 
 
@@ -131,7 +137,7 @@
 
 
 
-## 解析、查找、替换 17
+## 解析、查找、替换 17 + 1 - 3
 
 |                |      | 别名   |
 | -------------- | ---- | ------ |
@@ -153,31 +159,40 @@
 | strrev         |      |        |
 | substr         |      |        |
 
+Migrating from PHP 7.4.x to PHP 8.0.x
+23.6.23 10:
+| 方法名      | 函数名           | 描述 |
+| ---------- | --------------- | ---- |
+|            | str_contains    |      |
+|            | str_ends_with   |      |
+|            | str_starts_with |      |
+
+
 
 
 ## 计数、位置、比较 15
 
-| 方法名     | 函数名         | 描述 |
-| ---------- | -------------- | ---- |
-| countChars | count_chars    |      |
-|            | str_word_count |      |
-|            | substr_count   |      |
-|            | levenshtein    |      |
-|            | similar_text   |      |
-|            | strcmp         |      |
-|            | strcasecmp     |      |
-|            | strnatcmp      |      |
-|            | strnatcasecmp  |      |
-|            | strncmp        |      |
-|            | substr_compare |      |
-|            | strcoll        |      |
-|            | strspn         |      |
-|            | strcspn        |      |
-|            | strlen         |      |
+| 方法名      | 函数名          | 描述                                             |                               |
+| ---------- | -------------- | ------------------------------------------------ | ----------------------------- |
+| countChars | count_chars    |                                                  |                               |
+|            | str_word_count |                                                  |                               |
+|            | substr_count   |                                                  |                               |
+|            | levenshtein    |                                                  |                               |
+|            | similar_text   |                                                  |                               |
+|            | strcmp         |                                                  |                               |
+|            | strcasecmp     |                                                  |                               |
+|            | strnatcmp      |                                                  |                               |
+|            | strnatcasecmp  |                                                  |                               |
+|            | strncmp        |                                                  |                               |
+|            | substr_compare |                                                  |                               |
+|            | strcoll        |                                                  |                               |
+|            | strspn         | Find length of initial segment not matching mask | 获取不匹配遮罩的起始子字符串的长度 |
+|            | strcspn        |                                                  |                               |
+|            | strlen         |                                                  |                               |
 
 
 
-## 分割、合并、填充 9
+## 分割、合并、填充 9 + 1
 
 | 方法名     | 函数名      | 描述 | 别名 |
 | ---------- | ----------- | ---- | ---- |
