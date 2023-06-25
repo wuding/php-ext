@@ -5,7 +5,7 @@ namespace Ext;
 class Arr extends _Abstract
 {
     const VERSION = '23.6.24';
-    const REVISION = 7;
+    const REVISION = 8;
 
     public static $predefined_constants = array(
         /* array_change_key_case() */
@@ -136,5 +136,23 @@ class Arr extends _Abstract
         return $return_values;
     }
 
+    /*
+    +---------------------------------------------------------------+
+    + 大小写
+    +---------------------------------------------------------------+
+    */
 
+    public static function ucFirst($string)
+    {
+        $mb_strlen = mb_strlen($string);
+        if (1 === $mb_strlen) {
+            $mb_ord = mb_ord($string);
+            if (122  < $mb_ord) {
+                return $string;
+            }
+        }
+
+        $return_values = ucfirst($string);
+        return $return_values;
+    }
 }
