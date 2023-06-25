@@ -4,8 +4,8 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = '23.6.24';
-    const REVISION = 2;
+    const VERSION = '23.6.25';
+    const REVISION = 3;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -318,5 +318,63 @@ class Str extends _Abstract
     public static function getHtmlTranslationTable($table = HTML_SPECIALCHARS, $flags = ENT_COMPAT | ENT_HTML401, $encoding = 'UTF-8')
     {
         return get_html_translation_table($table, $flags, $encoding);
+    }
+
+    /*
+    +---------------------------------------------------------------+
+    + 大小写
+    +---------------------------------------------------------------+
+    */
+
+    public static function lcFirst($string)
+    {
+        $mb_strlen = mb_strlen($string);
+        if (1 === $mb_strlen) {
+            $mb_ord = mb_ord($string);
+            if (90  < $mb_ord) {
+                return $string;
+            }
+        }
+
+        $return_values = lcfirst($string);
+        return $return_values;
+    }
+
+    public static function ucFirst($string)
+    {
+        $mb_strlen = mb_strlen($string);
+        if (1 === $mb_strlen) {
+            $mb_ord = mb_ord($string);
+            if (122  < $mb_ord) {
+                return $string;
+            }
+        }
+
+        $return_values = ucfirst($string);
+        return $return_values;
+    }
+
+    public static function strToLower()
+    {
+
+    }
+
+    public static function strToUpper()
+    {
+
+    }
+
+    public static function ucWords($string)
+    {
+        $mb_strlen = mb_strlen($string);
+        if (1 === $mb_strlen) {
+            $mb_ord = mb_ord($string);
+            if (122  < $mb_ord) {
+                return $string;
+            }
+        }
+
+        $return_values = ucwords($string);
+        return $return_values;
     }
 }
