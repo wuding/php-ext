@@ -10,8 +10,8 @@ use function php\func\get;
 
 class Scandir
 {
-    const VERSION = '23.6.18';
-    const REVISION = 5;
+    const VERSION = '23.6.29';
+    const REVISION = 6;
 }
 
 // query
@@ -44,6 +44,8 @@ foreach ($dir as $key => $path) {
 
 // exit;
 */
+
+header("Content-Type: text/plain; charset=UTF-8");
 
 $files = array();
 foreach ($dir as $key => $value) {
