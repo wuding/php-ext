@@ -4,10 +4,10 @@ namespace Ext;
 
 class PCRE extends _Abstract
 {
-    const VERSION = '23.6.30';
-    const REVISION = 3;
+    const VERSION = '23.7.1';
+    const REVISION = 4;
 
-    public static $consStr = 'PREG=OFFSET_CAPTURE,UNMATCHED_AS_NULL,NO_ERROR,INTERNAL_ERROR,BACKTRACK_LIMIT_ERROR,RECURSION_LIMIT_ERROR,BAD_UTF8_ERROR,BAD_UTF8_OFFSET_ERROR,JIT_STACKLIMIT_ERROR,GREP_INVERT;';
+    public static $constStr = 'PREG=OFFSET_CAPTURE,UNMATCHED_AS_NULL,NO_ERROR,INTERNAL_ERROR,BACKTRACK_LIMIT_ERROR,RECURSION_LIMIT_ERROR,BAD_UTF8_ERROR,BAD_UTF8_OFFSET_ERROR,JIT_STACKLIMIT_ERROR,GREP_INVERT;PREG_SPLIT=NO_EMPTY,DELIM_CAPTURE,OFFSET_CAPTURE;';
 
 
     ## 分类
@@ -95,18 +95,21 @@ class PCRE extends _Abstract
         $return_values = preg_replace($pattern, $replacement, $subject, $limit, $count);
         return $return_values;
     }
+    //: string|array|null
 
     public static function replaceCallback($pattern, $callback, $subject, $limit = -1, $count = null)
     {
         $return_values = preg_replace_callback($pattern, $callback, $subject, $limit, $count);
         return $return_values;
     }
+    //: string|array|null
 
     public static function replaceCallbackArray($patterns_and_callbacks, $subject, $limit = -1, $count = null)
     {
         $return_values = preg_replace_callback_array($patterns_and_callbacks, $subject, $limit, $count);
         return $return_values;
     }
+    //: string|array|null
 
 
     ### 分割
