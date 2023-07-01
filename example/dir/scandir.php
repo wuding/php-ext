@@ -7,11 +7,12 @@ define('ROOT', dirname(__DIR__, 5));
 $autoload = require ROOT ."/vendor/autoload.php";
 
 use function php\func\get;
+use Ext\PCRE;
 
 class Scandir
 {
-    const VERSION = '23.6.29';
-    const REVISION = 6;
+    const VERSION = '23.6.30';
+    const REVISION = 7;
 }
 
 // query
@@ -25,6 +26,7 @@ $directories[] = '/Users/benny/Documents/GitHub/未命名文件夹/main/docs/boo
 $directories[] = '/Users/benny/Documents/URLNK/Server/Domain/urlnk/com/@/php-app_develop/app/unicode/docs/Plane';
 $directories[] = '/Users/benny/Documents/GitHub/未命名文件夹/main/docs/books/9787800226625_XINBIAN CHENGYU DUOYONG CIDIAN/Main body';
 $directories[] = '/Users/benny/Documents/GitHub/未命名文件夹/main/docs/books/9787532717835_A NEW POCKET ENGLISH-CHINESE DICTIONARY/The text of the dictionary';
+$directories[] = '/Users/benny/Documents/GitHub/people/main/docs/lists';
 
 $dir_name = $directories[$dir_no];
 $dir = \Ext\Directory::scan($dir_name);
@@ -49,7 +51,7 @@ header("Content-Type: text/plain; charset=UTF-8");
 
 $files = array();
 foreach ($dir as $key => $value) {
-    $pattern = "/^([0-9]+)\.md$/";
+    $pattern = "/^([0-9a-z\-]+)\.md$/i";
     if (preg_match($pattern, $value, $matches)) {
         $page_no = $matches[1];
         $filename = $dir_name .'/'. $value;
@@ -94,8 +96,9 @@ function checkKeyWord($subject, $key, $query = '夏天')
     $pattern = "/(皋)/";
     $pattern = "/(nerv)/";
     $pattern = "/($query)/";
-    if (preg_match($pattern, $subject, $matches)) {
-        // print_r($matches);
+    if ($return_values = PCRE::match($pattern, $subject, $matches, PREG_OFFSET_CAPTURE, 0, ['if_matches' => 1]))
+    {
+        print_r($return_values);
         return $key;
     }
     return false;
@@ -107,9 +110,9 @@ function checkType($line)
     $substr = mb_substr($str, 0, 1);
     $needle = $subject = $str;
 
-/*    $haystack = array('', '-');
-    $in_array = in_array($needle, $haystack);
-    $in_arr = \Ext\Arr::inArray($needle, $haystack, true);*/
+    $haystack = array('', '-');
+    /*$in_array = in_array($needle, $haystack);*/
+    $in_arr = \Ext\Arr::inArray($needle, $haystack, true);
 
     $pat = "/^(|\-)$/";
     $mat = preg_match($pat, $subject);
