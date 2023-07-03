@@ -4,8 +4,8 @@ namespace Ext;
 
 class Arr extends _Abstract
 {
-    const VERSION = '23.7.1';
-    const REVISION = 10;
+    const VERSION = '23.7.3';
+    const REVISION = 11;
 
     public static $predefined_constants = array(
         /* array_change_key_case() */
@@ -359,7 +359,8 @@ class Arr extends _Abstract
     public static function list()
     {
         $args = func_get_args();
-        $return_values = list();
+        list($varname) = $args;
+        $return_values = get_defined_vars();
         return $return_values;
     }
     //: array
@@ -504,7 +505,7 @@ class Arr extends _Abstract
     }
     //: array
 
-    public static function intersect()
+    public static function interSection()
     {
         $args = func_get_args();
         $return_values = array_intersect();
