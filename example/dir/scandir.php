@@ -11,13 +11,13 @@ use Ext\PCRE;
 
 class Scandir
 {
-    const VERSION = '23.6.30';
-    const REVISION = 7;
+    const VERSION = '23.7.6';
+    const REVISION = 8;
 }
 
 // query
-$dir_no = $_GET['dir'] ?: 0;
-$query = $_GET['query'] ?: '天';
+$dir_no = $_GET['dir'] ?? 0;
+$query = $_GET['query'] ?? '天';
 
 
 // directory
@@ -27,10 +27,11 @@ $directories[] = '/Users/benny/Documents/URLNK/Server/Domain/urlnk/com/@/php-app
 $directories[] = '/Users/benny/Documents/GitHub/未命名文件夹/main/docs/books/9787800226625_XINBIAN CHENGYU DUOYONG CIDIAN/Main body';
 $directories[] = '/Users/benny/Documents/GitHub/未命名文件夹/main/docs/books/9787532717835_A NEW POCKET ENGLISH-CHINESE DICTIONARY/The text of the dictionary';
 $directories[] = '/Users/benny/Documents/GitHub/people/main/docs/lists';
+$directories[] = '/Users/benny/Documents/GitHub/star/master/docs/Constellations';
 
 $dir_name = $directories[$dir_no];
 $dir = \Ext\Directory::scan($dir_name);
-// print_r($dir);
+print_r($dir);
 
 /*
 foreach ($dir as $key => $path) {
@@ -66,7 +67,7 @@ foreach ($dir as $key => $value) {
 
     }
 }
-print_r($files);
+print_r([__FILE__, __LINE__, $files]);
 
 function splitLines($subject, $query)
 {
@@ -82,7 +83,7 @@ function splitLines($subject, $query)
         if ($match_kw) {
             $k = '_'. $key;
             $results[$k] = $value;
-print_r($subject);
+print_r([__FILE__, __LINE__, $subject]);
 
         }
     }
@@ -96,9 +97,11 @@ function checkKeyWord($subject, $key, $query = '夏天')
     $pattern = "/(皋)/";
     $pattern = "/(nerv)/";
     $pattern = "/($query)/";
+    // if (preg_match($pattern, $subject, $matches)) {
+        // print_r([__FILE__, __LINE__, $matches]);
     if ($return_values = PCRE::match($pattern, $subject, $matches, PREG_OFFSET_CAPTURE, 0, ['if_matches' => 1]))
     {
-        print_r($return_values);
+        print_r([__FILE__, __LINE__, $return_values]);
         return $key;
     }
     return false;
