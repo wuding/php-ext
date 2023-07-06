@@ -4,7 +4,8 @@ namespace Ext\Lang\Operator;
 
 class Operators
 {
-    const VERSION = '22.4.16';
+    const VERSION = '23.7.6';
+    const REVISION = 2;
 
     public $table_of_contents = array(
         'Operator Precedence' => '运算符优先级',
@@ -17,6 +18,7 @@ class Operators
         'Incrementing/Decrementing Operators' => '递增/递减运算符',
         'Logical Operators' => '逻辑运算符',
         'String Operators' => '字符串运算符',
-        'Array Operators' => '类型运算符',
+        'Array Operators' => '数组运算符',
+        'Type Operators' => '类型运算符',
     );
 }
