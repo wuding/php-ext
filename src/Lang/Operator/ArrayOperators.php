@@ -2,9 +2,10 @@
 
 namespace Ext\Lang\Operator;
 
-class ArrayOperatos
+class ArrayOperators
 {
-    const VERSION = '22.4.16';
+    const VERSION = '23.7.6';
+    const REVISION = 2;
 
     public static $para = array(
         'Array Operators' => array(
