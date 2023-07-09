@@ -1,9 +1,45 @@
-# Misc
+Other Basic Extensions
+# Misc. — Miscellaneous Functions
+
+<!-- VER 23.7.9 REV 5 -->
 
 Miscellaneous
 
 杂项
 
+## Misc. Functions
+
+connection_aborted
+connection_status
+constant
+define
+defined
+die
+eval
+exit
+get_browser
+\__halt_compiler
+highlight_file
+highlight_string
+hrtime
+ignore_user_abort
+pack
+php_strip_whitespace
+sapi_windows_cp_conv
+sapi_windows_cp_get
+sapi_windows_cp_is_utf8
+sapi_windows_cp_set
+sapi_windows_generate_ctrl_event
+sapi_windows_get_ctrl_handler
+sapi_windows_vt100_support
+show_source
+sleep
+sys_getloadavg
+time_nanosleep
+time_sleep_until
+uniqid
+unpack
+usleep
 
 
 ## 分类
