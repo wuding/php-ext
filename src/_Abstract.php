@@ -4,6 +4,9 @@ namespace Ext;
 
 class _Abstract
 {
+    const VERSION = '23.7.9';
+    const REVISION = 6;
+
     public static $constants = null;
     public static $constStr = null;
     public static $ini = null;
@@ -102,5 +105,14 @@ class _Abstract
             }
         }
         return $arr;
+    }
+
+    public static function funcToMethodName($funcname)
+    {
+        $str_replace = str_replace('_', ' ', $funcname);
+        $ucwords = ucwords($str_replace);
+        $lcfirst = lcfirst($ucwords);
+        $name = str_replace(' ', '', $lcfirst);
+        return $name;
     }
 }
