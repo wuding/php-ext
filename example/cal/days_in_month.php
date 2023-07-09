@@ -2,7 +2,7 @@
 
 // namespace Ext\example\cal;
 
-$define = defined('ROOT') ?: define('ROOT', dirname(__DIR__, 5));
+defined('ROOT') OR define('ROOT', dirname(__DIR__, 5));
 
 $autoload = require ROOT ."/vendor/autoload.php";
 
@@ -11,7 +11,7 @@ use function php\func\get;
 class DaysInMonth
 {
     const VERSION = '23.7.9';
-    const REVISION = 2;
+    const REVISION = 3;
 
     public function __construct()
     {
