@@ -4,7 +4,8 @@ namespace Ext;
 
 class Date extends _Abstract
 {
-    const VERSION = '22.4.1';
+    const VERSION = '23.7.9';
+    const REVISION = 5;
 
     public static $predefined_constants = array(
         'SUNFUNCS_RET_TIMESTAMP',
@@ -127,4 +128,39 @@ class Date extends _Abstract
         }
         return $formatted_date_string;
     }
+
+    /*
+    +---------------------------------------------+
+    + 日出日落曙光暮色
+    +---------------------------------------------+
+    */
+
+    public static function sunInfo($timestamp, $latitude, $longitude, $options = null)
+    {
+        $return_values = $timezone = null;
+        if (is_array($options)) {
+            extract($options);
+        }
+        if ($timezone) {
+            $date_default_timezone_set = date_default_timezone_set($timezone);
+        }
+        $date_sun_info = date_sun_info($timestamp, $latitude, $longitude);
+        if (1 === $return_values) {
+            return get_defined_vars();
+        }
+        return $date_sun_info;
+    }
+    //: array or false
+
+    public static function sunRise($timestamp, $returnFormat = SUNFUNCS_RET_STRING, $latitude = null, $longitude = null, $zenith = null, $utcOffset = null)
+    {
+        date_sunrise($timestamp, $returnFormat, $latitude, $longitude, $zenith, $utcOffset);
+    }
+    //: string|int|float|false
+
+    public static function sunSet($timestamp, $returnFormat = SUNFUNCS_RET_STRING, $latitude = null, $longitude = null, $zenith = null, $utcOffset = null)
+    {
+        date_sunset($timestamp, $returnFormat, $latitude, $longitude, $zenith, $utcOffset);
+    }
+    //: string|int|float|false
 }
