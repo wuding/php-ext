@@ -4,7 +4,8 @@ namespace Ext;
 
 class Info extends _Abstract
 {
-    const VERSION = 20.5871179;
+    const VERSION = '23.7.15';
+    const REVISION = 3;
 
     public static $constants = [];
     public static $constStr = 'ASSERT=ACTIVE,CALLBACK,BALL,WARNING,QUIET_EVAL;';
@@ -42,4 +43,19 @@ class Info extends _Abstract
         }
         return false;
     }
+
+
+    /*
+    +---------------------------------------------+
+    + 命令行
+    +---------------------------------------------+
+    */
+
+    public static function getOpt($short_options, $long_options = [], &$rest_index = null)
+    {
+        $return_values = getopt($short_options, $long_options, $rest_index);
+        return $return_values;
+    }
+    //: array|false
+
 }
