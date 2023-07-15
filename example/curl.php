@@ -1,10 +1,17 @@
 <?php
 
-define('ROOT', dirname(__DIR__, 2));
+defined('ROOT') OR define('ROOT', dirname(__DIR__, 4));
 
 $autoload = require ROOT ."/vendor/autoload.php";
 
 use Ext\cURL;
+
+class ClientURL
+{
+    const VERSION = '23.7.15';
+    const REVISION = 2;
+
+}
 
 $url = 'https://vpn.ht';
 $url = 'http://urlnk.org/api/v2';
