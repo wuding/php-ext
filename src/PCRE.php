@@ -4,8 +4,8 @@ namespace Ext;
 
 class PCRE extends _Abstract
 {
-    const VERSION = '23.7.1';
-    const REVISION = 4;
+    const VERSION = '23.7.12';
+    const REVISION = 5;
 
     public static $constStr = 'PREG=OFFSET_CAPTURE,UNMATCHED_AS_NULL,NO_ERROR,INTERNAL_ERROR,BACKTRACK_LIMIT_ERROR,RECURSION_LIMIT_ERROR,BAD_UTF8_ERROR,BAD_UTF8_OFFSET_ERROR,JIT_STACKLIMIT_ERROR,GREP_INVERT;PREG_SPLIT=NO_EMPTY,DELIM_CAPTURE,OFFSET_CAPTURE;';
 
@@ -58,7 +58,7 @@ class PCRE extends _Abstract
     //: int|false
 
 
-    public static function match($pattern, $subject, $matches = null, $flags = 0, $offset = 0, $options = array('if_matches' => null))
+    public static function match($pattern, $subject, &$matches = null, $flags = 0, $offset = 0, $options = array('if_matches' => null))
     {
         extract($options);
 
