@@ -1,8 +1,77 @@
-# Info
+https://www.php.net/manual/en/refs.basic.php.php
+Affecting PHP's Behaviour
 
+https://www.php.net/manual/en/book.info.php
+# PHP Options/Info
 PHP 选项和信息
 
+<!-- VER 23.7.16 REV 3 -->
 
+https://www.php.net/manual/en/ref.info.php
+## PHP Options/Info Functions
+
+assert_options
+assert
+cli_get_process_title
+cli_set_process_title
+dl
+extension_loaded
+gc_collect_cycles
+gc_disable
+gc_enable
+gc_enabled
+gc_mem_caches
+gc_status
+get_cfg_var
+get_current_user
+get_defined_constants
+get_extension_funcs
+get_include_path
+get_included_files
+get_loaded_extensions
+get_required_files
+get_resources
+getenv
+getlastmod
+getmygid
+getmyinode
+getmypid
+getmyuid
+getopt
+getrusage
+ini_alter
+ini_get_all
+ini_get
+ini_parse_quantity
+ini_restore
+ini_set
+memory_get_peak_usage
+memory_get_usage
+memory_reset_peak_usage
+php_ini_loaded_file
+php_ini_scanned_files
+php_sapi_name
+php_uname
+phpcredits
+phpinfo
+phpversion
+putenv
+set_include_path
+set_time_limit
+sys_get_temp_dir
+version_compare
+zend_thread_id
+zend_version
+
+### Deprecated
+
+get_magic_quotes_gpc
+get_magic_quotes_runtime
+restore_include_path
+
+
+
+## 分类
 
 ## 异常
 
