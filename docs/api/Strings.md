@@ -1,8 +1,125 @@
+https://www.php.net/manual/en/refs.basic.text.php
+Text Processing
+
+https://www.php.net/manual/en/book.strings.php
 # Strings
 
 字符串
 
-<!-- VER 23.6.24 REV 3  -->
+<!-- VER 23.7.18 REV 5  -->
+
+https://www.php.net/manual/en/ref.strings.php
+## String Functions
+
+addcslashes
+addslashes
+bin2hex
+chop
+chr
+chunk_split
+convert_uudecode
+convert_uuencode
+count_chars
+crc32
+crypt
+echo
+explode
+fprintf
+get_html_translation_table
+hebrev
+hex2bin
+html_entity_decode
+htmlentities
+htmlspecialchars_decode
+htmlspecialchars
+implode
+join
+lcfirst
+levenshtein
+localeconv
+ltrim
+md5_file
+md5
+metaphone
+money_format
+nl_langinfo
+nl2br
+number_format
+ord
+parse_str
+print
+printf
+quoted_printable_decode
+quoted_printable_encode
+quotemeta
+rtrim
+setlocale
+sha1_file
+sha1
+similar_text
+soundex
+sprintf
+sscanf
+str_contains
+str_ends_with
+str_getcsv
+str_ireplace
+str_pad
+str_repeat
+str_replace
+str_rot13
+str_shuffle
+str_split
+str_starts_with
+str_word_count
+strcasecmp
+strchr
+strcmp
+strcoll
+strcspn
+strip_tags
+stripcslashes
+stripos
+stripslashes
+stristr
+strlen
+strnatcasecmp
+strnatcmp
+strncasecmp
+strncmp
+strpbrk
+strpos
+strrchr
+strrev
+strripos
+strrpos
+strspn
+strstr
+strtok
+strtolower
+strtoupper
+strtr
+substr_compare
+substr_count
+substr_replace
+substr
+trim
+ucfirst
+ucwords
+vfprintf
+vprintf
+vsprintf
+wordwrap
+
+### Deprecated
+convert_cyr_string
+hebrevc
+utf8_decode
+utf8_encode
+
+
+
+## 分类
 
 ## 格式化 9
 
