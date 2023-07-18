@@ -4,8 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = '23.6.25';
-    const REVISION = 3;
+    const VERSION = '23.7.18';
+    const EDITION = array(
+        4,
+        1,
+        0,
+        0,
+    );
+    const REVISION = 4;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -163,6 +169,12 @@ class Str extends _Abstract
         $string = null === $string ? static::$string : $string;
         return explode($delimiter, $string, $limit);
     }
+
+    public static function split($string, $length = 1)
+    {
+        $return_values = str_split($string, $length);
+    }
+    //: array
 
     /*
     +---------------------------------------------+
