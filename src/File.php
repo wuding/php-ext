@@ -4,7 +4,14 @@ namespace Ext;
 
 class File extends _Abstract
 {
-    const VERSION = 20.5891054;
+    const VERSION = '23.7.18';
+    const EDITION = array(
+        17,
+        0,
+        0,
+        0,
+    );
+    const REVISION = 17;
 
     // 参数
     public static $filename = null;
@@ -225,6 +232,7 @@ class File extends _Abstract
     {
         return file_exists($filename);
     }
+    //: bool
 
     public static function type($filename = null)
     {
@@ -573,6 +581,7 @@ class File extends _Abstract
     {
         return tmpfile();
     }
+    //: resource|false
 
     /*
     +---------------------------------------------+
@@ -630,6 +639,7 @@ class File extends _Abstract
         $filename = null === $filename ? self::$filename : $filename;
         return stat($filename);
     }
+    //: array|false
 
     public static function touch($filename = null, $time = null, $atime = null)
     {
