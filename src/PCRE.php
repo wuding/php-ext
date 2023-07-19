@@ -4,8 +4,14 @@ namespace Ext;
 
 class PCRE extends _Abstract
 {
-    const VERSION = '23.7.12';
-    const REVISION = 5;
+    const VERSION = '23.7.19';
+    const EDITION = array(
+        4,
+        0,
+        3,
+        0,
+    );
+    const REVISION = 6;
 
     public static $constStr = 'PREG=OFFSET_CAPTURE,UNMATCHED_AS_NULL,NO_ERROR,INTERNAL_ERROR,BACKTRACK_LIMIT_ERROR,RECURSION_LIMIT_ERROR,BAD_UTF8_ERROR,BAD_UTF8_OFFSET_ERROR,JIT_STACKLIMIT_ERROR,GREP_INVERT;PREG_SPLIT=NO_EMPTY,DELIM_CAPTURE,OFFSET_CAPTURE;';
 
@@ -90,7 +96,7 @@ class PCRE extends _Abstract
 
 
 
-    public static function replace($pattern, $replacement, $subject, $limit = -1, $count = null)
+    public static function replace($pattern, $replacement, $subject, $limit = -1, &$count = null)
     {
         $return_values = preg_replace($pattern, $replacement, $subject, $limit, $count);
         return $return_values;
@@ -115,9 +121,10 @@ class PCRE extends _Abstract
     ### 分割
 
 
-    public static function split()
+    public static function split($pattern, $subject, $limit = -1, $flags = 0)
     {
         $return_values = preg_split($pattern, $subject, $limit, $flags);
+        return $return_values;
     }
     //: array|false
 
