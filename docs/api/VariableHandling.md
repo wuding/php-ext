@@ -1,5 +1,51 @@
+https://www.php.net/manual/en/refs.basic.vartype.php
+Variable and Type Related Extensions
+
+https://www.php.net/manual/en/book.var.php
 # Variable handling
 
+<!-- VER 23.7.19 REV 2 -->
+
+https://www.php.net/manual/en/ref.var.php
+## Variable handling Functions
+
+boolval
+debug_zval_dump
+doubleval
+empty
+floatval
+get_debug_type
+get_defined_vars
+get_resource_id
+get_resource_type
+gettype
+intval
+is_array
+is_bool
+is_callable
+is_countable
+is_double
+is_float
+is_int
+is_integer
+is_iterable
+is_long
+is_null
+is_numeric
+is_object
+is_real
+is_resource
+is_scalar
+is_string
+isset
+print_r
+serialize
+settype
+strval
+unserialize
+unset
+var_dump
+var_export
 
 
 ## 分类
