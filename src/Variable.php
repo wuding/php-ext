@@ -4,7 +4,14 @@ namespace Ext;
 
 class Variable
 {
-    const VERSION = '23.6.16';
+    const VERSION = '23.7.19';
+    const EDITION = array(
+        12,
+        1.,
+        0,
+        0,
+    );
+    const REVISION = 14;
 
     public static $return_values = array(
         'var_export' => array(
@@ -269,6 +276,53 @@ class Variable
         }
         return $var;
     }
+
+    public static function getDefinedVars($variable, $keys = array())
+    {
+        $array_keys = array_keys($variable);
+
+        $key_first = $keys[0] ?? null;
+        // $key_type = $key_first;
+
+        $arr = $var = $array = $vars = $loss = array();
+        $lose = 0;
+        $lost = 0;
+        foreach ($variable as $key => $value) {
+            $in_array = in_array($key, $keys);
+            if ($in_array) {
+                $arr[$key] = $value;
+                $array[] = $key;
+            } else {
+                $lost++;
+                $var[$key] = $value;
+                $vars[] = $key;
+            }
+        }
+
+        foreach ($keys as $key => $value) {
+            $k = (null !== $key_first) ? $value : $key;
+            $in_array = in_array($k, $array_keys);
+            if (!$in_array) {
+                $lose++;
+                $loss[] = $k;
+            }
+        }
+
+        return $expression = [__FILE__, __LINE__,
+            'keys' => count($array_keys),
+
+            'int' => [count($arr), $array],
+            'lose' => [$lose, $loss],
+            'lost' => [$lost, $vars],
+            'arr' => $arr,
+            'var' => $var,
+
+            // get_defined_vars(),
+        ];
+        var_dump($expression);
+
+    }
+    //: array
 
     /*
     +---------------------------------------------------------------+
