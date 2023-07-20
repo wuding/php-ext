@@ -4,14 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = '23.7.18';
+    const VERSION = '23.7.20';
     const EDITION = array(
-        4,
+        5,
         1,
         0,
         0,
     );
-    const REVISION = 4;
+    const REVISION = 5;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -304,10 +304,33 @@ class Str extends _Abstract
 
     public static function echo()
     {
-        $str = implode('', func_get_args());
+        $args = func_get_args();
+        list($info, $exit, $return, $expressions) = $args;
+        $return_values = print_r([__FILE__, __LINE__,
+                'vars' => get_defined_vars(),
+            ],
+            $return,
+        );
+/*        var_dump($expression = [__FILE__, __LINE__,
+            'vars' => get_defined_vars(),
+        ]);exit;*/
+
+        if ($return) {
+            return $return_values;
+        } else {
+            echo $return_values;
+        }
+
+        if ($exit) {
+            exit;
+        }
+/*
+        $str = implode('', $args);
         echo $str;
         return $str;
+*/
     }
+    //: void
 
     /*
     +---------------------------------------------+
@@ -389,4 +412,18 @@ class Str extends _Abstract
         $return_values = ucwords($string);
         return $return_values;
     }
+
+    /*
+    +---------------------------------------------------------------+
+    + 解析、查找、替换
+    +---------------------------------------------------------------+
+    */
+
+    public static function subStr($string, $offset, $length = null)
+    {
+        $return_values = substr($string, $offset, $length);
+        return $return_values;
+    }
+    //: string
+
 }
