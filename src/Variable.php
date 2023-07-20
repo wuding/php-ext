@@ -4,14 +4,14 @@ namespace Ext;
 
 class Variable
 {
-    const VERSION = '23.7.19';
+    const VERSION = '23.7.20';
     const EDITION = array(
         12,
         1.,
-        0,
+        1,
         0,
     );
-    const REVISION = 14;
+    const REVISION = 15;
 
     public static $return_values = array(
         'var_export' => array(
@@ -32,6 +32,7 @@ class Variable
                 'var_export' => 'export',
                 'print_r' => 'printReadable',
                 'debug_zval_dump' => 'debugZvalDump',
+                null => 'getType',
             ),
         ),
     );
@@ -184,7 +185,7 @@ class Variable
     public static function _function_name($var)
     {
         $return_values = $var;
-        if (is_numeric($var) || preg_match("/_/", $var)) {
+        if (is_numeric($var) || preg_match("/_/", $var) || in_array($var, ['', null])) {
             $return_values = self::$parameters['pRvDvEdZvalD']['func_n'][$var] ?? 0;
         }
         return $return_values;
@@ -207,7 +208,9 @@ class Variable
         $return_values = call_user_func_array($function, $param_arr);
         return $return_values;
     }
-
+    //: RETURN void
+    //; OUTPUT Y string
+    //. EXIT   n
 
     /*
      * 自己
@@ -243,6 +246,7 @@ class Variable
 
     public static function pRvDvEdZvalD($func_n = 0, $param_arr)
     {
+        // $func_n = null === $func_n ? '' : $func_n;
         $function = self::_function_name($func_n);
         $func = __NAMESPACE__ .'\Variable::'. $function;
         $return_values = call_user_func_array($func, $param_arr);
