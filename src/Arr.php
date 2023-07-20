@@ -4,8 +4,14 @@ namespace Ext;
 
 class Arr extends _Abstract
 {
-    const VERSION = '23.7.3';
-    const REVISION = 11;
+    const VERSION = '23.7.11';
+    const EDITION = array(
+        6,
+        2,
+        2,
+        1,
+    );
+    const REVISION = 12;
 
     public static $predefined_constants = array(
         /* array_change_key_case() */
@@ -24,7 +30,7 @@ class Arr extends _Abstract
         'SORT_NATURAL',
         'SORT_FLAG_CASE',
 
-        /* Filter flags: array_filter() */
+        /* Filter flags: array_filter() int */
         'ARRAY_FILTER_USE_KEY',
         'ARRAY_FILTER_USE_BOTH',
 
