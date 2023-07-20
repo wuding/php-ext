@@ -4,8 +4,18 @@ namespace Ext\Manual\en;
 
 class ControlStructures
 {
-    const VERSION = '23.7.16';
-    const REVISION = 8;
+    const VERSION = '23.7.20';
+    const EDITION = array(
+        9,
+        4,
+        6,
+        2,
+        0,// change line no
+        21,// above total sum
+        'Idfb U',// int to words
+        'Id flu',// 身份 流行性感冒
+    );
+    const REVISION = 9;
 
     public $pages = array(
         'refman' => array(
