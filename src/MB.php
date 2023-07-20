@@ -4,8 +4,14 @@ namespace Ext;
 
 class MB extends _Abstract
 {
-    const VERSION = '23.6.20';
-    const REVISION = 1;
+    const VERSION = '23.6.24';
+    const EDITION = array(
+        2,
+        0,
+        0,
+        0,
+    );
+    const REVISION = 2;
 
     /*
     +---------------------------------------------+
@@ -38,6 +44,19 @@ class MB extends _Abstract
             ]);
         }
 
+        return $return_values;
+    }
+
+
+    /*
+    +---------------------------------------------+
+    + Split
+    +---------------------------------------------+
+    */
+
+    public static function strSplit($string, $length = 1, $encoding = null)
+    {
+        // $return_values = mb_str_split($string, $length, $encoding);
         return $return_values;
     }
 }
