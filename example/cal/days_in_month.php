@@ -10,19 +10,19 @@ use function php\func\get;
 
 class DaysInMonth
 {
-    const VERSION = '23.7.9';
-    const REVISION = 3;
+    const VERSION = '23.8.4';
+    const REVISION = 4;
 
     public function __construct()
     {
 
     }
 
-    public static function thisYear($year)
+    public static function thisYear($year, $first = 1, $late = 13)
     {
         $function = array('\\Ext\\CAL', 'daysInMonth');
         $arr = array();
-        for ($i = 1; $i < 13; $i++)
+        for ($i = $first; $i < $late; $i++)
         {
             $param_arr = get(array(
                 'calendar' => CAL_GREGORIAN,
