@@ -4,14 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = '23.7.20';
+    const VERSION = '23.8.9';
     const EDITION = array(
-        5,
+        6,
         1,
         0,
         0,
     );
-    const REVISION = 5;
+    const REVISION = 6;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -104,6 +104,20 @@ class Str extends _Abstract
             return rtrim($str);
         }
         return rtrim($str, $character_mask);
+    }
+
+    public static function chop($variable, $equal, $line_ending)
+    {
+
+        $pieces = array();
+        foreach ($variable as $key => $value) {
+            $pieces[] = $key . $equal . $value;
+        }
+
+        $glue = $line_ending;
+        $string = implode($glue, $pieces);
+
+        return $string;
     }
 
     /*
