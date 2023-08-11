@@ -4,14 +4,14 @@ namespace Ext;
 
 class File extends _Abstract
 {
-    const VERSION = '23.7.18';
+    const VERSION = '23.8.11';
     const EDITION = array(
-        17,
+        18,
         0,
         0,
         0,
     );
-    const REVISION = 17;
+    const REVISION = 18;
 
     // 参数
     public static $filename = null;
@@ -634,10 +634,42 @@ class File extends _Abstract
         return lstat($filename);
     }
 
-    public static function stat($filename = null)
+    public static function stat($filename = null, $return_result_format = null)
     {
         $filename = null === $filename ? self::$filename : $filename;
-        return stat($filename);
+        $stat = @stat($filename);
+        if ($return_result_format && false === $stat) {
+            $stat = array(
+                0 => 0,
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+                6 => 0,
+                7 => 0,
+                8 => 0,
+                9 => 0,
+                10 => 0,
+                11 => 0,
+                12 => 0,
+                'dev' => -1,
+                'ino' => -1,
+                'mode' => -1,
+                'nlink' => -1,
+                'uid' => -1,
+                'gid' => -1,
+                'rdev' => -1,
+                'size' => -1,
+                'atime' => -1,
+                'mtime' => -1,
+                'ctime' => -1,
+                'blksize' => -1,
+                'blocks' => -1,
+            );
+        }
+
+        return $stat;
     }
     //: array|false
 
