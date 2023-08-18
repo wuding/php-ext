@@ -10,8 +10,8 @@ use Ext\File;
 
 class CSV
 {
-    const VERSION = '23.8.16';
-    const REVISION = 1;
+    const VERSION = '23.8.18';
+    const REVISION = 2;
 
     public static function put($filename, $mode = 'w', $variable)
     {
@@ -32,6 +32,26 @@ class CSV
 
         return $return_values;
     }
+
+    public static function get($filename, $mode = 'r')
+    {
+        $File = new File($filename, $mode);
+
+        $gets = array();
+        while (($data = $File::getCsv(null, 1000)) !== false) {
+            $gets[] = $data;
+        }
+
+        $close = $File::close();
+
+        $return_values = array(
+            $File::$instances,
+            $gets,
+            $close,
+        );
+
+        return $return_values;
+    }
 }
 
 $list = array (
@@ -41,5 +61,6 @@ $list = array (
 );
 
 $put = CSV::put(ROOT .'/vendor/wuding/php-ext/example/file/csv.txt', 'w', $list);
+$put = CSV::get(ROOT .'/vendor/wuding/php-ext/example/file/csv.txt', 'r');
 
 var_dump($put);
