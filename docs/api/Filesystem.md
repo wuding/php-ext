@@ -4,7 +4,7 @@ File System Related Extensions
 https://www.php.net/manual/en/book.filesystem.php
 # Filesystem
 
-<!-- VER 23.7.18 REV 5 -->
+<!-- VER 23.8.18 REV 6 -->
 
 https://www.php.net/manual/en/ref.filesystem.php
 ## Filesystem Functions
@@ -236,3 +236,32 @@ unlink
 | rewind    | 倒回位置       |       |
 | tmpfile   | 新建           |       |
 
+
+
+## Parameters
+
+```language
+fopen(
+    string $filename,
+    string $mode,
+    bool $use_include_path = false,
+    ?resource $context = null
+): resource|false
+```
+
+mode
+
+| mode | Read | Write | Pointer | Position | Size | Create |
+| ---- | ---- | ----- | --------| -------- | ---- | ------ |
+| r    | Y    |       |         | HEAD     |      |        |
+| r+   | Y    | Y     |         | H        |      |        |
+| w    |      | Y     |         | H        | 0    |  Y     |
+| w+   | Y    | Y     |         | H        | 0    |  Y     |
+| a    |      | Y     |         | FOOT     |      |  Y     |
+| a+   | Y    | Y     |         | end      |      |  Y     |
+| x    |      | Y     |         | H        |      |  N     |
+| x+   | Y    | Y     |         | H        |      |  N     |
+| c    |      | Y     |         | beginning|      |  Y     |
+| c+   | Y    | Y     |         | beginning|      |  Y     |
+| e    |      |       |         |          |      |        |
+|      |      |       |         |          |      |        |
