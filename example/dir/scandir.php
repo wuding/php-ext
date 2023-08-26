@@ -12,8 +12,8 @@ use Ext\Arr;
 
 class Scandir
 {
-    const VERSION = '23.8.6';
-    const REVISION = 10;
+    const VERSION = '23.8.27';
+    const REVISION = 11;
 
     public static $dir_no = null;
 }
@@ -77,6 +77,8 @@ function excepts($subject)
 }
 
 $files = array();
+$i = 0;
+$f = 0;
 foreach ($dir as $key => $value) {
     $pattern = "/^([0-9a-z\-]+)\.md$/i";
     $pattern = "/^(.*)\.md$/i";
@@ -92,11 +94,16 @@ foreach ($dir as $key => $value) {
         // exit;
         if ($lines) {
             $files[$page_no] = $lines;
+            $f++;
+            if (10 === $f) {
+                break;
+            }
         }
 
     }
+    $i++;
 }
-print_r([__FILE__, __LINE__, $files]);
+print_r([__FILE__, __LINE__, $files]);exit;
 
 function splitLines($subject, $query)
 {
@@ -112,7 +119,7 @@ function splitLines($subject, $query)
         if ($match_kw) {
             $k = '_'. $key;
             $results[$k] = $value;
-print_r([__FILE__, __LINE__, $subject]);
+// print_r([__FILE__, __LINE__, $subject]);
 
         }
     }
@@ -130,7 +137,7 @@ function checkKeyWord($subject, $key, $query = '夏天')
         // print_r([__FILE__, __LINE__, $matches]);
     if ($return_values = PCRE::match($pattern, $subject, $matches, PREG_OFFSET_CAPTURE, 0, ['if_matches' => 1]))
     {
-        print_r([__FILE__, __LINE__, $return_values]);
+        // print_r([__FILE__, __LINE__, $return_values]);
         return $key;
     }
     return false;
