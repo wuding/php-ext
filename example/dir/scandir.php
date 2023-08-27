@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 
 // namespace Ext\example\dir;
 
@@ -13,16 +14,59 @@ use Ext\Arr;
 class Scandir
 {
     const VERSION = '23.8.27';
-    const REVISION = 11;
+    const REVISION = 12;
 
     public static $dir_no = null;
 }
 
 header("Content-Type: text/plain; charset=UTF-8");
 
+// 获取命令行参数
+function options($short = null, $long = null, $check = null, $index = null) {
+    $shortopts  = "I::Q::P::";
+    $longopts  = array(
+        "dir::query::print::",
+    );
+    $opt = @getopt($shortopts, $longopts);
+
+    if (null !== $check) {
+        if (false === $opt[$index]) {
+            return $check;
+            return '$check';
+        }
+    }
+    return $opt;
+}
+
+
+/*
+var_dump($expression = [__FILE__, __LINE__,
+    'opt' => options()['I'],
+    'Query' => options()['Q'],
+    'I' => options(0, 0, '__Undefined Index__', 'I')['I'],
+]);
+exit;
+*/
+
+/*
+php scandir.php -I9 -Q="Question mark,"
+*/
+
 // query
-$dir_no = $_GET['dir'] ?? 0;
-$query = $_GET['query'] ?? '天';
+$options_i_check = options(0, 0, '__Undefined Index__', 'I')['I'];
+$options_i = options()['I'];
+$dir_no = $_GET['dir'] ?? ('_' === $options_i_check ? 0 : $options_i);#exit;
+$query = $_GET['query'] ?? ('_' === options(0, 0, '__Undefined Index__', 'Q')['Q'] ? '天' : options()['Q']);
+
+/*
+var_dump($expression = [__FILE__, __LINE__,
+    $dir_no,
+    $options_i_check,
+    $options_i,
+    $query,
+]);
+exit;
+*/
 
 Scandir::$dir_no = (int) $dir_no;
 
@@ -113,15 +157,22 @@ function splitLines($subject, $query)
 
     $results = array();
     $i = 0;
+    $j = 0;
     foreach ($variable as $key => $value) {
         $type = checkType($value);
         $match_kw =  checkKeyWord($value, $key, $query);
         if ($match_kw) {
             $k = '_'. $key;
-            $results[$k] = $value;
+            $values = mb_substr($value, 0, 1000);
+            $results[$k] = $values;
+            $j++;
+            if (2 === $j) {
+                break;
+            }
 // print_r([__FILE__, __LINE__, $subject]);
 
         }
+        $i++;
     }
     return $results;
 }
