@@ -14,18 +14,27 @@ use Ext\Arr;
 class Scandir
 {
     const VERSION = '23.8.27';
-    const REVISION = 12;
+    const REVISION = 13;
 
     public static $dir_no = null;
+
+    public static function get_opt($key = 'chunk_length', $value = 1000, $index = 'C')
+    {
+        $chunk_length = $_GET[$key] ?? ('_' === options(0, 0, '__', $index)[$index] ? $value : options()[$index]);
+        if (null === $chunk_length) {
+            return $value;
+        }
+        return $chunk_length;
+    }
 }
 
 header("Content-Type: text/plain; charset=UTF-8");
 
 // 获取命令行参数
 function options($short = null, $long = null, $check = null, $index = null) {
-    $shortopts  = "I::Q::P::";
+    $shortopts  = "I::Q::P::C::K::L::";
     $longopts  = array(
-        "dir::query::print::",
+        "dir::query::print::chunk::keyword::lines::",
     );
     $opt = @getopt($shortopts, $longopts);
 
@@ -57,16 +66,24 @@ $options_i_check = options(0, 0, '__Undefined Index__', 'I')['I'];
 $options_i = options()['I'];
 $dir_no = $_GET['dir'] ?? ('_' === $options_i_check ? 0 : $options_i);#exit;
 $query = $_GET['query'] ?? ('_' === options(0, 0, '__Undefined Index__', 'Q')['Q'] ? '天' : options()['Q']);
+$print = $_GET['print'] ?? ('_' === options(0, 0, '__', 'P')['P'] ? 0 : options()['P']);
+$chunk_length = (int) Scandir::get_opt();
+$check_keyword = (int) Scandir::get_opt('check_keyword', 2, 'K');
+$split_lines = (int) Scandir::get_opt('sl', 10, 'L');
 
-/*
+
 var_dump($expression = [__FILE__, __LINE__,
     $dir_no,
     $options_i_check,
     $options_i,
     $query,
+    $print,
+    $chunk_length,
+    $check_keyword,
+    $split_lines,
 ]);
-exit;
-*/
+// exit;
+
 
 Scandir::$dir_no = (int) $dir_no;
 
@@ -134,12 +151,12 @@ foreach ($dir as $key => $value) {
         $contents = file_get_contents($filename);
         /*echo $contents;
         echo PHP_EOL;*/
-        $lines =  splitLines($contents, $query);
+        $lines =  splitLines($contents, $query, $chunk_length, $check_keyword);
         // exit;
         if ($lines) {
             $files[$page_no] = $lines;
             $f++;
-            if (10 === $f) {
+            if ($split_lines === $f) {
                 break;
             }
         }
@@ -149,7 +166,7 @@ foreach ($dir as $key => $value) {
 }
 print_r([__FILE__, __LINE__, $files]);exit;
 
-function splitLines($subject, $query)
+function splitLines($subject, $query, $chunk_length, $check_keyword)
 {
     $pattern = "/\n/";
     $variable = preg_split($pattern, $subject);
@@ -163,13 +180,14 @@ function splitLines($subject, $query)
         $match_kw =  checkKeyWord($value, $key, $query);
         if ($match_kw) {
             $k = '_'. $key;
-            $values = mb_substr($value, 0, 1000);
+            $values = mb_substr($value, 0, $chunk_length);
             $results[$k] = $values;
             $j++;
-            if (2 === $j) {
+
+            if ($check_keyword === $j) {
                 break;
             }
-// print_r([__FILE__, __LINE__, $subject]);
+print_r([__FILE__, __LINE__, $j, $check_keyword]);
 
         }
         $i++;
