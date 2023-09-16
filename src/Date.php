@@ -4,8 +4,8 @@ namespace Ext;
 
 class Date extends _Abstract
 {
-    const VERSION = '23.7.9';
-    const REVISION = 5;
+    const VERSION = '23.9.16';
+    const REVISION = 6;
 
     public static $predefined_constants = array(
         'SUNFUNCS_RET_TIMESTAMP',
@@ -107,6 +107,19 @@ class Date extends _Abstract
                 break;
         }
         return $return_all ? get_defined_vars() : $number;
+    }
+
+
+    public static function mkTime($hour, $minute = null, $second = null, $month = null, $day = null, $year = null)
+    {
+        $vars = get_defined_vars();
+        $arr = array();
+        foreach ($vars as $key => $value) {
+            $arr[$key] = (int) $value;
+        }
+        extract($arr);
+        $timestamp = mktime($hour, $minute, $second, $month, $day, $year);
+        return $timestamp;
     }
 
     /*
