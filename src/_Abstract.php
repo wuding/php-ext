@@ -4,8 +4,8 @@ namespace Ext;
 
 class _Abstract
 {
-    const VERSION = '23.7.9';
-    const REVISION = 6;
+    const VERSION = '23.9.16';
+    const REVISION = 7;
 
     public static $constants = null;
     public static $constStr = null;
@@ -114,5 +114,14 @@ class _Abstract
         $lcfirst = lcfirst($ucwords);
         $name = str_replace(' ', '', $lcfirst);
         return $name;
+    }
+
+    public static function typeInt($vars)
+    {
+        $arr = array();
+        foreach ($vars as $key => $value) {
+            $arr[$key] = (int) $value;
+        }
+        return $arr;
     }
 }
