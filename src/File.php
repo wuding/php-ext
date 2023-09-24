@@ -4,14 +4,14 @@ namespace Ext;
 
 class File extends _Abstract
 {
-    const VERSION = '23.8.11';
+    const VERSION = '23.9.23';
     const EDITION = array(
-        18,
+        19,
         0,
-        0,
+        1,
         0,
     );
-    const REVISION = 18;
+    const REVISION = 19;
 
     // 参数
     public static $filename = null;
@@ -138,7 +138,13 @@ class File extends _Abstract
             return self::$instances[$key];
         }
         self::$args[$key] = $arr;
-        return self::$instances[$key] = fopen($filename, $mode, $use_include_path, $context);
+
+        $fopen = file_exists($filename) ? fopen($filename, $mode, $use_include_path, $context) : false;
+
+
+        self::$instances[$key] = $fopen;
+
+        return self::$instances[$key];
     }
 
     // 通过键名获取指针
@@ -152,13 +158,15 @@ class File extends _Abstract
             self::$last = $key;
             return self::$instances[$key];
         }
+        return false;
         print_r(["no key $key", __FILE__, __LINE__]);
     }
 
     // 获取最后创建的指针
     public static function last($handle = null)
     {
-        return $handle = null === $handle ? self::handle(self::$last) : $handle;
+        $handle = null === $handle ? self::handle(self::$last) : $handle;
+        return $handle;
     }
 
     // 通过键名获取 fopen 参数
@@ -459,6 +467,9 @@ class File extends _Abstract
     public static function close($handle = null)
     {
         $handle = self::last($handle);
+        if (!$handle) {
+            return $handle;
+        }
         return fclose($handle);
     }
 
@@ -483,7 +494,12 @@ class File extends _Abstract
     public static function getCsv($handle = null, $length = 0, $delimiter = ',', $enclosure = '"', $escape = '\\')
     {
         $handle = self::last($handle);
-        return fgetcsv($handle, $length, $delimiter, $enclosure, $escape);
+
+        if (!$handle) {
+            return $handle;
+        }
+        $fgetcsv = fgetcsv($handle, $length, $delimiter, $enclosure, $escape);
+        return $fgetcsv;
     }
 
     public static function gets($handle = null, $length = 1024)
