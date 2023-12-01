@@ -10,3 +10,5 @@ themes/classic/views/
 *.sublime-workspace
 
 *.DS_Store
+
+/temp/logs/*.log
