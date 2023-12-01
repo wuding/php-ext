@@ -4,7 +4,7 @@ namespace Ext;
 
 class Err
 {
-    const VERSION = '23.6.16';
+    const VERSION = '23.12.1';
 
     public static $constStr = '';
     public static $predefined_constants = array(
@@ -129,14 +129,16 @@ class Err
     public static function throwException(\Throwable $exception)
     {
         if (in_array(static::$config['env'], array('development', 'test'))) {
+
             print_r([
                 __FILE__, __LINE__,
                 $exception->getMessage(), $exception->getCode(),
                 $exception->getFile(), $exception->getLine(),
                 $exception->getTrace(), $exception->getTraceAsString(),
             ]);
+
         }
 
-        return ture;
+        return true;
     }
 }
