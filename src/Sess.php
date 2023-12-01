@@ -4,8 +4,8 @@ namespace Ext;
 
 class Sess
 {
-    const VERSION = '23.7.16';
-    const REVISION = 3;
+    const VERSION = '23.12.1';
+    const REVISION = 4;
 
     public static $predefined_constants = array(
         /* session_id() string */
@@ -78,10 +78,12 @@ class Sess
     {
         static::$runtime_configuration['PHP_INI_ALL']['session.trans_sid_hosts'] = $_server_http_host = $_SERVER['HTTP_HOST'];
 
+/*
         var_dump($expression = [__FILE__, __LINE__,
             'runtime_configuration' => static::$runtime_configuration,
             'vars' => get_defined_vars(),
         ]);
+*/
 
     }
 
@@ -99,14 +101,15 @@ class Sess
 
 
         $return_values = session_start($options);
-/*
+
         $get_cookie_params = session_get_cookie_params();
 
-
+/*
         var_dump($expression = [__FILE__, __LINE__,
             'vars' => get_defined_vars(),
         ]);
 */
+
         return $return_values;
     }
     //: bool
