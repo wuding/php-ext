@@ -4,14 +4,14 @@ namespace Ext;
 
 class Variable
 {
-    const VERSION = '23.7.20';
+    const VERSION = '23.12.1';
     const EDITION = array(
         12,
-        1.,
         1,
+        3,
         0,
     );
-    const REVISION = 15;
+    const REVISION = 16;
 
     public static $return_values = array(
         'var_export' => array(
@@ -244,7 +244,7 @@ class Variable
         return $return_values;
     }
 
-    public static function pRvDvEdZvalD($func_n = 0, $param_arr)
+    public static function pRvDvEdZvalD($func_n = 0, $param_arr = [])
     {
         // $func_n = null === $func_n ? '' : $func_n;
         $function = self::_function_name($func_n);
