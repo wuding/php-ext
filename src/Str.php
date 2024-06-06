@@ -4,14 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = '23.8.9';
+    const VERSION = '24.6.4';
     const EDITION = array(
         6,
         1,
         0,
-        0,
+        1,
     );
-    const REVISION = 6;
+    const REVISION = 7;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -319,30 +319,8 @@ class Str extends _Abstract
     public static function echo()
     {
         $args = func_get_args();
-        list($info, $exit, $return, $expressions) = $args;
-        $return_values = print_r([__FILE__, __LINE__,
-                'vars' => get_defined_vars(),
-            ],
-            $return,
-        );
-/*        var_dump($expression = [__FILE__, __LINE__,
-            'vars' => get_defined_vars(),
-        ]);exit;*/
-
-        if ($return) {
-            return $return_values;
-        } else {
-            echo $return_values;
-        }
-
-        if ($exit) {
-            exit;
-        }
-/*
         $str = implode('', $args);
-        echo $str;
         return $str;
-*/
     }
     //: void
 
