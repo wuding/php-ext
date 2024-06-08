@@ -94,7 +94,12 @@ class Zlib extends _Abstract
      */
     public static function decode($data, $length = null)
     {
-        return gzdecode($data, $length);
+        $gzdecode = @gzdecode($data, $length);
+        if (!$gzdecode) {
+            #var_dump(debug_backtrace());
+            var_dump([get_defined_vars(), __LINE__, __FILE__]);exit;
+        }
+        return $gzdecode;
     }
 
     /**
@@ -130,12 +135,14 @@ class Zlib extends _Abstract
     {
         $types = is_array($types) ? $types : ['application/gzip', 'application/x-gzip', 'application/octet-stream'];
         $data = File::getContents($filename, null, null, $header);
+        #var_dump([get_defined_vars(), __LINE__, __FILE__]);exit;
         if (false === $decode) {
             return $data;
         }
         // 需要远程转本地
         $contentType = Fileinfo::contentType($filename);
         if (in_array($contentType, $types)) {
+            #print_r([get_defined_vars(), __FILE__, __LINE__]);exit;
             return self::decode($data);
         }
         return $data;
