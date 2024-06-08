@@ -5,6 +5,7 @@ use Exception;
 
 class Filesystem extends _Dynamic
 {
+    const VERSION = '24.6.8';
     public static $throwException = ['getContents'];
     public static $fp = null;
     public static $constStr = 'SEEK=SET,CUR,END;LOCK=SH,EX,UN,NB;GLOB=BRACE,ONLYDIR,MARK,NOSORT,NOCHECK,NOESCAPE,AVAILABLE_FLAGS;PATHINFO=DIRNAME,BASENAME,EXTENSION,FILENAME;FILE=USE_INCLUDE_PATH,NO_DEFAULT_CONTEXT,APPEND,IGNORE_NEW_LINES,SKIP_EMPTY_LINES,BINARY,TEXT;INI=SCANNER_NORMAL,SCANNER_RAW,SCANNER_TYPED;FNM=NOESCAPE,PATHNAME,PERIOD,CASEFOLD';
@@ -135,10 +136,11 @@ class Filesystem extends _Dynamic
     public function getContents($filename = null, $json = null, $value = null, $header = null)
     {
         $scheme = parse_url($filename, PHP_URL_SCHEME);
-        $local_path = preg_match("/^[a-z]{1}$/i", $scheme);
+        $local_path = preg_match("/^[a-z]{1}$/i", $scheme) || preg_match("/^\//", $filename);
 
         $contents = null;
         $exists = $local_path ? file_exists($filename) : $scheme;
+        #var_dump([get_defined_vars(), __LINE__, __FILE__]);exit;
         if (!$exists) {
             $contents = false;
             goto __END__;
