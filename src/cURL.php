@@ -4,7 +4,7 @@ namespace Ext;
 
 class cURL extends _Abstract
 {
-    const VERSION = 20.5871106;
+    const VERSION = '24.6.26';
 
     // 常量
     public static $constStr = '';
@@ -194,6 +194,7 @@ class cURL extends _Abstract
     {
         $return_all = null;
         $option = array();
+        $method = null;
         if (is_array($var_array)) {
             extract($var_array);
         }
@@ -211,7 +212,9 @@ class cURL extends _Abstract
         );
         $setArr = self::setOptArray(null, $options);
         $setHeader = self::setOpt(null, CURLOPT_HTTPHEADER, $http_header, true);
-        $setPost = self::setOptArray(null, $opts, $post_fields, true);
+        if (!in_array($method, ['get'])) {
+            $setPost = self::setOptArray(null, $opts, $post_fields, true);
+        }
 
         $exec = self::exec();
         $close = self::close();
