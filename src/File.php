@@ -4,14 +4,14 @@ namespace Ext;
 
 class File extends _Abstract
 {
-    const VERSION = '23.9.23';
+    const VERSION = '24.6.30';
     const EDITION = array(
-        19,
+        20,
         0,
         1,
         0,
     );
-    const REVISION = 19;
+    const REVISION = 20;
 
     // 参数
     public static $filename = null;
@@ -432,6 +432,17 @@ class File extends _Abstract
 
     public static function rename($oldname = null, $newname = null, $context = null)
     {
+        $pattern = "/#(.*)/";
+        $replacement = '';
+        $oldname = preg_replace($pattern, $replacement, $oldname);
+        $newname = preg_replace($pattern, $replacement, $newname);
+        $exists = self::exists($oldname);
+        if (false === $exists) {
+            return false;
+        }
+
+        $dirname = dirname($newname);
+        $is_dir = self::isDir($dirname);
         return rename($oldname, $newname, $context);
     }
 
@@ -452,6 +463,9 @@ class File extends _Abstract
 
     public static function unlink($filename = null, $context = null)
     {
+        $pattern = "/#(.*)/";
+        $replacement = '';
+        $filename = preg_replace($pattern, $replacement, $filename);
         if (!file_exists($filename)) {
             return false;
         }
@@ -636,7 +650,7 @@ class File extends _Abstract
     public static function size($filename = null)
     {
         $filename = null === $filename ? self::$filename : $filename;
-        return filesize($filename);
+        return @filesize($filename);
     }
 
     public static function linkInfo($path = null)
