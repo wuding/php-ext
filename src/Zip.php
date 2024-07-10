@@ -6,7 +6,7 @@ use ZipArchive;
 
 class Zip extends _Abstract
 {
-    const VERSION = '21.9.28';
+    const VERSION = '24.7.10';
 
     // 运行时
     public static $zip = null;
@@ -18,6 +18,9 @@ class Zip extends _Abstract
 
     public static function __callStatic($name, $arguments)
     {
+        if (null === self::$zip) {
+            $Zip = new static;
+        }
         return call_user_func_array(array(self::$zip, $name), $arguments);
     }
 
