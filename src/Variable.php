@@ -4,14 +4,14 @@ namespace Ext;
 
 class Variable
 {
-    const VERSION = '23.12.1';
+    const VERSION = 24.0807;
     const EDITION = array(
         12,
         1,
         3,
-        0,
+        1,
     );
-    const REVISION = 16;
+    const REVISION = 17;
 
     public static $return_values = array(
         'var_export' => array(
@@ -217,7 +217,7 @@ class Variable
      *
      */
 
-    public static function export($value, bool $return = false): ?string
+    public static function export($value, bool $return = false)
     {
         $return_values = var_export($value, $return);
         return $return_values;
