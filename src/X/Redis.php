@@ -4,12 +4,14 @@ namespace Ext\X;
 
 class Redis
 {
-    const VERSION = '21.1.23';
+    const VERSION = 24.0807;
+    const REVISION = 5;
 
     // 运行时
     public static $connects = array();
     public $key = null;
     public $init = null;
+    public $auth = null;
 
     // 通过数组初始化
     public function __construct($param_arr = null)
@@ -44,7 +46,7 @@ class Redis
     }
 
     // 初始化连接，不同配置生成多个实例
-    public function init($host = null, $port = null, $timeout = null, $reserved = null, $retry_interval = null, $read_timeout = null, $option = array(), $method = 'connect')
+    public function init($host = null, $port = null, $timeout = null, $reserved = null, $retry_interval = null, $read_timeout = null, $option = array(), $method = 'connect', $connect = null)
     {
         //=s
         // 计划：get_defined_vars
@@ -61,10 +63,17 @@ class Redis
         }
 
         //=j
+        unset($param_arr[8]);
         unset($param_arr[7]);
+        if (6 === $connect) {
+            unset($param_arr[6]);
+        }
         $Redis = new \Redis();
         try {
             $this->init = call_user_func_array(array($Redis, $method), $param_arr);
+            if (6 === $connect) {
+                $this->auth = call_user_func_array(array($Redis, 'auth'), [$option['auth']]);
+            }
         } catch (\RedisException $e) {
             print_r([__FILE__, __LINE__, $e->getMessage()]);
         }
