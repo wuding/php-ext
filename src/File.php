@@ -4,14 +4,14 @@ namespace Ext;
 
 class File extends _Abstract
 {
-    const VERSION = '24.6.30';
+    const VERSION = 24.0807;
     const EDITION = array(
-        20,
+        21,
         0,
         1,
         0,
     );
-    const REVISION = 20;
+    const REVISION = 21;
 
     // 参数
     public static $filename = null;
@@ -412,7 +412,13 @@ class File extends _Abstract
 
     public static function mkDir($pathname = null, $mode = 0777, $recursive = true, $context = null)
     {
-        return mkdir($pathname, $mode, $recursive, $context);
+        $mkdir = null;
+        if (null === $context) {
+            $mkdir = mkdir($pathname, $mode, $recursive);
+        } else {
+            $mkdir = mkdir($pathname, $mode, $recursive, $context);
+        }
+        return $mkdir;
     }
 
     public static function moveUploadedFile($filename = null, $destination = null)
