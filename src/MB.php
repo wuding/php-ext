@@ -4,14 +4,14 @@ namespace Ext;
 
 class MB extends _Abstract
 {
-    const VERSION = '23.6.24';
+    const VERSION = 24.0811;
     const EDITION = array(
-        2,
+        3,
         0,
         0,
         0,
     );
-    const REVISION = 2;
+    const REVISION = 3;
 
     /*
     +---------------------------------------------+
@@ -36,7 +36,7 @@ class MB extends _Abstract
             $return_values[] = $return_value;
         }
 
-        if ($options['var_dump']) {
+        if ($options['var_dump'] ?? null) {
             var_dump($expression = [__FILE__, __LINE__,
                 [
                     'vars' => get_defined_vars(),
@@ -58,5 +58,28 @@ class MB extends _Abstract
     {
         // $return_values = mb_str_split($string, $length, $encoding);
         return $return_values;
+    }
+
+
+    /*
+    +---------------------------------------------+
+    + Count
+    +---------------------------------------------+
+    */
+
+    public static function strCount($string)
+    {
+        $variable = mb_str_split($string);
+        $array = array();
+        foreach ($variable as $key) {
+            if (array_key_exists($key, $array)) {
+                $i = $array[$key];
+                $i++;
+                $array[$key] = $i;
+            } else {
+                $array[$key] = 1;
+            }
+        }
+        return $array;
     }
 }
