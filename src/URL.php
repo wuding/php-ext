@@ -4,14 +4,14 @@ namespace Ext;
 
 class URL extends _Abstract
 {
-    const VERSION = '23.7.19';
+    const VERSION = 24.0813;
     const EDITION = array(
-        4,
+        5,
         2,
         0,
         0,
     );
-    const REVISION = 5;
+    const REVISION = 6;
 
 
     public static $constStr = 'PHP_URL=SCHEME,HOST,PORT,USER,PASS,PATH,QUERY,FRAGMENT;PHP_QUERY=RFC1738,RFC3986';
@@ -152,9 +152,9 @@ class URL extends _Abstract
 
     }
 
-    public static function fullUrl($url)
+    public static function fullUrl($url, $ignore = array())
     {
-        $pieces = self::component($url);
+        $pieces = self::component($url, $ignore);
         return $str = implode('', $pieces);
     }
 
@@ -171,7 +171,7 @@ class URL extends _Abstract
         return $str = implode('', $pieces);
     }
 
-    public static function component($url)
+    public static function component($url, $ignore = array())
     {
         $var_array = parse_url($url);
         extract($var_array);
@@ -196,7 +196,9 @@ class URL extends _Abstract
         $pieces = array();
         $keys = preg_split("/,/", self::$arrange);
         foreach ($keys as $key) {
-            $pieces[$key] = $var_array[$key] ?? null;
+            if (!in_array($key, $ignore)) {
+                $pieces[$key] = $var_array[$key] ?? null;
+            }
         }
         return $pieces;
     }
