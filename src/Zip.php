@@ -6,16 +6,24 @@ use ZipArchive;
 
 class Zip extends _Abstract
 {
-    const VERSION = 24.0715;
+    const VERSION = 24.0813;
+    const REVISION = 4;
 
     // 运行时
     public static $zip = null;
+    public static $zip_file = null;
+    public static $file = null;
 
     public function __construct($filename = null)
     {
         self::$zip = new ZipArchive;
 
         if ($filename) {
+            $filenames = self::_fileNames($filename, true);
+            if ($filenames) {
+                $filename = $filenames[0];
+            }
+
             $flags = ZipArchive::CREATE;
             $open = self::$zip->open($filename, $flags);
         }
@@ -35,6 +43,21 @@ class Zip extends _Abstract
             $Zip = new static;
         }
         return self::$zip->$name;
+    }
+
+    public static function _fileNames($filename, $set_property = null)
+    {
+        $pos = strpos($filename, '::');
+        if (false === $pos) {
+            return false;
+        }
+
+        $result = self::getFilenames($filename, $pos);
+        if ($set_property) {
+            self::$zip_file = $result[0];
+            self::$file = $result[1];
+        }
+        return $result;
     }
 
     public static function getContents($filename = null, $len = null)
@@ -114,5 +137,14 @@ class Zip extends _Abstract
             $pieces[] = $filename;
         }
         return $pieces;
+    }
+
+    public static function del($file = null)
+    {
+        $file = null === $file ? sefl::$file : $file;
+        if (is_int($file)) {
+            return self::deleteIndex($file);
+        }
+        return self::deleteName($file);
     }
 }
