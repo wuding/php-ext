@@ -11,7 +11,7 @@ class URL extends _Abstract
         0,
         0,
     );
-    const REVISION = 6;
+    const REVISION = 7;
 
 
     public static $constStr = 'PHP_URL=SCHEME,HOST,PORT,USER,PASS,PATH,QUERY,FRAGMENT;PHP_QUERY=RFC1738,RFC3986';
@@ -152,9 +152,9 @@ class URL extends _Abstract
 
     }
 
-    public static function fullUrl($url, $ignore = array())
+    public static function fullUrl($url, $ignore = array(), $replace = array())
     {
-        $pieces = self::component($url, $ignore);
+        $pieces = self::component($url, $ignore, $replace);
         return $str = implode('', $pieces);
     }
 
@@ -171,7 +171,7 @@ class URL extends _Abstract
         return $str = implode('', $pieces);
     }
 
-    public static function component($url, $ignore = array())
+    public static function component($url, $ignore = array(), $replace = array())
     {
         $var_array = parse_url($url);
         extract($var_array);
@@ -193,6 +193,9 @@ class URL extends _Abstract
         if ($port ?? null) {
             $var_array['port'] = ":$port";
         }
+        if ($path ?? null) {
+            $var_array['path'] = preg_replace("/\/+/", '/', $path);
+        }
         $pieces = array();
         $keys = preg_split("/,/", self::$arrange);
         foreach ($keys as $key) {
@@ -200,6 +203,7 @@ class URL extends _Abstract
                 $pieces[$key] = $var_array[$key] ?? null;
             }
         }
+        $pieces = array_merge($pieces, $replace);
         return $pieces;
     }
 
