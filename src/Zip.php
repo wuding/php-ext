@@ -6,8 +6,8 @@ use ZipArchive;
 
 class Zip extends _Abstract
 {
-    const VERSION = 24.0813;
-    const REVISION = 4;
+    const VERSION = 24.0814;
+    const REVISION = 5;
 
     // 运行时
     public static $zip = null;
@@ -141,7 +141,7 @@ class Zip extends _Abstract
 
     public static function del($file = null)
     {
-        $file = null === $file ? sefl::$file : $file;
+        $file = null === $file ? self::$file : $file;
         if (is_int($file)) {
             return self::deleteIndex($file);
         }
