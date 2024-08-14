@@ -4,14 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = '24.6.4';
+    const VERSION = 24.0814;
     const EDITION = array(
-        6,
+        7,
         1,
         0,
         1,
     );
-    const REVISION = 7;
+    const REVISION = 8;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -189,6 +189,28 @@ class Str extends _Abstract
         $return_values = str_split($string, $length);
     }
     //: array
+
+    public static function implode($separator, $array, $ignore = array())
+    {
+        if ($ignore) {
+            $arr = array();
+            foreach ($array as $subject) {
+                $skip = null;
+                foreach ($ignore as $pattern) {
+                    if (preg_match($pattern, $subject)) {
+                        $skip = 1;
+                        break 1;
+                    }
+                }
+                if (!$skip) {
+                    $arr[] = $subject;
+                }
+            }
+            $array = $arr;
+        }
+
+        return implode($separator, $array);
+    }
 
     /*
     +---------------------------------------------+
