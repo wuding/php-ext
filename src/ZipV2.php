@@ -7,7 +7,7 @@ use ZipArchive;
 class ZipV2
 {
     const VERSION = 24.0814;
-    const REVISION = 1;
+    const REVISION = 2;
 
     public static $zip = null;
     public static $zip_file = null;
@@ -76,6 +76,18 @@ class ZipV2
             self::$filename = $filename;
         }
         return $result;
+    }
+
+    public static function wrapper($filename, $glue = '::')
+    {
+        $pattern = "/(.*)($glue)(.*)/i";
+        if (!preg_match($pattern, $filename, $matches)) {
+            return false;
+        }
+
+        $matches[0] = 'zip://';
+        $matches[2] = '#';
+        return implode('', $matches);
     }
 
     public static function getFilenames($filename, $pos = null)
