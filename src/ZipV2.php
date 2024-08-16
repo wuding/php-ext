@@ -6,8 +6,8 @@ use ZipArchive;
 
 class ZipV2
 {
-    const VERSION = 24.0814;
-    const REVISION = 2;
+    const VERSION = 24.0816;
+    const REVISION = 3;
 
     public static $zip = null;
     public static $zip_file = null;
@@ -123,5 +123,22 @@ class ZipV2
         }
         return $add;
     }
-}
 
+    public static function del($file = null)
+    {
+        if (null === $file) {
+            $file = self::$file;
+
+        } elseif (is_string($file)) {
+            $pos = strpos($file, '::');
+            if (false !== $pos) {
+                list($zipfile, $file) = self::getFilenames($file, $pos);
+            }
+
+        } elseif (is_int($file)) {
+            return self::deleteIndex($file);
+        }
+
+        return self::deleteName($file);
+    }
+}
