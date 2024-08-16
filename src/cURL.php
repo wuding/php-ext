@@ -4,7 +4,8 @@ namespace Ext;
 
 class cURL extends _Abstract
 {
-    const VERSION = 24.0710;
+    const VERSION = 24.0816;
+    const REVISION = 6;
 
     // 常量
     public static $constStr = '';
@@ -203,6 +204,7 @@ class cURL extends _Abstract
         $options = array(
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false,
         );
         foreach ($option as $key => $value) {
             $options[$key] = $value;
