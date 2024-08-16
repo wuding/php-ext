@@ -7,7 +7,7 @@ use ZipArchive;
 class ZipV2
 {
     const VERSION = 24.0816;
-    const REVISION = 3;
+    const REVISION = 4;
 
     public static $zip = null;
     public static $zip_file = null;
@@ -44,14 +44,14 @@ class ZipV2
         return call_user_func_array(array($static, $name), $arguments);
     }
 
-    public static function _init($filename = null)
+    public static function _init($filename = null, $only_zip = null)
     {
         if (!$filename) {
             return false;
         }
 
         self::$zip = new ZipArchive;
-        $filenames = self::_fileNames($filename, true);
+        $filenames = self::_fileNames($filename, true, $only_zip);
         if ($filenames) {
             $filename = $filenames[0];
         }
@@ -62,10 +62,15 @@ class ZipV2
         $open = self::$zip->open($filename, $flags);
     }
 
-    public static function _fileNames($filename, $set_property = null)
+    public static function _fileNames($filename, $set_property = null, $only_zip = null)
     {
         $pos = strpos($filename, '::');
         if (false === $pos) {
+            if ($filename && $only_zip) {
+                self::$zip_file = $filename;
+                return array($filename, null);
+            }
+
             return false;
         }
 
@@ -124,6 +129,40 @@ class ZipV2
         return $add;
     }
 
+    public static function stat($filename = null, $flags = 0)
+    {
+        $pos = strpos($filename, '::');
+        if (false !== $pos) {
+
+        } elseif (null !== self::$zip) {
+            return self::statName($filename, $flags);
+
+        } else {
+            return null;
+        }
+
+        list($zipfile, $file) = self::_fileNames($filename, true);
+        $arr = self::statName($file);
+        return $arr;
+    }
+
+    public static function getNames($file = null)
+    {
+        if (null !== $file) {
+            self::_init($file, true);
+        } elseif (null === self::$zip) {
+            return false;
+        }
+
+        $numFiles = self::$zip->numFiles;
+        $pieces = array();
+        for ($i = 0; $i < $numFiles; $i++) {
+            $filename = self::$zip->getNameIndex($i);
+            $pieces[] = $filename;
+        }
+        return $pieces;
+    }
+
     public static function del($file = null)
     {
         if (null === $file) {
@@ -132,10 +171,14 @@ class ZipV2
         } elseif (is_string($file)) {
             $pos = strpos($file, '::');
             if (false !== $pos) {
-                list($zipfile, $file) = self::getFilenames($file, $pos);
+                list($zipfile, $file) = self::_fileNames($file, true);
             }
 
-        } elseif (is_int($file)) {
+        } elseif (null === self::$zip) {
+            return false;
+        }
+
+        if (is_int($file)) {
             return self::deleteIndex($file);
         }
 
