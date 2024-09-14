@@ -4,14 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = 24.0814;
+    const VERSION = 24.0822;
     const EDITION = array(
-        7,
+        8,
         1,
         0,
         1,
     );
-    const REVISION = 8;
+    const REVISION = 9;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -440,4 +440,19 @@ class Str extends _Abstract
     }
     //: string
 
+    public static function parse($string, $pattern = null)
+    {
+        $pattern = $pattern ?: '/([^,=]+)=([^,=]+)/';
+
+        $arr = array();
+        if (preg_match_all($pattern, $string, $matches)) {
+            $variable = $matches[1];
+            $values = $matches[2];
+            foreach ($variable as $key => $value) {
+                $arr[$value] = $values[$key];
+            }
+        }
+        return $arr;
+    }
+    //: array
 }
