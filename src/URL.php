@@ -4,14 +4,14 @@ namespace Ext;
 
 class URL extends _Abstract
 {
-    const VERSION = 24.0813;
+    const VERSION = 24.0820;
     const EDITION = array(
-        5,
+        6,
         2,
         0,
         0,
     );
-    const REVISION = 7;
+    const REVISION = 8;
 
 
     public static $constStr = 'PHP_URL=SCHEME,HOST,PORT,USER,PASS,PATH,QUERY,FRAGMENT;PHP_QUERY=RFC1738,RFC3986';
@@ -78,6 +78,23 @@ class URL extends _Abstract
     {
         $arg_separator = null === $arg_separator ? self::$arg_separator : $arg_separator;
         return http_build_query($query_data, $numeric_prefix, $arg_separator, $enc_type);
+    }
+
+    public static function query($variable)
+    {
+        $haystack = array(
+            '',
+            null,
+        );
+
+        $query_data = array();
+        foreach ($variable as $key => $value) {
+            if (!in_array($value, $haystack)) {
+                $query_data[$key] = $value;
+            }
+        }
+
+        return http_build_query($query_data);
     }
 
 
