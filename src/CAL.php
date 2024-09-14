@@ -4,8 +4,8 @@ namespace Ext;
 
 class CAL extends _Abstract
 {
-    const VERSION = '23.9.15';
-    const REVISION = 2;
+    const VERSION = 24.0811;
+    const REVISION = 3;
 
     public static $constStr = 'CAL=EASTER_DEFAULT,EASTER_ROMAN,EASTER_ALWAYS_GREGORIAN,EASTER_ALWAYS_JULIAN,GREGORIAN,JULIAN,JEWISH,FRENCH,NUM_CALS,JEWISH_ADD_ALAFIM_GERESH,JEWISH_ADD_ALAFIM,JEWISH_ADD_GERESHAYIM,DOW_DAYNO,DOW_SHORT,MONTH_GREGORIAN_SHORT,MONTH_GREGORIAN_LONG,MONTH_JULIAN_SHORT,MONTH_JULIAN_LONG,MONTH_JEWISH,MONTH_FRENCH';
 
@@ -54,5 +54,10 @@ class CAL extends _Abstract
     {
         $day_number = cal_to_jd($calendar, $month, $day, $year);
         return $day_number;
+    }
+
+    public static function easterDate($year = null, $mode = CAL_EASTER_DEFAULT)
+    {
+        return easter_date($year, $mode);
     }
 }
