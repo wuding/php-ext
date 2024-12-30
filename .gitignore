@@ -6,3 +6,6 @@ protected/data/*.db
 themes/classic/views/
 
 /vendor/
+
+*.sublime-project
+*.sublime-workspace
