@@ -82,6 +82,18 @@ class PhpRedis
     {
         $var_array = self::args(__FUNCTION__, func_get_args(), true);
         extract($var_array);
+
+        // 旧版连接和验证
+        $ver = phpversion('redis');
+        if (false !== $ver) {
+            $comp = version_compare($ver, '5.3.0', '>=');
+            if (false === $comp) {
+                $conn = self::connect($host, $port, $timeout, $reserved, $retry_interval, $read_timeout);
+                $auth = self::auth($option['auth']);
+                return $conn;
+            }
+        }
+
         return $conn = self::connect($host, $port, $timeout, $reserved, $retry_interval, $read_timeout, $option);
         print_r(get_defined_vars());exit;
     }
