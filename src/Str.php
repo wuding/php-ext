@@ -4,20 +4,25 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = 24.0822;
+    const VERSION = 25.0113;
     const EDITION = array(
         8,
         1,
         0,
         1,
     );
-    const REVISION = 9;
+    const REVISION = 10;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
     // 方法默认值
     public static $args = [
         'chunkSplit' => [null, 76, "\r\n"],
+        'strlen' => [null],
+    ];
+
+    static $args_type = [
+        'strlen' => ['string' => 'string'],
     ];
 
     // 默认参数值
@@ -82,8 +87,30 @@ class Str extends _Abstract
     +---------------------------------------------+
     */
 
-    public static function trim($str = null, $character_mask = null)
+    public static function trim($str = null, $character_mask = null, $var_array = [])
     {
+        $prefix = $keep = null;
+        extract(Arrays::extract($var_array));
+
+        $str = self::arg_pick_out($str);
+        if (is_array($str)) {
+            $arr = [];
+            foreach ($str as $key => $value) {
+                if ($prefix) {
+                    $prefix_key = $prefix . $key;
+                    $arr[$prefix_key] = self::trim($value, $character_mask);
+                    // 保留原有
+                    if ($keep) {
+                        $arr[$key] = $value;
+                    }
+                    continue 1;
+                }
+
+                $arr[$key] = self::trim($value, $character_mask);
+            }
+            return $arr;
+        }
+
         if (null === $character_mask) {
             return trim($str);
         }
@@ -307,10 +334,12 @@ class Str extends _Abstract
     }
     //: int
 
-    public static function strlen()
+    public static function strlen($string)
     {
-        return null;
+        $strlen = strlen($string);
+        return $strlen;
     }
+    //: int
 
     /*
     +---------------------------------------------+
