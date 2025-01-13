@@ -4,8 +4,8 @@ namespace Ext;
 
 class _Abstract
 {
-    const VERSION = '23.9.16';
-    const REVISION = 7;
+    const VERSION = 25.0114;
+    const REVISION = 8;
 
     public static $constants = null;
     public static $constStr = null;
@@ -123,5 +123,45 @@ class _Abstract
             $arr[$key] = (int) $value;
         }
         return $arr;
+    }
+
+    public static function arg_key_format($var, $alway = null)
+    {
+        $string = $haystack = $var;
+        $delimiter = $needle = ',';
+
+        if (is_array($var)) {
+            return $var;
+
+        } elseif (is_string($var)) {
+            $strpos = strpos($haystack, $needle);
+            if (false === $strpos) {
+                if ($alway) {
+                    return [$var];
+                }
+                return $var;
+            }
+
+        } else {
+            print_r([__LINE__, __FILE__]);
+            var_dump(get_defined_vars());
+            exit;
+        }
+
+        return $explode = explode($delimiter, $string);
+    }
+
+    public static function arg_pick_out($str)
+    {
+        // 从对象数组中取部分
+        if (is_object($str)) {
+            list($data, $var) = (array) $str;
+            $variable = self::arg_key_format($var, true);
+            $str = [];
+            foreach ($variable as $key) {
+                $str[$key] = $data[$key];
+            }
+        }
+        return $str;
     }
 }
