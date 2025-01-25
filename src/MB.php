@@ -4,14 +4,24 @@ namespace Ext;
 
 class MB extends _Abstract
 {
-    const VERSION = 24.0811;
+    const VERSION = 25.0104;
     const EDITION = array(
         3,
         0,
         0,
         0,
     );
-    const REVISION = 3;
+    const REVISION = 4;
+
+    // 方法版本要求
+    /*
+    null 不执行
+    true 强制执行
+    false 使用替代
+    */
+    public static $versionLt = [
+        'trim' => false,
+    ];
 
     /*
     +---------------------------------------------+
@@ -81,5 +91,51 @@ class MB extends _Abstract
             }
         }
         return $array;
+    }
+
+    /*
+    +---------------------------------------------+
+    + format
+    +---------------------------------------------+
+    */
+
+    /*
+IDSP?
+'　'
+    */
+
+    public static function trim($string, $characters = null, $encoding = null)
+    {
+        // s
+        // f
+        $return_values = $return_value = null;
+
+        // z
+        $vc = version_compare(phpversion(), '8.4.0', '>=');
+
+        // l
+        if (true === $vc) {
+            __EX__:
+            // s
+            $return_value = mb_trim($string, $characters, $encoding);
+
+        } else {
+            $pattern = "[　]+";
+            $mer = mb_ereg_replace($pattern, '', $string);
+            $variable = self::$versionLt['trim'];
+            if (null === $variable) {
+                $return_value = $mer;
+            } elseif (false === $variable) {
+                $return_value = trim($mer);
+            } else {
+                goto __EX__;
+            }
+        }
+
+        // j
+
+        // g
+        $return_values = $return_value;
+        return $return_values;
     }
 }
