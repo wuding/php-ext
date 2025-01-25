@@ -4,14 +4,14 @@ namespace Ext;
 
 class URL extends _Abstract
 {
-    const VERSION = 24.0820;
+    const VERSION = 25.0112;
     const EDITION = array(
         6,
         2,
         0,
         0,
     );
-    const REVISION = 8;
+    const REVISION = 9;
 
 
     public static $constStr = 'PHP_URL=SCHEME,HOST,PORT,USER,PASS,PATH,QUERY,FRAGMENT;PHP_QUERY=RFC1738,RFC3986';
@@ -22,6 +22,19 @@ class URL extends _Abstract
 
     public static $arg_separator = null;
     public static $arrange = 'scheme,user,pass,host,port,path,query,fragment';
+    public static $enc_type = PHP_QUERY_RFC3986;
+    /*
+    PHP_QUERY_RFC1738 +
+    PHP_QUERY_RFC3986 %20
+    */
+
+    static $args = [
+        'base64_decode' => [null, false],
+    ];
+
+    static $args_type = [
+        'base64_decode' => ['string' => 'string', 'strict' => 'bool'],
+    ];
 
     public function __construct()
     {
@@ -49,6 +62,12 @@ class URL extends _Abstract
         return base64_encode($data);
     }
 
+    static function base64_decode($string = null, $strict = false)
+    {
+        return base64_decode($string, $strict);
+    }
+    //: string|false
+
 
     /*
     +---------------------------------------+
@@ -74,27 +93,58 @@ class URL extends _Abstract
     +---------------------------------------+
     */
 
-    public static function httpBuildQuery($query_data = null, $numeric_prefix = null, $arg_separator = null, $enc_type = PHP_QUERY_RFC1738)
+    public static function httpBuildQuery($query_data = null, $numeric_prefix = null, $arg_separator = null, $enc_type = null, $var_array = [])
     {
-        $arg_separator = null === $arg_separator ? self::$arg_separator : $arg_separator;
-        return http_build_query($query_data, $numeric_prefix, $arg_separator, $enc_type);
+        $keep = null;
+        $question_mark = null;
+        extract(Arrays::extract($var_array));
+
+        // 值为 null 也保留
+        if ($keep) {
+            foreach ($query_data as $key => &$value) {
+                $value = null === $value ? '' : $value;
+            }
+        }
+
+        $arg_separator = null === $arg_separator ? self::$ini['arg_separator.output'] : $arg_separator;
+        $enc_type = null === $enc_type ? self::$enc_type : $enc_type;
+
+        $query = http_build_query($query_data, $numeric_prefix, $arg_separator, $enc_type);
+        if ($question_mark) {
+            $query = $query ? $question_mark . $query : $query;
+        }
+        return $query;
     }
 
-    public static function query($variable)
+    public static function query($variable, $numeric_prefix = null, $arg_separator = null, $enc_type = null, $var_array = [])
     {
         $haystack = array(
             '',
             null,
         );
+        $exclude = [];
+        extract(Arrays::extract($var_array));
+        if (!is_array($variable)) {
+            print_r(debug_backtrace());
+            exit;
+        }
 
-        $query_data = array();
         foreach ($variable as $key => $value) {
-            if (!in_array($value, $haystack)) {
-                $query_data[$key] = $value;
+            if (in_array($key, $exclude)) {
+                continue;
+            }
+
+            if (in_array($value, $haystack, true)) {
+                unset($variable[$key]);
             }
         }
 
-        return http_build_query($query_data);
+        return self::httpBuildQuery($variable, $numeric_prefix, $arg_separator, $enc_type, $var_array);
+    }
+
+    public static function http_build_query($var_array = null, $query_data = null, $numeric_prefix = null, $arg_separator = null, $enc_type = null)
+    {
+        return self::query($query_data, $numeric_prefix, $arg_separator, $enc_type, $var_array);
     }
 
 
@@ -109,12 +159,36 @@ class URL extends _Abstract
         return parse_url($url, $component);
     }
 
+    static function parse_url($var_array = [], $url = null, $component = -1)
+    {
+        if (is_array($var_array)) {
+            extract($var_array);
+        }
+
+        return self::parse($url, $component);
+    }
+    //: int|string|array|null|false
+
+    static function url($parse_url)
+    {
+        $glue = '/';
+/*        $pieces = [
+            $pathinfo['dirname'],
+            $pathinfo['basename'],
+        ];*/
+        return $implode = implode($glue, $parse_url);
+    }
 
 
     /*
     +---------------------------------------+
     + 编解码 - URL
     +---------------------------------------+
+    */
+
+
+    /*
+    调用函数
     */
 
     public static function rawDecode($str = null)
@@ -140,22 +214,60 @@ class URL extends _Abstract
         return urldecode($str);
     }
 
-    public static function encode($str = null, $raw = false)
+    public static function encode($str = null, $raw = false, $prefix = null, $keep = null)
     {
+        // 从对象数组中取部分
+/*        if (is_object($str)) {
+            list($data, $var) = (array) $str;
+            $variable = self::arg_key_format($var, true);
+            $str = [];
+            foreach ($variable as $key) {
+                $str[$key] = $data[$key];
+            }
+        }*/
+
+        $str = self::arg_pick_out($str);
         if (is_array($str)) {
             $arr = array();
             foreach ($str as $key => $value) {
-                $arr[$key] = self::encode($value, $raw);
+                $encode = self::encode($value, $raw);
+                // 加上前缀
+                if ($prefix) {
+                    $prefix_key = $prefix . $key;
+                    $arr[$prefix_key] = $encode;
+                    // 保持原有
+                    if ($keep) {
+                        $arr[$key] = $value;
+                    }
+                    continue 1;
+                }
+
+                $arr[$key] = $encode;
             }
             return $arr;
         }
 
         if ($raw) {
-            return rawurlencode($str);
+            return self::rawEncode($str);
         }
         return urlencode($str);
     }
     //: string
+
+
+    /*
+    原始函数名
+    */
+
+    public static function rawurlencode($string, $prefix = null, $keep = null)
+    {
+        return self::encode($string, true, $prefix, $keep);
+    }
+
+    public static function urlencode($string)
+    {
+        return self::encode($string);
+    }
 
 
     /*
@@ -190,7 +302,7 @@ class URL extends _Abstract
 
     public static function component($url, $ignore = array(), $replace = array())
     {
-        $var_array = parse_url($url);
+        $var_array = is_array($url) ? $url : parse_url($url);
         extract($var_array);
         if ($scheme ?? null) {
             $var_array['scheme'] .= '://';
