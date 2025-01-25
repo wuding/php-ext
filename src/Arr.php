@@ -4,14 +4,14 @@ namespace Ext;
 
 class Arr extends _Abstract
 {
-    const VERSION = '23.7.11';
+    const VERSION = 25.0117;
     const EDITION = array(
         6,
         2,
         2,
         1,
     );
-    const REVISION = 12;
+    const REVISION = 13;
 
     public static $predefined_constants = array(
         /* array_change_key_case() */
@@ -180,9 +180,23 @@ class Arr extends _Abstract
 
     public static function merge()
     {
+        $replace_key = null;
         $args = func_get_args();
-        $return_values = array_merge();
-        return $return_values;
+        $var_array = $args[0] ?? [];
+        unset($args[0]);
+        extract($var_array);
+
+        $array = [];
+        foreach ($args as $k => $variable) {
+            foreach ($variable as $key => $value) {
+                if (!$replace_key && array_key_exists($key, $array)) {
+                    print_r([$key, $value, $array, __LINE__,__FILE__]);
+                    exit;
+                }
+                $array[$key] = $value;
+            }
+        }
+        return $array;
     }
     //: array
 
