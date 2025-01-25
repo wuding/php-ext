@@ -4,14 +4,14 @@ namespace Ext;
 
 class File extends _Abstract
 {
-    const VERSION = 24.0807;
+    const VERSION = 25.0110;
     const EDITION = array(
         21,
         0,
         1,
         0,
     );
-    const REVISION = 21;
+    const REVISION = 22;
 
     // 参数
     public static $filename = null;
@@ -211,12 +211,53 @@ class File extends _Abstract
 
     public static function pathInfo($path = null, $options = PATHINFO_DIRNAME | PATHINFO_BASENAME | PATHINFO_EXTENSION | PATHINFO_FILENAME)
     {
-        return pathinfo($path, $options);
+        $pathinfo = pathinfo($path, $options);
+        $pattern = "#\\\+#";
+        $replacement = '/';
+        $pathinfo['dirname'] = preg_replace($pattern, $replacement, $pathinfo['dirname']);
+
+        return $pathinfo;
     }
 
     public static function realPath($path = null)
     {
         return realpath($path);
+    }
+
+    static function path($var_array = [], $pathinfo = [], $basename = 'index.html')
+    {
+        if (is_array($var_array)) {
+            extract($var_array);
+        }
+
+        if (!$pathinfo['basename']) {
+            $pathinfo['basename'] = $basename;
+        }
+
+        $glue = '/';
+        $pieces = [
+            $pathinfo['dirname'],
+            $pathinfo['basename'],
+        ];
+        $implode = implode($glue, $pieces);
+
+        $pattern = "#/+#";
+        $replacement = '/';
+        $res = preg_replace($pattern, $replacement, $implode);
+        return $res;
+    }
+    //: string
+
+    static function name($url)
+    {
+        $pattern = "#:+#";
+        $replacement = '';
+        $preg_replace = preg_replace($pattern, $replacement, $url);
+
+        $pattern = "#/+#";
+        $replacement = '/';
+        $res = preg_replace($pattern, $replacement, $preg_replace);
+        return $res;
     }
 
     /*
