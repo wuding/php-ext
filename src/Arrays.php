@@ -4,8 +4,8 @@ namespace Ext;
 
 class Arrays
 {
-    const VERSION = 25.0113;
-    const REVISION = 2;
+    const VERSION = 25.0125;
+    const REVISION = 3;
     public static $arr = null;
 
     public function __construct($arr = null)
@@ -56,5 +56,44 @@ class Arrays
             unset($arr[$value]);
         }
         return $arr;
+    }
+
+    static function array_shift(&$array, $var_array = [])
+    {
+        if (is_numeric($var_array)) {
+            $var_array = [
+                'gt' => $var_array,
+            ];
+        } elseif (is_bool($var_array)) {
+            $var_array = [
+                'reference' => $var_array,
+            ];
+        }
+
+        // 引用赋值
+        $reference = true;
+        // 大于
+        $gt = null;
+        extract($var_array);
+
+        $count = count($array);
+        if (is_numeric($gt)) {
+            if ($count > $gt) {
+                unset($var_array['gt']);
+                return self::array_shift($array, $var_array);
+
+            } else {
+                return null;
+            }
+        }
+
+        if (!$reference) {
+            $arr = $array;
+            $array_shift = array_shift($arr);
+
+        } else {
+            $array_shift = array_shift($array);
+        }
+        return $array_shift;
     }
 }
