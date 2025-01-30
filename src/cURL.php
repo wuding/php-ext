@@ -4,8 +4,8 @@ namespace Ext;
 
 class cURL extends _Abstract
 {
-    const VERSION = 24.0816;
-    const REVISION = 6;
+    const VERSION = 25.0102;
+    const REVISION = 7;
 
     // 常量
     public static $constStr = '';
@@ -201,20 +201,27 @@ class cURL extends _Abstract
             extract($var_array);
         }
 
+        // 通用选项
         $options = array(
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_SSL_VERIFYHOST => false,
         );
+        // 额外选项
         foreach ($option as $key => $value) {
             $options[$key] = $value;
         }
+        // POST
         $opts = array(
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => $post_fields,
         );
+
+        // 批量选项
         $setArr = self::setOptArray(null, $options);
+        // HTTP HEADER
         $setHeader = self::setOpt(null, CURLOPT_HTTPHEADER, $http_header, true);
+        // POST
         if (!in_array($method, ['get'])) {
             $setPost = self::setOptArray(null, $opts, $post_fields, true);
         }
