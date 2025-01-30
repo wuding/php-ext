@@ -4,7 +4,7 @@ namespace Ext\Appendices\Indexes;
 
 class FunctionAndMethodListing
 {
-    const VERSION = '23.5.11';
+    const VERSION = 25.0108;
 
     public $a =  array(
         'abs' => 'Absolute value',
@@ -1860,7 +1860,7 @@ class FunctionAndMethodListing
         'frenchtojd' => 'Converts a date from the French Repulican Calendar to a Julian Day Count',
         'fscanf' => 'Parses input from a file according to a fromat',
         'fseek' => 'Seeks on a file pointer',
-        'fscokopen' => 'Open Internet or Unix domain socker connection',
+        'fsockopen' => 'Open Internet or Unix domain socker connection',
         'fstat' => 'Gets infomation about a file using an open file pointer',
         'fsync' => 'Synchronizes changes to the file (including meta-data)',
         'ftell' => 'Returns the current position of the file read/write pointer',
