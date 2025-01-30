@@ -4,14 +4,14 @@ namespace Ext;
 
 class MB extends _Abstract
 {
-    const VERSION = 25.0104;
+    const VERSION = 25.0130;
     const EDITION = array(
         3,
         0,
         0,
         0,
     );
-    const REVISION = 4;
+    const REVISION = 5;
 
     // 方法版本要求
     /*
@@ -137,5 +137,29 @@ IDSP?
         // g
         $return_values = $return_value;
         return $return_values;
+    }
+
+    /*
+    +---------------------------------------------+
+    + Regular expression
+    +---------------------------------------------+
+    */
+
+    static function mb_ereg($pattern, $string, &$matches = null)
+    {
+        $mb_ereg = mb_ereg($pattern, $string, $matches);
+        return get_defined_vars();
+    }
+
+    static function mb_ereg_match($pattern, $string, $options = null)
+    {
+        $res = mb_ereg_match($pattern, $string, $options);
+        return get_defined_vars();
+    }
+
+    static function mb_split($pattern, $string, $limit = -1)
+    {
+        $res = mb_split($pattern, $string, $limit);
+        return get_defined_vars();
     }
 }
