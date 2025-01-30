@@ -4,14 +4,14 @@ namespace Ext;
 
 class Variable
 {
-    const VERSION = 24.0807;
+    const VERSION = 25.0118;
     const EDITION = array(
         12,
         1,
         3,
         1,
     );
-    const REVISION = 17;
+    const REVISION = 18;
 
     public static $return_values = array(
         'var_export' => array(
@@ -275,6 +275,10 @@ class Variable
 
     public static function unSet($var, $variable)
     {
+        if (is_string($variable)) {
+            $variable = explode(',', $variable);
+        }
+
         foreach ($variable as $key) {
             unset($var[$key]);
         }
