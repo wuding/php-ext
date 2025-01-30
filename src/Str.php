@@ -4,14 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = 25.0113;
+    const VERSION = 25.0131;
     const EDITION = array(
         8,
         1,
         0,
         1,
     );
-    const REVISION = 10;
+    const REVISION = 11;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -19,10 +19,12 @@ class Str extends _Abstract
     public static $args = [
         'chunkSplit' => [null, 76, "\r\n"],
         'strlen' => [null],
+        'md5' => [null, false],
     ];
 
     static $args_type = [
         'strlen' => ['string' => 'string'],
+        'md5' => ['string' => 'string', 'binary' => 'bool'],
     ];
 
     // 默认参数值
@@ -217,18 +219,30 @@ class Str extends _Abstract
     }
     //: array
 
-    public static function implode($separator, $array, $ignore = array())
+    public static function implode($separator, $array, $ignore = null)
     {
-        if ($ignore) {
+        if (!is_null($ignore)) {
             $arr = array();
             foreach ($array as $subject) {
                 $skip = null;
-                foreach ($ignore as $pattern) {
-                    if (preg_match($pattern, $subject)) {
+                if (is_bool($ignore)) {
+                    if (false === $ignore) {
+                        if (!$subject) {
+                            $skip = 1;
+                        }
+                    } elseif ($subject) {
                         $skip = 1;
-                        break 1;
+                    }
+
+                } elseif (is_array($ignore)) {
+                    foreach ($ignore as $pattern) {
+                        if (preg_match($pattern, $subject)) {
+                            $skip = 1;
+                            break 1;
+                        }
                     }
                 }
+
                 if (!$skip) {
                     $arr[] = $subject;
                 }
@@ -359,6 +373,11 @@ class Str extends _Abstract
             return crypt($str);
         }
         return crypt($str, $salt);
+    }
+
+    static function md5($string, $binary = false)
+    {
+        return md5($string, $binary);
     }
 
     /*
