@@ -4,8 +4,8 @@ namespace Ext;
 
 class Date extends _Abstract
 {
-    const VERSION = '23.9.16';
-    const REVISION = 6;
+    const VERSION = 25.0129;
+    const REVISION = 7;
 
     public static $predefined_constants = array(
         'SUNFUNCS_RET_TIMESTAMP',
@@ -176,4 +176,25 @@ class Date extends _Abstract
         date_sunset($timestamp, $returnFormat, $latitude, $longitude, $zenith, $utcOffset);
     }
     //: string|int|float|false
+
+    /*
+    +---------------------------------------------+
+    + 时区
+    +---------------------------------------------+
+    */
+
+    static function timezone_version_get()
+    {
+        return timezone_version_get();
+    }
+
+    static function timezone_abbreviations_list()
+    {
+        return timezone_abbreviations_list();
+    }
+
+    static function timezone_identifiers_list()
+    {
+        return timezone_identifiers_list();
+    }
 }
