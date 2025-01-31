@@ -4,8 +4,8 @@ namespace Ext;
 
 class Net
 {
-    const VERSION = 25.0130;
-    const REVISION = 1;
+    const VERSION = 25.0201;
+    const REVISION = 2;
 
     function __construct($str = null)
     {
@@ -30,10 +30,13 @@ class Net
     }
     //: array
 
-    static function location($url)
+    static function location($url, $exit = null)
     {
         $string = "Location: $url";
         header($string);
+        if ($exit) {
+            exit;
+        }
     }
 
     /*
