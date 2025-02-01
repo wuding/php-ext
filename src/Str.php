@@ -4,14 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = 25.0131;
+    const VERSION = 25.0202;
     const EDITION = array(
         8,
         1,
         0,
         1,
     );
-    const REVISION = 11;
+    const REVISION = 12;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -298,6 +298,14 @@ class Str extends _Abstract
     public static function similar_text()
     {
         return null;
+    }
+
+    static function compare($a, &$var = null, $b = null)
+    {
+        $c = is_null($b) ? $var : $b;
+        $cmp = $a !== $c;
+        $var = $a;
+        return $cmp;
     }
 
     public static function strcmp()
