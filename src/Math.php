@@ -4,7 +4,8 @@ namespace Ext;
 
 class Math
 {
-    const VERSION = '22.3.18';
+    const VERSION = 25.0202;
+    const REVISION = 2;
 
     /*
     +------------------------------------------------+
@@ -40,5 +41,26 @@ class Math
     {
         $logarithm = log($arg, $base);
         return $logarithm;
+    }
+
+    /*
+    +--------------------------------------------------+
+    + 处理小数
+    +--------------------------------------------------+
+    */
+
+    /**
+     * 小数为 0 不显示
+     */
+    public static function floors($val, $precision = 0)
+    {
+        $pieces = explode('.', $val);
+        $decimals = $pieces[1] ?? '';
+        $decimal = substr($decimals, 0, $precision);
+        if ($decimal) {
+            $pieces[1] = $decimal;
+        }
+        return implode('.', $pieces);
+
     }
 }
