@@ -6,8 +6,8 @@ const CON = 1;
 
 interface _Interface
 {
-    const VERSION = 25.0206;
-    const REVISION = 1;
+    const VER = 25.0206;
+    const REV = 2;
 
     public function __construct();
 
