@@ -10,10 +10,10 @@ use Ext\File;
 
 class CSV
 {
-    const VERSION = '23.8.18';
-    const REVISION = 2;
+    const VERSION = 25.0421;
+    const REVISION = 3;
 
-    public static function put($filename, $mode = 'w', $variable)
+    public static function put($filename, $mode = 'w', $variable = [])
     {
         $File = new File($filename, $mode);
 
@@ -60,6 +60,7 @@ $list = array (
     array('"aaa"', '"bbb"')
 );
 
+// 需要先手动创建 csv.txt 文件
 $put = CSV::put(ROOT .'/vendor/wuding/php-ext/example/file/csv.txt', 'w', $list);
 $put = CSV::get(ROOT .'/vendor/wuding/php-ext/example/file/csv.txt', 'r');
 
