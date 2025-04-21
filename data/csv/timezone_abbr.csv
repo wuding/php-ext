@@ -1,0 +1,256 @@
+﻿id,created,abbr,name,location,timezone,hour,md5
+1,1738108548,A,Alpha Time Zone,Military,UTC + 1 hour,1,dc479800bbefc0fc78e36172f098168c
+2,1738108548,ACDT,Australian Central Daylight Time,Australia,UTC + 10:30 hours,10.5,a6905cf8402bb193c855e21df7ace0a8
+3,1738108548,ACST,Australian Central Standard Time,Australia,UTC + 9:30 hours,9.5,7b60d87f026ab2825c73dbd8649c203a
+4,1738108548,ADT,Atlantic Daylight Time,Atlantic,UTC – 3 hours,-3,cd8ad5c2f45bc67dd4f929d45e8661aa
+5,1738108548,ADT,Atlantic Daylight Time,North America,UTC – 3 hours,-3,36c3aba5b800bafc478546fec9fb9d85
+6,1738108548,AEDT,Australian Eastern Daylight Time,Australia,UTC + 11 hours,11,7b6e1b02ab2c333fdcfa1f1370c78b3a
+7,1738108548,AEST,Australian Eastern Standard Time,Australia,UTC + 10 hours,10,b8af2f12f99ea48ae8ff28181867622b
+8,1738108548,AFT,Afghanistan Time,Asia,UTC + 4:30 hours,4.5,ef87366b3c7db30cbdd4f50493aa6b8c
+9,1738108548,AKDT,Alaska Daylight Time,North America,UTC – 8 hours,-8,279a8f91af0ee37f0b3e64ce0a778a5f
+10,1738108548,AKST,Alaska Standard Time,North America,UTC – 9 hours,-9,803074af868c01e895e70002b0dd13ca
+11,1738108548,ALMT,Alma-Ata Time,Asia,UTC + 6 hours,6,1669dd57ac878865421f94ffae6d2c78
+12,1738108548,AMST,Armenia Summer Time,Asia,UTC + 5 hours,5,414342c025c3021e7d70dd0154e7bcaf
+13,1738108548,AMST,Amazon Summer Time,South America,UTC – 3 hours,-3,cb2ff0ab16f6146ea1bb78d7ff587e64
+14,1738108548,AMT,Armenia Time,Asia,UTC + 4 hours,4,5bba4354c75593199304df1c605a275b
+15,1738108548,AMT,Amazon Time,South America,UTC – 4 hours,-4,a829670c066a597514b8f310f8a9ecbc
+16,1738108548,ANAST,Anadyr Summer Time,Asia,UTC + 12 hours,12,f291720dc5fc49fb1d3a0692823cb8d6
+17,1738108548,ANAT,Anadyr Time,Asia,UTC + 12 hours,12,ab544293ec6eaf46dc4e29e7a9f21e2d
+18,1738108548,AQTT,Aqtobe Time,Asia,UTC + 5 hours,5,b2d984bee9ebb1bc2c6a1167741cdd37
+19,1738108548,ART,Argentina Time,South America,UTC – 3 hours,-3,eae644253105a1cf83bca87617a57502
+20,1738108548,AST,Arabia Standard Time,Asia,UTC + 3 hours,3,a052881141f758a3458ccfb2ebff6698
+21,1738108548,AST,Atlantic Standard Time,Atlantic,UTC – 4 hours,-4,3c2e1532a4da0aa4d2cbf195f25d054a
+22,1738108548,AST,Atlantic Standard Time,Caribbean,UTC – 4 hours,-4,ed3f1e303c528a21dc9ff76c61de1384
+23,1738108548,AST,Atlantic Standard Time,North America,UTC – 4 hours,-4,c751eaac05197ed97b46ad8c974f6439
+24,1738108548,AWDT,Australian Western Daylight Time,Australia,UTC + 9 hours,9,4acdbd8b799e1ea613c028698d93f50c
+25,1738108548,AWST,Australian Western Standard Time,Australia,UTC + 8 hours,8,262ffc62b86791f2b6d75e52704fd392
+26,1738108548,AZOST,Azores Summer Time,Atlantic,UTC,"0",1e3eeed42c4b2b6ef14624d036952894
+27,1738108548,AZOT,Azores Time,Atlantic,UTC – 1 hour,-1,12546096d995b04ca8c40c9fbf09344f
+28,1738108548,AZST,Azerbaijan Summer Time,Asia,UTC + 5 hours,5,56bb22af6b32590f29c4f8a6eea01936
+29,1738108548,AZT,Azerbaijan Time,Asia,UTC + 4 hours,4,c4f555102942e36803f00b0231f83e84
+30,1738108548,B,Bravo Time Zone,Military,UTC + 2 hours,2,aa6cb3bcf701ce8b4da8e290e7c06a14
+31,1738108548,BNT,Brunei Darussalam Time,Asia,UTC + 8 hours,8,de02d9451f8c7fc56ef51c78f963ba31
+32,1738108548,BOT,Bolivia Time,South America,UTC – 4 hours,-4,1c74bdcd50627b60b9b7855761a1ec4b
+33,1738108548,BRST,Brasilia Summer Time,South America,UTC – 2 hours,-2,6a047e002e46ec682afea74af9f7b8ec
+34,1738108548,BRT,Brasília time,South America,UTC – 3 hours,-3,cd5e83c3c55aa70a4b91606cd19a8019
+35,1738108548,BST,Bangladesh Standard Time,Asia,UTC + 6 hours,6,e1df62adf8d62df08bbda001de02d045
+36,1738108548,BST,British Summer Time,Europe,UTC + 1 hour,1,edf1f1055b6d67193b7d2a2edcdcf022
+37,1738108548,BTT,Bhutan Time,Asia,UTC + 6 hours,6,1f3d13fde18123c8c1d9cb63e3ff3854
+38,1738108548,C,Charlie Time Zone,Military,UTC + 3 hours,3,d53321273e48efbf521d0ba842eb69b4
+39,1738108548,CAST,Casey Time,Antarctica,UTC + 8 hours,8,"06670ae02bb3d5b2cd4a26cf618f5830"
+40,1738108548,CAT,Central Africa Time,Africa,UTC + 2 hours,2,"0e5522453c71df3251276d974f47a68b"
+41,1738108548,CCT,Cocos Islands Time,Indian Ocean,UTC + 6:30 hours,6.5,"07f5f750c1f61f6612a489d397a625a6"
+42,1738108548,CDT,Cuba Daylight Time,Caribbean,UTC – 4 hours,-4,ab1c8e5d6ae0f3b864b668446b729eee
+43,1738108548,CDT,Central Daylight Time,North America,UTC – 5 hours,-5,259421553590f5b44854d1fbb8bdd6f2
+44,1738108548,CEST,Central European Summer Time,Europe,UTC + 2 hours,2,76429b87411a629118fce28cac492e60
+45,1738108548,CET,Central European Time,Africa,UTC + 1 hour,1,9c3fc341706c2f5610facde58c42016b
+46,1738108548,CET,Central European Time,Europe,UTC + 1 hour,1,223725a719239caa41c1db86732f9299
+47,1738108548,CHADT,Chatham Island Daylight Time,Pacific,UTC + 13:45 hours,13.75,5d10f98d3fc8c92ff4ed0d0cbb75cbef
+48,1738108548,CHAST,Chatham Island Standard Time,Pacific,UTC + 12:45 hours,12.75,e284d13c8ff02fa764bb4f402ccc09e6
+49,1738108548,CKT,Cook Island Time,Pacific,UTC – 10 hours,-10,e905c4ccc1043f9336c83566e32fd25e
+50,1738108548,CLST,Chile Summer Time,South America,UTC – 3 hours,-3,a5a0aa111406ddbad9b866141b976344
+51,1738108548,CLT,Chile Standard Time,South America,UTC – 4 hours,-4,6b22a32695b11e391d579423360b22ab
+52,1738108548,COT,Colombia Time,South America,UTC – 5 hours,-5,73c13bff9f4e6bf66227eef6f731c61c
+53,1738108548,CST,China Standard Time,Asia,UTC + 8 hours,8,3c0b91a3970cadea5ab3115b7a80d68e
+54,1738108548,CST,Central Standard Time,Central America,UTC – 6 hours,-6,"0ae9513ae8bf9cebf3f06d7771fa56fe"
+55,1738108548,CST,Cuba Standard Time,Caribbean,UTC – 5 hours,-5,57130fb91537c9c76df1fcb2c165fd45
+56,1738108548,CST,Central Standard Time,North America,UTC – 6 hours,-6,2aa8783f44ab59d62fde84732960890b
+57,1738108548,CVT,Cape Verde Time,Africa,UTC – 1 hour,-1,ffb85c42fc9fb3dfc4efc2017f317787
+58,1738108548,CXT,Christmas Island Time,Australia,UTC + 7 hours,7,5f5498bcf2310de7cacd6041bf64b019
+59,1738108548,ChST,Chamorro Standard Time,Pacific,UTC + 10 hours,10,a6ecedd90c13654d0fa96b6398ac25a1
+60,1738108548,D,Delta Time Zone,Military,UTC + 4 hours,4,2cf2921a6d53a3180c8208d235d5688b
+61,1738108548,DAVT,Davis Time,Antarctica,UTC + 7 hours,7,c404044329d7608b30937201db6caa95
+62,1738108548,E,Echo Time Zone,Military,UTC + 5 hours,5,160a80b8d6e27870d9ecc3f138d28931
+63,1738108548,EASST,Easter Island Summer Time,Pacific,UTC – 5 hours,-5,5399ed262d1905047db2b24ef939d460
+64,1738108548,EAST,Easter Island Standard Time,Pacific,UTC – 6 hours,-6,"07c3504a8564067ccbe7b0a07d4e561b"
+65,1738108548,EAT,Eastern Africa Time,Africa,UTC + 3 hours,3,6ed6f95dc3cecc8044950b3f7d09c2e4
+66,1738108548,EAT,East Africa Time,Indian Ocean,UTC + 3 hours,3,"0b413244d10909f7108469c044e983cc"
+67,1738108548,ECT,Ecuador Time,South America,UTC – 5 hours,-5,d1c96a2d774d5d0b28a1d69853d56254
+68,1738108548,EDT,Eastern Daylight Time,Caribbean,UTC – 4 hours,-4,3dbf261dd3a44a8e2d824c1795f1cada
+69,1738108548,EDT,Eastern Daylight Time,North America,UTC – 4 hours,-4,35e77dc6358c5bd3c26a43cc7fb49b53
+70,1738108548,EDT,Eastern Daylight Time,Pacific,UTC + 11 hours,11,f910f36b2bbf5fc07b9abac92e4d7e7e
+71,1738108548,EEST,Eastern European Summer Time,Africa,UTC + 3 hours,3,dbdf8003dac37bd2bcab7e8a0a341687
+72,1738108548,EEST,Eastern European Summer Time,Asia,UTC + 3 hours,3,1618e38dc5c4c83a25eb6ee67ccf7bde
+73,1738108548,EEST,Eastern European Summer Time,Europe,UTC + 3 hours,3,baf5dba31708d3f134ddc19c37a22787
+74,1738108548,EET,Eastern European Time,Africa,UTC + 2 hours,2,fff75537f3a726ada6909b960df5481a
+75,1738108548,EET,Eastern European Time,Asia,UTC + 2 hours,2,1b2a894c63cc43a7e7177f36f62f60fb
+76,1738108548,EET,Eastern European Time,Europe,UTC + 2 hours,2,a9fab996d3a396a74a1d1edc3d504dc6
+77,1738108548,EGST,Eastern Greenland Summer Time,North America,UTC,"0",c28ae5f5ced482992f32e3506533271d
+78,1738108548,EGT,East Greenland Time,North America,UTC – 1 hour,-1,bff3dc0ab29da1d8f015eb319d9ad91b
+79,1738108548,EST,Eastern Standard Time,Central America,UTC – 5 hours,-5,f4b72c7ebf4c4ef436670186c754978e
+80,1738108548,EST,Eastern Standard Time,Caribbean,UTC – 5 hours,-5,393cac6f6a166e1fc2fa77e9fe4ce6f7
+81,1738108548,EST,Eastern Standard Time,North America,UTC – 5 hours,-5,"09258e50b435f8b6cb810852e309934e"
+82,1738108548,ET,Tiempo del Este,Central America,UTC – 5 hours,-5,2511dd7fffbd4c1180dea01bd0a5b540
+83,1738108548,ET,Tiempo del Este,Caribbean,UTC – 5 hours,-5,ec484293d65b3a50a98b08f85e41c17b
+84,1738108548,ET,Tiempo Del Este,North America,UTC – 5 hours,-5,5f53ed098f9a52fa21ba8b6fa8d69643
+85,1738108548,F,Foxtrot Time Zone,Military,UTC + 6 hours,6,faf7f4c1dafaeff8b73ebc52831d8f57
+86,1738108548,FJST,Fiji Summer Time,Pacific,UTC + 13 hours,13,"0347ea6f60fbc90a46fa71e160383c36"
+87,1738108548,FJT,Fiji Time,Pacific,UTC + 12 hours,12,f6f694e3384d3f19d3b90f437ee2dfd6
+88,1738108548,FKST,Falkland Islands Summer Time,South America,UTC – 3 hours,-3,"064c0b78486a3c89be5c465d480b84a9"
+89,1738108548,FKT,Falkland Island Time,South America,UTC – 4 hours,-4,70f23ef10d60cf58268601edc523d4e4
+90,1738108548,FNT,Fernando de Noronha Time,South America,UTC – 2 hours,-2,1f01b1431569e4d1ca6f803df8ef5dd9
+91,1738108548,G,Golf Time Zone,Military,UTC + 7 hours,7,e9a07156dfb1bedb21c8bd3203cb66a5
+92,1738108548,GALT,Galapagos Time,Pacific,UTC – 6 hours,-6,8158985f46481910d7d8deaa6a77e2b3
+93,1738108548,GAMT,Gambier Time,Pacific,UTC – 9 hours,-9,715ecf50ab392874ae902bd6f166731a
+94,1738108548,GET,Georgia Standard Time,Asia,UTC + 4 hours,4,6dc1810d47b449664457e984f32653cb
+95,1738108548,GFT,French Guiana Time,South America,UTC – 3 hours,-3,3bb5e225f5803eecfc372a5ba160f9a0
+96,1738108548,GILT,Gilbert Island Time,Pacific,UTC + 12 hours,12,13244a3aefdfb96fb1d0b498e3df3edb
+97,1738108548,GMT,Greenwich Mean Time,Africa,UTC,"0",38b14a17e0670c8c5e6fe3f7281bc307
+98,1738108548,GMT,Greenwich Mean Time,Europe,UTC,"0",526fa7f0aa5eba2dcb6a4d95f9ee678a
+99,1738108548,GST,Gulf Standard Time,Asia,UTC + 4 hours,4,33fbd0269058ad03c6c270e6ad9fad8d
+100,1738108548,GYT,Guyana Time,South America,UTC – 4 hours,-4,724db96c34062ec292c22ca8e2112cf1
+101,1738108548,H,Hotel Time Zone,Military,UTC + 8 hours,8,b451b511b5b1917ba5ebc31fd927b551
+102,1738108548,HAA,Heure Avancée de l’Atlantique,Atlantic,UTC – 3 hours,-3,ced1a341b0b94f607505e66e7c82e92c
+103,1738108548,HAA,Heure Avancée de l’Atlantique,North America,UTC – 3 hours,-3,ba744ad600e34cc22817e7ba0c73fe86
+104,1738108548,HAC,Heure Avancée du Centre,North America,UTC – 5 hours,-5,39d8cc836ab599be0cc189ebd6ed2193
+105,1738108548,HADT,Hawaii-Aleutian Daylight Time,North America,UTC – 9 hours,-9,c122ecb282ed8d4fbc2cf16da547f8a0
+106,1738108548,HAE,Heure Avancée de l’Est,Caribbean,UTC – 4 hours,-4,"0343e654767dae7bcc99f843d8a89dd4"
+107,1738108548,HAE,Heure Avancée de l’Est,North America,UTC – 4 hours,-4,8d194d3f2f5a8eee5d28878cf69d558b
+108,1738108548,HAP,Heure Avancée du Pacifique,North America,UTC – 7 hours,-7,44e7f33b6f7356f5a3255693ee0f738c
+109,1738108548,HAR,Heure Avancée des Rocheuses,North America,UTC – 6 hours,-6,9593444dfffb38deeeebd7424dcd05c3
+110,1738108548,HAST,Hawaii-Aleutian Standard Time,North America,UTC – 10 hours,-10,ec1f52ddaf89ca4bfc54404956f3ad3c
+111,1738108548,HAT,Heure Avancée de Terre-Neuve,North America,UTC – 2:30 hours,-2.5,500a5d7a5d20c96bbd2b4df0f410900f
+112,1738108548,HAY,Heure Avancée du Yukon,North America,UTC – 8 hours,-8,"0be02e8681d04e053e720fb115ea3339"
+113,1738108548,HKT,Hong Kong Time,Asia,UTC + 8 hours,8,6182cd0b9db2babfa54ece63ab6442b8
+114,1738108548,HLV,Hora Legal de Venezuela,South America,UTC – 4:30 hours,-4.5,b1b1a5ce22a54bba2aa0d60773ada622
+115,1738108548,HNA,Heure Normale de l’Atlantique,Atlantic,UTC – 4 hours,-4,1a3be50521f9affb7e69f3b4bb33c81e
+116,1738108548,HNA,Heure Normale de l’Atlantique,Caribbean,UTC – 4 hours,-4,fa07e36671e3ece03482d70f693ec57d
+117,1738108548,HNA,Heure Normale de l’Atlantique,North America,UTC – 4 hours,-4,5d5375b54b318bc0dc82f4142dc8b4d7
+118,1738108548,HNC,Heure Normale du Centre,Central America,UTC – 6 hours,-6,b78cccc1c0fb675dd0b8bdff5f53f42f
+119,1738108548,HNC,Heure Normale du Centre,North America,UTC – 6 hours,-6,6594e43ad63d25f4e8c6dcf602a23e1a
+120,1738108548,HNE,Heure Normale de l’Est,Central America,UTC – 5 hours,-5,9115cdc087af8ceb77cf6b6157872fc2
+121,1738108548,HNE,Heure Normale de l’Est,Caribbean,UTC – 5 hours,-5,1c4608c069a2237d15d11f3794e29521
+122,1738108548,HNE,Heure Normale de l’Est,North America,UTC – 5 hours,-5,ff4bffb3921f000bd2bbf1514910706a
+123,1738108548,HNP,Heure Normale du Pacifique,North America,UTC – 8 hours,-8,72809fa9c1fb53aee8280885baff7677
+124,1738108548,HNR,Heure Normale des Rocheuses,North America,UTC – 7 hours,-7,9e01c6844527cbf3ba98b70542bc0633
+125,1738108548,HNT,Heure Normale de Terre-Neuve,North America,UTC – 3:30 hours,-3.5,87de7b6e2ce4f2db8310c3cc3cbbc42b
+126,1738108548,HNY,Heure Normale du Yukon,North America,UTC – 9 hours,-9,c984fba350eec33142ee933a91373938
+127,1738108548,HOVT,Hovd Time,Asia,UTC + 7 hours,7,1402f54142d9f89963ceee774e57da44
+128,1738108548,I,India Time Zone,Military,UTC + 9 hours,9,d309a206e60d387728c79d65db236513
+129,1738108548,ICT,Indochina Time,Asia,UTC + 7 hours,7,fc5d29e675d981cc72c6685843411332
+130,1738108548,IDT,Israel Daylight Time,Asia,UTC + 3 hours,3,12743b45642a18a802742ae1307ec1e1
+131,1738108548,IOT,Indian Chagos Time,Indian Ocean,UTC + 6 hours,6,ec5c316c8b88e1c9db637f296d38332a
+132,1738108548,IRDT,Iran Daylight Time,Asia,UTC + 4:30 hours,4.5,da71965bb34d6dd4d08474f153e79675
+133,1738108548,IRKST,Irkutsk Summer Time,Asia,UTC + 9 hours,9,520db63650608636ffd148493b4e26e5
+134,1738108548,IRKT,Irkutsk Time,Asia,UTC + 9 hours,9,7a94213fa3ec78e457c9d1ff570c0c98
+135,1738108548,IRST,Iran Standard Time,Asia,UTC + 3:30 hours,3.5,2e9654ec0e57000713c4ae4ac0f874e2
+136,1738108548,IST,Israel Standard Time,Asia,UTC + 2 hours,2,e63aa89eb8a6ffe13faa10a263978e3a
+137,1738108548,IST,India Standard Time,Asia,UTC + 5:30 hours,5.5,de84ae4d0f350010088c3c36dcf784bb
+138,1738108548,IST,Irish Standard Time,Europe,UTC + 1 hour,1,"089d7cb62344fd4fa7553408f49b7047"
+139,1738108548,JST,Japan Standard Time,Asia,UTC + 9 hours,9,192ca68c11a9f290651731e75bb34d97
+140,1738108548,K,Kilo Time Zone,Military,UTC + 10 hours,10,58b2a76e6dc39476fb14e7748a475c9c
+141,1738108548,KGT,Kyrgyzstan Time,Asia,UTC + 6 hours,6,218bc6610798fd011c23ac33843511bb
+142,1738108548,KRAST,Krasnoyarsk Summer Time,Asia,UTC + 8 hours,8,20fbcbe16ba4222816547a9856359f5b
+143,1738108548,KRAT,Krasnoyarsk Time,Asia,UTC + 8 hours,8,cfde122e74af56bd81abdcd29745d792
+144,1738108548,KST,Korea Standard Time,Asia,UTC + 9 hours,9,79cdeef388e1eb665cf807aa2769f9fb
+145,1738108548,KUYT,Kuybyshev Time,Europe,UTC + 4 hours,4,93af96a45a335fb17828b2c58f288c4e
+146,1738108548,L,Lima Time Zone,Military,UTC + 11 hours,11,9b7d7b81b76d133085c43f7ecaff71ad
+147,1738108548,LHDT,Lord Howe Daylight Time,Australia,UTC + 11 hours,11,2d185ab8f44ccee1ab0d8a40e416c7f6
+148,1738108548,LHST,Lord Howe Standard Time,Australia,UTC + 10:30 hours,10.5,1859edc0df9da0e6147d38db604692f5
+149,1738108548,LINT,Line Islands Time,Pacific,UTC + 14 hours,14,d08eeada291fbfe2ad1cf3580397c117
+150,1738108548,M,Mike Time Zone,Military,UTC + 12 hours,12,1f01ce9822c7fe55ee5343e1f185f490
+151,1738108548,MAGST,Magadan Summer Time,Asia,UTC + 12 hours,12,882fcdd42e666c1941c91a8ac614d11b
+152,1738108548,MAGT,Magadan Time,Asia,UTC + 12 hours,12,819d5edbe3c2169b12b7232ffd2b0d86
+153,1738108548,MART,Marquesas Time,Pacific,UTC – 9:30 hours,-9.5,71413802d0831796ed2d6ede78e56d99
+154,1738108548,MAWT,Mawson Time,Antarctica,UTC + 5 hours,5,3bcd5eeb234633aff2ada2383244a907
+155,1738108548,MDT,Mountain Daylight Time,North America,UTC – 6 hours,-6,1834356e9abee265fb0f79d20c0b3d27
+156,1738108548,MESZ,Mitteleuropäische Sommerzeit,Europe,UTC + 2 hours,2,ce59833deca0f1086ab8d8e75f27f2db
+157,1738108548,MEZ,Mitteleuropäische Zeit,Africa,UTC + 1 hour,1,"03aec6a9bbe8f2e8baf9741d1d9f09d4"
+158,1738108548,MHT,Marshall Islands Time,Pacific,UTC + 12 hours,12,a14547d7a0e66590f85dd044cef09e8a
+159,1738108548,MMT,Myanmar Time,Asia,UTC + 6:30 hours,6.5,42d83b9a593994cccda9dbdc2aff02c6
+160,1738108548,MSD,Moscow Daylight Time,Europe,UTC + 4 hours,4,"00df0376bd190d46de4447f69f7576db"
+161,1738108548,MSK,Moscow Standard Time,Europe,UTC + 4 hours,4,a3a27c6706112a4c5edaa557ebc87fda
+162,1738108548,MST,Mountain Standard Time,North America,UTC – 7 hours,-7,2fd7293edd2255ec734b1e3c8a3758a2
+163,1738108548,MUT,Mauritius Time,Africa,UTC + 4 hours,4,8a56c2e6e8932a504331ba197f893dfd
+164,1738108548,MVT,Maldives Time,Asia,UTC + 5 hours,5,a904ab36d2f23f158b3e22a277696b1f
+165,1738108548,MYT,Malaysia Time,Asia,UTC + 8 hours,8,aff2da47e5f4c9d2769ba8299c2bf1b4
+166,1738108548,N,November Time Zone,Military,UTC – 1 hour,-1,6e6fb0e0469e7fa29e76ce9820c05f67
+167,1738108548,NCT,New Caledonia Time,Pacific,UTC + 11 hours,11,f9db177b996673c5526d5a0e2f3538f0
+168,1738108548,NDT,Newfoundland Daylight Time,North America,UTC – 2:30 hours,-2.5,62d0575440a863a624d027ab723c605d
+169,1738108548,NFT,Norfolk Time,Australia,UTC + 11:30 hours,11.5,cec27c0897a61e1c038d7350a1f5b532
+170,1738108548,NOVST,Novosibirsk Summer Time,Asia,UTC + 7 hours,7,62aa38d6634b38a0a0f32bd08c115b74
+171,1738108548,NOVT,Novosibirsk Time,Asia,UTC + 6 hours,6,a870c0f587e5a380f81b2d57000b52e1
+172,1738108548,NPT,Nepal Time,Asia,UTC + 5:45 hours,5.75,"0f2b57c7b43c615577c44db91864ce51"
+173,1738108548,NST,Newfoundland Standard Time,North America,UTC – 3:30 hours,-3.5,bdbbd5cb5465a7f4d3fa84e3182c93b7
+174,1738108548,NUT,Niue Time,Pacific,UTC – 11 hours,-11,5f870c3e81454d751901685c7b537fb0
+175,1738108548,NZDT,New Zealand Daylight Time,Antarctica,UTC + 13 hours,13,a842f2c2e15e833fe60f83fed5d8df31
+176,1738108548,NZDT,New Zealand Daylight Time,Pacific,UTC + 13 hours,13,d90ac946a12a2d6475e54bbd377028e7
+177,1738108548,NZST,New Zealand Standard Time,Antarctica,UTC + 12 hours,12,ed3c712c7cfef7bfddd9bb5433101c4c
+178,1738108548,NZST,New Zealand Standard Time,Pacific,UTC + 12 hours,12,2827efcb894d5ff07f8d8b9671978403
+179,1738108548,O,Oscar Time Zone,Military,UTC – 2 hours,-2,7481d8264b4af87b8f2f423787c3a852
+180,1738108548,OMSST,Omsk Summer Time,Asia,UTC + 7 hours,7,2df2afdee03a79ca897d84779b8df202
+181,1738108548,OMST,Omsk Standard Time,Asia,UTC + 7 hours,7,a90ee9ae106d30df4197031d00fe543d
+182,1738108548,P,Papa Time Zone,Military,UTC – 3 hours,-3,94d1ad3c02aa741eecceaf675a89d267
+183,1738108548,PDT,Pacific Daylight Time,North America,UTC – 7 hours,-7,"023900e2dce6918ce6b4ccc63560cfae"
+184,1738108548,PET,Peru Time,South America,UTC – 5 hours,-5,"0817efb264ba692dc5d408b2b6c7907d"
+185,1738108548,PETST,Kamchatka Summer Time,Asia,UTC + 12 hours,12,c5dbb5421ef23d613fbabf3a41467119
+186,1738108548,PETT,Kamchatka Time,Asia,UTC + 12 hours,12,854b131fc8b552c1f3145a3609e421b8
+187,1738108548,PGT,Papua New Guinea Time,Pacific,UTC + 10 hours,10,c970ae73b89c6add9b4c3722ecbf9b22
+188,1738108548,PHOT,Phoenix Island Time,Pacific,UTC + 13 hours,13,9eba7427bd7739140b5130e8c15bdc16
+189,1738108548,PHT,Philippine Time,Asia,UTC + 8 hours,8,7c78859364eb298928ac981097deaf9a
+190,1738108548,PKT,Pakistan Standard Time,Asia,UTC + 5 hours,5,3553a11f8f493238d1246755fe884ce4
+191,1738108548,PMDT,Pierre & Miquelon Daylight Time,North America,UTC – 2 hours,-2,8765f087a317ba160030fb7af9802ebc
+192,1738108548,PMST,Pierre & Miquelon Standard Time,North America,UTC – 3 hours,-3,c9e7e3d873f206eb02d23b70a6392b37
+193,1738108548,PONT,Pohnpei Standard Time,Pacific,UTC + 11 hours,11,53f46d8cdc34bf8a6d5b250f33df2a9f
+194,1738108548,PST,Pacific Standard Time,North America,UTC – 8 hours,-8,d721a4917083635b98e72c86b36b44b5
+195,1738108548,PST,Pitcairn Standard Time,Pacific,UTC – 8 hours,-8,8dd07e09687bcd1470a4348e098ea565
+196,1738108548,PT,Tiempo del Pacífico,North America,UTC – 8 hours,-8,dbd0550c68ddcae50fd52b91d6c1c8f1
+197,1738108548,PWT,Palau Time,Pacific,UTC + 9 hours,9,5d49beb58c0809acde68bbf9eb0a278e
+198,1738108548,PYST,Paraguay Summer Time,South America,UTC – 3 hours,-3,a1d20145e5c413f5036beb8c53fc5176
+199,1738108548,PYT,Paraguay Time,South America,UTC – 4 hours,-4,d418085b667ef996666dc77a993fd262
+200,1738108548,Q,Quebec Time Zone,Military,UTC – 4 hours,-4,5ad57ba93d10226307f88de72cc73d7f
+201,1738108548,R,Romeo Time Zone,Military,UTC – 5 hours,-5,"0346950fc0f64e596b01a57ae1cf5a67"
+202,1738108548,RET,Reunion Time,Africa,UTC + 4 hours,4,1d4d519c769de7d081b74881b9d2cd58
+203,1738108548,S,Sierra Time Zone,Military,UTC – 6 hours,-6,7ceefbd1471963de3d3edb69c7030382
+204,1738108548,SAMT,Samara Time,Europe,UTC + 4 hours,4,2eed890aed041cbf9575f374fa79538a
+205,1738108548,SAST,South Africa Standard Time,Africa,UTC + 2 hours,2,a757d42ac1ae6ea3922c914e7c726549
+206,1738108548,SBT,Solomon IslandsTime,Pacific,UTC + 11 hours,11,99df33aa97a5a870894b7e36e0ba9cf3
+207,1738108548,SCT,Seychelles Time,Africa,UTC + 4 hours,4,319c8b6f9a0363f73b7167f942e1cd8c
+208,1738108548,SGT,Singapore Time,Asia,UTC + 8 hours,8,a6279ab4792885ac1c19c0e17b9b2f62
+209,1738108548,SRT,Suriname Time,South America,UTC – 3 hours,-3,79b15e6adf5c3ae6c7ce2cddb792a14a
+210,1738108548,SST,Samoa Standard Time,Pacific,UTC – 11 hours,-11,caa3d5a81e8b7fdd2d61b62f41530428
+211,1738108548,T,Tango Time Zone,Military,UTC – 7 hours,-7,79a635470a1ba5e705016e86a481b898
+212,1738108548,TAHT,Tahiti Time,Pacific,UTC – 10 hours,-10,54a0c8f34511d5eb2dcb9c82b042cf51
+213,1738108548,TFT,French Southern and Antarctic Time,Indian Ocean,UTC + 5 hours,5,48e292cb76fc2cb326b605818de48415
+214,1738108548,TJT,Tajikistan Time,Asia,UTC + 5 hours,5,ff03c9600f1b4c49b436a556cba72ea2
+215,1738108548,TKT,Tokelau Time,Pacific,UTC + 13 hours,13,5d53da046946d9af9cf9765c8ec631cf
+216,1738108548,TLT,East Timor Time,Asia,UTC + 9 hours,9,b252300735da9f7b920b7f582f866f40
+217,1738108548,TMT,Turkmenistan Time,Asia,UTC + 5 hours,5,8ce917549823ca637c3abf1af7a59634
+218,1738108548,TVT,Tuvalu Time,Pacific,UTC + 12 hours,12,"01d3a0edcf5093eb2411647beb18f267"
+219,1738108548,U,Uniform Time Zone,Military,UTC – 8 hours,-8,be26dae04f96a409a9b181f8af51254d
+220,1738108548,ULAT,Ulaanbaatar Time,Asia,UTC + 8 hours,8,340efed0809bae82ca26fead63c92fef
+221,1738108548,UTC,Universal Time Coordinated,Universal,UTC,"0",acbc117677ab5ab1c2cf8288729c4070
+222,1738108548,UYST,Uruguay Summer Time,South America,UTC – 2 hours,-2,190b80c4e8e835fc0f1fcf853903b9a3
+223,1738108548,UYT,Uruguay Time,South America,UTC – 3 hours,-3,ce98d82174ecfc353a13adb266ab642a
+224,1738108548,UZT,Uzbekistan Time,Asia,UTC + 5 hours,5,fc936cdc576a14ce4b569cfd4f9b04bc
+225,1738108548,V,Victor Time Zone,Military,UTC – 9 hours,-9,307d57653333aa4203296b3c2eaec7e1
+226,1738108548,VET,Venezuelan Standard Time,South America,UTC – 4:30 hours,-4.5,39e652196c15dc0dcfbe008cd086b5b8
+227,1738108548,VLAST,Vladivostok Summer Time,Asia,UTC + 11 hours,11,"0e37e5e7300d4dd8bb518e35f416a895"
+228,1738108548,VLAT,Vladivostok Time,Asia,UTC + 11 hours,11,ca8c890081e774a5134e53e5a9c84de4
+229,1738108548,VUT,Vanuatu Time,Pacific,UTC + 11 hours,11,fa236120e517b4dc496c12d89e5c1c00
+230,1738108548,W,Whiskey Time Zone,Military,UTC – 10 hours,-10,3fced0be636348855558ff53d067af9b
+231,1738108548,WAST,West Africa Summer Time,Africa,UTC + 2 hours,2,ac14ddc41973f3cc6025d8c5fa01bfff
+232,1738108548,WAT,West Africa Time,Africa,UTC + 1 hour,1,e726c5733c793f6b268da2c82a6ff389
+233,1738108548,WEST,Western European Summer Time,Africa,UTC + 1 hour,1,f31ba946ca117c688416ef9afcef9d73
+234,1738108548,WEST,Western European Summer Time,Europe,UTC + 1 hour,1,e3999405742e21d17a395f91ace4f2aa
+235,1738108548,WESZ,Westeuropäische Sommerzeit,Africa,UTC + 1 hour,1,87eabc33730aa9422b5a336b98c7ea30
+236,1738108548,WET,Western European Time,Africa,UTC,"0",f34ef1de81a722b6dc52afae530fdb15
+237,1738108548,WET,Western European Time,Europe,UTC,"0",fc6ff510d1cd066d93b996481cb780d6
+238,1738108548,WEZ,Westeuropäische Zeit,Europe,UTC,"0",cf2dd2e44c1770d9111dd4eb6f31692a
+239,1738108548,WFT,Wallis and Futuna Time,Pacific,UTC + 12 hours,12,f2fe63a76eb9980e191dad95e350d11a
+240,1738108548,WGST,Western Greenland Summer Time,North America,UTC – 2 hours,-2,2222b841d43a1b550fc4c1cf58d24801
+241,1738108548,WGT,West Greenland Time,North America,UTC – 3 hours,-3,d7ba072907c37966058a4847308ecb52
+242,1738108548,WIB,Western Indonesian Time,Asia,UTC + 7 hours,7,14432e2ace566d6c5e9d7bff9fd58b15
+243,1738108548,WIT,Eastern Indonesian Time,Asia,UTC + 9 hours,9,"0439ab144bc0cb0f35532fb5522b2a63"
+244,1738108548,WITA,Central Indonesian Time,Asia,UTC + 8 hours,8,242e535cec0d529fa93c08ddbbf8c7bf
+245,1738108548,WST,Western Sahara Summer Time,Africa,UTC + 1 hour,1,759958fa1da7f451ce62e9e06e54e188
+246,1738108548,WST,West Samoa Time,Pacific,UTC + 13 hours,13,d618c95eef708f745ca3467ab1d7c4ef
+247,1738108548,WT,Western Sahara Standard Time,Africa,UTC,"0",339d8025ea7bad3ffd2d524193c3ec60
+248,1738108548,X,X-ray Time Zone,Military,UTC – 11 hours,-11,12eb46e937db5d3ab93bc92c04564ac6
+249,1738108548,Y,Yankee Time Zone,Military,UTC – 12 hours,-12,e6002f0a22dc6ef622325e47dfa0f575
+250,1738108548,YAKST,Yakutsk Summer Time,Asia,UTC + 10 hours,10,"07c10fd9cab2ff532cd34f7594e84a8f"
+251,1738108548,YAKT,Yakutsk Time,Asia,UTC + 10 hours,10,76f604278d3a86a2bd940c503e294a8a
+252,1738108548,YAPT,Yap Time,Pacific,UTC + 10 hours,10,8f9479e74df0fe6b5cb0bc752dd561b2
+253,1738108548,YEKST,Yekaterinburg Summer Time,Asia,UTC + 6 hours,6,d7c25f9f6836794dc56d61fe33a98b29
+254,1738108548,YEKT,Yekaterinburg Time,Asia,UTC + 6 hours,6,4b59a6867ef78c2f876b4b42303b7851
+255,1738108548,Z,Zulu Time Zone,Military,UTC,"0",661d484bc528b1347446958224a63ce3
