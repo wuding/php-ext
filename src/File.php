@@ -4,21 +4,29 @@ namespace Ext;
 
 class File extends _Abstract
 {
-    const VERSION = 25.0110;
+    const VERSION = 25.0421;
     const EDITION = array(
         21,
         0,
         1,
         0,
     );
-    const REVISION = 22;
+    const REVISION = 23;
 
     // 参数
     public static $filename = null;
     public static $mode = null;
     public static $use_include_path = null;
     public static $context = null;
-    public static $args = [];
+    public static $args = [
+        'putContents' => [null, null, 0, null],
+        '',
+        'pathInfo' => [null, 0],
+    ];
+    static $args_type = [
+        'putContents' => ['filename' => 'string', 'data' => 'string', 'flags' => 'int', 'context' => 'null'],
+        'pathInfo' => ['path' => 'string', 'options' => 'int'],
+    ];
 
     public static $reset = null; // 重设参数值
 
@@ -140,6 +148,7 @@ class File extends _Abstract
         self::$args[$key] = $arr;
 
         $fopen = file_exists($filename) ? fopen($filename, $mode, $use_include_path, $context) : false;
+        // debug 1
 
 
         self::$instances[$key] = $fopen;
@@ -214,7 +223,7 @@ class File extends _Abstract
         $pathinfo = pathinfo($path, $options);
         $pattern = "#\\\+#";
         $replacement = '/';
-        $pathinfo['dirname'] = preg_replace($pattern, $replacement, $pathinfo['dirname']);
+        $pathinfo['dirname'] = preg_replace($pattern, $replacement, $pathinfo['dirname'] ?? '');
 
         return $pathinfo;
     }
@@ -438,6 +447,9 @@ class File extends _Abstract
     {
         $dirname = dirname($filename);
         $is_dir = self::isDir($dirname);
+        if (!is_resource($context)) {
+            return file_put_contents($filename, $data, $flags);
+        }
         return file_put_contents($filename, $data, $flags, $context);
     }
 
