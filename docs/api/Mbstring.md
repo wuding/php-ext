@@ -2,7 +2,7 @@
 
 Multibyte String
 
-<!-- version 20240811.4 -->
+<!-- version 5.250421 -->
 
 
 ## 分类
@@ -32,4 +32,20 @@ Multibyte String
 |          | mb_substr_count | 统计字符串出现的次数 | Count the number of substring occurrences |
 | strCount | -               |                      |                                           |
 |          |                 |                      |                                           |
+
+
+
+### 格式化
+
+#### 修剪
+
+| 方法名 | 函数名   | 别名 | 全称 | 翻译 | 描述 |
+| -----: | -------- | ---- | ---- | ---- | ---- |
+|   trim | mb_trim  |      |      |      |      |
+|        | mb_ltrim |      |      |      |      |
+|        |          |      |      |      |      |
+
+
+
+### 正则表达式
 
