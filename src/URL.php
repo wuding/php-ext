@@ -4,14 +4,14 @@ namespace Ext;
 
 class URL extends _Abstract
 {
-    const VERSION = 25.0112;
+    const VERSION = 25.0421;
     const EDITION = array(
         6,
         2,
         0,
         0,
     );
-    const REVISION = 9;
+    const REVISION = 10;
 
 
     public static $constStr = 'PHP_URL=SCHEME,HOST,PORT,USER,PASS,PATH,QUERY,FRAGMENT;PHP_QUERY=RFC1738,RFC3986';
@@ -30,10 +30,16 @@ class URL extends _Abstract
 
     static $args = [
         'base64_decode' => [null, false],
+        'decode' => [null, false],
+        'parse_url' => ['[]', null, -1],
+        '' => [],
     ];
 
     static $args_type = [
         'base64_decode' => ['string' => 'string', 'strict' => 'bool'],
+        'decode' => ['str' => 'string', 'raw' => 'bool'],
+        'parse_url' => ['var_array' => 'array', 'url' => 'string', 'component' => 'string'],
+        '' => [],
     ];
 
     public function __construct()
