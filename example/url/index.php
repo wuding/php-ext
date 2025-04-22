@@ -1,6 +1,6 @@
 <?php
 
-// version 250112.1
+// version 2.250422
 
 define('ROOT', dirname(__DIR__, 5));
 $autoload = require ROOT .'/vendor/autoload.php';
@@ -35,7 +35,7 @@ class Example
         $html = '';
         $i = 0;
         foreach ($variable as $key => $value) {
-            $val = $this->param_arr[$key] ?: $args[$i];
+            $val = $this->param_arr[$key] ?? $args[$i];
             $html .= <<<HEREDOC
 <li>
 <label>
