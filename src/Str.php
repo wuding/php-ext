@@ -4,14 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = 25.0202;
+    const VERSION = 25.0416;
     const EDITION = array(
         8,
         1,
         0,
         1,
     );
-    const REVISION = 12;
+    const REVISION = 13;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -20,11 +20,23 @@ class Str extends _Abstract
         'chunkSplit' => [null, 76, "\r\n"],
         'strlen' => [null],
         'md5' => [null, false],
+        'html_entity_decode' => [null],
+        'number_format' => [null, 0, '.', ','],
+        'subStr' => [null, null, null],
+        'nl2br' => [null, true],
+        'parse_str' => [null, '[]'],
+        'str_getcsv' => [null, ",", "\"", "\\"],
     ];
 
     static $args_type = [
         'strlen' => ['string' => 'string'],
         'md5' => ['string' => 'string', 'binary' => 'bool'],
+        'html_entity_decode' => ['string' => 'string'],
+        'number_format' => ['number' => 'float', 'decimals' => 'int', 'decimal_separator' => 'string', 'thousands_separator' => 'string'],
+        'subStr' => ['string' => 'string', 'offset' => 'int', 'length' => 'null'],
+        'nl2br' => ['string' => 'string', 'use_xhtml' => 'bool'],
+        'parse_str' => ['string' => 'string', 'result' => 'array'],
+        'str_getcsv' => ['string' => 'string', 'separator' => 'string', 'enclosure' => 'string', 'escape' => 'string'],
     ];
 
     // 默认参数值
@@ -414,6 +426,11 @@ class Str extends _Abstract
         return call_user_func_array('fprintf', $param_arr);
     }
 
+    static function number_format($number = null, $decimals = 0, $decimal_separator = '.', $thousands_separator = ',')
+    {
+        return number_format($number, $decimals, $decimal_separator, $thousands_separator);
+    }
+
     /*
     +---------------------------------------------+
     + HTML
@@ -423,6 +440,16 @@ class Str extends _Abstract
     public static function getHtmlTranslationTable($table = HTML_SPECIALCHARS, $flags = ENT_COMPAT | ENT_HTML401, $encoding = 'UTF-8')
     {
         return get_html_translation_table($table, $flags, $encoding);
+    }
+
+    static function html_entity_decode($string)
+    {
+        return html_entity_decode($string);
+    }
+
+    static function nl2br($string = null, $use_xhtml = true)
+    {
+        return nl2br($string, $use_xhtml);
     }
 
     /*
@@ -511,4 +538,16 @@ class Str extends _Abstract
         return $arr;
     }
     //: array
+
+    static function parse_str($string, $result = [])
+    {
+        parse_str($string, $result);
+        return $result;
+    }
+
+    static function str_getcsv($string, $separator = ",", $enclosure = "\"", $escape = "\\")
+    {
+        $return_values = str_getcsv($string, $separator, $enclosure, $escape);
+        return $return_values;
+    }
 }
