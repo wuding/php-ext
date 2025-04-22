@@ -4,8 +4,8 @@ namespace Ext;
 
 class Date extends _Abstract
 {
-    const VERSION = 25.0129;
-    const REVISION = 7;
+    const VERSION = 25.0422;
+    const REVISION = 8;
 
     public static $predefined_constants = array(
         'SUNFUNCS_RET_TIMESTAMP',
@@ -22,6 +22,14 @@ class Date extends _Abstract
             'date.timezone' => '',
         ),
     );
+
+    static $args = [
+        'sunInfo' => [1743080504, 31.6700, 118.4645, []],
+    ];
+
+    static $args_type = [
+        'sunInfo' => ['timestamp' => 'int', 'latitude' => 'float', 'longitude' => 'float', 'options' => 'array'],
+    ];
 
     public $pages = array(
         'refman' => array(
@@ -122,6 +130,11 @@ class Date extends _Abstract
         return $timestamp;
     }
 
+    static function time()
+    {
+        return time();
+    }
+
     /*
     +---------------------------------------------+
     + 格式化
@@ -158,9 +171,16 @@ class Date extends _Abstract
             $date_default_timezone_set = date_default_timezone_set($timezone);
         }
         $date_sun_info = date_sun_info($timestamp, $latitude, $longitude);
+        $variable = $date_sun_info;
+        foreach ($variable as $key => $value) {
+            $date = date('Y-m-d H:i:s', $value);
+            $val = [$value, $date];
+            $date_sun_info[$key] = $val;
+        }
         if (1 === $return_values) {
             return get_defined_vars();
         }
+
         return $date_sun_info;
     }
     //: array or false
