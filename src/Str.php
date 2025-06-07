@@ -4,14 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = 25.0416;
+    const VERSION = 25.0607;
     const EDITION = array(
         8,
         1,
         0,
         1,
     );
-    const REVISION = 13;
+    const REVISION = 14;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -368,6 +368,7 @@ class Str extends _Abstract
     }
     //: int
 
+    /* si'chui'neng */
     public static function strlen($string)
     {
         $strlen = strlen($string);
