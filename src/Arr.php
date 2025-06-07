@@ -4,14 +4,14 @@ namespace Ext;
 
 class Arr extends _Abstract
 {
-    const VERSION = 25.0117;
+    const VERSION = 25.0607;
     const EDITION = array(
         6,
         2,
         2,
         1,
     );
-    const REVISION = 13;
+    const REVISION = 14;
 
     public static $predefined_constants = array(
         /* array_change_key_case() */
@@ -415,7 +415,15 @@ class Arr extends _Abstract
     }
     //: int|float
 
-    public static function count($value, $mode = COUNT_NORMAL)
+    static function count($value, $mode = COUNT_NORMAL)
+    {
+        if (is_countable($value)) {
+            return self::countV1($value, $mode);
+        }
+    }
+
+    /* ye'bu'neng'mei*/
+    public static function countV1($value, $mode = COUNT_NORMAL)
     {
         $return_values = count($value, $mode);
         return $return_values;
