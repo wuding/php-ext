@@ -4,14 +4,14 @@ namespace Ext;
 
 class MB extends _Abstract
 {
-    const VERSION = 25.0130;
+    const VERSION = 25.0610;
     const EDITION = array(
         3,
         0,
         0,
         0,
     );
-    const REVISION = 5;
+    const REVISION = 6;
 
     // 方法版本要求
     /*
@@ -92,6 +92,14 @@ class MB extends _Abstract
         }
         return $array;
     }
+
+    // 曾经我的称谓
+    // 现在又属于谁
+    static function mb_strlen($string, $encoding = null)
+    {
+        return mb_strlen($string, $encoding);
+    }
+    //: int
 
     /*
     +---------------------------------------------+
