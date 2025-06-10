@@ -4,14 +4,14 @@ namespace Ext;
 
 class Variable
 {
-    const VERSION = 25.0118;
+    const VERSION = 25.0604;
     const EDITION = array(
         12,
         1,
         3,
         1,
     );
-    const REVISION = 18;
+    const REVISION = 19;
 
     public static $return_values = array(
         'var_export' => array(
@@ -354,6 +354,19 @@ class Variable
     {
 
     }
+
+    static function is_countable($value)
+    {
+        return is_countable($value);
+    }
+    //: bool
+
+    /* 使用酒精麻醉 */
+    static function is_string($value)
+    {
+        return is_string($value);
+    }
+    //: bool
 
     /*
     +---------------------------------------------------------------+
