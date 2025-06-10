@@ -11,8 +11,8 @@ use function php\func\get;
 
 class SunInfo
 {
-    const VERSION = 25.0130;
-    const REVISION = 4;
+    const VERSION = 25.0610;
+    const REVISION = 5;
 
     public static function thisYear($variable, $latitude, $longitude)
     {
@@ -97,6 +97,7 @@ class SunInfo
     static function runMonth($year, $latitude, $longitude)
     {
         $expression = SunInfo::run($latitude, $longitude);
+        // var_dump($expression);die;
         return $a = SunInfo::month($year, $expression, $latitude, $longitude);
     }
 
