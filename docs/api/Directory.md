@@ -4,7 +4,7 @@ File System Related Extensions
 https://www.php.net/manual/en/book.dir.php
 # Directories
 
-<!-- VER 23.7.10 REV 2 -->
+<!-- VER 23.6.11 REV 3 -->
 
 https://www.php.net/manual/en/ref.dir.php
 ## Directory Functions
@@ -34,14 +34,14 @@ rewinddir
 scandir
 
 
-## path
+### path
 
 chdir
 chroot
 getcwd
 
 
-## handle
+### handle
 
 opendir
 readdir
@@ -49,7 +49,7 @@ rewinddir
 closedir
 
 
-## list
+### list
 
 dir
 scandir
