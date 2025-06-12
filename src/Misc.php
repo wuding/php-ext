@@ -4,7 +4,9 @@ namespace Ext;
 
 class Misc
 {
-    const VERSION = '22.3.24';
+    const VERSION = 25.0612;
+    const REVISION = 8;
+    const EDITION = 184513.1749725113;
 
     public $predefined_constants = array(
         'CONNECTION_ABORTED',
@@ -168,6 +170,10 @@ class Misc
         return $return_values;
     }
 
+    static function constant($name)
+    {
+        return constant($name);
+    }
 
 
     /*
