@@ -4,8 +4,9 @@ namespace Ext;
 
 class Info extends _Abstract
 {
-    const VERSION = '23.7.15';
-    const REVISION = 3;
+    const VERSION = 25.0612;
+    const REVISION = 4;
+    const EDITION = 185829.1749725909;
 
     public static $constants = [];
     public static $constStr = 'ASSERT=ACTIVE,CALLBACK,BALL,WARNING,QUIET_EVAL;';
@@ -58,4 +59,59 @@ class Info extends _Abstract
     }
     //: array|false
 
+
+    /*
+    +---------------------------------------------+
+    + Grabage Collection
+    +---------------------------------------------+
+    */
+
+    static function gc_collect_cycles()
+    {
+        return gc_collect_cycles();
+    }
+    //: int
+
+    static function gc_disable()
+    {
+        return gc_disable();
+    }
+    //: void
+
+    static function gc_enable()
+    {
+        return gc_enable();
+    }
+    //: void
+
+    static function gc_enabled()
+    {
+        return gc_enabled();
+    }
+    //: bool
+
+    static function gc_mem_caches()
+    {
+        return gc_mem_caches();
+    }
+    //: int
+
+    static function gc_status()
+    {
+        return gc_status();
+    }
+    //: array
+
+
+    /*
+    +---------------------------------------------+
+    + Variables
+    +---------------------------------------------+
+    */
+
+    static function zend_version()
+    {
+        return zend_version();
+    }
+    //: string
 }
