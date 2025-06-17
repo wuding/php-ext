@@ -4,14 +4,15 @@ namespace Ext;
 
 class URL extends _Abstract
 {
-    const VERSION = 25.0421;
+    const VERSION = 25.0617;
     const EDITION = array(
         6,
         2,
         0,
         0,
     );
-    const REVISION = 10;
+    const REVISION = 11;
+    const BUILD = 101332.1750126412;
 
 
     public static $constStr = 'PHP_URL=SCHEME,HOST,PORT,USER,PASS,PATH,QUERY,FRAGMENT;PHP_QUERY=RFC1738,RFC3986';
@@ -386,4 +387,37 @@ class URL extends _Abstract
         return $results;
     }
 
+    // Urchin Tracking Module
+    static function utm_query($var_array)
+    {
+        $utm_source = null;
+        $utm_medium = null;
+        $utm_campaign = null;
+        $utm_content = null;
+        $utm_term = null;
+        extract($var_array);
+        $arr = [
+            'utm_source' => $utm_source,
+            'utm_medium' => $utm_medium,
+            'utm_campaign' => $utm_campaign,
+            'utm_content' => $utm_content,
+            'utm_term' => $utm_term,
+        ];
+        return $arr;
+    }
+    //: array|string
+    /*
+    城里的月光-魏如萱&Ice Paper
+    000115
+    城里的月光把梦照亮
+    请温暖他心房
+    看透了人间聚散
+    能不能多点快乐片段
+
+    城里的月光把梦照亮
+    请守护它身旁
+    若有一天能重逢
+    让幸福撒满整个夜晚
+    000157
+    */
 }
