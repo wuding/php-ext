@@ -4,14 +4,15 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = 25.0607;
+    const VERSION = 25.0615;
     const EDITION = array(
         8,
         1,
         0,
         1,
     );
-    const REVISION = 14;
+    const REVISION = 15;
+    const BUILD = 182050.1749982850;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
 
@@ -551,4 +552,10 @@ class Str extends _Abstract
         $return_values = str_getcsv($string, $separator, $enclosure, $escape);
         return $return_values;
     }
+
+    static function str_replace($search, $replace, $subject, &$count = null)
+    {
+        return str_replace($search, $replace, $subject, $count);
+    }
+    //: string|array
 }
