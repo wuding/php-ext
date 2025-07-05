@@ -4,8 +4,8 @@ namespace Ext;
 
 class Arrays
 {
-    const VERSION = 25.0506;
-    const REVISION = 4;
+    const VERSION = 25.0705;
+    const REVISION = 5;
     public static $arr = null;
 
     public function __construct($arr = null)
@@ -105,5 +105,56 @@ class Arrays
             $array_shift = array_shift($array);
         }
         return $array_shift;
+    }
+
+/*
+custom
+*/
+
+    static function keyValue($var_array, $variable, $array)
+    {
+        $delimiter = ',';
+        extract($var_array);
+
+        if (is_string($variable)) {
+            $variable = explode($delimiter, $variable);
+        }
+        if (!is_array($array)) {
+            $array = (array) $array;
+        }
+
+        $arr = [];
+        foreach ($variable as $key => $value) {
+            $item = $array[$value] ?? null;
+            $arr[$value] = $item;
+        }
+        return $arr;
+    }
+
+    static function valueCompare($var_array, $variable, $array)
+    {
+        $var = self::keyValue($var_array, $variable, $array);
+        $arr = [];
+        foreach ($var as $key => $value) {
+            foreach ($var as $k => $v) {
+                $compare = $value === $v;
+                if (!$compare) {
+                    $arr[] = [$key, $k];
+                }
+            }
+        }
+        return $arr;
+    }
+
+    static function valueEmpty($var_array, $variable, $array)
+    {
+        $var = self::keyValue($var_array, $variable, $array);
+        $arr = [];
+        foreach ($var as $key => $value) {
+            if (!$value) {
+                $arr[$key] = $value;
+            }
+        }
+        return $arr;
     }
 }
