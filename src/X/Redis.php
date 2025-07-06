@@ -4,14 +4,17 @@ namespace Ext\X;
 
 class Redis
 {
-    const VERSION = 24.0807;
-    const REVISION = 5;
+    const VERSION = 25.0706;
+    const REVISION = 6;
 
     // 运行时
     public static $connects = array();
+    static $keys = null;
+    static $db = 0;
     public $key = null;
     public $init = null;
     public $auth = null;
+    var $vars = null;
 
     // 通过数组初始化
     public function __construct($param_arr = null)
@@ -28,6 +31,10 @@ class Redis
             return null;
         }
 
+        if (!$this->key && !array_key_exists($this->key, self::$connects)) {
+            $this->key = self::$keys;
+            // var_dump([$name, self::$connects, $this->key, self::$keys, __LINE__, __FILE__]);
+        }
         $obj = self::$connects[$this->key];
         $result = false;
         try {
@@ -45,17 +52,27 @@ class Redis
         return call_user_func_array(array($obj, $name), $arguments);
     }
 
+    static function db($dbindex = null)
+    {
+        if (null === $dbindex) {
+            $dbindex = self::$db;
+        } else {
+            self::$db = $dbindex;
+        }
+        return self::select($dbindex);
+    }
+
     // 初始化连接，不同配置生成多个实例
     public function init($host = null, $port = null, $timeout = null, $reserved = null, $retry_interval = null, $read_timeout = null, $option = array(), $method = 'connect', $connect = null)
     {
         //=s
         // 计划：get_defined_vars
         $param_arr = func_get_args();
-        $vars = get_defined_vars();
+        $this->vars = $vars = get_defined_vars();
 
         //=z
         $json = json_encode($vars);
-        $this->key = $key = md5($json);
+        self::$keys = $this->key = $key = md5($json);
 
         //=l
         if (array_key_exists($key, self::$connects)) {
