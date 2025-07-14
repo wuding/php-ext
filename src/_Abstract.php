@@ -4,8 +4,16 @@ namespace Ext {
 
 abstract class _Abstract implements _Interface
 {
-    const VERSION = 25.0206;
-    const REVISION = 1;
+    const VERSION = 25.0714;
+    const REVISION = 2;
+
+    static $func = [
+    ];
+
+    static function __callStatic($name, $arguments)
+    {
+        return self::_call($name, $arguments);
+    }
 
     function __construct()
     {
@@ -22,18 +30,18 @@ abstract class _Abstract implements _Interface
     method
  */
 
-    function _func($func, $args)
+    static function _func($func, $args)
     {
         $param_arr = [];
 
-        extract($this->_func_vartype($func));
-        extract($this->_func_param($variable));
-        extract($this->_func_arg_err($parameters, $default_values, $param_types, $set_types));
+        extract(self::_func_vartype($func));
+        extract(self::_func_param($variable));
+        extract(self::_func_arg_err($parameters, $default_values, $param_types, $set_types));
 
         $var_array = array_shift($args);
-        $argv = $this->_func_arg_set($args, $parameters, $default_values);
+        $argv = self::_func_arg_set($args, $parameters, $default_values);
 
-        $arg1 = array_merge($arg, $argv);
+        $arg1 = array_merge($arg, $argv);#print_r(get_defined_vars());die;
         $array_merge = array_merge($arg1, $var_array);
 
         foreach ($parameters as $key => $value) {
@@ -43,9 +51,9 @@ abstract class _Abstract implements _Interface
         return $param_arr;
     }
 
-    function _call($func, $args)
+    static function _call($func, $args)
     {
-        $param_arr = $this->_func($func, $args);
+        $param_arr = self::_func($func, $args);
         $value = call_user_func_array($func, $param_arr);
         return $value;
     }
@@ -58,9 +66,9 @@ abstract class _Abstract implements _Interface
     _func_*
  */
 
-    function _func_vartype($func)
+    static function _func_vartype($func)
     {
-        $variable = static::$func[$func];
+        $variable = static::$func[$func] ?? [];
         $set_types = [];
 
         $return_type = null;
@@ -86,7 +94,7 @@ abstract class _Abstract implements _Interface
         ];
     }
 
-    function _func_param($variable)
+    static function _func_param($variable)
     {
         $parameters = [];
         $default_values = [];
@@ -128,7 +136,7 @@ abstract class _Abstract implements _Interface
         ];
     }
 
-    function _func_arg_err($parameters, $default_values, $param_types, $set_types)
+    static function _func_arg_err($parameters, $default_values, $param_types, $set_types)
     {#print_r(get_defined_vars());die;
         $arg = [];
         $err = [];
@@ -182,13 +190,17 @@ abstract class _Abstract implements _Interface
         ];
     }
 
-    function _func_arg_set($args, $parameters, $default_values)
+    static function _func_arg_set($args, $parameters, $default_values)
     {
         $argv = [];
         foreach ($args as $key => $value) {
-            $n = $parameters[$key];
-            $val = $default_values[$key];
-            $argv[$n] = $value;
+            $n = $parameters[$key] ?? null;
+            $val = $default_values[$key] ?? null;
+            if ($n) {
+                $argv[$n] = $value;
+            } else {
+                $argv[] = $value;
+            }
         }
         return $argv;
     }
