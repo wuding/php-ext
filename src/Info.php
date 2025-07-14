@@ -8,10 +8,10 @@ https://www.php.net/manual/zh/language.operators.errorcontrol.php
 
 namespace Ext;
 
-class Info extends \Ext\File
+class Info extends _Abstract
 {
-    const VERSION = 25.0205;
-    const REVISION = 1;
+    const VERSION = 25.0714;
+    const REVISION = 2;
 
     static $args = [
         '__construct' => [
@@ -31,6 +31,16 @@ class Info extends \Ext\File
 
     static $values = [
         'ini_set' => false,
+    ];
+
+    static $func = [
+        'ini_set' => [
+            'option' => 'string',
+            'value' => 'string',
+            ':' => 'bool',
+        ],
+        'php_ini_loaded_file' => [
+        ],
     ];
 
     /*
@@ -65,9 +75,9 @@ class Info extends \Ext\File
     垃圾回收 Garbage Collection
 */
 
-    function gc_collect_cycles()
+    static function gc_collect_cycles()
     {
-
+        return self::_call(__FUNCTION__, func_get_args());
     }
 
     /*
@@ -76,9 +86,19 @@ class Info extends \Ext\File
     +---------------------------------------------------------------+
     */
 
-    function ini_set()
+    static function ini_set()
     {
-        return $this->_call(__FUNCTION__, func_get_args());
+        return static::_call(__FUNCTION__, func_get_args());
+    }
+
+    static function php_ini_loaded_file()
+    {
+        return self::_call(__FUNCTION__, func_get_args());
+    }
+
+    static function php_ini_scanned_files()
+    {
+        return self::_call(__FUNCTION__, func_get_args());
     }
 
     /*
@@ -99,11 +119,25 @@ class Info extends \Ext\File
     memory_limit = "128M"
 
 */
-    memory_get_peak_usage()
+    static function memory_get_peak_usage()
+    {
+        return self::_call(__FUNCTION__, func_get_args());
+    }
 
-    memory_get_usage()
+    static function memory_get_usage()
+    {
+        return self::_call(__FUNCTION__, func_get_args());
+    }
 
-    memory_reset_peak_usage()
+    static function memory_reset_peak_usage()
+    {
+        return self::_call(__FUNCTION__, func_get_args());
+    }
+
+    static function php_sapi_name()
+    {
+        return self::_call(__FUNCTION__, func_get_args());
+    }
 
     /*
     +---------------------------------------------------------------+
