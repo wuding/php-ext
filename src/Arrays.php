@@ -4,8 +4,8 @@ namespace Ext;
 
 class Arrays
 {
-    const VERSION = 25.0716;
-    const REVISION = 6;
+    const VERSION = 25.0717;
+    const REVISION = 7;
     public static $arr = null;
 
     public function __construct($arr = null)
@@ -165,6 +165,19 @@ custom
         foreach ($var as $key => $value) {
             if (!$value) {
                 $arr[$key] = $value;
+            }
+        }
+        return $arr;
+    }
+
+    static function valueNull($arr, $string)
+    {
+        $variable  = explode(',', $string);
+        foreach ($variable as $key) {
+            $str = $arr[$key] ?? '';
+            $val = trim($str);
+            if (!$val) {
+                $arr[$key] = null;
             }
         }
         return $arr;
