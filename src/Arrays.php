@@ -5,7 +5,7 @@ namespace Ext;
 class Arrays
 {
     const VERSION = 25.0717;
-    const REVISION = 7;
+    const REVISION = 8;
     public static $arr = null;
 
     public function __construct($arr = null)
@@ -177,6 +177,19 @@ custom
             $str = $arr[$key] ?? '';
             $val = trim($str);
             if (!$val) {
+                $arr[$key] = null;
+            }
+        }
+        return $arr;
+    }
+
+    static function valueMatch($arr, $string, $pattern = "#^(\d{4})#")
+    {
+        $variable  = explode(',', $string);
+        foreach ($variable as $key) {
+            $str = $arr[$key] ?? '';
+            $val = trim($str);
+            if (!preg_match($pattern, $val, $matches)) {
                 $arr[$key] = null;
             }
         }
