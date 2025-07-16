@@ -4,8 +4,8 @@ namespace Ext;
 
 class Arrays
 {
-    const VERSION = 25.0705;
-    const REVISION = 5;
+    const VERSION = 25.0716;
+    const REVISION = 6;
     public static $arr = null;
 
     public function __construct($arr = null)
@@ -64,6 +64,18 @@ class Arrays
         foreach ($variable as $key => $value) {
             $arr[$key] = $arr[$value] ?? null;
             unset($arr[$value]);
+        }
+        return $arr;
+    }
+
+    static function key_preg_replace($variable, $pattern, $replacement = '')
+    {
+        $arr = [];
+        foreach ($variable as $key => $value) {
+            $new_key = preg_replace($pattern, $replacement, $key);
+            if ($key !== $new_key) {
+                $arr[$new_key] = $key;
+            }
         }
         return $arr;
     }
