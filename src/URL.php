@@ -4,8 +4,8 @@ namespace Ext;
 
 class URL extends _Abstract
 {
-    const VERSION = 25.0206;
-    const REVISION = 1;
+    const VERSION = 25.0725;
+    const REVISION = 2;
 
     static $func = [
         '__construct' => [
@@ -22,10 +22,18 @@ class URL extends _Abstract
             'callback' => ['callable'],
             'error_levels' => ['int', E_ALL],
         ],
+        'base64_decode' => [
+            'string' => 'string',
+        ],
     ];
 
     function parse_url()
     {
         return $this->_call(__FUNCTION__, func_get_args());
+    }
+
+    static function base64_decode()
+    {
+        return self::_call(__FUNCTION__, func_get_args());
     }
 }
