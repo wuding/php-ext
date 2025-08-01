@@ -4,8 +4,8 @@ namespace Ext;
 
 class Arrays
 {
-    const VERSION = 25.0717;
-    const REVISION = 9;
+    const VERSION = 25.0801;
+    const REVISION = 10;
     public static $arr = null;
 
     public function __construct($arr = null)
@@ -27,6 +27,11 @@ class Arrays
 
     static function key_remove($variable, $array)
     {
+        $delimiter = ',';
+        if (is_string($variable)) {
+            $variable = explode($delimiter, $variable);
+        }
+
         foreach ($variable as $key) {
             if (array_key_exists($key, $array)) {
                 unset($array[$key]);
