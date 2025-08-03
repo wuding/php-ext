@@ -5,7 +5,7 @@ namespace Ext;
 class cURL extends _Abstract
 {
     const VERSION = 25.0803;
-    const REVISION = 10;
+    const REVISION = 11;
 
     // 常量
     public static $constStr = '';
@@ -205,12 +205,24 @@ class cURL extends _Abstract
 
         // 通用选项
         $options = array(
+            // CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_SSL_VERIFYHOST => false,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_PROXYTYPE => CURLPROXY_HTTP,
+            # CURLPROXY_SOCKS5
             // CURLOPT_PROXY => '127.0.0.1:',
+            // CURLOPT_PROXYPORT => 10809,
+            // CURLOPT_PROXYUSERPWD => 'username:password',
+            // CURLOPT_PROXYAUTH => CURLAUTH_BASIC,
+            // CURLOPT_CONNECTTIMEOUT => 5,
+            // CURLOPT_TIMEOUT => 10,
+            // CURLOPT_HEADER => true,
+            // CURLOPT_COOKIE => '',
+            // CURLOPT_USERAGENT => $useragent,
+            CURLOPT_ENCODING => 'gzip',
+
         );
         // 额外选项
         foreach ($option as $key => $value) {
