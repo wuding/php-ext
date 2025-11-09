@@ -4,12 +4,17 @@ use function Func\get;
 
 class Example
 {
-    const REVISION = 1;
-    const VERSION = 25.0714;
+    const REVISION = 2;
+    const VERSION = 25.1109;
 
     function __construct()
     {
         $this->init();
+    }
+
+    function __destruct()
+    {
+        print_r([__LINE__, get_included_files()]);
     }
 
     function autoload()
@@ -48,10 +53,10 @@ class Example
         $method =  ltrim($_SERVER['PATH_INFO'] ?? '', '/');
         $function = array('\\Ext\\Info', $method ?: 'ini_set');
 
-        var_dump(ini_get('display_errors'));
+        // var_dump(ini_get('display_errors'));
         $expression = call_user_func_array($function, $param_arr);
         var_dump(get_defined_vars());
-        var_dump(ini_get('display_errors'));
+        // var_dump(ini_get('display_errors'));
     }
 }
 
