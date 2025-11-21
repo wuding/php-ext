@@ -9,11 +9,13 @@ use Ext\File;
 
 class ClientURL
 {
-    const VERSION = 25.1117;
-    const REVISION = 3;
+    const VERSION = 25.1121;
+    const REVISION = 4;
     static $filename = null;
     static $url = null;
     static $useragent = null;
+    static $dir = null;
+    static $exit = null;
 
     function __construct($orig = [], $properties = [], $args = [])
     {
@@ -26,7 +28,7 @@ class ClientURL
 
     function __destruct()
     {
-
+        var_dump([__LINE__, __FILE__, get_included_files()]);
     }
 
     static function construct($orig = [])
@@ -38,10 +40,13 @@ class ClientURL
     {
         $url = 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/17/d5/19/17d51985-0ae2-5e58-67da-38efbaf59ef8/Placeholder.mill/400x400bb-75.webp';
         $useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36';
+        $dir = 'J:\Server\VPS\\38.147.190.9\D\coolapp.ooo\img\uri';
+        $exit = null;
         $get = $_GET;
         extract($_GET);
         self::$url = $url;
         self::$useragent = $useragent;
+        self::$exit = $exit;
 
         $pattern = "#/+#";
         $replacement = '\\';
@@ -49,9 +54,11 @@ class ClientURL
         $preg_replace = preg_replace($pattern, $replacement, $subject);
         $scheme = parse_url($url, PHP_URL_SCHEME);
         $host = parse_url($url, PHP_URL_HOST);
-        self::$filename = $filename = "J:\Server\VPS\\38.147.190.9\D\coolapp.ooo\img\uri\\$scheme\\$host". $preg_replace;
+        self::$filename = $filename = "$dir\\$scheme\\$host". $preg_replace;
         return get_defined_vars();
-        print_r([__FILE__, get_defined_vars()]);die;
+        var_dump([__LINE__, __FILE__, get_defined_vars()]);
+        die(PHP_EOL . __FILE__ . PHP_EOL . PHP_EOL);
+        exit(1);
     }
 
     static function return_values($variable = [], $string = null, $delimiter = ',')
@@ -72,9 +79,15 @@ class ClientURL
         return $arr;
     }
 
-    static function run($orig = [], $url = null, $useragent = null, $filename = null, $return = 'put')
+    static function run($orig = [], $url = null, $useragent = null, $filename = null, $return = 'put', $exit = null)
     {
+        $exit = is_null($exit) ? null : self::$exit;
         extract($orig);
+        if ($exit) {
+            var_dump([__LINE__, __FILE__, get_defined_vars()]);
+            die;
+        }
+
         $cURL = new cURL($url);
         $var_array = array(
             'option' => array(
@@ -87,7 +100,7 @@ class ClientURL
         return self::return_values(get_defined_vars(), $return);
     }
 }
-
+/*
 $url = 'https://vpn.ht';
 $url = 'http://urlnk.org/api/v2';
 $url = 'http://gogs.phly.cc:3000';
@@ -100,15 +113,16 @@ $pattern = "#/+#";
 $replacement = '\\';
 $subject = $parse_url;
 $preg_replace = preg_replace($pattern, $replacement, $subject);
+*/
 $ClientURL = new ClientURL();
-ClientURL::init();
+// ClientURL::init();
 $orig = [
     'url' => ClientURL::$url,
     'filename' => ClientURL::$filename,
     'useragent' => ClientURL::$useragent,
 ];
 $run = ClientURL::run($orig);
-var_dump([__LINE__, $run]);
+var_dump([__LINE__, __FILE__, $run]);
 die;
 
 print_r([__FILE__, get_defined_vars()]);
