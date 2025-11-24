@@ -9,8 +9,8 @@ use Ext\File;
 
 class ClientURL
 {
-    const VERSION = 25.1121;
-    const REVISION = 4;
+    const VERSION = 25.1123;
+    const REVISION = 5;
     static $filename = null;
     static $url = null;
     static $useragent = null;
@@ -42,6 +42,7 @@ class ClientURL
         $useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36';
         $dir = 'J:\Server\VPS\\38.147.190.9\D\coolapp.ooo\img\uri';
         $exit = null;
+        $md5 = null;
         $get = $_GET;
         extract($_GET);
         self::$url = $url;
@@ -51,10 +52,15 @@ class ClientURL
         $pattern = "#/+#";
         $replacement = '\\';
         $subject = parse_url($url, PHP_URL_PATH);
-        $preg_replace = preg_replace($pattern, $replacement, $subject);
+        $pathinfo = pathinfo($subject);
+        $path = $preg_replace = preg_replace($pattern, $replacement, $subject);
+        if ($md5) {
+            $path = '/'. md5($url);
+            $path .= '.'. $pathinfo['extension'];
+        }
         $scheme = parse_url($url, PHP_URL_SCHEME);
         $host = parse_url($url, PHP_URL_HOST);
-        self::$filename = $filename = "$dir\\$scheme\\$host". $preg_replace;
+        self::$filename = $filename = "$dir\\$scheme\\$host". $path;
         return get_defined_vars();
         var_dump([__LINE__, __FILE__, get_defined_vars()]);
         die(PHP_EOL . __FILE__ . PHP_EOL . PHP_EOL);
@@ -81,7 +87,7 @@ class ClientURL
 
     static function run($orig = [], $url = null, $useragent = null, $filename = null, $return = 'put', $exit = null)
     {
-        $exit = is_null($exit) ? null : self::$exit;
+        $exit = is_null($exit) ? self::$exit : $exit;
         extract($orig);
         if ($exit) {
             var_dump([__LINE__, __FILE__, get_defined_vars()]);
@@ -130,7 +136,7 @@ print_r([__FILE__, get_defined_vars()]);
 $cURL = new cURL($url);
 $var_array = array(
     'option' => array(
-        CURLOPT_TIMEOUT => 100,
+        CURLOPT_TIMEOUT => 200,
         CURLOPT_HEADER => true,
         CURLINFO_HEADER_OUT => true,
         CURLOPT_USERAGENT => $useragent,
