@@ -4,7 +4,7 @@ namespace Ext\Manual\en;
 
 class ControlStructures
 {
-    const VERSION = '23.7.20';
+    const VERSION = 25.1201
     const EDITION = array(
         9,
         4,
@@ -15,13 +15,15 @@ class ControlStructures
         'Idfb U',// int to words
         'Id flu',// 身份 流行性感冒
     );
-    const REVISION = 9;
+    const REVISION = 10.3;
 
     public $pages = array(
         'refman' => array(
 
         ),
     );
+
+    // Introduction
 
     // if
     public static function outputScopeLineIndent($begin = 0, $int = 1, $final = 960, $str = '', $indent_using = '', $strength = null)
@@ -91,6 +93,8 @@ class ControlStructures
 
     // elseif/else if
 
+
+    // Alternative syntax for control structures
 
     // while
 
@@ -164,6 +168,31 @@ class ControlStructures
     {
         return $crlf;
     }
+
+    // foreach
+
+    // break
+
+    // continue
+
+    // switch
+
+    // match
+
+    // declare
+
+    // return
+
+    // require
+
+    // include
+
+    // require_once
+
+    // include_once
+
+    // goto
+
 }
 /*
 $expressions = [null, 599, 499, PHP_EOL];
