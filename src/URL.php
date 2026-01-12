@@ -4,14 +4,14 @@ namespace Ext;
 
 class URL extends _Abstract
 {
-    const VERSION = 25.0617;
+    const VERSION = 26.0112;
     const EDITION = array(
         6,
         2,
         0,
         0,
     );
-    const REVISION = 11;
+    const REVISION = 12;
     const BUILD = 101332.1750126412;
 
 
@@ -33,6 +33,7 @@ class URL extends _Abstract
         'base64_decode' => [null, false],
         'decode' => [null, false],
         'parse_url' => ['[]', null, -1],
+        'urlencode' => [null],
         '' => [],
     ];
 
@@ -40,6 +41,7 @@ class URL extends _Abstract
         'base64_decode' => ['string' => 'string', 'strict' => 'bool'],
         'decode' => ['str' => 'string', 'raw' => 'bool'],
         'parse_url' => ['var_array' => 'array', 'url' => 'string', 'component' => 'string'],
+        'urlencode' => ['string' => 'string'],
         '' => [],
     ];
 
@@ -385,6 +387,92 @@ class URL extends _Abstract
             }
         }
         return $results;
+    }
+
+    static function parse_headers($array = [], $headers = null)
+    {
+        $results = array();
+        extract($array);
+        $gettype = gettype($headers);
+        $variable = [];
+        if ('string' === $gettype) {
+            $variable = self::parse_headers_string($headers);
+        }
+
+        $orig = [
+            'results' => $results,
+            'subject' => $variable[0] ?? null,
+        ];
+        $fields = [
+            "Location",
+        ];
+
+        $res = [];
+        $res['headver'] = $headver = self::parse_headers_version($orig);
+        $res['headstr'] = $headstr = self::parse_headers_string(implode("\n", $variable));
+        $res['headln'] = $headln = self::parse_headers_lines($variable);
+        $res['headkv'] = $headkv = self::parse_headers_kv($results, $headln, $fields);
+        return $res;
+    }
+
+    static function parse_headers_string($subject)
+    {
+        $pattern = "#\n#";
+        return $preg_split = preg_split($pattern, $subject);
+    }
+
+    static function parse_headers_version($array = [], $subject = null)
+    {
+        $results = array();
+        extract($array);
+
+        if (preg_match("/HTTP\/([\d\.]+)\s+(\d+)\s+(.*)/i", $subject, $matches)) {
+            $status_line = array();
+            $arr = array('status_line', 'version', 'code', 'status');
+            foreach ($matches as $key => $value) {
+                $kn = $arr[$key];
+                $status_line[$kn] = $value;
+            }
+            $results[''] = $status_line;
+        }
+        return $results;
+    }
+
+    static function parse_headers_kv($results, $headers, $fields)
+    {
+        foreach ($headers as $key => $value) {
+            if ('Location' === $key) {
+                // print_r([$key, $value]);
+            }
+            foreach ($fields as $field) {
+                if ($field === $key) {
+                    $val = null;
+                    if (is_array($value)) {
+                        $val = array_pop($value);
+                    } else {
+                        $val = $value;
+                    }
+                    $kn = strtolower($key);
+                    $key_name = preg_replace("/[-]+/", '_', $kn);
+                    $results[$key_name] = $val;
+                }
+            }
+        }
+        return $results;
+    }
+
+    static function parse_headers_lines($variable)
+    {
+        $pattern = "#([^:]+):\s(.*)#";
+
+        $res = [];
+        foreach ($variable as $key => $subject) {
+            if (preg_match($pattern, $subject, $matches)) {
+                list($varname, $name, $value) = $matches;
+                $res[$name] = $value;
+            }
+        }
+        return $res;
     }
 
     // Urchin Tracking Module
