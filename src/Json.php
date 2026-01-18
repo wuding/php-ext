@@ -4,7 +4,46 @@ namespace Ext;
 
 class Json
 {
-    const VERSION = '22.5.14';
+    const REVISION = 3;
+    const VERSION = 26.0118;
+    static $predefined_constants = array(
+        /* json_last_error() JsonException */
+        'JSON_ERROR_NONE',
+        'JSON_ERROR_DEPTH',
+        'JSON_ERROR_STATE_MISMATCH',
+        'JSON_ERROR_CTRL_CHAR',
+        'JSON_ERROR_SYNTAX',
+        'JSON_ERROR_UTF8',
+        'JSON_ERROR_RECURSION',
+        'JSON_ERROR_INF_OR_NAN',
+        'JSON_ERROR_UNSUPPORTED_TYPE',
+        'JSON_ERROR_INVALID_PROPERTY_NAME',
+        'JSON_ERROR_UTF16',
+        'JSON_ERROR_NON_BACKED_ENUM',
+
+        /* json_decode */
+        'JSON_BIGINT_AS_STRING',
+        'JSON_OBJECT_AS_ARRAY',
+
+        /* json_encode */
+        'JSON_HEX_TAG',
+        'JSON_HEX_AMP',
+        'JSON_HEX_APOS',
+        'JSON_HEX_QUOT',
+        'JSON_FORCE_OBJECT',
+        'JSON_NUMERIC_CHECK',
+        'JSON_PERTTY_PRINT',
+        'JSON_UNESCAPED_SLASHES',
+        'JSON_UNESCAPED_UNICOEE',
+        'JSON_PARTIAL_OUTPUT_ON_ERROR',
+        'JSON_PRESERVE_ZERO_FRACTION',
+        'JSON_UNESCAPED_LINE_TERMINATORS',
+
+        /* json_decode json_encode */
+        'JSON_INVALID_UTF8_IGNORE',
+        'JSON_INVALID_UTF8_SUBSTITUTE',
+        'JSON_THROW_ON_ERROR',
+    );
 
     public function __construct()
     {
