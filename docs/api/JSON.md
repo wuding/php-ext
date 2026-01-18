@@ -1,5 +1,7 @@
 # JSON
 
+<!-- version 2.260118 --> 
+
 https://www.php.net/manual/zh/function.json-encode.php
 
 
@@ -21,6 +23,7 @@ JSON 函数
 ##### Decodes a JSON string
 
 
+对 JSON 格式的字符串进行编码
 
 
 
@@ -45,6 +48,18 @@ JSON 函数
 ##### Returns the last error occurred
 
 返回最后发生的错误
+
+
+
+#### json_validate
+
+##### Checks if a string contains valid JSON
+
+检查一个字符串是否包含有效的 JSON
+
+
+
+
 
 
 
