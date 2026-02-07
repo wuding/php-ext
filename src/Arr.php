@@ -4,14 +4,8 @@ namespace Ext;
 
 class Arr extends _Abstract
 {
-    const VERSION = 25.0607;
-    const EDITION = array(
-        6,
-        2,
-        2,
-        1,
-    );
-    const REVISION = 14;
+    const VERSION = 26.0207;
+    const REVISION = 15;
 
     public static $predefined_constants = array(
         /* array_change_key_case() */
@@ -346,6 +340,12 @@ class Arr extends _Abstract
         return $return_values;
     }
     //: array
+
+    // 通过键名获取值
+    static function _val($arr, $key = 0, $value = null)
+    {
+        return $val = $arr[$key] ?? $value;
+    }
 
     /*
     +---------------------------------------------------------------+
