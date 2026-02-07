@@ -4,7 +4,8 @@ namespace Ext;
 
 class GD
 {
-    const VERSION = '22.4.1';
+    const REVISION = 2;
+    const VERSION = 26.0207;
 
     public static $predefined_constants = array(
         'GD_VERSION',
@@ -201,5 +202,15 @@ class GD
     {
         $return_values = imagecreatefrompng($filename);
         return $return_values;
+    }
+
+    static function imagejpeg($var_array, $image = null, $file = null, $quality = -1)
+    {
+        extract($var_array);
+        if (!is_null($file)) {
+            $dirname = dirname($file);
+            $is_dir = File::isDir($dirname);
+        }
+        return imagejpeg($image, $file, $quality);
     }
 }
