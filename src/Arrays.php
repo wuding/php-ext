@@ -4,8 +4,8 @@ namespace Ext;
 
 class Arrays
 {
-    const VERSION = 25.0801;
-    const REVISION = 10;
+    const VERSION = 26.0324;
+    const REVISION = 11;
     public static $arr = null;
 
     public function __construct($arr = null)
@@ -83,6 +83,16 @@ class Arrays
             }
         }
         return $arr;
+    }
+
+    static function keyReplaceRegexp($var_array, $arr = [], $variable = [], $pattern = "", $replacement = '')
+    {
+        extract($var_array);
+        $trans = self::key_preg_replace($variable, $pattern, $replacement);
+        // $da = array_flip($trans);
+        $d = self::key_replace($variable, $trans);
+        $data = array_merge($arr, $d);
+        return $data;
     }
 
     static function array_shift(&$array, $var_array = [])
