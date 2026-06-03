@@ -4,7 +4,8 @@ namespace Ext;
 
 class Err
 {
-    const VERSION = '23.12.1';
+    const VERSION = 26.0225;
+    const REVISION = 6;
 
     public static $constStr = '';
     public static $predefined_constants = array(
@@ -141,4 +142,26 @@ class Err
 
         return true;
     }
+
+    /*
+    +---------------------------------------------------------------+
+    + 产生和发送
+    +---------------------------------------------------------------+
+    */
+
+    // 发送错误信息到某个地方
+    static function error_log($message, $message_typeb = 0, $destinationb = null, $additional_headers = null)
+    {
+        $error_log = error_log($message, $message_type, $destination, $additional_headers);
+        return $error_log;
+    }
+    //: bool
+
+    // 产生一个用户级别的 error/warning/notice 信息
+    static function trigger_error($message, $error_level = E_USER_NOTICE)
+    {
+        $trigger_error = trigger_error($message, $error_level);
+        return $trigger_error;
+    }
+    //: true
 }
