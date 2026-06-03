@@ -6,63 +6,147 @@ use ZipArchive;
 
 class ZipV2
 {
-    const VERSION = 24.0816;
-    const REVISION = 4;
+    const VERSION = 26.0511;
+    const REVISION = 5;
 
-    public static $zip = null;
-    public static $zip_file = null;
-    public static $file = null;
-    public static $filename = null;
+    var $_zip = null;
+    var $_zip_file = null;
+    var $_file = null;
+    var $_filename = null;
 
-    public function __construct($filename = null)
+    static $zip_archive = [];
+    static $zip = null;
+    static $zip_file = null;
+    static $file = null;
+    static $filename = null;
+
+    function __construct($filename = null)
     {
         $this->_init($filename);
     }
 
-    public function __get($name)
+    function __get($name)
     {
-        if (null === self::$zip) {
-            $this->_init(self::$filename);
+        if (null === $this->_zip) {
+            $this->_init($this->_filename);
         }
-        return self::$zip->$name;
+        return $this->_zip->$name;
     }
 
-    public function __call($name, $arguments)
+    function __call($name, $arguments)
     {
-        if (null === self::$zip) {
-            $this->_init(self::$filename);
+        if (null === $this->_zip) {
+            $this->_init($this->_filename);
         }
-        return call_user_func_array(array(self::$zip, $name), $arguments);
+
+        $call = @call_user_func_array(array($this->_zip, $name), $arguments);
+        $type = gettype($call);
+        if (!$call) {
+            var_dump($call);
+            print_r([__LINE__, __FILE__, $type, get_defined_vars()]);
+        }
+
+        return $call;
     }
 
-    public static function __callStatic($name, $arguments)
+    static function __callStatic($name, $arguments)
     {
         if (null === self::$zip) {
-            self::_init(self::$filename);
+            self::_inits(self::$filename);
         }
         $static = new static;
+        print_r([__LINE__, __FILE__, get_defined_vars()]);
         return call_user_func_array(array($static, $name), $arguments);
     }
 
-    public static function _init($filename = null, $only_zip = null)
+    function _init($filename = null, $only_zip = null)
     {
         if (!$filename) {
             return false;
         }
 
-        self::$zip = new ZipArchive;
-        $filenames = self::_fileNames($filename, true, $only_zip);
+        $filenames = $this->_fileNames($filename, true, $only_zip);
         if ($filenames) {
             $filename = $filenames[0];
         }
 
+        $key = md5($filename);
+        try {
+            $zip = new ZipArchive;
+        } catch (Exception $e) {
+            print_r([__FILE__, __LINE__, $e]);
+            die;
+        }
+
         $dirname = dirname($filename);
         $dir = File::isDir($dirname);
-        $flags = ZipArchive::CREATE;
-        $open = self::$zip->open($filename, $flags);
+        $flags = ZipArchive::CREATE;# | ZipArchive::OVERWRITE
+        $open = $zip->open($filename, $flags);
+        try {
+            // self::$zip_archive[$key] = self::$zip = $zip;
+            $this->_zip = $zip;
+        } catch (Exception $e) {
+            print_r([__FILE__, __LINE__, $e]);
+            die;
+        }
+        return $zip;
     }
 
-    public static function _fileNames($filename, $set_property = null, $only_zip = null)
+    static function _inits($filename = null, $only_zip = null)
+    {
+        if (!$filename) {
+            return false;
+        }
+
+        $filenames = self::_fileNamess($filename, true, $only_zip);
+        if ($filenames) {
+            $filename = $filenames[0];
+        }
+
+        $key = md5($filename);
+        try {
+            $zip = new ZipArchive;
+        } catch (Exception $e) {
+            print_r([__FILE__, __LINE__, $e]);
+            die;
+        }
+
+        $dirname = dirname($filename);
+        $dir = File::isDir($dirname);
+        $flags = ZipArchive::CREATE;# | ZipArchive::OVERWRITE
+        $open = $zip->open($filename, $flags);
+        try {
+            // self::$zip_archive[$key] = self::$zip = $zip;
+            self::$zip = $zip;
+        } catch (Exception $e) {
+            print_r([__FILE__, __LINE__, $e]);
+            die;
+        }
+        return $zip;
+    }
+
+    function _fileNames($filename, $set_property = null, $only_zip = null)
+    {
+        $pos = strpos($filename, '::');
+        if (false === $pos) {
+            if ($filename && $only_zip) {
+                $this->_zip_file = $filename;
+                return array($filename, null);
+            }
+
+            return false;
+        }
+
+        $result = self::getFilenames($filename, $pos);
+        if ($set_property) {
+            $this->_zip_file = $result[0];
+            $this->_file = $result[1];
+            $this->_filename = $filename;
+        }
+        return $result;
+    }
+
+    static function _fileNamess($filename, $set_property = null, $only_zip = null)
     {
         $pos = strpos($filename, '::');
         if (false === $pos) {
@@ -83,7 +167,7 @@ class ZipV2
         return $result;
     }
 
-    public static function wrapper($filename, $glue = '::')
+    static function wrapper($filename, $glue = '::')
     {
         $pattern = "/(.*)($glue)(.*)/i";
         if (!preg_match($pattern, $filename, $matches)) {
@@ -95,7 +179,7 @@ class ZipV2
         return implode('', $matches);
     }
 
-    public static function getFilenames($filename, $pos = null)
+    static function getFilenames($filename, $pos = null)
     {
         if (null === $pos) {
             $pos = strpos($filename, '::');
@@ -109,79 +193,80 @@ class ZipV2
         return array($zipfile, $file);
     }
 
-    public static function getContents($filename = null, $len = null)
+    function getContents($filename = null, $len = null)
     {
-        list($zipfile, $file) = self::_fileNames($filename, true);
-        $str = self::getFromName($file);
+        $zip = $this->_init($filename);
+        list($zipfile, $file) = $this->_fileNames($filename, true);
+        $str = $zip->getFromName($file);
         if (false !== $str && true === $len) {
             $str = strlen($str);
         }
         return $str;
     }
 
-    public static function putContents($filename = null, $data = null, $len = null)
+    function putContents($filename = null, $data = null, $len = null)
     {
-        list($zipfile, $file) = self::_fileNames($filename, true);
-        $add = self::addFromString($file, $data);
+        $zip = $this->_init($filename);
+        list($zipfile, $file) = $this->_fileNames($filename, true);
+        $add = $zip->addFromString($file, $data);
         if (false !== $add && true === $len) {
             $add = strlen($data);
         }
         return $add;
     }
 
-    public static function stat($filename = null, $flags = 0)
+    function stat($filename = null, $flags = 0)
     {
         $pos = strpos($filename, '::');
         if (false !== $pos) {
 
         } elseif (null !== self::$zip) {
-            return self::statName($filename, $flags);
+            return $this->statName($filename, $flags);
 
         } else {
             return null;
         }
 
-        list($zipfile, $file) = self::_fileNames($filename, true);
-        $arr = self::statName($file);
+        list($zipfile, $file) = $this->_fileNames($filename, true);
+        $arr = $this->statName($file);
         return $arr;
     }
 
-    public static function getNames($file = null)
+    function getNames($file = null)
     {
         if (null !== $file) {
-            self::_init($file, true);
-        } elseif (null === self::$zip) {
+            $this->_init($file, true);
+        } elseif (null === $this->_zip) {
             return false;
         }
 
-        $numFiles = self::$zip->numFiles;
+        $numFiles = $this->_zip->numFiles;
         $pieces = array();
         for ($i = 0; $i < $numFiles; $i++) {
-            $filename = self::$zip->getNameIndex($i);
+            $filename = $this->_zip->getNameIndex($i);
             $pieces[] = $filename;
         }
         return $pieces;
     }
 
-    public static function del($file = null)
+    function del($file = null)
     {
         if (null === $file) {
-            $file = self::$file;
+            $file = $this->_file;
 
         } elseif (is_string($file)) {
             $pos = strpos($file, '::');
             if (false !== $pos) {
-                list($zipfile, $file) = self::_fileNames($file, true);
+                list($zipfile, $file) = $this->_fileNames($file, true);
             }
 
-        } elseif (null === self::$zip) {
+        } elseif (null === $this->_zip) {
             return false;
         }
 
         if (is_int($file)) {
-            return self::deleteIndex($file);
+            return $this->deleteIndex($file);
         }
-
-        return self::deleteName($file);
+        return $this->deleteName($file);
     }
 }
