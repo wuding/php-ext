@@ -4,14 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = 25.0615;
+    const VERSION = 26.0514;
     const EDITION = array(
         8,
         1,
         0,
         1,
     );
-    const REVISION = 15;
+    const REVISION = 16;
     const BUILD = 182050.1749982850;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
@@ -282,6 +282,28 @@ class Str extends _Abstract
         return convert_uuencode($data);
     }
 
+    // HTML
+    static function stripTags($str, $allowed_tags = null)
+    {
+        if ($allowed_tags && is_string($allowed_tags)) {
+            $strpos = strpos($allowed_tags, '<');
+            if (false === $strpos) {
+                $pieces = [];
+                $variable = explode(',', $allowed_tags);
+                foreach ($variable as $key => $value) {
+                    $val = trim($value);
+                    if (!$val) {
+                        continue;
+                    }
+                    $pieces[] = "<$val>";
+                }
+                $allowed_tags = implode('', $pieces);
+            }
+        }
+
+        return strip_tags($str, $allowed_tags);
+    }
+
     /*
     +---------------------------------------------+
     + 计数、位置、比较
@@ -452,6 +474,16 @@ class Str extends _Abstract
     static function nl2br($string = null, $use_xhtml = true)
     {
         return nl2br($string, $use_xhtml);
+    }
+
+    static function htmlEntityDecode($var_array, $string = null, $flags = ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401,  $encoding = null, $times = 5)
+    {
+        extract($var_array);
+        $res = $string;
+        for ($i = 0; $i < $times; $i++) {
+            $res = html_entity_decode($res, $flags,  $encoding);
+        }
+        return $res;
     }
 
     /*
