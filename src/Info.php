@@ -4,8 +4,8 @@ namespace Ext;
 
 class Info extends _Abstract
 {
-    const VERSION = 25.0612;
-    const REVISION = 4;
+    const VERSION = 26.0225;
+    const REVISION = 5;
     const EDITION = 185829.1749725909;
 
     public static $constants = [];
@@ -101,6 +101,19 @@ class Info extends _Abstract
         return gc_status();
     }
     //: array
+
+    /*
+    +---------------------------------------------+
+    + 配置
+    +---------------------------------------------+
+    */
+
+    // 获取一个配置选项的值
+    static function ini_get($option)
+    {
+        return $ini_get = ini_get($option);
+    }
+    //： string|false
 
 
     /*
