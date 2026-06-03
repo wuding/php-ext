@@ -4,14 +4,14 @@ namespace Ext;
 
 class File extends _Abstract
 {
-    const VERSION = 25.0421;
+    const VERSION = 26.0329;
     const EDITION = array(
         21,
         0,
         1,
         0,
     );
-    const REVISION = 23;
+    const REVISION = 24;
 
     // 参数
     public static $filename = null;
@@ -641,6 +641,7 @@ class File extends _Abstract
         return ftruncate($handle, $size);
     }
 
+    // 写入文件（可安全用于二进制文件）
     public static function write($handle = null, $string = null, $length = null)
     {
         $handle = self::last($handle);
@@ -649,6 +650,7 @@ class File extends _Abstract
         }
         return fwrite($handle, $string, $length);
     }
+    //: int|false
 
     public static function pClose($handle = null)
     {
