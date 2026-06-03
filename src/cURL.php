@@ -4,8 +4,8 @@ namespace Ext;
 
 class cURL extends _Abstract
 {
-    const VERSION = 25.0803;
-    const REVISION = 11;
+    const VERSION = 26.0603;
+    const REVISION = 12;
 
     // 常量
     public static $constStr = '';
@@ -245,13 +245,42 @@ class cURL extends _Abstract
 
         $exec = self::exec();
         $errno = self::errno();
+        $info = curl_getinfo(self::$handle);
+        $patterns = [
+            "#Empty reply from server#i",
+            "#Failed to connect to ([0-9a-z\.]+) port (\d+): Timed out#i",
+            "#Could not resolve host: ([0-9a-z\.\-]+)#i",
+
+            "#SSL_ERROR_SYSCALL in connection to (.*)#i",
+            "#(\d+) milliseconds with 0 bytes received#i",
+            7 => "#Failed to connect to ([0-9a-z\.]+) port (\d+): Connection refused#i",
+            28 => "#([a-z]+) timed out after (\d+) milliseconds(.*)#i",
+            35 => "#Connection was reset in connection to (.*)#i",
+            56 => "#Connection was reset, errno (.*)#i",
+        ];
+        $matches = [];
+        $code = null;
         if ($errno) {
             $error = self::error();
-            var_dump([$errno, $error, __FILE__, __LINE__]);
-            exit;
+            foreach ($patterns as $key => $pattern) {
+                if (preg_match($pattern, $error, $matches)) {
+                    $code = $key;
+                    break;
+                }
+            }
+            $arr = [
+                'code' => $code,
+                'matches' => $matches,
+                'info' => $info,
+                'errno' => $errno,
+                'error' => $error,
+                'file' => __FILE__,
+                'line' => __LINE__,
+            ];
+            $obj = (object) $arr;
+            return $obj;
         }
 
-        $info = curl_getinfo(self::$handle);
         if ($split_header) {
             $pattern = "#\r\n\r\n#";
             list($response_header, $exec) = preg_split($pattern, $exec, 2);
