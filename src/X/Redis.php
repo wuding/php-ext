@@ -4,8 +4,8 @@ namespace Ext\X;
 
 class Redis
 {
-    const VERSION = 25.0706;
-    const REVISION = 6;
+    const VERSION = 26.0509;
+    const REVISION = 7;
 
     // 运行时
     public static $connects = array();
@@ -101,7 +101,7 @@ class Redis
     }
 
     // 将值编码为 JSON 储存
-    public function setJSON($key = null, $value = null, $timeout = null)
+    public function setJSON($key = null, $value = null, $timeout = null, $flags = null)
     {
         // 限制类型和大小
         if (!is_numeric($timeout)) {
@@ -109,19 +109,23 @@ class Redis
         } elseif (1 > $timeout) {
             $timeout = null;
         }
-        $json = json_encode($value);
+
+        if (is_null($flags)) {
+            $flags = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES;
+        }
+        $json = json_encode($value, $flags);
         $set = $this->set($key, $json, $timeout);
         return $set;
     }
 
     // 将读取的值进行 JSON 解码
-    public function getJSON($key = null, $value = false)
+    public function getJSON($key = null, $value = false, $associative = null)
     {
         $json = $this->get($key);
         if (false === $json) {
             return $value;
         }
-        $val = json_decode($json);
+        $val = json_decode($json, $associative);
         return $val;
     }
 }
