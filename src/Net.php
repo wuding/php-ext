@@ -4,8 +4,8 @@ namespace Ext;
 
 class Net
 {
-    const VERSION = 25.0201;
-    const REVISION = 2;
+    const VERSION = 26.0225;
+    const REVISION = 3;
 
     function __construct($str = null)
     {
@@ -30,10 +30,18 @@ class Net
     }
     //: array
 
-    static function location($url, $exit = null)
+    static function location($url, $exit = null, $var_array = [])
     {
+        $replace = true;
+        $response_code = null;
+        extract($var_array);
         $string = "Location: $url";
-        header($string);
+        if ($response_code) {
+            header($string, $replace, $response_code);
+        } else {
+            header($string, $replace);
+        }
+
         if ($exit) {
             exit;
         }
@@ -129,6 +137,12 @@ class Net
         return self::interfaces();
     }
     //: array|false
+
+    /*
+    +---------------------------------------------------------------+
+    + header
+    +---------------------------------------------------------------+
+    */
 
     static function headers_sent($var_array = [], &$filename = null, &$line = null)
     {
