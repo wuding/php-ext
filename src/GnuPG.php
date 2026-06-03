@@ -4,9 +4,10 @@ namespace Ext;
 
 class GnuPG
 {
-    const VERSION = '22.3.28';
+    const VERSION = 26.0118;
+    const REVISION = 2;
 
-    public $predefiend_constants = array(
+    public $predefined_constants = array(
         'int' => array(
             'GNUPG_SIG_MODE_NORMAL',
             'GNUPG_SIG_MODE_DETACH',
@@ -32,7 +33,7 @@ class GnuPG
             'GNUPG_ERROR_WARING',
             'GNUPG_ERROR_EXCEPTION',
             'GNUPG_ERROR_SILENT',
-        );
+        ),
     );
 
     public $pages = array(
