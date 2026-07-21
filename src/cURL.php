@@ -4,8 +4,8 @@ namespace Ext;
 
 class cURL extends _Abstract
 {
-    const VERSION = 26.0603;
-    const REVISION = 12;
+    const VERSION = 26.0707;
+    const REVISION = 13;
 
     // 常量
     public static $constStr = '';
@@ -19,6 +19,8 @@ class cURL extends _Abstract
     public static $handle = null;
     public static $multi_handle = null;
     static $info = [];
+    static $logs = [];
+    static $url = null;
 
     // 错误
     public static $libcurl_errors = 'CURLE=OK,UNSUPPORTED_PROTOCOL,FAILED_INIT,URL_MALFORMAT,NOT_BUILT_IN,COULDNT_RESOLVE_PROXY,COULDNT_RESOLVE_HOST,COULDNT_CONNECT,WEIRD_SERVER_REPLY,REMOTE_ACCESS_DENIED,FTP_ACCEPT_FAILED,FTP_WEIRD_PASS_REPLY,FTP_ACCEPT_TIMEOUT;CURLE_FTP=WEIRD_PASV_REPLY,WEIRD_227_FORMAT,CANT_GET_HOST;CURLE=HTTP2,FTP_COULDNT_SET_TYPE,PARTIAL_FILE,FTP_COULDNT_RETR_FILE,QUOTE_ERROR,HTTP_RETURNED_ERROR,WRITE_ERROR,UPLOAD_FAILED,READ_ERROR,OUT_OF_MEMORY,OPERATION_TIMEDOUT,FTP_PORT_FAILED,FTP_COULDNT_USE_REST,RANGE_ERROR,HTTP_POST_ERROR,SSL_CONNECT_ERROR,BAD_DOWNLOAD_RESUME,FILE_COULDNT_READ_FILE,LDAP_CANNOT_BIND,LDAP_SEARCH_FAILED,FUNCTION_NOT_FOUND,ABORTED_BY_CALLBACK,BAD_FUNCTION_ARGUMENT,INTERFACE_FAILED,TOO_MANY_REDIRECTS,UNKOWN_OPTION,SETOPT_OPTION_SYNTAX,GOT_NOTHING,SSL_ENGINE_NOTFOUND,SSL_ENGINE_SETFAILED,SEND_ERROR,RECV_ERROR,SSL_CERTPROBLEM,SSL_CIPHER,PEER_FAILED_VERIFICATION,BAD_CONTENT_ENCODING,LDAP_INVALID_URL,FILESIZE_EXCEEDED,USE_SSL_FAILED,SEND_FAIL_REWIND,SSL_ENGINE_INITFAILED,LOGIN_DENIED,TFTP_NOTFOUND,TFTP_PERM,REMOTE_DISK_FULL,TFTP_ILLEGAL,TFTP_UNKNOWNID,REMOTE_FILE_EXISTS,TFTP_NOSUCHUSER,CONV_FAILED,CONV_REQD,SSL_CACERT_BADFILE,REMOTE_FILE_NOT_FOUND,SSH,SSL_SHUTDOWN_FAILED,AGAIN,SSL_CRL_BADFILE,SSL_ISSUER_ERROR,FTP_PRET_FAILED,RTSP_CSEQ_ERROR,RTSP_SESSION_ERROR,FTP_BAD_FILE_LIST,CHUNK_FAILED,NO_CONNECTION_AVAILABLE,SSL_PINNEDPUBKEYNOTMATCH,SSL_INVALIDCERTSTATUS,HTTP2_STREAM,RECURSIVE_API_CALL,AUTH_ERROR,HTTP3,QUIC_CONNECT_ERROR,SSL_CLIENTCERT';
@@ -85,7 +87,9 @@ class cURL extends _Abstract
 
     public static function init($url = null)
     {
+        self::$logs[] = [__FUNCTION__, $url];
         $ch = self::$handle = curl_init($url);
+        self::$url = $url;
         return $ch;
     }
 
@@ -194,11 +198,13 @@ class cURL extends _Abstract
 
     public static function simulate($var_array = null, $post_fields = null, $http_header = null, $header = null)
     {
+        $url = self::$url;
         $return_all = null;
         $option = array();
         $method = null;
         $info = null;
         $split_header = null;
+        $debug = null;
         if (is_array($var_array)) {
             extract($var_array);
         }
@@ -228,6 +234,12 @@ class cURL extends _Abstract
         foreach ($option as $key => $value) {
             $options[$key] = $value;
         }
+
+        if (in_array($debug, ['opt'])) {
+            var_dump([__LINE__, __FILE__, get_defined_vars()]);die;
+        }
+
+
         // POST
         $opts = array(
             CURLOPT_POST => true,
@@ -243,33 +255,52 @@ class cURL extends _Abstract
             $setPost = self::setOptArray(null, $opts, $post_fields, true);
         }
 
+        $micro = microtime(true);
         $exec = self::exec();
         $errno = self::errno();
         $info = curl_getinfo(self::$handle);
+        $time = microtime(true);
+        $diff = $time - $micro;
         $patterns = [
             "#Empty reply from server#i",
-            "#Failed to connect to ([0-9a-z\.]+) port (\d+): Timed out#i",
             "#Could not resolve host: ([0-9a-z\.\-]+)#i",
-
-            "#SSL_ERROR_SYSCALL in connection to (.*)#i",
             "#(\d+) milliseconds with 0 bytes received#i",
-            7 => "#Failed to connect to ([0-9a-z\.]+) port (\d+): Connection refused#i",
+            7 => "#Failed to connect to ([0-9a-z\.]+) port ([\d]+): Connection refused#i",
+            70 => "#Failed connect to ([0-9a-z\.:]+); Connection timed out#i",
+            71 => "#Failed connect to ([0-9a-z\.:]+); Connection refused#i",
+            72 => "#Failed to connect to#i",
+            73 => "#Failed connect to#i",
+
             28 => "#([a-z]+) timed out after (\d+) milliseconds(.*)#i",
+            280 => "#Failed to connect to ([0-9a-z\.]+) port (\d+): Timed out#i",
+
             35 => "#Connection was reset in connection to (.*)#i",
+            350 => "#Encountered end of file#i",
+            351 => "#TCP connection reset by peer#i",
+            352 => "#SSL_ERROR_SYSCALL in connection to (.*)#i",
+
             56 => "#Connection was reset, errno (.*)#i",
+            560 => "#Connection was reset#i",
+            561 => "#Received HTTP code ([\d]+) from proxy after CONNECT#i",
+            562 => "#Recv failure: Connection reset by peer#i",
+            563 => "#Proxy CONNECT aborted#i",
+
+
         ];
         $matches = [];
-        $code = null;
+        $code = $msg = null;
         if ($errno) {
             $error = self::error();
             foreach ($patterns as $key => $pattern) {
                 if (preg_match($pattern, $error, $matches)) {
                     $code = $key;
+                    $msg = $pattern;
                     break;
                 }
             }
             $arr = [
                 'code' => $code,
+                'msg' => $msg,
                 'matches' => $matches,
                 'info' => $info,
                 'errno' => $errno,
@@ -278,6 +309,8 @@ class cURL extends _Abstract
                 'line' => __LINE__,
             ];
             $obj = (object) $arr;
+
+            self::$logs[] = [__FUNCTION__, $diff, $errno, $error];
             return $obj;
         }
 
@@ -286,8 +319,14 @@ class cURL extends _Abstract
             list($response_header, $exec) = preg_split($pattern, $exec, 2);
             $info['response_header'] = $response_header;
         }
-        self::$info = $info;
+        self::$logs[] = self::$info = $info;
         $close = self::close();
+        self::$logs[] = [__FUNCTION__, $diff];
+
+        if (in_array($debug, ['ret'])) {
+            print_r([__LINE__, __FILE__, get_defined_vars()]);die;
+        }
+
         return $return_all ? get_defined_vars() : $exec;
     }
 
