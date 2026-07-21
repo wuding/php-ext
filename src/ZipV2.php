@@ -6,8 +6,8 @@ use ZipArchive;
 
 class ZipV2
 {
-    const VERSION = 26.0511;
-    const REVISION = 5;
+    const VERSION = 26.0721;
+    const REVISION = 6;
 
     var $_zip = null;
     var $_zip_file = null;
@@ -41,9 +41,12 @@ class ZipV2
 
         $call = @call_user_func_array(array($this->_zip, $name), $arguments);
         $type = gettype($call);
-        if (!$call) {
+        $haystack = ['boolean'];
+        if (!$call && !in_array($type, $haystack)) {
+/*
             var_dump($call);
             print_r([__LINE__, __FILE__, $type, get_defined_vars()]);
+*/
         }
 
         return $call;
@@ -84,7 +87,7 @@ class ZipV2
         $open = $zip->open($filename, $flags);
         try {
             // self::$zip_archive[$key] = self::$zip = $zip;
-            $this->_zip = $zip;
+            @$this->_zip = $zip;
         } catch (Exception $e) {
             print_r([__FILE__, __LINE__, $e]);
             die;
