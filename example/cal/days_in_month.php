@@ -10,8 +10,8 @@ use function php\func\get;
 
 class DaysInMonth
 {
-    const VERSION = '23.8.4';
-    const REVISION = 4;
+    const VERSION = 26.0228;
+    const REVISION = 5;
 
     public function __construct()
     {
@@ -24,7 +24,7 @@ class DaysInMonth
         $arr = array();
         for ($i = $first; $i < $late; $i++)
         {
-            $param_arr = get(array(
+            $param_arr = self::get(array(
                 'calendar' => CAL_GREGORIAN,
                 'month' => $i,
                 'year' => $year,
@@ -39,6 +39,16 @@ class DaysInMonth
             'arr' => $arr,
         );
         return $expression;
+    }
+
+    static function get($variable)
+    {
+        $arr = [];
+        foreach ($variable as $key => $value) {
+            $r = $_GET[$key] ?? $value;
+            $arr[$key] = $r;
+        }
+        return $arr;
     }
 }
 
