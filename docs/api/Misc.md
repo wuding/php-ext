@@ -1,7 +1,7 @@
 Other Basic Extensions
 # Misc. — Miscellaneous Functions
 
-<!-- VER 23.7.9 REV 5 -->
+<!-- VER 6.251114 -->
 
 Miscellaneous
 
@@ -140,7 +140,7 @@ usleep
 | sapi_windows_cp_is_utf8          |
 | sapi_windows_cp_set    |
 | spai_windows_generate_ctrl_event   |
-| sapi_windows_set_ctrl_event   |
+| sapi_windows_set_ctrl_handler |
 | sapi_windows_vt100_support |
 
 
