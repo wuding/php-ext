@@ -1,7 +1,7 @@
 Variable and Type Related Extensions
 # Arrays
 
-<!-- VER 23.7.26 REV 5 EDITION 4.0.2 <= 3.0.2 -->
+<!-- VER 6.260323 -->
 
 ## Array Functions 82 = 54 + 2 ++ 26
 
@@ -106,6 +106,15 @@ usort
 |        | array_search          |      |            |      |      |
 |        | key                   |      |            |      |      |
 |        | shuffle               |      |            |      |      |
+
+#### 自定义
+
+| 方法名           | 函数名           | 别名 | 全称 | 翻译 | 描述 |
+| ---------------- | ---------------- | ---- | ---- | ---- | ---- |
+|                  | replace_key      |      |      |      |      |
+|                  | key_replace      |      |      |      |      |
+|                  | key_preg_replace |      |      |      |      |
+| keyReplaceRegexp |                  |      |      |      |      |
 
 
 
