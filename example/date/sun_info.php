@@ -3,6 +3,7 @@
 // namespace Ext\example\date;
 
 define('ROOT', dirname(__DIR__, 5));
+define('ROOT', "J:\Server\Domain\urlnk\com\@\php-app");
 
 $autoload = require ROOT ."/vendor/autoload.php";
 $include = include ROOT .'/vendor/wuding/php-ext/example/cal/days_in_month.php';
@@ -11,8 +12,8 @@ use function php\func\get;
 
 class SunInfo
 {
-    const VERSION = 25.0610;
-    const REVISION = 5;
+    const VERSION = 26.0208;
+    const REVISION = 6;
 
     public static function thisYear($variable, $latitude, $longitude)
     {
@@ -21,7 +22,7 @@ class SunInfo
         $array = array();
         foreach ($variable as $k => $val) {
 
-            $param_arr = get(array(
+            $param_arr = self::get(array(
                 'timestamp' => $val,
                 'latitude' => $latitude,
                 'longitude' => $longitude,
@@ -34,7 +35,9 @@ class SunInfo
 
             $arr = array();
             foreach ($expression['date_sun_info'] as $key => $value) {
-                $arr[$key] = date('Y-m-d H:i:s', $value);
+                // var_dump([$value]);die;
+                list($time, $daytime) = $value;
+                $arr[$key] = date('Y-m-d H:i:s', $time);
             }
             $expression['date_sun_info_time'] = $arr;
             $array[] = $expression;
@@ -49,7 +52,7 @@ class SunInfo
 
         $method = \Ext\Date::funcToMethodName($pathinfo_filename);
         $function = array('\\Ext\\Date', $method);
-        $param_arr = get(array(
+        $param_arr = self::get(array(
             'timestamp' => time(),
             'latitude' => $latitude,
             'longitude' => $longitude,
@@ -65,7 +68,8 @@ class SunInfo
     {
         $arr = array();
         foreach ($expression['date_sun_info'] as $key => $value) {
-            $arr[$key] = date('Y-m-d H:i:s', $value);
+            list($time, $daytime) = $value;
+            $arr[$key] = date('Y-m-d H:i:s', $time);
         }
         $expression['date_sun_info_time'] = $arr;
         // $expression['include'] = $include;
@@ -127,7 +131,22 @@ class SunInfo
         }
         return $arr;
     }
+
+    static function get($variable, $value = null)
+    {
+        if (!is_array($variable)) {
+            $r = $_GET[$variable] ?? $value;
+            return $r;
+        }
+
+        $arr = [];
+        foreach ($variable as $key => $value) {
+            $r = $_GET[$key] ?? $value;
+            $arr[$key] = $r;
+        }
+        return $arr;
+    }
 }
 
-$compare = SunInfo::compare(get('year', 2025));
+$compare = SunInfo::compare(SunInfo::get('year', 2025));
 print_r($compare);
