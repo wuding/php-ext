@@ -6,7 +6,7 @@ https://www.php.net/manual/en/book.strings.php
 
 字符串
 
-<!-- VER 23.7.18 REV 5  -->
+<!-- VER 6.251119  -->
 
 https://www.php.net/manual/en/ref.strings.php
 ## String Functions
@@ -195,6 +195,7 @@ utf8_encode
 |          | quoted_printable_encode |      |
 
 23.6.23 11:
+
 | Deprecated | 方法名              | 函数名              | 描述 |
 | -----------| ------------------ | ------------------ | ---- |
 | -          |                    | utf8_decode        |      |
@@ -278,6 +279,7 @@ utf8_encode
 
 Migrating from PHP 7.4.x to PHP 8.0.x
 23.6.23 10:
+
 | 方法名      | 函数名           | 描述 |
 | ---------- | --------------- | ---- |
 |            | str_contains    |      |
@@ -300,6 +302,7 @@ Migrating from PHP 7.4.x to PHP 8.0.x
 |            | strcasecmp     |                                                  |                               |
 |            | strnatcmp      |                                                  |                               |
 |            | strnatcasecmp  |                                                  |                               |
+|            | strncasecmp | | |
 |            | strncmp        |                                                  |                               |
 |            | substr_compare |                                                  |                               |
 |            | strcoll        |                                                  |                               |
@@ -320,7 +323,7 @@ Migrating from PHP 7.4.x to PHP 8.0.x
 |            | wordwrap    |      |      |
 |            | strtok      |      |      |
 |            | str_pad     |      |      |
-|            | str_reapt   |      |      |
+|            | str_repeat  |      |      |
 |            | str_shuffle |      |      |
 
 
