@@ -4,7 +4,7 @@ File System Related Extensions
 https://www.php.net/manual/en/book.filesystem.php
 # Filesystem
 
-<!-- VER 23.8.18 REV 6 -->
+<!-- VER 7.251111 -->
 
 https://www.php.net/manual/en/ref.filesystem.php
 ## Filesystem Functions
@@ -172,6 +172,8 @@ unlink
 | 函数名             | 描述       | 别名   |
 | ------------------ | ---------- | ------ |
 | copy               | 复制       |        |
+| fdatasync          |            |        |
+| fsync              |            |        |
 | file_get_contents  | 读         |        |
 | file_put_contents  | 写         |        |
 | file               | 读为数组   |        |
