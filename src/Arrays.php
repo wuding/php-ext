@@ -4,8 +4,8 @@ namespace Ext;
 
 class Arrays
 {
-    const VERSION = 26.0410;
-    const REVISION = 12;
+    const VERSION = 26.0920;
+    const REVISION = 13;
     public static $arr = null;
 
     public function __construct($arr = null)
@@ -226,5 +226,18 @@ custom
             }
         }
         return $arr;
+    }
+
+    // HTTP 头信息
+    static function headers($variable, $ignore_empty = null)
+    {
+        $pieces = array();
+        foreach ($variable as $key => $value) {
+            if ($ignore_empty && !$value) {
+                continue 1;
+            }
+            $pieces[] = is_numeric($key) ? $value : "$key: $value";
+        }
+        return $pieces;
     }
 }
