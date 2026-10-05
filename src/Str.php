@@ -4,14 +4,14 @@ namespace Ext;
 
 class Str extends _Abstract
 {
-    const VERSION = 26.0514;
+    const VERSION = 26.1005;
     const EDITION = array(
         8,
         1,
         0,
         1,
     );
-    const REVISION = 16;
+    const REVISION = 17;
     const BUILD = 182050.1749982850;
 
     public static $constStr = 'CRYPT=SALT_LENGTH,STD_DES,EXT_DES,MD5,BLOWFISH;';
@@ -573,9 +573,13 @@ class Str extends _Abstract
     }
     //: array
 
-    static function parse_str($string, $result = [])
+    static function parse_str($string, $result = [], $export = null)
     {
         parse_str($string, $result);
+        // $export = true;
+        if (is_bool($export)) {
+            return var_export($result, $export);
+        }
         return $result;
     }
 
